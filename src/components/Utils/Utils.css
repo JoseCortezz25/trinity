@@ -1,0 +1,13 @@
+.MainTitle h2 {
+  font-size: 25px;
+  color: #323333;
+}
+
+.MainTitle hr {
+  background-color: #323333;
+  width: 50px;
+  height: 3px;
+  margin: auto;
+  margin-top: 8px;
+  margin-bottom: 30px;
+}
