@@ -1,21 +1,29 @@
-import React from 'react'
-import './Header.css'
+import React from "react";
+import "./Header.css";
+import iconButton from "../../assets/toggleButton.svg";
+import { useState } from "react";
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleMenu = () => setIsOpen((prevState) => !prevState);
+  
   return (
     <header>
       <nav>
-        <span className="logo">
-        {'<Trinity />'}
-        </span>
+        <span className="logo">{"<Trinity />"}</span>
       </nav>
       <nav>
-        <a href="">Servicios</a>
-        <a href="">Nosotros</a>
-        <a href="">Ubicación</a>
+        <button className={`menuBtn`} onClick={toggleMenu}>
+          <img src={iconButton} alt="" />
+        </button>
+        <div className={`menuContent ${isOpen ? "open" : "close"}`}>
+          <a href="#Nosotros">Nosotros</a>
+          <a href="#Servicios">Servicios</a>
+          <a href="#Ubicacion">Ubicación</a>
+        </div>
       </nav>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

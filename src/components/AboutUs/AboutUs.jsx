@@ -4,7 +4,7 @@ import { Title } from "../Utils/Utils";
 
 const AboutUs = () => {
   return (
-    <section className="AboutUs ">
+    <section className="AboutUs" id="Nosotros">
       <Title title="Nosotros" />
       <p>Lorem ipsum dolor sit amet. Ut molestiae perferendis. Lorem ipsum dolor sit amet.</p>
     </section>

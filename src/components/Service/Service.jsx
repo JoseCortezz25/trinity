@@ -8,7 +8,7 @@ import icon3 from '../../assets/icon3.svg'
 
 const Service = () => {
   return (
-    <section className="Service">
+    <section className="Service" id="Servicios">
       <Title title="Servicios" />
       <div className="ServiceCards">
         <div className="ServiceCard">

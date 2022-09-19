@@ -1,6 +1,6 @@
 import React from "react";
-import "./MainCover.css";
 import imageCoverProgrammer from "../../assets/programmer.svg";
+import "./MainCover.css";
 
 const MainCover = () => {
   return (

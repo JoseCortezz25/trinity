@@ -1,18 +1,16 @@
 .MainCover {
-    /* border: 1px solid red; */
-    width: 100%;
-    height: calc(100vh - 60px);
-    background-image: url('../../assets/blur.jpg');
-    background-position: left;
-    background-repeat: no-repeat;
-    display: flex;
+  width: 100%;
+  height: calc(100vh - 60px);
+  background-image: url("../../assets/blur.jpg");
+  background-position: left;
+  background-repeat: no-repeat;
+  display: flex;
 }
 
 .MainCover .container {
   width: 80%;
-  /* border: 1px solid green; */
   margin: auto;
-  
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -20,17 +18,50 @@
 
 .MainCover .boxImage {
   width: 50%;
-  /* border: 1px solid green; */
   display: flex;
   justify-content: center;
 }
 
 .MainCover .boxInfo {
   width: 50%;
-  /* border: 1px solid green; */
 }
 
 .MainCover .boxInfo p {
   font-size: 40px;
   font-weight: bold;
+}
+
+@media screen and (max-width: 667px) {
+  .MainCover {
+    height: 100vh;
+  }
+
+  .MainCover .container {
+    width: 80%;
+    margin: auto;
+  
+    display: flex;
+    flex-direction: column;
+  }
+
+  .MainCover .boxImage {
+    width: 70%;
+    margin-bottom: 20px;
+    order: 1;
+  }
+  
+  .MainCover .boxImage img {
+    width: 100%;
+  }
+
+  .MainCover .boxInfo {
+    width: 100%;
+    order: 2;
+  }
+
+  .MainCover .boxInfo p {
+    font-size: 27px;
+    font-weight: bold;
+  }
+  
 }

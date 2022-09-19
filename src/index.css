@@ -4,7 +4,27 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
+
 html {
   font-family: 'Montserrat', sans-serif;
+}
+
+.buttonTop {
+  background-color: transparent;
+  border: none;
+  position: fixed; 
+  width: 30px;
+  height: 30px;
+  right: 5%;
+  bottom: 40px;
+  font-size: 3rem;
+  z-index: 1;
+  cursor: pointer;
+  color: green;
+}
+
+.App {
+  width: 100%;
 }

@@ -11,3 +11,11 @@
   margin-top: 8px;
   margin-bottom: 30px;
 }
+
+
+@media screen and (max-width: 667px) {
+  .MainTitle h2 {
+    font-size: 22px;
+    color: #323333;
+  }
+}
