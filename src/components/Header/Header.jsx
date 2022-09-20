@@ -6,7 +6,7 @@ import { useState } from "react";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen((prevState) => !prevState);
-  
+
   return (
     <header>
       <nav>
@@ -16,10 +16,21 @@ const Header = () => {
         <button className={`menuBtn`} onClick={toggleMenu}>
           <img src={iconButton} alt="" />
         </button>
-        <div className={`menuContent ${isOpen ? "open" : "close"}`}>
+        <div className="menuDesktop">
           <a href="#Nosotros">Nosotros</a>
           <a href="#Servicios">Servicios</a>
           <a href="#Ubicacion">Ubicación</a>
+        </div>
+        <div className={`menuMobile ${isOpen ? "open" : "close"}`}>
+          <a onClick={toggleMenu} href="#Nosotros">
+            Nosotros
+          </a>
+          <a onClick={toggleMenu} href="#Servicios">
+            Servicios
+          </a>
+          <a onClick={toggleMenu} href="#Ubicacion">
+            Ubicación
+          </a>
         </div>
       </nav>
     </header>

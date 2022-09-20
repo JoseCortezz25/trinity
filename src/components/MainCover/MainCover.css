@@ -33,20 +33,20 @@
 
 @media screen and (max-width: 667px) {
   .MainCover {
-    height: 100vh;
+    height: calc(100vh - 60px);
   }
 
   .MainCover .container {
     width: 80%;
     margin: auto;
-  
     display: flex;
     flex-direction: column;
+    margin-top: 27%;
   }
 
   .MainCover .boxImage {
     width: 70%;
-    margin-bottom: 20px;
+    margin-bottom: 20%;
     order: 1;
   }
   

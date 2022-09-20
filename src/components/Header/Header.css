@@ -39,8 +39,18 @@ nav a:last-child{
   }
 }
 
+@media screen and (min-width: 667px) {
+  .menuBtn {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 667px) {
-  .menuContent {
+  .menuDesktop {
+    display: none;
+  }
+
+  .menuMobile {
     background-color: #fff;
     width: 100%;
     height: calc(100vh - 60px);
@@ -52,7 +62,7 @@ nav a:last-child{
     flex-direction: column;
   }
   
-  .menuContent a{
+  .menuMobile a{
     display: block;
     padding: 10px 10px 10px 0px;
     width: 100%;
