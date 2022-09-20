@@ -1,0 +1,13 @@
+.Plataform {
+  width: 80%;
+  padding: 3rem 0 3rem 0;
+  display: flex;
+  margin: auto;
+  min-height: calc(100vh - 60px);
+}
+
+@media screen and (max-width: 667px) {
+  .Plataform {
+    width: 90%;
+  }
+}
