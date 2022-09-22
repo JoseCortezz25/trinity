@@ -45,7 +45,7 @@ nav a:last-child{
   }
 }
 
-@media screen and (max-width: 667px) {
+@media screen and (max-width: 667px) {  
   .menuDesktop {
     display: none;
   }
