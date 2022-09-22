@@ -1,1 +1,1 @@
-export * from './Utils';
+export { Title, ItemContent } from './Utils';

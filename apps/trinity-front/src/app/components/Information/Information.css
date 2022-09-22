@@ -2,7 +2,7 @@
   /* border: 1px solid red; */
   width: 100%;
   height: 500px;
-  background-image: url("../../assets/blur.jpg");
+  background-image: url('apps/trinity-front/src/assets/blur.jpg');
   background-position: right;
   background-repeat: no-repeat;
   display: flex;
@@ -36,7 +36,6 @@
   font-size: 18px;
 }
 
-
 @media screen and (max-width: 667px) {
   .Information {
     height: 500px;
@@ -47,7 +46,7 @@
   .Information .container {
     width: 80%;
     margin: auto;
-  
+
     display: flex;
     flex-direction: column;
   }
@@ -57,7 +56,7 @@
     margin-bottom: 20px;
     order: 1;
   }
-  
+
   .Information .boxImage img {
     width: 100%;
   }

@@ -12,7 +12,7 @@ export const Title = ({ title, styles = '' }) => {
 };
 
 export const ItemContent = ({ item }) => (
-  <a className="ItemContent" href={`#${item}`}>
+  <Link className="ItemContent" to={`/#${item}`}>
     <div>{item}</div>
-  </a>
+  </Link>
 );

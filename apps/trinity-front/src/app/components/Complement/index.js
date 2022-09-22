@@ -1,1 +1,1 @@
-export * from './Complement';
+export { default } from './Complement';

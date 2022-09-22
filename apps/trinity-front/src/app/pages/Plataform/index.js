@@ -1,1 +1,1 @@
-export * from './Plataform';
+export { default } from './Plataform';

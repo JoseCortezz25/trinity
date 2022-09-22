@@ -1,12 +1,19 @@
-import './NotFound.css';
 import { Link } from 'react-router-dom';
-import notFoundImage from '../../assets/NotFound.png';
+
+import notFoundImage from 'apps/trinity-front/src/assets/NotFound.png';
+
+import './NotFound.css';
 
 const NotFound = () => {
   return (
     <div className="NotFound">
       <div className="NotFound__info">
-        <h2>Hmm. 🤔</h2>
+        <h2>
+          Hmm.{' '}
+          <span role="img" aria-label="emoji">
+            🤔
+          </span>
+        </h2>
         <p>
           Parece que estás perdido en un agujero negro perpetuo. Permítanos
           ayudarlo a guiarlo y llevarlo de regreso a casa.

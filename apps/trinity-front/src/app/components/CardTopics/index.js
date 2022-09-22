@@ -1,1 +1,1 @@
-export * from './CardTopics';
+export { default } from './CardTopics';

@@ -21,20 +21,20 @@ const Header = () => {
           <img src={iconButton} alt="" />
         </button>
         <div className="menuDesktop">
-          <a href="/#Nosotros">Nosotros</a>
-          <a href="/#Servicios">Servicios</a>
-          <a href="/#Ubicacion">Ubicación</a>
+          <Link to="/#Nosotros">Nosotros</Link>
+          <Link to="/#Servicios">Servicios</Link>
+          <Link to="/#Ubicacion">Ubicación</Link>
         </div>
         <div className={`menuMobile ${isOpen ? 'open' : 'close'}`}>
-          <a onClick={toggleMenu} href="#Nosotros">
+          <Link onClick={toggleMenu} to="/#Nosotros">
             Nosotros
-          </a>
-          <a onClick={toggleMenu} href="#Servicios">
+          </Link>
+          <Link onClick={toggleMenu} to="/#Servicios">
             Servicios
-          </a>
-          <a onClick={toggleMenu} href="#Ubicacion">
+          </Link>
+          <Link onClick={toggleMenu} to="/#Ubicacion">
             Ubicación
-          </a>
+          </Link>
         </div>
       </nav>
     </header>

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { FaArrowCircleUp } from 'react-icons/fa';
 
 import Header from 'apps/trinity-front/src/app/components/Header';
@@ -8,6 +9,7 @@ import './MainLayout.css';
 
 const MainLayout = ({ children }) => {
   const [visible, setVisible] = useState(false);
+  const { pathname, hash, key } = useLocation();
 
   const toggleVisible = () => {
     const scrolled = document.documentElement.scrollTop;
@@ -24,7 +26,28 @@ const MainLayout = ({ children }) => {
     });
   };
 
-  window.addEventListener('scroll', toggleVisible);
+  useEffect(() => {
+    let timeout;
+    window.addEventListener('scroll', toggleVisible);
+
+    if (hash === '') {
+      window.scrollTo(0, 0);
+    } else {
+      timeout = window.setTimeout(() => {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView();
+        }
+      }, 0);
+    }
+
+    return () => {
+      window.clearTimeout(timeout);
+      window.removeEventListener('scroll', toggleVisible);
+    };
+  }, [pathname, hash, key]);
+
   return (
     <main>
       <button
