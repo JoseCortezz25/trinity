@@ -1,0 +1,78 @@
+.Contents__line {
+  width: 100%;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.Contents__line span {
+  text-transform: capitalize;
+  background: #fff;
+  margin-top: -10px;
+  padding: 10px 15px;
+  z-index: 2;
+}
+
+.Contents__line hr {
+  width: 100%;
+  position:absolute;
+  background-color: #323333;
+  height: 2px;
+  margin: auto;
+  margin-top: 8px;
+  margin-bottom: 30px;
+  transform: rotate(0deg);
+}
+
+.Contents__body {
+  width: 100%;
+  display: grid;
+  /* grid-template-columns: repeat(4, 1fr); */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.CardContents {
+  background-color: rgba(230, 230, 230, 0.30);
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.CardContents span {
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px 0px 20px 0px;
+}
+
+.principiante {
+  background-color: rgba(52, 152, 219, 0.20);
+  color: #0B4E7A;
+  border: none;
+}
+
+.intermedio {
+  background-color: rgba(254, 202, 87, 0.20);
+  color: #FF9F43;
+  border: none;
+}
+
+.avanzado {
+  background-color: rgba(232, 65, 24, 0.20);
+  color: #C23616;
+  border: none;
+}
+
+.CardContents__body {
+  padding: 15px;
+}
+
+.CardContents__body p {
+  font-weight: bold;
+}
