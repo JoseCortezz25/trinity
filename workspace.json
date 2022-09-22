@@ -1,0 +1,9 @@
+{
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "trinity-back": "apps/trinity-back",
+    "trinity-front": "apps/trinity-front",
+    "trinity-front-e2e": "apps/trinity-front-e2e"
+  }
+}

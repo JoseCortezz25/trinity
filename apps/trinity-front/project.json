@@ -1,0 +1,84 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/trinity-front/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/trinity-front",
+        "index": "apps/trinity-front/src/index.html",
+        "baseHref": "/",
+        "main": "apps/trinity-front/src/main.js",
+        "polyfills": "apps/trinity-front/src/polyfills.js",
+        "tsConfig": "apps/trinity-front/tsconfig.app.json",
+        "assets": [
+          "apps/trinity-front/src/favicon.ico",
+          "apps/trinity-front/src/assets"
+        ],
+        "styles": ["apps/trinity-front/src/styles.css"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/trinity-front/src/environments/environment.js",
+              "with": "apps/trinity-front/src/environments/environment.prod.js"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "trinity-front:build",
+        "hmr": true,
+        "proxyConfig": "apps/trinity-front/proxy.config.json"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "trinity-front:build:development"
+        },
+        "production": {
+          "buildTarget": "trinity-front:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/trinity-front/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/trinity-front"],
+      "options": {
+        "jestConfig": "apps/trinity-front/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
