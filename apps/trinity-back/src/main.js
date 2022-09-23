@@ -17,7 +17,6 @@ const app = express();
 const port = process.env.port || 3100;
 
 dotenv.config({ path: path.resolve(process.cwd(), 'apps/trinity-back/.env') });
-// console.log(result);
 initMongoConnect();
 
 // Middlewares

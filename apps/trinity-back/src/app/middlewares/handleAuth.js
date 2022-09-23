@@ -20,7 +20,6 @@ export const handleAuth = (req, res, next) => {
 
   try {
     decodedToken = jwt.verify(token, JWT_PASSWORD);
-    console.log(decodedToken);
     // eslint-disable-next-line no-empty
   } catch {}
 
