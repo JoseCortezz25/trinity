@@ -1,7 +1,9 @@
+import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
 
 import { PrimaryController } from './PrimaryController';
 import { User } from 'apps/trinity-back/src/app/models/User';
+import { Environment } from 'apps/trinity-back/src/environments/envFile';
 
 class UsersController extends PrimaryController {
   constructor() {
@@ -11,7 +13,8 @@ class UsersController extends PrimaryController {
   create = async (req, res, next) => {
     try {
       const { body } = req;
-      const { username, password, rol } = body;
+      const { username, email, password, rol } = body;
+      const { JWT_PASSWORD } = Environment;
       const userValidateUsername = await User.findOne({ username });
       const message = `this username already exist`;
 
@@ -19,14 +22,19 @@ class UsersController extends PrimaryController {
 
       const saltRounds = 10;
       const passwordHash = await bcrypt.hash(password, saltRounds);
-      const user = new User({
+      const userSchema = {
         username,
-        passwordHash,
+        email,
         rol,
-      });
+      };
+      const user = new User({ ...userSchema, passwordHash });
+      const token = jwt.sign({ id: user.id, userSchema }, JWT_PASSWORD);
 
-      const savedUser = await user.save();
-      return res.status(201).json(savedUser).end();
+      await user.save();
+      return res
+        .status(201)
+        .json({ ...userSchema, token })
+        .end();
     } catch (e) {
       next(e);
     }

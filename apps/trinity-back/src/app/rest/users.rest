@@ -1,13 +1,14 @@
 ###  GET ALL USERS ###
-GET http://localhost:3200/api/users
+GET http://localhost:3100/api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMmQzYjQ4ZTJkMmNjZDZhNDExZGM3ZiIsInVzZXJTY2hlbWEiOnsidXNlcm5hbWUiOiJQVVNTWV9ERVNUUk9ZRVJfMDQiLCJlbWFpbCI6Imp1bmVkZXZAanVuZS5kZXYifSwiaWF0IjoxNjYzOTA4NjgwfQ.sB-mMH-22sh8SEKxfUogM4vCudT5m_X2UpEu48Qyl3Q
 
 ### CREATE NEW USER ###
 
-POST http://localhost:3200/api/users
+POST http://localhost:3100/api/users
 Content-Type: application/json
 
 {
-  "username": "junedev",
+  "username": "PUSSY_DESTROYER_04",
   "email": "junedev@june.dev",
-  "password": "lajunepassword"
+  "password": "bitchesDestroyer"
 }
