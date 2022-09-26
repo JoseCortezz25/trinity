@@ -25,7 +25,7 @@ const Footer = () => {
         </div>
         <div className="nav__item">
           <b>Servicios</b>
-          <ul>
+          <ul className="ListOfService">
             <li>Lorem ipsum dolor sit amet</li>
             <li>Lorem ipsum dolor sit amet</li>
             <li>Lorem ipsum dolor sit amet</li>

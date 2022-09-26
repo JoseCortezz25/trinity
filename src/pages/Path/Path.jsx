@@ -31,28 +31,34 @@ const Path = () => {
         <Topics title="HTML" ide="HTML">
           <CardTopics
             title="Principiante"
+            link={`/aprender/${ruta}/html/principiante`}
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, minus quo tempore laboriosam amet hic! Dolore reiciendis labore tenetur voluptate consequuntur consectetur quod eos, tempora debitis repellendus, dolores veritatis. At."
-          />
+            />
           <CardTopics
             title="Intermedio"
+            link={`/aprender/${ruta}/html/intermedio`}
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, minus quo tempore laboriosam amet hic! Dolore reiciendis labore tenetur voluptate consequuntur consectetur quod eos, tempora debitis repellendus, dolores veritatis. At."
-          />
+            />
           <CardTopics
             title="Avanzado"
+            link={`/aprender/${ruta}/html/avanzado`}
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, minus quo tempore laboriosam amet hic! Dolore reiciendis labore tenetur voluptate consequuntur consectetur quod eos, tempora debitis repellendus, dolores veritatis. At."
-          />
+            />
         </Topics>
         <Topics title="CSS" ide="CSS">
           <CardTopics
             title="Principiante"
+            link={`/html/principiante`}
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, minus quo tempore laboriosam amet hic! Dolore reiciendis labore tenetur voluptate consequuntur consectetur quod eos, tempora debitis repellendus, dolores veritatis. At."
-          />
+            />
           <CardTopics
             title="Intermedio"
+            link={`/html/intermedio`}
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, minus quo tempore laboriosam amet hic! Dolore reiciendis labore tenetur voluptate consequuntur consectetur quod eos, tempora debitis repellendus, dolores veritatis. At."
-          />
+            />
           <CardTopics
             title="Avanzado"
+            link={`/html/avanzado`}
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, minus quo tempore laboriosam amet hic! Dolore reiciendis labore tenetur voluptate consequuntur consectetur quod eos, tempora debitis repellendus, dolores veritatis. At."
           />
         </Topics>
