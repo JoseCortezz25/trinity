@@ -4,6 +4,7 @@ import WebIcon from '../../assets/img/Web.png'
 import ImgBack from '../../assets/img/back-end.jpg'
 import ImgFront from '../../assets/img/Front-end.jpg'
 import Imgrutes from '../../assets/img/img_rutes.jpg'
+import { Link } from "react-router-dom";
 import "./Plataform.css";
 
 const Plataform = () => {
@@ -11,9 +12,24 @@ const Plataform = () => {
     <main className="Plataform">
       <h2 className="tittleh2">Learning Paths</h2>
       <div className="Content_paths">
-        <CardPath image={ImgFront} title="Front-End Rute" description="Hola dev, aquí encontrarás la ruta sugerida por Trinity FS si deseas convertirte en desarrollador Front-End <Disfruta del proceso />" />
-        <CardPath image={ImgBack} title="Back-End Rute" description="Hola dev, aquí encontrarás la ruta sugerida por Trinity FS si deseas convertirte en desarrollador Back-End <Disfruta del proceso />" />
-        <CardPath image={Imgrutes} title="Complements" description="Hola dev, Aquí encontrarás temas que te puede ayudar de complemento  <Disfruta del proceso />" />
+        <CardPath 
+          image={ImgFront} 
+          title="Front-End Rute" 
+          description="Hola dev, aquí encontrarás la ruta sugerida por Trinity FS si deseas convertirte en desarrollador Front-End <Disfruta del proceso />" 
+          link="/aprender/frontend"
+        />
+        <CardPath 
+          image={ImgBack} 
+          title="Back-End Rute" 
+          description="Hola dev, aquí encontrarás la ruta sugerida por Trinity FS si deseas convertirte en desarrollador Back-End <Disfruta del proceso />" 
+          link="/aprender/backend"
+          />
+        <CardPath 
+          image={Imgrutes} 
+          title="Complements" 
+          description="Hola dev, Aquí encontrarás temas que te puede ayudar de complemento  <Disfruta del proceso />"
+          link="/aprender/complementos"
+           />
       </div>
 
       <h2 className="tittleh2">Recomended Resources</h2>
@@ -29,14 +45,14 @@ const Plataform = () => {
   );
 };
 
-const CardPath = ({ title, description, image }) => (
-  <div className="contenedorTargetas">
+const CardPath = ({ title, description, image, link }) => (
+  <Link to={link} className="contenedorTargetas">
     <div className="contenedorImage">
       <img src={image} />
       <h2 className="text">{title}</h2>
     </div>
-    <p className="textDescription">{description}</p>
-  </div>
+    <p className="textDescription">{description}</p>  
+  </Link>
 );
 
 const Recomended = ({ tittle, subtitle, typeSite }) => (
