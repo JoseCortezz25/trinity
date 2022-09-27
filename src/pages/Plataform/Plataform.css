@@ -2,12 +2,120 @@
   width: 80%;
   padding: 3rem 0 3rem 0;
   display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-wrap: wrap;
   margin: auto;
   min-height: calc(100vh - 60px);
 }
 
+.contenedorTargetas {
+  width: 33.3%;
+  max-width: 400px;
+  border-radius: 5px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  transition: all .5s ease; 
+}
+.contenedorTargetas:hover {
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.img_Online {
+  height: 40px;
+  width: 40px;
+}
+.tittle_recomended {
+  font-size: 17px;
+}
+
+.RecomemdedCards {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding-bottom: 30px;
+  }
+
+  .Recomended {
+    max-width: 150px;
+    display: flex;
+    gap: 15px;
+    padding-bottom: 30px;
+    cursor: pointer;
+  }
+
+  .Recomended__image {
+    width: 20%;
+    margin-right: 10px;
+  }
+  .Recomended__content {
+    width: 80%;
+  }
+
+  .tittleh2 {
+    padding-top: 15px;
+  }
+
+  .Content_recomended:hover {
+    cursor: pointer;
+  }
+
+.contenedorImage {
+  position: relative;
+  width: 100%;
+  max-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.contenedorImage img {
+  object-fit: cover;
+  width: 100%;
+}
+
+.textDescription {
+  margin: 10px;
+  font-size: 15px;
+}
+
+.text {
+  position: absolute;
+  color: #ffffff;
+  text-transform: capitalize;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.Content_paths {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+
+
 @media screen and (max-width: 667px) {
   .Plataform {
-    width: 90%;
+    width: 80%;
+  }
+ .Content_paths {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+ }
+
+ .tittleh2 {
+  margin: auto;
+
+ }
+
+ .contenedorTargetas {
+  width: 40vh;
+  height: 38vh;
   }
 }
