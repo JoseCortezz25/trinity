@@ -1,18 +1,26 @@
 import React from "react";
 import { useState } from "react";
-import iconButton from "../../assets/toggleButton.svg";
+import iconButton from "../../assets/icons/toggleButton.svg";
 import { Link } from "react-router-dom";
+import logoIcon from "../../assets/icons/logo.svg"
 import "./Header.css";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const toggleMenu = () => setIsOpen((prevState) => !prevState);
+  const toggleMenu = (e) => {
+    if (e.nativeEvent.target.hash !== undefined) {
+      document.getElementById(e.nativeEvent.target.hash?.slice(3,e.nativeEvent.target.hash.length)).scrollIntoView()
+    }
+    setIsOpen((prevState) => !prevState)
+  };
 
   return (
     <header>
       <nav>
         <Link to="/">
-          <span className="logo">{"<Trinity />"}</span>
+          <span className="logo">
+            <img src={logoIcon} alt="" />
+          </span>
         </Link>
       </nav>
       <nav>
@@ -20,20 +28,20 @@ const Header = () => {
           <img src={iconButton} alt="" />
         </button>
         <div className="menuDesktop">
-          <a href="/#Nosotros">Nosotros</a>
-          <a href="/#Servicios">Servicios</a>
-          <a href="/#Ubicacion">Ubicación</a>
+          <Link to="/#Nosotros" onClick={() => document.getElementById('Nosotros').scrollIntoView()}>Nosotros</Link>
+          <Link to="/#Servicios" onClick={() => document.getElementById('Servicios').scrollIntoView()}>Servicios</Link>
+          <Link to="/#Ubicacion" onClick={() => document.getElementById('Ubicacion').scrollIntoView()}>Ubicación</Link>
         </div>
         <div className={`menuMobile ${isOpen ? "open" : "close"}`}>
-          <a onClick={toggleMenu} href="#Nosotros">
+          <Link onClick={toggleMenu} to="/#Nosotros" >
             Nosotros
-          </a>
-          <a onClick={toggleMenu} href="#Servicios">
+          </Link>
+          <Link onClick={toggleMenu} to="/#Servicios" >
             Servicios
-          </a>
-          <a onClick={toggleMenu} href="#Ubicacion">
+          </Link>
+          <Link onClick={toggleMenu} to="/#Ubicacion" >
             Ubicación
-          </a>
+          </Link>
         </div>
       </nav>
     </header>

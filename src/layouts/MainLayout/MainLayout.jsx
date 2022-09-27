@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
+import { FaArrowCircleUp } from "react-icons/fa";
+import { Outlet } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import { useState } from "react";
-import { FaArrowCircleUp } from "react-icons/fa";
 import "./MainLayout.css";
 
-const MainLayout = ({ children }) => {
+const MainLayout = () => {
   const [visible, setVisible] = useState(false);
 
   const toggleVisible = () => {
@@ -33,7 +33,7 @@ const MainLayout = ({ children }) => {
         <FaArrowCircleUp onClick={scrollToTop} />
       </button>
       <Header />
-      {children}
+      <Outlet />
       <Footer />
     </main>
   );

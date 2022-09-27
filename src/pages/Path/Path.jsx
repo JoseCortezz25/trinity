@@ -1,8 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import Topics from "../../components/Topics/Topics";
 import { ItemContent } from "../../components/Utils/Utils";
-import { Link } from "react-router-dom";
+import Topics from "../../components/Topics/Topics";
 import CardTopics from "../../components/CardTopics/CardTopics";
 import "./Path.css";
 

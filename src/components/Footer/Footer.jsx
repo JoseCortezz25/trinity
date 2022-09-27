@@ -1,7 +1,8 @@
 import React from "react";
-import LinkedinIcon from "../../assets/LinkedinIcon.svg";
-import FacebookIcon from "../../assets/FacebookIcon.svg";
-import TwitterIcon from "../../assets/TwitterIcon.svg";
+import LinkedinIcon from "../../assets/icons/LinkedinIcon.svg";
+import FacebookIcon from "../../assets/icons/FacebookIcon.svg";
+import TwitterIcon from "../../assets/icons/TwitterIcon.svg";
+import logoIcon from "../../assets/icons/logo.svg";
 import "./Footer.css";
 
 const Footer = () => {
@@ -10,7 +11,7 @@ const Footer = () => {
       <nav>
         <div className="nav__item">
           <div className="logo">
-            <span>{"<Trinity />"}</span>
+            <img src={logoIcon} alt="" />
           </div>
           <p>
             <b>Teléfono:</b>

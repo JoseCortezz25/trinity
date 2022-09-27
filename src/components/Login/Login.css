@@ -1,0 +1,45 @@
+.Login {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  box-sizing: border-box;
+}
+
+.Login__form {
+  padding: 10%;
+}
+
+.Login__image {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.Login__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+@media screen and (max-width: 667px) {
+  .Login {
+    display: flex;
+    width: 80%;
+    /* border: 1px solid red; */
+    margin: auto;
+  } 
+  
+  .Login__form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0px;
+    padding-top: 30px;
+  }
+
+  .Login__image {
+    display: none;
+  }
+}

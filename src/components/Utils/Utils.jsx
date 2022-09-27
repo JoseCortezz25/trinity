@@ -11,8 +11,14 @@ export const Title = ({ title, styles = "" }) => {
   );
 };
 
+const toScroll = (item) => document.getElementById(item).scrollIntoView();
+
 export const ItemContent = ({ item }) => (
-  <a className="ItemContent" href={`#${item}`}>
+  <Link
+    onClick={() => toScroll(item)}
+    className="ItemContent"
+    to={`/aprender/frontend#${item}`}
+  >
     <div>{item}</div>
-  </a>
+  </Link>
 );

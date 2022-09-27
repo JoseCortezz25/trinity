@@ -1,7 +1,7 @@
 import React from "react";
 import "./NotFound.css";
 import { Link } from "react-router-dom";
-import notFoundImage from "../../assets/NotFound.png";
+import notFoundImage from "../../assets/images/NotFound.png";
 
 const NotFound = () => {
   return (
@@ -13,7 +13,7 @@ const NotFound = () => {
           ayudarlo a guiarlo y llevarlo de regreso a casa.
         </p>
         <Link to="/">
-          <button className="btnNormal">Regresar a casa</button>
+          <button className="btnStandard btnNormal">Regresar a casa</button>
         </Link>
       </div>
       <div className="NotFound__image">

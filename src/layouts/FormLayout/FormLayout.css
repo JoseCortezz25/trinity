@@ -1,0 +1,26 @@
+.FormLayout {
+  width: 100%;
+}
+
+.FormLayout .InputsGroup {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.FormLayout .InputsGroup label {
+  color: #414141;
+  font-weight: 500;
+}
+
+.FormLayout input {
+  background-color: rgba(230, 230, 230, 0.30);
+  width: 100%;
+  margin-top: 10px;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+}
+
+.InputsGroup label, input {
+  display: block;
+}

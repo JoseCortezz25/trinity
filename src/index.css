@@ -30,20 +30,34 @@ html {
   width: 100%;
 }
 
-.btnNormal {
-  background-color: #ecf0f1;
+.btnStandard {
   margin-top: 15px;
   padding: 11px 17px;
+  border-radius: 7px;
   font-weight: bold;
   text-transform: uppercase;
-  color: #161616;
   border: none;
   cursor: pointer;
   transition: all .1s ease-out;
 }
 
+.btnNormal {
+  background-color: #ecf0f1;
+  color: #161616;
+}
+
 .btnNormal:hover {
   background-color: #bbbbbb;
+}
+
+.btnGreen {
+  background-color: #1dd1a1;
+  color: #fff;
+  transition: all .1s ease-out;
+}
+
+.btnGreen:hover {
+  background-color: #10ac84;
 }
 
 .Plataform {

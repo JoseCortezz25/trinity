@@ -1,5 +1,5 @@
 import React from "react";
-import imageCoverProgrammer from "../../assets/programmer.svg";
+import imageCoverProgrammer from "../../assets/icons/programmer.svg";
 import './Information.css'
 
 const Information = () => {
