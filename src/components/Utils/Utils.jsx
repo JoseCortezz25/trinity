@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Utils.css";
 
 export const Title = ({ title, styles = "" }) => {
@@ -10,3 +11,8 @@ export const Title = ({ title, styles = "" }) => {
   );
 };
 
+export const ItemContent = ({ item }) => (
+  <a className="ItemContent" href={`#${item}`}>
+    <div>{item}</div>
+  </a>
+);

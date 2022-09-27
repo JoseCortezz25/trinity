@@ -1,4 +1,7 @@
 import React from "react";
+import LinkedinIcon from "../../assets/LinkedinIcon.svg";
+import FacebookIcon from "../../assets/FacebookIcon.svg";
+import TwitterIcon from "../../assets/TwitterIcon.svg";
 import "./Footer.css";
 
 const Footer = () => {
@@ -34,6 +37,18 @@ const Footer = () => {
             Únete a nosotros en las redes sociales para recibir las últimas
             noticias y actualizaciones.
           </p>
+
+          <ul className="ListOfSocialMedia">
+            <li>
+              <img src={FacebookIcon} alt="" />
+            </li>
+            <li>
+              <img src={TwitterIcon} alt="" />
+            </li>
+            <li>
+              <img src={LinkedinIcon} alt="" />
+            </li>
+          </ul>
         </div>
       </nav>
       <nav>
