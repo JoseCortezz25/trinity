@@ -7,6 +7,10 @@
   display: flex;
 }
 
+.tittleh2 {
+  padding-bottom: 0px;
+}
+
 .MainCover .container {
   width: 80%;
   margin: auto;
