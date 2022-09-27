@@ -32,7 +32,7 @@ const Plataform = () => {
 const CardPath = ({ title, description, image }) => (
   <div className="contenedorTargetas">
     <div className="contenedorImage">
-      <img src={image} alt="" className="Imgdev" />
+      <img src={image} />
       <h2 className="text">{title}</h2>
     </div>
     <p className="textDescription">{description}</p>
