@@ -34,6 +34,7 @@ const Plataform = () => {
 
       <h2 className="tittleh2">Recomended Resources</h2>
       <div className="RecomemdedCards">
+<<<<<<< HEAD
         <Recomended tittle="Udemy" subtitle="Fransisco" typeSite="sitioweb" />
         <Recomended tittle="YouTube" subtitle="Minudev" typeSite="youtube" />
         <Recomended tittle="YouTube" subtitle="HolaMundo" typeSite="youtube" />
@@ -44,6 +45,34 @@ const Plataform = () => {
           subtitle="MDN Web Docs"
           typeSite="youtube"
         />
+=======
+        <Recomended 
+        tittle="Udemy"
+        subtitle="Curso de Front-end Developer"
+        typeSite='sitioweb'
+        link = "https://www.udemy.com/course/curso-de-front-end-developer/"
+         />
+        <Recomended 
+        tittle="YouTube" 
+        subtitle="Minudev" 
+        typeSite='youtube'
+        link="https://www.youtube.com/channel/UC8LeXCWOalN8SxlrPcG-PaQ"
+         />
+        <Recomended 
+        tittle="YouTube"
+        subtitle="HolaMundo" 
+        typeSite='youtube' 
+        link="https://www.youtube.com/c/HolaMundoDev"
+        />
+        <Recomended 
+        tittle="Platzi" 
+        subtitle="Curso Práctico de Front-end"
+        typeSite='sitioweb' 
+        link="https://platzi.com/cursos/frontend-developer-practico/"
+        />
+        <Recomended tittle="Web" subtitle="Profe Alex" typeSite='sitioweb' />
+        <Recomended tittle="Platzi" subtitle="MDN Web Docs" typeSite='youtube' />
+>>>>>>> effc593e432bcf58560ec6a8a65411bc46370a6b
       </div>
     </main>
   );
@@ -59,8 +88,8 @@ const CardPath = ({ title, description, image, link }) => (
   </Link>
 );
 
-const Recomended = ({ tittle, subtitle, typeSite }) => (
-  <div className="Recomended">
+const Recomended = ({ tittle, subtitle, typeSite, link }) => (
+  <a href={link} className="Recomended" target="_blank" rel="noreferrer">
     <div className="Recomended__image">
       {typeSite === "youtube" ? (
         <img className="img_Online" src={YoutubeIcon} />
@@ -70,9 +99,9 @@ const Recomended = ({ tittle, subtitle, typeSite }) => (
     </div>
     <div className="Recomended__content">
       <p>{tittle}</p>
-      <h2 className="tittle_recomended">{subtitle}</h2>
+      <p className="Recomended__content-p">{subtitle}</p>
     </div>
-  </div>
+  </a>
 );
 
 export default Plataform;

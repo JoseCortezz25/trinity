@@ -7,7 +7,7 @@ const Login = () => {
     <div className="Login">
       <div className="Login__form">
         <h2>¡Hola de nuevo!</h2>
-
+        <p>Es un gusto volver a verte. Ingresa tus datos.</p>
         <form action="">
           <div className="InputsGroup">
             <label htmlFor="email">E-mail</label>
@@ -21,11 +21,10 @@ const Login = () => {
               placeholder="Escribe tu contraseña"
             />
           </div>
-          <p className="MessageForm">¿No tienes cuenta? <Link to="/formulario/register">Creala ahora mismo</Link></p>
-
-          <button type="button" className="btnStandard btnGreen">
+          <button type="button" className="btnStandard btnDark">
             Iniciar Sesión
           </button>
+          <p className="MessageForm">¿No tienes cuenta? <Link to="/formulario/register">Creala ahora mismo</Link></p>
         </form>
       </div>
       <div className="Login__image">

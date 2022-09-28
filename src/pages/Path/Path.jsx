@@ -31,17 +31,17 @@ const Path = () => {
           <CardTopics
             title="Principiante"
             link={`/aprender/${ruta}/html/principiante`}
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, minus quo tempore laboriosam amet hic! Dolore reiciendis labore tenetur voluptate consequuntur consectetur quod eos, tempora debitis repellendus, dolores veritatis. At."
+            description="Aprende sobre la estructura basica de las etiquetas y atributos"
             />
           <CardTopics
             title="Intermedio"
             link={`/aprender/${ruta}/html/intermedio`}
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, minus quo tempore laboriosam amet hic! Dolore reiciendis labore tenetur voluptate consequuntur consectetur quod eos, tempora debitis repellendus, dolores veritatis. At."
+            description="Conoce conceptos intermedios como el modelo de caja y HTML semántico"
             />
           <CardTopics
             title="Avanzado"
             link={`/aprender/${ruta}/html/avanzado`}
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, minus quo tempore laboriosam amet hic! Dolore reiciendis labore tenetur voluptate consequuntur consectetur quod eos, tempora debitis repellendus, dolores veritatis. At."
+            description="Conoce etiquetas avanzadas y normas importantes sobre las etiquetas para mejorar SEO"
             />
         </Topics>
         <Topics title="CSS" ide="CSS">

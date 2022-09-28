@@ -50,6 +50,15 @@ html {
   background-color: #bbbbbb;
 }
 
+.btnDark {
+  background-color: #131418;
+  color: #ffffff;
+}
+
+.btnDark:hover {
+  background-color: #131418c9;
+}
+
 .btnGreen {
   background-color: #1dd1a1;
   color: #fff;

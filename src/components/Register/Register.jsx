@@ -7,6 +7,7 @@ const Register = () => {
     <div className="Register">
       <div className="Register__form">
         <h2>Crear una nueva cuenta</h2>
+        <p>Bienvenido a la familia. Ingresa los datos para crear la cuenta.</p>
 
         <form action="">
           <div className="InputsGroup">
@@ -37,10 +38,10 @@ const Register = () => {
               placeholder="Escribe de nuevo tu contraseña"
             />
           </div>
-          <p className="MessageForm">¿Ya tiene cuenta? <Link to="/formulario/login">Inicie sesión ahora</Link></p>
-          <button type="button" className="btnStandard btnGreen">
+          <button type="button" className="btnStandard btnDark">
             Crear cuenta
           </button>
+          <p className="MessageForm">¿Ya tienes cuenta? <Link to="/formulario/login">Inicia sesión ahora</Link></p>
         </form>
       </div>
       <div className="Register__image">
