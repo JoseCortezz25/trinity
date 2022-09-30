@@ -20,8 +20,9 @@ html {
   right: 5%;
   bottom: 40px;
   font-size: 3rem;
-  right: 10%;
+  right: 5%;
   z-index: 1;
+  bottom: 20%;
   cursor: pointer;
   color: green;
 }

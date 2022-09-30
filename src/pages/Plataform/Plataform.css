@@ -140,14 +140,14 @@
   .contenedorTargetas {
     width: 100%;
   }
-}
-
-@media screen and (max-width: 667px) {
+  
   .RecomemdedCards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
+}
 
+@media screen and (max-width: 667px) {
   .Plataform {
     width: 80%;
   }

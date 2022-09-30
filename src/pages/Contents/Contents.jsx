@@ -100,7 +100,7 @@ const Contents = () => {
 
 const CardContent = ({ number, description, level }) => (
   <div className="CardContents">
-    <span className={`${level}`}>{number}</span>
+    <span className={`${level.toLowerCase()}`}>{number}</span>
     <div className="CardContents__body">
       <p>{description}</p>
     </div>
