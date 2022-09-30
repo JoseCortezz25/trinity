@@ -16,6 +16,10 @@ nav .logo {
   color: #11393C;
 }
 
+nav .logo img {
+  width: 120px;
+}
+
 nav a {
   margin-right: 20px;
   color: black;

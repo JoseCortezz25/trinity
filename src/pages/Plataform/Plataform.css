@@ -9,7 +9,6 @@
   min-height: calc(100vh - 60px);
 }
 
-
 .contenedorTargetas {
   width: 33.3%;
   max-width: 400px;
@@ -17,21 +16,18 @@
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   color: #000000;
   text-decoration: none;
-  transition: all .5s ease-in-out; 
+  transition: all 0.5s ease-in-out;
 }
 .contenedorTargetas:hover {
   cursor: pointer;
-  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px,
+    rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px,
+    rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
 
 .img_Online {
   height: 40px;
   width: 40px;
-}
-
-.Recomended__content-p{
-  font-size: 17px;
-  font-weight: bold;
 }
 
 .RecomemdedCards {
@@ -41,23 +37,52 @@
   flex-wrap: wrap;
   gap: 15px;
   padding-bottom: 30px;
-  }
+}
+
+.Recomended {
+  max-width: 90%;
+  padding: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: background .4s ease;
+}
+
+.Recomended:hover {
+  background: #F7F7F7;
+  border-radius: 10px;
+}
+
+.Recomended__content-p {
+  font-size: 17px;
+  font-weight: bold;
+}
 
 .Recomended__content h3 {
   font-size: 17px;
 }
 
-.Recomended {
-  max-width: 90%;
-  gap: 15px;
-  display: grid;
-  padding-bottom: 30px;
-  cursor: pointer;
-  text-decoration: none;
-  color: #000000;
-  justify-items: center;
+.Recomended__image {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.Recomended__content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  min-height: 75px;
+  text-align: center;
+}
 .center_target {
   display: grid;
   justify-content: center;
@@ -65,30 +90,13 @@
   justify-items: center;
 }
 
-  .Recomended__image {
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .Recomended__content {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    min-height: 75px;
-    text-align: center;
-  }
+.tittleh2 {
+  padding-top: 15px;
+}
 
-  .tittleh2 {
-    padding-top: 15px;
-  }
-
-  .Content_recomended:hover {
-    cursor: pointer;
-  }
+.Content_recomended:hover {
+  cursor: pointer;
+}
 
 .contenedorImage {
   position: relative;
@@ -124,32 +132,39 @@
   gap: 40px;
 }
 
-
+@media screen and (max-width: 796px) {
+  .Content_paths {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .contenedorTargetas {
+    width: 100%;
+  }
+}
 
 @media screen and (max-width: 667px) {
   .RecomemdedCards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
-  
+
   .Plataform {
     width: 80%;
   }
- .Content_paths {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
- }
+  .Content_paths {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
 
- .tittleh2 {
-  margin: auto;
+  .tittleh2 {
+    margin: auto;
+  }
 
- }
-
- .contenedorTargetas {
-  width: 100%;
-  height: 250px;
+  .contenedorTargetas {
+    width: 100%;
+    height: 250px;
   }
 }
 @media screen and (max-width: 367px) {

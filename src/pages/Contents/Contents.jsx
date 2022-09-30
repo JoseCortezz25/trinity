@@ -8,8 +8,9 @@ const Contents = () => {
   const topics = [
     {
       order: 1,
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
+      link: "asdasdsadsa",
+      title: "title",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
       level: "Principiante",
     },
     {

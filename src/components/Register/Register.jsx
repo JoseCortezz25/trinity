@@ -1,11 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logoIcon from "../../assets/icons/logo.svg";
 import "./Register.css";
 
 const Register = () => {
   return (
     <div className="Register">
       <div className="Register__form">
+        <div className="Form__logo">
+          <Link to="/">
+            <img src={logoIcon} alt="" />
+          </Link>
+        </div>
         <h2>Crear una nueva cuenta</h2>
         <p>Bienvenido a la familia. Ingresa los datos para crear la cuenta.</p>
 
@@ -41,11 +47,17 @@ const Register = () => {
           <button type="button" className="btnStandard btnDark">
             Crear cuenta
           </button>
-          <p className="MessageForm">¿Ya tienes cuenta? <Link to="/formulario/login">Inicia sesión ahora</Link></p>
+          <p className="MessageForm">
+            ¿Ya tienes cuenta?{" "}
+            <Link to="/formulario/login">Inicia sesión ahora</Link>
+          </p>
         </form>
       </div>
       <div className="Register__image">
-        <img src="https://images.unsplash.com/photo-1519241047957-be31d7379a5d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="" />
+        <img
+          src="https://images.unsplash.com/photo-1519241047957-be31d7379a5d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+          alt=""
+        />
       </div>
     </div>
   );
