@@ -38,6 +38,16 @@
   color: #414141;
 }
 
+.InputError {
+  border: 1px solid #C0392B;
+}
+
+.ErrorMessage {
+  text-transform: capitalize;
+  color: #C0392B;
+  font-weight: bold;
+}
+
 @media screen and (max-width: 667px) {
   .Register {
     display: flex;
