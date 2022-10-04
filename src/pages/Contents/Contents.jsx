@@ -88,6 +88,7 @@ const Contents = () => {
       <div className="Contents__body">
         {topics.map((topic) => (
           <CardContent
+            key={`${topic.description}${topic.order}`}
             number={topic.order}
             description={topic.description}
             level={level}

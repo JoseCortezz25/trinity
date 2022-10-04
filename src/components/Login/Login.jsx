@@ -1,9 +1,34 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { setCurrentUser, setToken } from "../../services/localStorage";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../../services/service";
 import logoIcon from "../../assets/icons/logo.svg";
 import "./Login.css";
 
 const Login = () => {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState({error: false, message: ""})
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    login({email, password})
+      .then((res) => {
+        if (res.error) return setError({error: res.error, message: res.message})
+        setError({error: false, message: ""})
+        setCurrentUser(res.id)
+        setToken(res.token)
+        console.log('res', res);
+        navigate('/aprender')
+      })
+      .catch((error) => {
+        console.log('error', error);
+        setError({error: error.error, message: error.message})
+      })
+  }
+
   return (
     <div className="Login">
       <div className="Login__form">
@@ -14,20 +39,29 @@ const Login = () => {
         </div>
         <h2>¡Hola de nuevo!</h2>
         <p>Es un gusto volver a verte. Ingresa tus datos.</p>
-        <form action="">
+        <form onSubmit={handleSubmit}>
           <div className="InputsGroup">
             <label htmlFor="email">E-mail</label>
-            <input type="email" name="email" placeholder="Escribe tu correo" />
+            <input 
+              type="email" 
+              name="email" 
+              placeholder="Escribe tu correo" 
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              />
           </div>
           <div className="InputsGroup">
             <label htmlFor="password">Contraseña</label>
             <input
-              type="text"
+              type="password"
               name="password"
               placeholder="Escribe tu contraseña"
+              onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
-          <button type="button" className="btnStandard btnDark">
+          {error && (<p className="ErrorMessage"> {error.message}</p>)}
+          <button type="submit" className="btnStandard btnDark">
             Iniciar Sesión
           </button>
           <p className="MessageForm">

@@ -1,4 +1,5 @@
 import { HashRouter, Routes, Route } from "react-router-dom";
+import ProtectedRoute from "../layouts/ProtectedLayout/ProtectedLayout";
 import MainLayout from "../layouts/MainLayout/MainLayout";
 import FormLayout from "../layouts/FormLayout/FormLayout";
 import NotFound from "../pages/NotFound/NotFound";
@@ -15,10 +16,12 @@ const AppRoutes = () => {
     <HashRouter>
       <Routes>
         <Route path="/" element={<MainLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/aprender" element={<Plataform />} />
-          <Route path="/aprender/:ruta" element={<Path />} />
-          <Route path="/aprender/:ruta/:topic/:level" element={<Contents />} />
+          <Route index path="/" element={<Home />} />
+          <Route path="/" element={<ProtectedRoute />}>
+            <Route index path="/aprender" element={<Plataform />} />
+            <Route path="/aprender/:ruta" element={<Path />} />
+            <Route path="/aprender/:ruta/:topic/:level" element={<Contents />}/>
+          </Route>
         </Route>
         <Route path="/" element={<FormLayout />}>
           <Route path="/formulario/login" element={<Login />} />

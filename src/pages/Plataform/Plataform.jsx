@@ -27,6 +27,7 @@ const Plataform = () => {
           <CardPath
             image={paths.image}
             title={paths.title}
+            key={paths.title}
             description={paths.description}
             link={paths.link}
           />
@@ -38,6 +39,7 @@ const Plataform = () => {
         {listOfRecommendations?.map((recomended) => (
           <Recomended
             title={recomended.title}
+            key={recomended.title}
             subtitle={recomended.subtitle}
             typeSite={recomended.typeSite}
             link={recomended.link}

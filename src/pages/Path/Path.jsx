@@ -31,7 +31,7 @@ const Path = () => {
           <ItemContent 
             paht={ruta} 
             item={topic.topic} 
-            key={topic.topic} 
+            key={`${topic.topic}/${ruta}`} 
             />
         ))}
       </div>
