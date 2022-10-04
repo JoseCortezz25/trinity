@@ -1,0 +1,30 @@
+.DisabledContainer  {
+  width: 50%;
+  min-height: 200px;
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 10px;
+  padding: 20px 30px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.DisabledContainer span {
+  font-size: 30px;
+}
+
+.DisabledContainer h2 {
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 667px) {
+  .DisabledContainer  {
+    width: 90%;
+    min-height: 200px;
+    background-color: #ffffff;
+    color: #000000;
+    border-radius: 10px;
+    padding: 20px 30px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  }
+  
+}

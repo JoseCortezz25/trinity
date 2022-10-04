@@ -39,7 +39,7 @@ const Plataform = () => {
         {listOfRecommendations?.map((recomended) => (
           <Recomended
             title={recomended.title}
-            key={recomended.title}
+            key={`${recomended.title}${recomended.subtitle}`}
             subtitle={recomended.subtitle}
             typeSite={recomended.typeSite}
             link={recomended.link}

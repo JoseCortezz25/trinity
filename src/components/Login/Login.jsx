@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { setCurrentUser, setToken } from "../../services/localStorage";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../services/service";
+import UserContext from "../../hooks/UserContext";
 import logoIcon from "../../assets/icons/logo.svg";
 import "./Login.css";
 
@@ -10,6 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState("")
   const [error, setError] = useState({error: false, message: ""})
   const navigate = useNavigate();
+  const { setUser } = useContext(UserContext)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -20,7 +22,7 @@ const Login = () => {
         setError({error: false, message: ""})
         setCurrentUser(res.id)
         setToken(res.token)
-        console.log('res', res);
+        setUser(res)
         navigate('/aprender')
       })
       .catch((error) => {
