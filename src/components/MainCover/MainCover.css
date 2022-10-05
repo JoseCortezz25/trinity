@@ -1,7 +1,7 @@
 .MainCover {
   width: 100%;
   height: calc(100vh - 60px);
-  background-image: url("../../assets/blur.jpg");
+  background-image: url("../../assets/images/blur.jpg");
   background-position: left;
   background-repeat: no-repeat;
   display: flex;

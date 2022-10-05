@@ -1,30 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
 
 * {
+  font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
-}
-
-html {
-  font-family: 'Montserrat', sans-serif;
-}
-
-.buttonTop {
-  background-color: transparent;
-  border: none;
-  position: fixed; 
-  width: 30px;
-  height: 30px;
-  right: 5%;
-  bottom: 40px;
-  font-size: 3rem;
-  right: 5%;
-  z-index: 1;
-  bottom: 20%;
-  cursor: pointer;
-  color: green;
 }
 
 .App {
@@ -117,4 +98,10 @@ html {
     max-width: 50%;
   }
   
+}
+
+@media screen and (max-width: 367px) {
+  .Plataform {
+    width: 90%;
+  }
 }

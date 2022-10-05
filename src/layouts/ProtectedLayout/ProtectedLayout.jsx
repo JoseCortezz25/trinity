@@ -20,7 +20,7 @@ const ProtectedRoute = ({ redirectPath = "/formulario/login" }) => {
           <div className="DisabledContainer">
             <span>{":("}</span>
             <h2>Lo lamentamos, aun no tienes acceso.</h2>
-            <p>Para accerder al contenido debes pedirle al administrador la activación la cuenta.</p>
+            <p>Para accerder al contenido debes pedirle al administrador la activación de la cuenta.</p>
             <Link to="/formulario/login"><button className="btnStandard btnDark" onClick={logout}>Cerrar Sesión</button></Link>
           </div>
         </Modal>
