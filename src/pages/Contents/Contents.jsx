@@ -97,7 +97,11 @@ const Contents = () => {
         ))}
       </div>
     </div>
-  ) : <Loader/>;
+  ) : (
+    <main className="LoaderBackground">
+      <Loader />
+    </main>
+  );
 };
 
 const CardContent = ({ number, description, level }) => (

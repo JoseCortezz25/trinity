@@ -29,11 +29,11 @@ const Path = () => {
       <div className="ListOfContent">
         <h3>Contenidos</h3>
         {topics?.topics?.map((topic) => (
-          <ItemContent 
-            paht={ruta} 
-            item={topic.topic} 
-            key={`${topic.topic}/${ruta}`} 
-            />
+          <ItemContent
+            paht={ruta}
+            item={topic.topic}
+            key={`${topic.topic}/${ruta}`}
+          />
         ))}
       </div>
 
@@ -52,7 +52,11 @@ const Path = () => {
         ))}
       </div>
     </section>
-  ) : <Loader />;
+  ) : (
+    <main className="LoaderBackground">
+      <Loader />
+    </main>
+  );
 };
 
 export default Path;

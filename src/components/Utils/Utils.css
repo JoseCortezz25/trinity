@@ -3,9 +3,17 @@
   color: #323333;
 }
 
+.LoaderBackground {
+  width: 100%;
+  height: calc(100vh - 60px);  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .loader {
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   display: inline-block;
   position: relative;
 }
@@ -13,10 +21,10 @@
 .loader::after,
 .loader::before {
   content: "";
-  width: 48px;
-  height: 48px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  background: #fff;
+  background: rgb(85, 85, 85);
   position: absolute;
   left: 0;
   top: 0;

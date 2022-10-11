@@ -9,8 +9,8 @@ import { Loader } from "../../components/Utils/Utils";
 import "./Plataform.css";
 
 const Plataform = () => {
-  const [learningPaths, setLearningPaths] = useState([])
-  const [listOfRecommendations, setListOfRecommendations] = useState([{}])
+  const [learningPaths, setLearningPaths] = useState([]);
+  const [listOfRecommendations, setListOfRecommendations] = useState([{}]);
 
   useEffect(() => {
     getLearningPaths(getToken()).then((data) => {
@@ -49,7 +49,11 @@ const Plataform = () => {
         ))}
       </div>
     </main>
-  ) : <Loader/>;
+  ) : (
+    <main className="LoaderBackground">
+      <Loader />
+    </main>
+  );
 };
 
 const CardPath = ({ title, description, image, link }) => (
