@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ItemContent } from "../../components/Utils/Utils";
 import { getTopicsByPath } from "../../services/service";
+import { getToken } from "../../services/localStorage";
 import Topics from "../../components/Topics/Topics";
 import CardTopics from "../../components/CardTopics/CardTopics";
 import "./Path.css";
@@ -11,7 +12,7 @@ const Path = () => {
   const { ruta } = useParams();
 
   useEffect(() => {
-    getTopicsByPath(ruta)
+    getTopicsByPath(ruta, getToken())
       .then((data) => {
         setTopics(data);
       })

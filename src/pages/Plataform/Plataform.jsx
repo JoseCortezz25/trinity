@@ -4,6 +4,7 @@ import WebIcon from "../../assets/images/Web.png";
 import { Link } from "react-router-dom";
 import { getLearningPaths } from "../../services/service";
 import { getListOfRecommendations } from "../../services/service";
+import { getToken } from "../../services/localStorage";
 import "./Plataform.css";
 
 const Plataform = () => {
@@ -11,10 +12,10 @@ const Plataform = () => {
   const [listOfRecommendations, setListOfRecommendations] = useState([{}])
 
   useEffect(() => {
-    getLearningPaths().then((data) => {
+    getLearningPaths(getToken()).then((data) => {
       setLearningPaths(data);
     });
-    getListOfRecommendations().then((data) => {
+    getListOfRecommendations(getToken()).then((data) => {
       setListOfRecommendations(data);
     });
   }, []);
