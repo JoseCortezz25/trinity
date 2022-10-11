@@ -25,3 +25,7 @@ export const ItemContent = ({ item }) => {
     </Link>
   );
 };
+
+export const Loader = () => {
+  return <span class="loader"></span>;
+};

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import YoutubeIcon from "../../assets/images/youTube.png";
-import WebIcon from "../../assets/images/Web.png";
 import { Link } from "react-router-dom";
 import { getLearningPaths } from "../../services/service";
 import { getListOfRecommendations } from "../../services/service";
 import { getToken } from "../../services/localStorage";
+import YoutubeIcon from "../../assets/images/youTube.png";
+import WebIcon from "../../assets/images/Web.png";
+import { Loader } from "../../components/Utils/Utils";
 import "./Plataform.css";
 
 const Plataform = () => {
@@ -20,7 +21,7 @@ const Plataform = () => {
     });
   }, []);
 
-  return (
+  return learningPaths && listOfRecommendations ? (
     <main className="Plataform">
       <h2 className="tittleh2">Rutas de aprendizaje</h2>
       <div className="Content_paths">
@@ -48,7 +49,7 @@ const Plataform = () => {
         ))}
       </div>
     </main>
-  );
+  ) : <Loader/>;
 };
 
 const CardPath = ({ title, description, image, link }) => (

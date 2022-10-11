@@ -1,6 +1,7 @@
 import React from "react";
-import "./Contents.css";
 import { useParams } from "react-router-dom";
+import { Loader } from "../../components/Utils/Utils";
+import "./Contents.css";
 
 const Contents = () => {
   const { topic, level } = useParams();
@@ -75,7 +76,7 @@ const Contents = () => {
     },
   ];
 
-  return (
+  return topics ? (
     <div className="Plataform Contents">
       <div className="Contents__head">
         <h2>{topic}</h2>
@@ -96,7 +97,7 @@ const Contents = () => {
         ))}
       </div>
     </div>
-  );
+  ) : <Loader/>;
 };
 
 const CardContent = ({ number, description, level }) => (

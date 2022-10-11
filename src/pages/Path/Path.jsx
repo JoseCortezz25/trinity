@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ItemContent } from "../../components/Utils/Utils";
+import { ItemContent, Loader } from "../../components/Utils/Utils";
 import { getTopicsByPath } from "../../services/service";
 import { getToken } from "../../services/localStorage";
 import Topics from "../../components/Topics/Topics";
@@ -21,7 +21,7 @@ const Path = () => {
       });
   }, [ruta]);
 
-  return (
+  return topics ? (
     <section className="Plataform Path">
       <h2>{ruta}</h2>
       <p>{topics.description}</p>
@@ -52,7 +52,7 @@ const Path = () => {
         ))}
       </div>
     </section>
-  );
+  ) : <Loader />;
 };
 
 export default Path;
