@@ -76,3 +76,47 @@
 .CardContents__body p {
   font-weight: bold;
 }
+
+
+.ModalContents {
+  position: relative;
+  width: 50%;
+  min-height: 200px;
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 10px;
+  padding: 20px 30px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  z-index: 4;
+  animation-name: scrollDown;
+  animation-duration: .4s;
+  animation-timing-function: ease-out;
+}
+
+.ModalContents:hover {
+  transform-origin: left top;
+}
+
+.ModalContents h2 {
+  margin-bottom: 15px;
+}
+
+.btnCloseModal {
+  background-color: transparent;
+  position: absolute;
+  right: 25px;
+  padding: 10px;
+  font-size: 25px;
+  border: none;
+  cursor: pointer;
+}
+
+@keyframes scrollDown {
+  from {
+    margin-top: -100%;
+  }
+
+  to {
+    margin-top: 0%;
+  }
+}

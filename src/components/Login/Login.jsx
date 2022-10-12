@@ -27,7 +27,7 @@ const Login = () => {
       })
       .catch((error) => {
         console.log('error', error);
-        setError({error: error.error, message: error.message})
+        setError({error: error.error, message: "Ah ocurrido un error. No es tu culpa, estamos solucionandolo."})
       })
   }
 

@@ -13,6 +13,7 @@
 }
 
 .btnStandard {
+  display: inline-block;
   margin-top: 15px;
   padding: 11px 17px;
   border-radius: 7px;
@@ -21,6 +22,7 @@
   border: none;
   cursor: pointer;
   transition: all .1s ease-out;
+  text-decoration: none;
 }
 
 .btnNormal {

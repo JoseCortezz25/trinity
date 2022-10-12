@@ -43,7 +43,7 @@
 }
 
 .ErrorMessage {
-  text-transform: capitalize;
+  /* text-transform: */
   color: #C0392B;
   font-weight: bold;
 }
