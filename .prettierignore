@@ -1,0 +1,11 @@
+.github/
+node_modules
+public
+src/assets
+commitlint.config.js
+package-lock.json
+package.json
+README.node_modules
+vite.config.js
+yarn.lock
+.eslintignore
