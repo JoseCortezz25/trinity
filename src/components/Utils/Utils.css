@@ -70,6 +70,14 @@
   color: #11393c;
 }
 
+.Greetings h1 {
+  text-align: left;
+}
+
+.Greetings p {
+  text-transform: capitalize;
+}
+
 @media screen and (max-width: 667px) {
   .MainTitle h2 {
     font-size: 22px;

@@ -7,6 +7,7 @@ import Plataform from "../pages/Plataform/Plataform";
 import Path from "../pages/Path/Path";
 import Contents from "../pages/Contents/Contents";
 import Home from "../pages/Home/Home";
+import Dashboard from "../pages/Dashboard/Dashboard";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 
@@ -20,6 +21,7 @@ const AppRoutes = () => {
             <Route index path="/aprender" element={<Plataform />} />
             <Route path="/aprender/:ruta" element={<Path />} />
             <Route path="/aprender/:ruta/:topic/:level" element={<Contents />}/>
+            <Route path="/admin" element={<Dashboard />}/>
           </Route>
         </Route>
         <Route path="/" element={<FormLayout />}>
