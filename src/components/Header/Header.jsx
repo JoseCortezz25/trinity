@@ -9,7 +9,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const { logout } = useContext(UserContext);
-  
+
   const toggleMenu = (e) => {
     if (e.nativeEvent.target.hash !== undefined) {
       document

@@ -6,7 +6,6 @@ import FloatingButtons from "../../components/FloatingButtons/FloatingButtons";
 import "./MainLayout.css";
 
 const MainLayout = () => {
-
   return (
     <main>
       <FloatingButtons />

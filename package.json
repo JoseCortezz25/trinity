@@ -11,7 +11,7 @@
     "start:back": "strapi start",
     "build:back": "strapi build",
     "postinstall": "node ./bin",
-    "command": "node ./bin"
+    "prepare": "husky install"
   },
   "dependencies": {
     "@strapi/plugin-i18n": "4.4.3",
@@ -38,13 +38,24 @@
     "@vitejs/plugin-react": "2.1.0",
     "chalk": "5.1.2",
     "commander": "9.4.1",
-    "eslint": "8.25.0",
+    "eslint": "^8.0.1",
     "eslint-config-prettier": "8.5.0",
+    "eslint-config-standard": "17.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "7.31.10",
+    "husky": "8.0.1",
+    "lint-staged": "13.0.3",
     "lodash": "4.17.21",
     "prettier": "2.7.1",
     "resolve-cwd": "3.0.0"
   },
   "strapi": {
     "uuid": "625b6e69-c45b-481f-8bfa-31afb6b250bd"
+  },
+  "lint-staged": {
+    ".{js,jsx}": "eslint . --cache --fix",
+    ".{js,jsx,css}": "prettier . --write"
   }
 }

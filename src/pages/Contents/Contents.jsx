@@ -32,7 +32,7 @@ const Contents = () => {
       link: "https://developer.mozilla.org/es/docs/Web/CSS/text-transform",
       title: "Formularios",
       description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
       level: "Principiante",
       contents: [],
     },
@@ -41,7 +41,7 @@ const Contents = () => {
       link: "https://developer.mozilla.org/es/docs/Web/CSS/text-transform",
       title: "title",
       description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
       level: "Principiante",
       contents: [],
     },
@@ -50,7 +50,7 @@ const Contents = () => {
       link: "https://developer.mozilla.org/es/docs/Web/CSS/text-transform",
       title: "title",
       description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
       level: "Principiante",
       contents: [],
     },
@@ -77,7 +77,7 @@ const Contents = () => {
       link: "https://developer.mozilla.org/es/docs/Web/CSS/text-transform",
       title: "title",
       description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
       level: "Principiante",
       contents: [],
     },

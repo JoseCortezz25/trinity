@@ -19,7 +19,10 @@ const AppRoutes = () => {
           <Route path="/" element={<ProtectedRoute />}>
             <Route index path="/aprender" element={<Plataform />} />
             <Route path="/aprender/:ruta" element={<Path />} />
-            <Route path="/aprender/:ruta/:topic/:level" element={<Contents />}/>
+            <Route
+              path="/aprender/:ruta/:topic/:level"
+              element={<Contents />}
+            />
           </Route>
         </Route>
         <Route path="/" element={<FormLayout />}>

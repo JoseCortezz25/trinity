@@ -6,12 +6,12 @@ export function UserContextProvider({ children }) {
   const [user, setUser] = useState({});
 
   const logout = () => {
-    setUser({})
-    deleteToken()
-  }
+    setUser({});
+    deleteToken();
+  };
 
   return (
-    <UserContext.Provider value={{user, setUser, logout}}>
+    <UserContext.Provider value={{ user, setUser, logout }}>
       {children}
     </UserContext.Provider>
   );
