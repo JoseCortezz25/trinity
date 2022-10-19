@@ -1,10 +1,8 @@
 import React from "react";
-import { Title } from "../Utils/Utils";
+import { Title } from "../Utils";
 import "./Service.css";
 
-import icon1 from "../../assets/icons/icon1.svg";
-import icon2 from "../../assets/icons/icon2.svg";
-import icon3 from "../../assets/icons/icon3.svg";
+import { icon1, icon2, icon3 } from "../../assets";
 
 const Service = () => {
   return (

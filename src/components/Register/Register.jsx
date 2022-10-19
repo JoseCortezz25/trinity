@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { register } from "../../services/service";
-import logoIcon from "../../assets/icons/logo.svg";
+import { logoIcon } from "../../assets";
+
 import "./Register.css";
 
 const Register = () => {

@@ -7,8 +7,8 @@ import Plataform from "../pages/Plataform/Plataform";
 import Path from "../pages/Path/Path";
 import Contents from "../pages/Contents/Contents";
 import Home from "../pages/Home/Home";
-import Login from "../components/Login/Login";
-import Register from "../components/Register/Register";
+import Login from "../components/Login";
+import Register from "../components/Register";
 
 const AppRoutes = () => {
   return (

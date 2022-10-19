@@ -1,9 +1,10 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { setCurrentUser, setToken } from "../../services/localStorage";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../services/service";
 import UserContext from "../../hooks/UserContext";
-import logoIcon from "../../assets/icons/logo.svg";
+import { logoIcon } from "../../assets";
+
 import "./Login.css";
 
 const Login = () => {

@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { Navigate, Outlet } from "react-router-dom";
-import Modal from "../../components/Modal/Modal";
+import { Navigate, Outlet, Link } from "react-router-dom";
+import Modal from "../../components/Modal";
 import UserContext from "../../hooks/UserContext";
-import { Link } from "react-router-dom";
+
 import "./ProtectedLayout.css";
 
 const ProtectedRoute = ({ redirectPath = "/formulario/login" }) => {

@@ -1,8 +1,8 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import UserContext from "../../hooks/UserContext";
-import logoIcon from "../../assets/icons/logo.svg";
-import iconButton from "../../assets/icons/toggleButton.svg";
+import { logoIcon, toggleButtonIcon as iconButton } from "../../assets";
+
 import "./Header.css";
 
 const Header = () => {

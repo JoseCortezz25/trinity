@@ -12,7 +12,7 @@ npm install
 
 ## Environment
 
-1. create `.env` file
+1. create `.env` file and `.env.frontend`
 2. put the credentials
 
 ```hs

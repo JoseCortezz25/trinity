@@ -1,5 +1,6 @@
+import { Title } from "../Utils";
+
 import "./AboutUs.css";
-import { Title } from "../Utils/Utils";
 
 const AboutUs = () => {
   return (

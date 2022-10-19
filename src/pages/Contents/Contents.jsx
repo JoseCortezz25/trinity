@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Loader } from "../../components/Utils/Utils";
-import Modal from "../../components/Modal/Modal";
 import { AiOutlineClose } from "react-icons/ai";
+import { Loader } from "../../components/Utils";
+import Modal from "../../components/Modal";
+
 import "./Contents.css";
 
 const Contents = () => {
@@ -148,7 +149,12 @@ const CardContent = ({ number, title, level, link, description }) => {
             </button>
             <h2>{title}</h2>
             <p>{description}</p>
-            <a className="btnStandard btnDark" target="_blank" href={link}>
+            <a
+              className="btnStandard btnDark"
+              target="_blank"
+              href={link}
+              rel="noreferrer"
+            >
               ir al contenido
             </a>
           </div>
@@ -159,4 +165,3 @@ const CardContent = ({ number, title, level, link, description }) => {
 };
 
 export default Contents;
-const handleOpenModel = () => {};

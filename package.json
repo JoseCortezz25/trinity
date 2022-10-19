@@ -7,9 +7,9 @@
     "build:front": "vite build",
     "preview:front": "vite preview",
     "strapi": "node ./bin/strapi.js",
-    "dev:back": "strapi develop",
-    "start:back": "strapi start",
-    "build:back": "strapi build",
+    "dev:back": "cross-env NODE_ENV=development strapi develop",
+    "start:back": "cross-env NODE_ENV=production strapi start",
+    "build:back": "cross-env NODE_ENV=production strapi build",
     "postinstall": "node ./bin",
     "prepare": "husky install"
   },

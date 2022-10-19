@@ -1,5 +1,6 @@
-import React, { useState, createContext } from "react";
+import { useState, createContext } from "react";
 import { deleteToken } from "../services/localStorage";
+
 const UserContext = createContext({});
 
 export function UserContextProvider({ children }) {
