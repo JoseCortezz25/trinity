@@ -23,7 +23,11 @@ const Login = () => {
         setCurrentUser(res.id)
         setToken(res.token)
         setUser(res)
-        navigate('/aprender')
+        if (res.rol === 'ADMIN') {
+          navigate('/admin')
+        } else {
+          navigate('/aprender')
+        }
       })
       .catch((error) => {
         console.log('error', error);
