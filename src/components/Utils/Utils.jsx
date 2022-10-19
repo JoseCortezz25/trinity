@@ -31,9 +31,13 @@ export const Loader = () => {
 };
 
 
-export const CoverGreetings = ({greeting}) => (
+export const CoverGreetings = ({greeting, isHome=false}) => (
   <div className="Greetings">
     <h1>Dashboard</h1>
-    <p>¡Hola, {greeting}!</p>
+    {isHome 
+      ? (<p>¡Hola, {greeting}!</p>)
+      : (<p>{greeting}</p>)
+    }
+    
   </div>
 )

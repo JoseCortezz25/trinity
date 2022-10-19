@@ -2,15 +2,16 @@ import React from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Dashboard.css";
-import UserContext from "../../hooks/UserContext";
-import { CoverGreetings } from "../../components/Utils/Utils";
+import UserContext from "../../../hooks/UserContext";
+import { CoverGreetings } from "../../../components/Utils/Utils";
 
 const Dashboard = () => {
   const { user } = useContext(UserContext);
   return (
-    <div className="Plataform Dashboard">
+    <div className="Dashboard">
       <CoverGreetings
         title="Dashboard"
+        isHome={true}
         greeting={user?.fullname}
       />
 
@@ -28,7 +29,7 @@ const Dashboard = () => {
         <DashboradCard
           title="Contenidos"
           description="Administra los contenidos de aprendizaje. Añade, elimina o actualiza las contenidos."
-          path="/Contenidos"
+          path="/contenidos"
         />
         <DashboradCard
           title="Recursos Recomendados"

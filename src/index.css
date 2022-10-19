@@ -25,6 +25,11 @@
   text-decoration: none;
 }
 
+.btnStandard a {
+  width: inherit;
+  display: flex;
+}
+
 .btnNormal {
   background-color: #ecf0f1;
   color: #161616;
@@ -44,7 +49,7 @@
 }
 
 .btnGreen {
-  background-color: #1dd1a1;
+  background-color: #0984E3;
   color: #fff;
   transition: all .1s ease-out;
 }
@@ -53,11 +58,28 @@
   background-color: #10ac84;
 }
 
+.btnBlue {
+  background-color: #0984E3;
+  color: #fff;
+  transition: all .1s ease-out;
+}
+
+.btnBlue:hover {
+  background-color: #1985e3c9;
+}
+
 .Plataform {
   width: 80%;
   padding: 3rem 0 3rem 0;
   display: flex; 
   flex-direction: column;
+  margin: auto;
+  min-height: calc(100vh - 60px);
+}
+
+.Dashboard {
+  width: 80%;
+  padding: 3rem 0 3rem 0;
   margin: auto;
   min-height: calc(100vh - 60px);
 }
