@@ -53,3 +53,10 @@
   color: #C23616;
   font-weight: bold;
 }
+
+@media screen and (max-width: 667px){
+  .TableComponent {
+    width: 800px;
+    overflow-x: scroll; 
+  }
+}

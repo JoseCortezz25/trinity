@@ -29,8 +29,8 @@ const Login = () => {
           navigate('/aprender')
         }
       })
-      .catch((error) => {
-        console.log('error', error);
+      .catch(error => {
+        console.log(error);
         setError({error: error.error, message: "Ha ocurrido un error. No es tu culpa, estamos solucionandolo."})
       })
   }
