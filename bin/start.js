@@ -8,7 +8,7 @@ const strapi = require('../index');
  * `$ strapi start`
  */
 module.exports = async () => {
-  const appDir = path.resolve(process.cwd(), 'backend');
+  const appDir = path.resolve(process.cwd(), 'back');
 
   const isTSProject = await tsUtils.isUsingTypeScript(appDir);
 

@@ -3,7 +3,7 @@
 // TODO: MODIFICATED
 const { join, resolve } = require('path');
 
-const backend = 'backend'
+const backend = 'back'
 const source = `${backend}/src`
 
 const getDirs = ({ app: appDir, dist: distDir }, { strapi }) => ({

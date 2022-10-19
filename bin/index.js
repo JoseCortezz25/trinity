@@ -33,10 +33,3 @@ const FileStartEdited = './app-configuration-strapi.js'
 const getTextFileStartEdited = fs.readFileSync(path.resolve(currentPath, 'bin', FileStartEdited))
 fs.writeFileSync(path.resolve(currentPath, 'node_modules/@strapi/strapi/lib/commands/start.js'), getTextFileStartEdited)
 
-// 307 strapi.js file from '@strapi/strapi"
-// 214 load files
-// 475 fn load files
-// 477 & 679 => clean logs
-// 370 fn register
-// 395 runLifecyclesFunctions
-// 532 container.get fn ('modules')['register']()

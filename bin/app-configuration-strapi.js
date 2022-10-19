@@ -22,7 +22,7 @@ const defaultConfig = {
     proxy: false,
     cron: { enabled: false },
     admin: { autoOpen: false },
-    dirs: { public: './backend/public' },
+    dirs: { public: './back/public' },
   },
   admin: {},
   api: {
