@@ -22,6 +22,22 @@
   padding: 15px 0px 15px 10px;
 }
 
+.Table__actions  svg {
+  width:  25px;
+  height: 25px;
+}
+
+.BtnDelete {
+  color: #C0392B;
+}
+
+.Table__actions button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
 .darkGreen {
   color: #2A685B;
   font-weight: bold;

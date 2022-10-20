@@ -2,9 +2,20 @@ import React from "react";
 import { CoverGreetings } from "../../../components/Utils/Utils";
 import { Link } from "react-router-dom";
 import { users } from "../../../assets/mocks";
+import { AiFillDelete } from "react-icons/ai";
+import { MdModeEdit } from "react-icons/md";
+import { useState } from "react";
 import Table from "../../../components/Table/Table";
+import ModalAlert from "../../../components/ModalAlert/ModalAlert";
 
 const Users = () => {
+  const [openModal, setOpenModal] = useState(false);
+  const [elementSeleted, setElementSeleted] = useState(null);
+
+  const handleOpenModal = (id) => {
+    setOpenModal((prevState) => !prevState);
+    setElementSeleted(id);
+  };
 
   return (
     <div className="Dashboard">
@@ -19,20 +30,32 @@ const Users = () => {
       </Link>
 
       <Table headers={["Nombre", "Email", "Estado", "Rol", "Acciones"]}>
-        {users.map((user) => (
+        {users.map(({ id, fullname, email, status, role }) => (
           <>
-            <li>{user.fullname}</li>
-            <li>{user.email}</li>
-            {user.status ? (
+            <li>{fullname}</li>
+            <li>{email}</li>
+            {status ? (
               <li className="darkGreen">Activado</li>
             ) : (
               <li className="darkBlue">Desactivado</li>
             )}
-            <li>{user.role}</li>
-            <li>iconitos</li>
+            <li>{role}</li>
+            <li className="Table__actions">
+              <button onClick={() => handleOpenModal(id)}>
+                <AiFillDelete className="BtnDelete" />
+              </button>
+              <Link to="/">
+                <button>
+                  <MdModeEdit />
+                </button>
+              </Link>
+            </li>
           </>
         ))}
       </Table>
+      {openModal && (
+        <ModalAlert elementSeleted={elementSeleted} setOpenModal={setOpenModal}/>
+      )}
     </div>
   );
 };

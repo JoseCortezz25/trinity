@@ -25,6 +25,14 @@
   text-decoration: none;
 }
 
+.btnStandard {
+  margin-right: 10px;
+}
+
+.btnStandard:last-child {
+  margin-right: 0px;
+}
+
 .btnStandard a {
   width: inherit;
   display: flex;
@@ -68,6 +76,16 @@
   background-color: #1985e3c9;
 }
 
+.btnRed {
+  background-color: #C0392B;
+  color: #fff;
+  transition: all .1s ease-out;
+}
+
+.btnRed:hover {
+  background-color: #912a1e;
+}
+
 .Plataform {
   width: 80%;
   padding: 3rem 0 3rem 0;
@@ -89,6 +107,35 @@
   font-size: 25px;
   margin-bottom: 20px;
   text-transform: capitalize;
+}
+
+.ModalContainer  {
+  position: relative;
+  width: 50%;
+  min-height: 200px;
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 10px;
+  padding: 20px 30px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.ModalContainer span {
+  font-size: 30px;
+}
+
+.Modal__alert svg {
+  width: 50px;
+  height: 50px;
+  color: #C0392B; 
+}
+
+.ModalContainer h2, .DisabledContainer h2 {
+  margin-bottom: 12px;
+}
+
+.ModalContainer h2 {
+  margin-top: 17px;
 }
 
 @media screen and (max-width: 667px) {
