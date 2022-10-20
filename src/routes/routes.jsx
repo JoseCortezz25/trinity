@@ -24,24 +24,70 @@ const AppRoutes = () => {
           <Route index path="/" element={<Home />} />
           <Route path="/" element={<ProtectedRoute />}>
             <Route index path="/aprender" element={<Plataform />} />
-            <Route path="/aprender/:ruta" element={<Path />} />
-            <Route path="/aprender/:ruta/:topic/:level" element={<Contents />}/>
-            <Route path="/admin" element={<Dashboard />}/> 
-            <Route path="/admin/usuarios" element={<Users />}/>
-            <Route path="/admin/recursos" element={<Resources />}/>
-            <Route path="/admin/temario" element={<Syllabus />}/>
-            <Route path="/admin/rutas" element={<LearningPath />}/>
-            <Route path="/admin/contenidos" element={<Content />}/>
+            {protectedRoutes.map(({to, component}) => (
+              <Route key={to} path={to} element={component}/>
+            ))}
           </Route>
         </Route>
         <Route path="/" element={<FormLayout />}>
-          <Route path="/formulario/login" element={<Login />} />
-          <Route path="/formulario/register" element={<Register />} />
+          {formRoutes.map(({to, component}) => (
+            <Route key={to} path={to} element={component}/>
+          ))}
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </HashRouter>
   );
 };
+
+const formRoutes = [
+  {
+    to: '/formulario/login',
+    component: <Login />,
+  },
+  {
+    to: '/formulario/register',
+    component: <Register />,
+  },
+];
+
+const protectedRoutes = [
+  {
+    to: '/aprender/:ruta',
+    component: <Path />,
+  },
+  {
+    to: '/aprender/:ruta/:topic/:level',
+    component: <Contents />,
+  },
+  {
+    to: '/admin',
+    component: <Dashboard />,
+  },
+  {
+    to: '/admin/usuarios',
+    component: <Users />,
+  },
+  {
+    to: '/admin/recursos',
+    component: <Resources />,
+  },
+  {
+    to: '/admin/temario',
+    component: <Syllabus />,
+  },
+  {
+    to: '/admin/rutas',
+    component: <LearningPath />,
+  },
+  {
+    to: '/admin/rutas',
+    component: <LearningPath />,
+  },
+  {
+    to: '/admin/contenidos',
+    component: <Content />,
+  },
+];
 
 export default AppRoutes;
