@@ -15,7 +15,6 @@ const LearningPath = () => {
       </Link>
 
       <Table
-        columns={5}
         headers={[
           "Nombre de la ruta",
           "Descripción",
@@ -24,13 +23,13 @@ const LearningPath = () => {
           "Acciones",
         ]}
       >
-        {LearningPaths.map((path) => (
+        {LearningPaths.map(({ title, description, link, imagen, acciones }) => (
           <>
-            <li>{path.title}</li>
-            <li className="TextClipped">{path.description}</li>
-            <li className="TextClipped">{path.link}</li>
-            <li className="TextClipped">{path.imagen}</li>
-            <li>{path.acciones}</li>
+            <li>{title}</li>
+            <li className="TextClipped">{description}</li>
+            <li className="TextClipped">{link}</li>
+            <li className="TextClipped">{imagen}</li>
+            <li>{acciones}</li>
           </>
         ))}
       </Table>

@@ -18,13 +18,13 @@ const Resources = () => {
         </button>
       </Link>
 
-      <Table columns={4} headers={["Titulo", "Link", "Tipo", " Acciones"]}>
-        {RecommendedResources.map((resource) => (
+      <Table headers={["Titulo", "Link", "Tipo", " Acciones"]}>
+        {RecommendedResources.map(({title, link, type, acciones}) => (
           <>
-            <li>{resource.title}</li>
-            <li className="TextClipped">{resource.link}</li>
-            <li>{resource.type}</li>
-            <li>{resource.acciones}</li>
+            <li>{title}</li>
+            <li className="TextClipped">{link}</li>
+            <li>{type}</li>
+            <li>{acciones}</li>
           </>
         ))}
       </Table>

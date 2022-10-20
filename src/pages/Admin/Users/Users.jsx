@@ -18,7 +18,7 @@ const Users = () => {
         <button className="btnStandard btnBlue">Crear nuevo usuario</button>
       </Link>
 
-      <Table columns={5} headers={["Nombre", "Email", "Estado", "Rol", "Acciones"]}>
+      <Table headers={["Nombre", "Email", "Estado", "Rol", "Acciones"]}>
         {users.map((user) => (
           <>
             <li>{user.fullname}</li>

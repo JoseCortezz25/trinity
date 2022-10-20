@@ -14,7 +14,6 @@ const Content = () => {
       </Link>
 
       <Table
-        columns={7}
         headers={[
           "Título",
           "Descripción",
@@ -25,15 +24,15 @@ const Content = () => {
           "Acciones",
         ]}
       >
-        {Contents.map((path) => (
+        {Contents.map(({ title, description, link, level, syllabus, order, acciones }) => (
           <>
-            <li>{path.title}</li>
-            <li className="TextClipped">{path.description}</li>
-            <li className="TextClipped">{path.link}</li>
-            <li className={`TextClipped Level${path.level}`}>{path.level}</li>
-            <li className="TextClipped">{path.syllabus}</li>
-            <li className="TextClipped">{path.order}</li>
-            <li>{path.acciones}</li>
+            <li>{title}</li>
+            <li className="TextClipped">{description}</li>
+            <li className="TextClipped">{link}</li>
+            <li className={`TextClipped Level${level}`}>{level}</li>
+            <li className="TextClipped">{syllabus}</li>
+            <li className="TextClipped">{order}</li>
+            <li>{acciones}</li>
           </>
         ))}
       </Table>

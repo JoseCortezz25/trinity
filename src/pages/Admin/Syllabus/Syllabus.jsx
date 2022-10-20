@@ -16,7 +16,6 @@ const Syllabus = () => {
       </Link>
 
       <Table
-        columns={5}
         headers={[
           "Titulo",
           "Descripción",
