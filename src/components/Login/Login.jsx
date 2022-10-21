@@ -23,11 +23,15 @@ const Login = () => {
         setCurrentUser(res.id)
         setToken(res.token)
         setUser(res)
-        navigate('/aprender')
+        if (res.rol === 'ADMIN') {
+          navigate('/admin')
+        } else {
+          navigate('/aprender')
+        }
       })
-      .catch((error) => {
-        console.log('error', error);
-        setError({error: error.error, message: "Ah ocurrido un error. No es tu culpa, estamos solucionandolo."})
+      .catch(error => {
+        console.log(error);
+        setError({error: error.error, message: "Ha ocurrido un error. No es tu culpa, estamos solucionandolo."})
       })
   }
 

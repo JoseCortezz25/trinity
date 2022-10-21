@@ -159,4 +159,3 @@ const CardContent = ({ number, title, level, link, description }) => {
 };
 
 export default Contents;
-const handleOpenModel = () => {};

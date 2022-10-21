@@ -8,8 +8,8 @@ import "./Header.css";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-  const { logout } = useContext(UserContext);
-  
+  const { user, logout } = useContext(UserContext);
+
   const toggleMenu = (e) => {
     if (e.nativeEvent.target.hash !== undefined) {
       document
@@ -30,44 +30,23 @@ const Header = () => {
           </span>
         </Link>
       </nav>
-      {location.pathname.includes("/aprender") ? (
-        <nav>
-          <button className="btnLogout" onClick={logout}>
-            Cerrar Sesión
-          </button>
-        </nav>
-      ) : (
-        <nav>
-          <button className={`menuBtn`} onClick={toggleMenu}>
-            <img src={iconButton} alt="" />
-          </button>
-          <div className="menuDesktop">
-            <Link
-              to="/#Nosotros"
-              onClick={() =>
-                document.getElementById("Nosotros").scrollIntoView()
-              }
-            >
-              Nosotros
-            </Link>
-            <Link
-              to="/#Servicios"
-              onClick={() =>
-                document.getElementById("Servicios").scrollIntoView()
-              }
-            >
-              Servicios
-            </Link>
-            <Link
-              to="/#Ubicacion"
-              onClick={() =>
-                document.getElementById("Ubicacion").scrollIntoView()
-              }
-            >
-              Ubicación
-            </Link>
+
+      <nav className="Header__desktop">
+        {location.pathname.includes("/aprender") ||
+        location.pathname.includes("/admin") ? (
+          <div className="PlatformMenu">
+            {user.rol === "ADMIN" && (
+              <>
+                <Link to="/admin">Dashboard</Link>
+                <Link to="/aprender">Plataforma</Link>
+              </>
+            )}
+            <button className="btnLogout" onClick={logout}>
+              Cerrar Sesión
+            </button>
           </div>
-          <div className={`menuMobile ${isOpen ? "open" : "close"}`}>
+        ) : (
+          <div className="InformativePageMenu">
             <Link onClick={toggleMenu} to="/#Nosotros">
               Nosotros
             </Link>
@@ -78,8 +57,40 @@ const Header = () => {
               Ubicación
             </Link>
           </div>
-        </nav>
-      )}
+        )}
+      </nav>
+
+      <button className={`btnMenu`} onClick={toggleMenu}>
+        <img src={iconButton} alt="" />
+      </button>
+      <nav className={`Header__mobile ${isOpen ? "open" : "close"}`}>
+        {location.pathname.includes("/aprender") ||
+        location.pathname.includes("/admin") ? (
+          <div className="PlatformMenu">
+            {user.rol === "ADMIN" && (
+              <>
+                <Link to="/admin">Dashboard</Link>
+                <Link to="/aprender">Plataforma</Link>
+              </>
+            )}
+            <button className="btnLogout" onClick={logout}>
+              Cerrar Sesión
+            </button>
+          </div>
+        ) : (
+          <div className="InformativePageMenu">
+            <Link onClick={toggleMenu} to="/#Nosotros">
+              Nosotros
+            </Link>
+            <Link onClick={toggleMenu} to="/#Servicios">
+              Servicios
+            </Link>
+            <Link onClick={toggleMenu} to="/#Ubicacion">
+              Ubicación
+            </Link>
+          </div>
+        )}
+      </nav>
     </header>
   );
 };

@@ -13,6 +13,14 @@ const ProtectedRoute = ({ redirectPath = "/formulario/login" }) => {
     return <Navigate to={redirectPath} replace={true} />;
   }
 
+  if(user.rol === 'ADMIN') {
+    return (
+      <>
+      <Outlet/>
+      </>
+    )
+  }
+
   return (
     <>
       {!user.status ? (

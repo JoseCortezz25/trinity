@@ -29,3 +29,15 @@ export const ItemContent = ({ item }) => {
 export const Loader = () => {
   return <span class="loader"></span>;
 };
+
+
+export const CoverGreetings = ({greeting, isHome=false}) => (
+  <div className="Greetings">
+    <h1>Dashboard</h1>
+    {isHome 
+      ? (<p>¡Hola, {greeting}!</p>)
+      : (<p>{greeting}</p>)
+    }
+    
+  </div>
+)
