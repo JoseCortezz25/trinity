@@ -8,8 +8,8 @@ import Path from "../pages/Path/Path";
 import Contents from "../pages/Contents/Contents";
 import Home from "../pages/Home/Home";
 import Dashboard from "../pages/Dashboard/Dashboard";
-import Login from "../components/Login/Login";
-import Register from "../components/Register/Register";
+import Login from "../components/Login";
+import Register from "../components/Register";
 
 const AppRoutes = () => {
   return (
@@ -20,8 +20,11 @@ const AppRoutes = () => {
           <Route path="/" element={<ProtectedRoute />}>
             <Route index path="/aprender" element={<Plataform />} />
             <Route path="/aprender/:ruta" element={<Path />} />
-            <Route path="/aprender/:ruta/:topic/:level" element={<Contents />}/>
-            <Route path="/admin" element={<Dashboard />}/>
+            <Route
+              path="/aprender/:ruta/:topic/:level"
+              element={<Contents />}
+            />
+            <Route path="/admin" element={<Dashboard />} />
           </Route>
         </Route>
         <Route path="/" element={<FormLayout />}>
