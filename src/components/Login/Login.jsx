@@ -1,22 +1,23 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { setCurrentUser, setToken } from "../../services/localStorage";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../services/service";
 import UserContext from "../../hooks/UserContext";
-import logoIcon from "../../assets/icons/logo.svg";
+import { logoIcon } from "../../assets";
+
 import "./Login.css";
 
 const Login = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [error, setError] = useState({error: false, message: ""})
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState({ error: false, message: "" });
   const navigate = useNavigate();
-  const { setUser } = useContext(UserContext)
+  const { setUser } = useContext(UserContext);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    login({email, password})
+    login({ email, password })
       .then((res) => {
         if (res.error) return setError({error: res.error, message: res.message})
         setError({error: false, message: ""})
@@ -48,13 +49,13 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
           <div className="InputsGroup">
             <label htmlFor="email">E-mail</label>
-            <input 
-              type="email" 
-              name="email" 
-              placeholder="Escribe tu correo" 
+            <input
+              type="email"
+              name="email"
+              placeholder="Escribe tu correo"
               onChange={(e) => setEmail(e.target.value)}
               required
-              />
+            />
           </div>
           <div className="InputsGroup">
             <label htmlFor="password">Contraseña</label>
@@ -66,7 +67,7 @@ const Login = () => {
               required
             />
           </div>
-          {error && (<p className="ErrorMessage"> {error.message}</p>)}
+          {error && <p className="ErrorMessage"> {error.message}</p>}
           <button type="submit" className="btnStandard btnDark">
             Iniciar Sesión
           </button>

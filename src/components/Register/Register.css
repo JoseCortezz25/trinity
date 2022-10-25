@@ -39,12 +39,12 @@
 }
 
 .InputError {
-  border: 1px solid #C0392B;
+  border: 1px solid #c0392b;
 }
 
 .ErrorMessage {
   /* text-transform: */
-  color: #C0392B;
+  color: #c0392b;
   font-weight: bold;
 }
 
@@ -54,8 +54,8 @@
     width: 80%;
     /* border: 1px solid red; */
     margin: auto;
-  } 
-  
+  }
+
   .Register__form {
     display: flex;
     flex-direction: column;
