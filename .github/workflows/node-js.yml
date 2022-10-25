@@ -12,18 +12,25 @@ on:
       - dev
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [16.x, 18.x]
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+      - name: Saying Hi!
       - run: echo "hello Tritiny!"
+      - name: installing dependencies
+      - run: npm install
+      - name: using lint-staged
+      - run: npm run lint-staged
       - run: npm run build
       - run: npm start
