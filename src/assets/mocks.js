@@ -138,7 +138,7 @@ const users = [
   },
   {
     id: 15,
-    fullname: "Admin admin",
+    fullname: "AdminAdmin admin 15",
     email: "admin@admin.com",
     status: false,
     role: "ADMIN",
@@ -243,7 +243,7 @@ const users = [
   },
   {
     id: 30,
-    fullname: "Admin admin 2",
+    fullname: "pruebaaa admin 2",
     email: "admin@admin.com",
     status: true,
     role: "ADMIN",
