@@ -49,3 +49,32 @@
 .button.colorBlack:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
+
+.loading {
+  cursor: not-allowed;
+}
+
+.button.colorGray.loading,
+.button.colorBlue.loading,
+.button.colorBlack.loading {
+  background-color: var(--button-color-disabled);
+}
+
+.spinner {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spinnerAnimation 1s infinite;
+}
+
+@keyframes spinnerAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

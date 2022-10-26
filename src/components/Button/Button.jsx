@@ -17,16 +17,17 @@ const Button = ({
   color = 'colorGray',
   colorButton,
   onClick,
+  isDisabled,
   ...props
 }) => {
-  console.log(color)
   const handleClick = () => onClick()
 
   return (
     <button
       type={type}
-      className={cs(s.button, s[color], className)}
+      className={cs(s.button, s[color], isLoading && s.loading, className)}
       color={colorButton}
+      disabled={isLoading || isDisabled}
       onClick={handleClick}
       {...props}
     >

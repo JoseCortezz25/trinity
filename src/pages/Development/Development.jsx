@@ -29,6 +29,7 @@ const Development = () => {
               <Button color={colorSchema.blue}>blue button</Button>
               <Button color={colorSchema.black}>black button</Button>
             </div>
+            <Button color={colorSchema.black} isLoading />
           </code>
         </div>
       </div>
