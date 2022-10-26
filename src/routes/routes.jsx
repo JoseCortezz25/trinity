@@ -9,6 +9,7 @@ import Contents from "../pages/Contents/Contents";
 import Home from "../pages/Home/Home";
 import Dashboard from "../pages/Admin/Dashboard/Dashboard";
 import Users from "../pages/Admin/Users/Users";
+import UsersForm from "../pages/Admin/Users/UsersForm";
 import Resources from "../pages/Admin/Resources/Resources";
 import Syllabus from "../pages/Admin/Syllabus/Syllabus";
 import Content from "../pages/Admin/Content/Content";
@@ -67,6 +68,14 @@ const protectedRoutes = [
   {
     to: '/admin/usuarios',
     component: <Users />,
+  },
+  {
+    to: '/admin/usuarios/añadir',
+    component: <UsersForm />,
+  },
+  {
+    to: '/admin/usuarios/actualizar/:id',
+    component: <UsersForm />,
   },
   {
     to: '/admin/recursos',
