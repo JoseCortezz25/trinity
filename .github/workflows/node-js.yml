@@ -31,7 +31,7 @@ jobs:
       - name: installing dependencies
         run: npm install
       - name: using lint-staged
-        run: npm run lint-staged
+        run: npx lint-staged
       - name: building... 🐱‍🐉
         run: npm run build
       - name: starting server! 🐱‍💻
