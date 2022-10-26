@@ -33,23 +33,21 @@
 }
 
 .Principiante {
-  border-top: 2px solid #0B4E7A;
+  border-top: 2px solid #0b4e7a;
 }
 
 .Intermedio {
-  border-top: 2px solid #FF9F43;
-
+  border-top: 2px solid #ff9f43;
 }
 
 .Avanzado {
-  border-top: 2px solid #C23616;
+  border-top: 2px solid #c23616;
 }
-
 
 @media screen and (max-width: 900px) {
   .ContainerTopics {
     width: 100%;
     display: flex;
     flex-direction: column;
-  }  
+  }
 }

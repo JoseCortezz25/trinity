@@ -1,17 +1,17 @@
-const API_URL = import.meta.env.VITE_API
+const API_URL = import.meta.env.VITE_API;
 
 const options = (token) => ({
   headers: {
-    Authorization: `Bearer ${token}`
-  }
+    Authorization: `Bearer ${token}`,
+  },
 });
 
 export const getLearningPaths = async (token) => {
-  const tokenResult = options(token)
-  const result = await fetch(`${API_URL}/aprender/paths`, tokenResult)
-  const data = result.json()
-  return data
-}
+  const tokenResult = options(token);
+  const result = await fetch(`${API_URL}/aprender/paths`, tokenResult);
+  const data = result.json();
+  return data;
+};
 
 export const getListOfRecommendations = async (token) => {
   const tokenResult = options(token)
@@ -21,16 +21,16 @@ export const getListOfRecommendations = async (token) => {
 }
 
 export const getTopicsByPath = async (path, token) => {
-  const tokenResult = options(token)
-  const result = await fetch(`${API_URL}/aprender/topics/${path}`, tokenResult)
-  const data = result.json()
-  return data
-}
+  const tokenResult = options(token);
+  const result = await fetch(`${API_URL}/aprender/topics/${path}`, tokenResult);
+  const data = result.json();
+  return data;
+};
 
 export const login = async (userData) => {
   const config = {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     method: 'POST',
     body: JSON.stringify(userData)

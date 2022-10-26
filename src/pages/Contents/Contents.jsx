@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Loader } from "../../components/Utils/Utils";
-import Modal from "../../components/Modal/Modal";
 import { AiOutlineClose } from "react-icons/ai";
+import { Loader } from "../../components/Utils";
+import Modal from "../../components/Modal";
+
 import "./Contents.css";
 
 const Contents = () => {
@@ -32,7 +33,7 @@ const Contents = () => {
       link: "https://developer.mozilla.org/es/docs/Web/CSS/text-transform",
       title: "Formularios",
       description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
       level: "Principiante",
       contents: [],
     },
@@ -41,7 +42,7 @@ const Contents = () => {
       link: "https://developer.mozilla.org/es/docs/Web/CSS/text-transform",
       title: "title",
       description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
       level: "Principiante",
       contents: [],
     },
@@ -50,7 +51,7 @@ const Contents = () => {
       link: "https://developer.mozilla.org/es/docs/Web/CSS/text-transform",
       title: "title",
       description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
       level: "Principiante",
       contents: [],
     },
@@ -77,7 +78,7 @@ const Contents = () => {
       link: "https://developer.mozilla.org/es/docs/Web/CSS/text-transform",
       title: "title",
       description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
       level: "Principiante",
       contents: [],
     },
@@ -148,7 +149,12 @@ const CardContent = ({ number, title, level, link, description }) => {
             </button>
             <h2>{title}</h2>
             <p>{description}</p>
-            <a className="btnStandard btnDark" target="_blank" href={link}>
+            <a
+              className="btnStandard btnDark"
+              target="_blank"
+              href={link}
+              rel="noreferrer"
+            >
               ir al contenido
             </a>
           </div>

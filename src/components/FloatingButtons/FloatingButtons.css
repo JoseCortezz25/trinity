@@ -1,8 +1,8 @@
 .FloatingButtons {
   width: 70px;
   height: 120px;
-  position: fixed; 
-  
+  position: fixed;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -18,7 +18,7 @@
   font-size: 3rem;
   z-index: 1;
   cursor: pointer;
-  transition: all .4s ease;
+  transition: all 0.4s ease;
 }
 
 .WhatsappButton a img {
@@ -37,5 +37,5 @@
   font-size: 3rem;
   z-index: 1;
   cursor: pointer;
-  color: #25D366;
+  color: #25d366;
 }

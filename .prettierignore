@@ -1,0 +1,13 @@
+.github
+node_modules
+public
+commitlint.config.js
+package-lock.json
+package.json
+README.md
+vite.config.js
+yarn.lock
+.eslintignore
+bin
+.cache
+build

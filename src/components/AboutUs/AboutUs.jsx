@@ -1,12 +1,15 @@
-import React from "react";
-import './AboutUs.css'
-import { Title } from "../Utils/Utils";
+import { Title } from "../Utils";
+
+import "./AboutUs.css";
 
 const AboutUs = () => {
   return (
     <section className="AboutUs" id="Nosotros">
       <Title title="Nosotros" />
-      <p>Lorem ipsum dolor sit amet. Ut molestiae perferendis. Lorem ipsum dolor sit amet.</p>
+      <p>
+        Lorem ipsum dolor sit amet. Ut molestiae perferendis. Lorem ipsum dolor
+        sit amet.
+      </p>
     </section>
   );
 };

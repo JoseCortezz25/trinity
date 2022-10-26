@@ -1,0 +1,16 @@
+{
+  "name": "trynity-backend",
+  "version": "4.4.3",
+  "description": "",
+
+  "homepage": "",
+  "author": {
+    "name": "Trinity"
+  },
+  "bin": {
+    "strapi": "../bin/strapi.js"
+  },
+  "scripts": {
+    "test:unit": "jest --verbose"
+  }
+}
