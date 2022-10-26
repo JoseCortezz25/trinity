@@ -28,6 +28,7 @@ console.log("[+] command [name component] --type=[component | view]");
   const path_generated = ({ folder = "", component_name = "" }) =>
     path.join(
       process.cwd(),
+      "src",
       static_type_file[getValFromFlag(flagType)],
       folder, // will be the folder component with the same name of the component
       component_name
@@ -48,14 +49,14 @@ console.log("[+] command [name component] --type=[component | view]");
 
   // component.tsx
   fs.writeFileSync(
-    `${component}.tsx`,
+    `${component}.jsx`,
     template({ css_file, component_name: nameComponent })
   );
 
   // index.ts
   fs.writeFileSync(
-    `${path_generated({ folder: nameComponent, component_name: "index" })}.ts`,
-    `export { default as ${nameComponent} } from './${nameComponent}';\nexport type { ${nameComponent}Props } from './${nameComponent}';`
+    `${path_generated({ folder: nameComponent, component_name: "index" })}.js`,
+    `export { default as ${nameComponent} } from './${nameComponent}';`
   );
 
   // component.module.css

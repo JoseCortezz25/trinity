@@ -1,16 +1,11 @@
 /* eslint-disable camelcase */
 
 const template = ({ css_file, component_name }) =>
-  `import { FC } from 'react';
-import cn from 'classnames';
+  `import cs from 'classnames';
 
 import s from './${css_file}';
 
-interface ${component_name}Props {
-  //  ...
-}
-
-const ${component_name}: FC<${component_name}Props> = (props) => {
+const ${component_name} = (props) => {
   const classes = cn(s.test);
 
   return (
@@ -19,7 +14,6 @@ const ${component_name}: FC<${component_name}Props> = (props) => {
 }
 
 export default ${component_name}
-export type { ${component_name}Props }
 `;
 
 module.exports = { template };
