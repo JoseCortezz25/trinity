@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ItemContent, Loader } from "../../components/Utils/Utils";
+import { ItemContent, Loader } from "../../components/Utils";
 import { getTopicsByPath } from "../../services/service";
 import { getToken } from "../../services/localStorage";
-import Topics from "../../components/Topics/Topics";
-import CardTopics from "../../components/CardTopics/CardTopics";
+import Topics from "../../components/Topics";
+import CardTopics from "../../components/CardTopics";
+
 import "./Path.css";
 
 const Path = () => {

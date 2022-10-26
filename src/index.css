@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
 
 * {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -21,7 +21,7 @@
   text-transform: uppercase;
   border: none;
   cursor: pointer;
-  transition: all .1s ease-out;
+  transition: all 0.1s ease-out;
   text-decoration: none;
 }
 
@@ -59,7 +59,7 @@
 .btnGreen {
   background-color: #0984E3;
   color: #fff;
-  transition: all .1s ease-out;
+  transition: all 0.1s ease-out;
 }
 
 .btnGreen:hover {
@@ -89,7 +89,7 @@
 .Plataform {
   width: 80%;
   padding: 3rem 0 3rem 0;
-  display: flex; 
+  display: flex;
   flex-direction: column;
   margin: auto;
   min-height: calc(100vh - 60px);
@@ -156,11 +156,11 @@
   .AboutUs p {
     max-width: 65%;
   }
-  
+
   .Complement .boxInfo h3 {
     max-width: 10%;
   }
-  
+
   .Complement .boxInfo p {
     max-width: 40%;
   }
@@ -168,7 +168,6 @@
   .Service .ServiceCards {
     max-width: 50%;
   }
-  
 }
 
 @media screen and (max-width: 367px) {
