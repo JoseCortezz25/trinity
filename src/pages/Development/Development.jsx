@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Input } from '../../components'
 
 import { Button, colorSchema } from '../../components/Button'
 import { Title } from '../../components/Utils'
@@ -30,6 +31,7 @@ const Development = () => {
               <Button color={colorSchema.black}>black button</Button>
             </div>
             <Button color={colorSchema.black} isLoading />
+            <Input placeholder="escriba algo" />
           </code>
         </div>
       </div>
