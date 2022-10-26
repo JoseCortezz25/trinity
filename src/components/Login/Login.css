@@ -26,15 +26,14 @@
   object-fit: cover;
 }
 
-
 @media screen and (max-width: 667px) {
   .Login {
     display: flex;
     width: 80%;
     /* border: 1px solid red; */
     margin: auto;
-  } 
-  
+  }
+
   .Login__form {
     display: flex;
     flex-direction: column;

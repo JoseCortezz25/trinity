@@ -36,7 +36,6 @@
   font-size: 18px;
 }
 
-
 @media screen and (max-width: 667px) {
   .Information {
     height: 500px;
@@ -47,7 +46,7 @@
   .Information .container {
     width: 80%;
     margin: auto;
-  
+
     display: flex;
     flex-direction: column;
   }
@@ -57,7 +56,7 @@
     margin-bottom: 20px;
     order: 1;
   }
-  
+
   .Information .boxImage img {
     width: 100%;
   }

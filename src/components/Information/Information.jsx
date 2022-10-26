@@ -1,6 +1,6 @@
-import React from "react";
-import imageCoverProgrammer from "../../assets/icons/programmer.svg";
-import './Information.css'
+import { programmerIcon as imageCoverProgrammer } from "../../assets";
+
+import "./Information.css";
 
 const Information = () => {
   return (
@@ -11,7 +11,11 @@ const Information = () => {
         </div>
         <div className="boxInfo">
           <h2>Lorem ipsum dolor sit amet. Ut molestiae perferendis.</h2>
-          <p>Lorem ipsum dolor sit amet. Eos voluptatum nostrum et illum nostrum aut possimus exercitationem et fugit Quis ea nesciunt minus ut officia amet.</p>
+          <p>
+            Lorem ipsum dolor sit amet. Eos voluptatum nostrum et illum nostrum
+            aut possimus exercitationem et fugit Quis ea nesciunt minus ut
+            officia amet.
+          </p>
         </div>
       </div>
     </section>

@@ -49,11 +49,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: background .4s ease;
+  transition: background 0.4s ease;
 }
 
 .Recomended:hover {
-  background: #F7F7F7;
+  background: #f7f7f7;
   border-radius: 10px;
 }
 
@@ -140,7 +140,7 @@
   .contenedorTargetas {
     width: 100%;
   }
-  
+
   .RecomemdedCards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

@@ -1,8 +1,10 @@
-import React from "react";
-import LinkedinIcon from "../../assets/icons/LinkedinIcon.svg";
-import FacebookIcon from "../../assets/icons/FacebookIcon.svg";
-import TwitterIcon from "../../assets/icons/TwitterIcon.svg";
-import logoIcon from "../../assets/icons/logo.svg";
+import {
+  LinkedinIcon,
+  FacebookIcon,
+  TwitterIcon,
+  logoIcon,
+} from "../../assets";
+
 import "./Footer.css";
 
 const Footer = () => {

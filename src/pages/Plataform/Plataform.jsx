@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getLearningPaths } from "../../services/service";
-import { getListOfRecommendations } from "../../services/service";
+import {
+  getLearningPaths,
+  getListOfRecommendations,
+} from "../../services/service";
 import { getToken } from "../../services/localStorage";
 import YoutubeIcon from "../../assets/images/youTube.png";
 import WebIcon from "../../assets/images/Web.png";
-import { Loader } from "../../components/Utils/Utils";
+import { Loader } from "../../components/Utils";
+
 import "./Plataform.css";
 
 const Plataform = () => {
-  const [learningPaths, setLearningPaths] = useState([]);
+  const [learningPaths, setLearningPaths] = useState([{}]);
   const [listOfRecommendations, setListOfRecommendations] = useState([{}]);
 
   useEffect(() => {
