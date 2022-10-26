@@ -3,12 +3,12 @@ import s from './Input.module.css';
 
 
 const Input = ({ placeholder, value, name, onChange, id, type, className, ...props }) => {
-  const classes = cs(s.test);
+  const classes = cs(s.input);
 
   return (
     <input
       type={type}
-      className={classes(s.input)}
+      className={classes}
       placeholder={placeholder}
       value={value}
       {...props}
