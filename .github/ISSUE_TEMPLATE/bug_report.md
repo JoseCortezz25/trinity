@@ -1,10 +1,10 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: '[BUG]: '
-labels: bug
+title: "[BUG]: "
+labels: bug, good first issue
 assignees: ''
-labels: ["bug", "good first issue"]
+
 ---
 
 **Contact details**
