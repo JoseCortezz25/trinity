@@ -12,7 +12,7 @@ on:
       - dev
 
 jobs:
-  deploy:
+  bluid-frontend:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -34,5 +34,25 @@ jobs:
         run: npx lint-staged
       - name: building... 🐱‍🐉
         run: npm run build:front
-      - name: starting server! 🐱‍💻
-        run: npm start
+  bluid-backend:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - name: Saying Hi!
+        run: echo "hello Tritiny!"
+      - name: installing dependencies
+        run: npm install
+      - name: using lint-staged
+        run: npx lint-staged
+      - name: building... 🐱‍🐉
+        run: npm run build:back
