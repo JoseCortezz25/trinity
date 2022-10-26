@@ -11,7 +11,8 @@
     "start:back": "cross-env NODE_ENV=production strapi start",
     "build:back": "cross-env NODE_ENV=production strapi build",
     "postinstall": "node ./bin",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "gc": "node ./scripts/gen-component.js"
   },
   "dependencies": {
     "@react-icons/all-files": "4.1.0",
