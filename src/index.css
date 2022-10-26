@@ -1,7 +1,19 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+:root {
+  --button-color-gray: #ecf0f1;
+  --button-color-blue: #0984e3;
+  --button-color-black: #000000;
+
+  --font-color-black: #000;
+  --font-color-white: #fff;
+
+  --white: #fff;
+  --black: #000;
+}
 
 * {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -57,7 +69,7 @@
 }
 
 .btnGreen {
-  background-color: #0984E3;
+  background-color: #0984e3;
   color: #fff;
   transition: all 0.1s ease-out;
 }
@@ -67,9 +79,9 @@
 }
 
 .btnBlue {
-  background-color: #0984E3;
+  background-color: #0984e3;
   color: #fff;
-  transition: all .1s ease-out;
+  transition: all 0.1s ease-out;
 }
 
 .btnBlue:hover {
@@ -77,9 +89,9 @@
 }
 
 .btnRed {
-  background-color: #C0392B;
+  background-color: #c0392b;
   color: #fff;
-  transition: all .1s ease-out;
+  transition: all 0.1s ease-out;
 }
 
 .btnRed:hover {
@@ -109,7 +121,7 @@
   text-transform: capitalize;
 }
 
-.ModalContainer  {
+.ModalContainer {
   position: relative;
   width: 50%;
   min-height: 200px;
@@ -127,10 +139,11 @@
 .Modal__alert svg {
   width: 50px;
   height: 50px;
-  color: #C0392B; 
+  color: #c0392b;
 }
 
-.ModalContainer h2, .DisabledContainer h2 {
+.ModalContainer h2,
+.DisabledContainer h2 {
   margin-bottom: 12px;
 }
 

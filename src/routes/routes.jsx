@@ -1,19 +1,18 @@
-import { HashRouter, Routes, Route } from "react-router-dom";
-import ProtectedRoute from "../layouts/ProtectedLayout/ProtectedLayout";
-import MainLayout from "../layouts/MainLayout/MainLayout";
-import FormLayout from "../layouts/FormLayout/FormLayout";
-import NotFound from "../pages/NotFound/NotFound";
-import Plataform from "../pages/Plataform/Plataform";
-import Path from "../pages/Path/Path";
-import Contents from "../pages/Contents/Contents";
-import Home from "../pages/Home/Home";
-import { DevelopmentPage } from "../pages/Development";
-import Dashboard from "../pages/Admin/Dashboard/Dashboard";
-import Login from "../components/Login";
-import Register from "../components/Register";
+import { HashRouter, Routes, Route } from 'react-router-dom'
+import ProtectedRoute from '../layouts/ProtectedLayout/ProtectedLayout'
+import MainLayout from '../layouts/MainLayout/MainLayout'
+import FormLayout from '../layouts/FormLayout/FormLayout'
+import NotFound from '../pages/NotFound/NotFound'
+import Plataform from '../pages/Plataform/Plataform'
+import Path from '../pages/Path/Path'
+import Contents from '../pages/Contents/Contents'
+import Home from '../pages/Home/Home'
+import { DevelopmentPage } from '../pages/Development'
+import Dashboard from '../pages/Admin/Dashboard/Dashboard'
+import Login from '../components/Login'
+import Register from '../components/Register'
 
 const AppRoutes = () => {
-  console.log(import.meta.env, import.meta.env.MODE === "development");
   return (
     <HashRouter>
       <Routes>
@@ -39,7 +38,7 @@ const AppRoutes = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </HashRouter>
-  );
-};
+  )
+}
 
-export default AppRoutes;
+export default AppRoutes

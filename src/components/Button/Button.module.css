@@ -1,0 +1,46 @@
+.button {
+  border: 1px solid transparent;
+  background-color: transparent;
+  padding: 7px 8px;
+}
+
+.button.colorGray {
+  background-color: var(--button-color-gray);
+  color: var(--font-color-black);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19.36px;
+  text-transform: uppercase;
+  padding: 8px 12px;
+}
+
+.button.colorBlue {
+  background-color: var(--button-color-blue);
+  color: var(--font-color-white);
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 18px;
+  text-transform: uppercase;
+  padding: 9px;
+  border-radius: 10px;
+}
+
+.button.colorBlack {
+  background-color: var(--button-color-black);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 18.15px;
+  text-transform: uppercase;
+  padding: 9px 20px;
+  border-radius: 10px;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.button.colorBlack:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}

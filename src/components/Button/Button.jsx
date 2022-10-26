@@ -3,16 +3,36 @@ import cs from 'classnames'
 
 import s from './Button.module.css'
 
-export const Button = ({
+const colorSchema = {
+  gray: 'colorGray',
+  blue: 'colorBlue',
+  black: 'colorBlack',
+}
+
+const Button = ({
+  type = 'button',
   children,
   className,
-  variant = 'normal' | 'blue' | 'back',
   isLoading = false,
-  color = 'gray' | 'blue' | 'back',
+  color = 'colorGray',
+  colorButton,
+  onClick,
+  ...props
 }) => {
+  console.log(color)
+  const handleClick = () => onClick()
+
   return (
-    <button className={cs(s.button, s[`button-${color}`], className)}>
+    <button
+      type={type}
+      className={cs(s.button, s[color], className)}
+      color={colorButton}
+      onClick={handleClick}
+      {...props}
+    >
       {isLoading ? <span className={s.spinner} /> : children}
     </button>
   )
 }
+
+export { Button, colorSchema }

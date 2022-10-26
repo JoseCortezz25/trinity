@@ -24,3 +24,11 @@ code {
   height: 200px;
   margin-top: 20px;
 }
+
+.wrapperButtons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #ddd;
+}
