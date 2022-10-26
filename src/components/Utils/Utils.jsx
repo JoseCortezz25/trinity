@@ -1,5 +1,5 @@
-import React from "react";
 import { Link, useParams } from "react-router-dom";
+
 import "./Utils.css";
 
 export const Title = ({ title, styles = "" }) => {
@@ -27,5 +27,13 @@ export const ItemContent = ({ item }) => {
 };
 
 export const Loader = () => {
-  return <span class="loader"></span>;
+  return <span className="loader"></span>;
 };
+
+
+export const CoverGreetings = ({greeting}) => (
+  <div className="Greetings">
+    <h1>Dashboard</h1>
+    <p>¡Hola, {greeting}!</p>
+  </div>
+)

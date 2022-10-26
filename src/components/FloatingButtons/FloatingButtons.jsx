@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaArrowCircleUp } from "react-icons/fa";
 import WhatsAppIcon from "../../assets/icons/WhatsappIcon.svg";
+
 import "./FloatingButtons.css";
 
 const FloatingButtons = () => {
@@ -25,7 +26,11 @@ const FloatingButtons = () => {
   return (
     <div className="FloatingButtons">
       <div className="WhatsappButton">
-        <a href="https://wa.me/3143478428?text=Hola,%20Trinity" target="_blank">
+        <a
+          href="https://wa.me/3143478428?text=Hola,%20Trinity"
+          target="_blank"
+          rel="noreferrer"
+        >
           <img src={WhatsAppIcon} alt="" className="WhatsappButton__icon" />
         </a>
       </div>

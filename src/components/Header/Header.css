@@ -2,7 +2,7 @@ header {
   background-color: white;
   width: 100%;
   height: 60px;
-  border-bottom: 1px solid rgba(50, 51, 51, 0.10);
+  border-bottom: 1px solid rgba(50, 51, 51, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -12,7 +12,7 @@ header {
 
 nav .logo {
   font-weight: bold;
-  color: #11393C;
+  color: #11393c;
 }
 
 nav .logo img {
@@ -25,7 +25,7 @@ nav a {
   text-decoration: none;
 }
 
-nav a:last-child{
+nav a:last-child {
   margin: 0px;
 }
 
@@ -36,7 +36,7 @@ nav .btnLogout {
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
-  transition: color .2s ease;
+  transition: color 0.2s ease;
 }
 
 nav .btnLogout:hover {
@@ -62,7 +62,7 @@ nav .btnLogout:hover {
   }
 }
 
-@media screen and (max-width: 667px) {  
+@media screen and (max-width: 667px) {
   .menuDesktop {
     display: none;
   }
@@ -78,13 +78,13 @@ nav .btnLogout:hover {
     display: flex;
     flex-direction: column;
   }
-  
-  .menuMobile a{
+
+  .menuMobile a {
     display: block;
     padding: 10px 10px 10px 0px;
     width: 100%;
     font-weight: bold;
-    border-bottom: 1px solid rgba(50, 51, 51, 0.10);
+    border-bottom: 1px solid rgba(50, 51, 51, 0.1);
     margin-bottom: 10px;
   }
 }
