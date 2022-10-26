@@ -7,87 +7,39 @@ import Plataform from "../pages/Plataform/Plataform";
 import Path from "../pages/Path/Path";
 import Contents from "../pages/Contents/Contents";
 import Home from "../pages/Home/Home";
+import { DevelopmentPage } from "../pages/Development";
 import Dashboard from "../pages/Admin/Dashboard/Dashboard";
-import Users from "../pages/Admin/Users/Users";
-import Resources from "../pages/Admin/Resources/Resources";
-import Syllabus from "../pages/Admin/Syllabus/Syllabus";
-import Content from "../pages/Admin/Content/Content";
-import Login from "../components/Login/Login";
-import Register from "../components/Register/Register";
-import LearningPath from "../pages/Admin/LearningPath/LearningPath";
+import Login from "../components/Login";
+import Register from "../components/Register";
 
 const AppRoutes = () => {
+  console.log(import.meta.env, import.meta.env.MODE === "development");
   return (
     <HashRouter>
       <Routes>
+        {import.meta.env.DEV && (
+          <Route path="/development" element={<DevelopmentPage />} />
+        )}
         <Route path="/" element={<MainLayout />}>
           <Route index path="/" element={<Home />} />
           <Route path="/" element={<ProtectedRoute />}>
             <Route index path="/aprender" element={<Plataform />} />
-            {protectedRoutes.map(({to, component}) => (
-              <Route key={to} path={to} element={component}/>
-            ))}
+            <Route path="/aprender/:ruta" element={<Path />} />
+            <Route
+              path="/aprender/:ruta/:topic/:level"
+              element={<Contents />}
+            />
+            <Route path="/admin" element={<Dashboard />} />
           </Route>
         </Route>
         <Route path="/" element={<FormLayout />}>
-          {formRoutes.map(({to, component}) => (
-            <Route key={to} path={to} element={component}/>
-          ))}
+          <Route path="/formulario/login" element={<Login />} />
+          <Route path="/formulario/register" element={<Register />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </HashRouter>
   );
 };
-
-const formRoutes = [
-  {
-    to: '/formulario/login',
-    component: <Login />,
-  },
-  {
-    to: '/formulario/register',
-    component: <Register />,
-  },
-];
-
-const protectedRoutes = [
-  {
-    to: '/aprender/:ruta',
-    component: <Path />,
-  },
-  {
-    to: '/aprender/:ruta/:topic/:level',
-    component: <Contents />,
-  },
-  {
-    to: '/admin',
-    component: <Dashboard />,
-  },
-  {
-    to: '/admin/usuarios',
-    component: <Users />,
-  },
-  {
-    to: '/admin/recursos',
-    component: <Resources />,
-  },
-  {
-    to: '/admin/temario',
-    component: <Syllabus />,
-  },
-  {
-    to: '/admin/rutas',
-    component: <LearningPath />,
-  },
-  {
-    to: '/admin/rutas',
-    component: <LearningPath />,
-  },
-  {
-    to: '/admin/contenidos',
-    component: <Content />,
-  },
-];
 
 export default AppRoutes;
