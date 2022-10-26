@@ -1,0 +1,16 @@
+.input {
+    /* height: 45px; */
+    background-color: #f0f0f0;
+    color: #41414199;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+  }
+  .formControl {
+    width: 100%;
+  }
+  
+  .formControl input {
+    width: 100%;
+  }
+  
