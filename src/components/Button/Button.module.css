@@ -2,6 +2,8 @@
   border: 1px solid transparent;
   background-color: transparent;
   padding: 7px 8px;
+  transition: background-color 250ms ease;
+  cursor: pointer;
 }
 
 .button.colorGray {
@@ -12,6 +14,10 @@
   line-height: 19.36px;
   text-transform: uppercase;
   padding: 8px 12px;
+}
+
+.button.colorGray:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .button.colorBlue {
@@ -25,6 +31,10 @@
   border-radius: 10px;
 }
 
+.button.colorBlue:hover {
+  background-color: var(--button-color-hover);
+}
+
 .button.colorBlack {
   background-color: var(--button-color-black);
   color: var(--white);
@@ -34,11 +44,6 @@
   text-transform: uppercase;
   padding: 9px 20px;
   border-radius: 10px;
-}
-
-.button:hover {
-  cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .button.colorBlack:hover {
