@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 
 const template = ({ css_file, component_name }) =>
-  `import cs from 'classnames';
+  `import cn from 'classnames';
 
 import s from './${css_file}';
 
@@ -14,6 +14,6 @@ const ${component_name} = (props) => {
 }
 
 export default ${component_name}
-`;
+`
 
-module.exports = { template };
+module.exports = { template }
