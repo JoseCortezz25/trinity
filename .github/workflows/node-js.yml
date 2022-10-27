@@ -51,7 +51,7 @@ jobs:
       - name: Saying Hi!
         run: echo "hello Tritiny!"
       - name: moving to correct folder project
-        run: cd ./back
+        run: cd back
       - name: installing dependencies
         run: npm install
       - name: building... 🐱‍🐉
