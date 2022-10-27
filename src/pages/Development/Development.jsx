@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { Input, Label } from '../../components'
 
 import { Button, colorSchema } from '../../components/Button'
 import { Title } from '../../components/Utils'
+import { Input, Select } from '../../components'
 
 import s from './Development.module.css'
 
@@ -31,6 +31,15 @@ const Development = () => {
               <Button color={colorSchema.black}>black button</Button>
             </div>
             <Button color={colorSchema.black} isLoading />
+            <Input placeholder="Writing input" />
+            <Select
+              options={[
+                { id: 0, label: 'Ruta Frontend' },
+                { id: 1, label: 'Ruta Backend' },
+                { id: 2, label: 'Ruta de complementos' }
+              ]}
+              onChange={(op) => console.log(op)}
+            />
             <Input placeholder="escriba algo" />
             <Label name="correo">HOla</Label>
           </code>
