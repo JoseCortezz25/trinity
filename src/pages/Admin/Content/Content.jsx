@@ -21,7 +21,7 @@ const Content = () => {
     <div className="Dashboard">
       <CoverGreetings greeting="Gestión del contenido" isHome={false} />
 
-      <Link to="/admin/ruta/añadir">
+      <Link to="/admin/contenidos/añadir">
         <button className="btnStandard btnBlue">Añadir nuevo contenido</button>
       </Link>
 
@@ -49,7 +49,7 @@ const Content = () => {
                   <button onClick={() => handleOpenModal(title)}>
                     <AiFillDelete className="BtnDelete" />
                   </button>
-                  <Link to="/">
+                  <Link to={`/admin/contenidos/actualizar/${title}`}>
                     <button>
                       <MdModeEdit />
                     </button>

@@ -45,7 +45,7 @@ const Users = () => {
                 <button onClick={() => handleOpenModal(id)}>
                   <AiFillDelete className="BtnDelete" />
                 </button>
-                <Link to="/">
+                <Link to={`/admin/usuarios/actualizar/${id}`}>
                   <button>
                     <MdModeEdit />
                   </button>
