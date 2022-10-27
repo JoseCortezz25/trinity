@@ -16,6 +16,7 @@ import Content from "../pages/Admin/Content/Content";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import LearningPath from "../pages/Admin/LearningPath/LearningPath";
+import LearningPathForm from "../pages/Admin/LearningPath/LearningPathForm";
 
 const AppRoutes = () => {
   return (
@@ -88,6 +89,14 @@ const protectedRoutes = [
   {
     to: '/admin/rutas',
     component: <LearningPath />,
+  },
+  {
+    to: '/admin/rutas/añadir',
+    component: <LearningPathForm />,
+  },
+  {
+    to: '/admin/rutas/actualizar/:id',
+    component: <LearningPathForm />,
   },
   {
     to: '/admin/rutas',

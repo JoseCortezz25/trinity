@@ -24,7 +24,7 @@ const LearningPath = () => {
         isHome={false}
       />
 
-      <Link to="/admin/ruta/añadir">
+      <Link to="/admin/rutas/añadir">
         <button className="btnStandard btnBlue">Crear nueva ruta</button>
       </Link>
 
@@ -48,7 +48,7 @@ const LearningPath = () => {
                 <button onClick={() => handleOpenModal(title)}>
                   <AiFillDelete className="BtnDelete" />
                 </button>
-                <Link to="/">
+                <Link to={`/admin/rutas/actualizar/${title}`}>
                   <button>
                     <MdModeEdit />
                   </button>
