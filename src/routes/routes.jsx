@@ -1,20 +1,24 @@
-import { HashRouter, Routes, Route } from "react-router-dom";
-import ProtectedRoute from "../layouts/ProtectedLayout/ProtectedLayout";
-import MainLayout from "../layouts/MainLayout/MainLayout";
-import FormLayout from "../layouts/FormLayout/FormLayout";
-import NotFound from "../pages/NotFound/NotFound";
-import Plataform from "../pages/Plataform/Plataform";
-import Path from "../pages/Path/Path";
-import Contents from "../pages/Contents/Contents";
-import Home from "../pages/Home/Home";
-import Dashboard from "../pages/Dashboard/Dashboard";
-import Login from "../components/Login";
-import Register from "../components/Register";
+import { HashRouter, Routes, Route } from 'react-router-dom'
+import ProtectedRoute from '../layouts/ProtectedLayout/ProtectedLayout'
+import MainLayout from '../layouts/MainLayout/MainLayout'
+import FormLayout from '../layouts/FormLayout/FormLayout'
+import NotFound from '../pages/NotFound/NotFound'
+import Plataform from '../pages/Plataform/Plataform'
+import Path from '../pages/Path/Path'
+import Contents from '../pages/Contents/Contents'
+import Home from '../pages/Home/Home'
+import { DevelopmentPage } from '../pages/Development'
+import Dashboard from '../pages/Admin/Dashboard/Dashboard'
+import Login from '../components/Login'
+import Register from '../components/Register'
 
 const AppRoutes = () => {
   return (
     <HashRouter>
       <Routes>
+        {import.meta.env.DEV && (
+          <Route path="/development" element={<DevelopmentPage />} />
+        )}
         <Route path="/" element={<MainLayout />}>
           <Route index path="/" element={<Home />} />
           <Route path="/" element={<ProtectedRoute />}>
@@ -34,7 +38,7 @@ const AppRoutes = () => {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </HashRouter>
-  );
-};
+  )
+}
 
-export default AppRoutes;
+export default AppRoutes

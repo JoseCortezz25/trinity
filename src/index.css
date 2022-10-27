@@ -1,7 +1,21 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+:root {
+  --button-color-gray: #ecf0f1;
+  --button-color-blue: #0984e3;
+  --button-color-hover: #0a6ebb;
+  --button-color-black: #000000;
+  --button-color-disabled: #aaa8a8;
+
+  --font-color-black: #000;
+  --font-color-white: #fff;
+
+  --white: #fff;
+  --black: #000;
+}
 
 * {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -25,6 +39,19 @@
   text-decoration: none;
 }
 
+.btnStandard {
+  margin-right: 10px;
+}
+
+.btnStandard:last-child {
+  margin-right: 0px;
+}
+
+.btnStandard a {
+  width: inherit;
+  display: flex;
+}
+
 .btnNormal {
   background-color: #ecf0f1;
   color: #161616;
@@ -44,13 +71,33 @@
 }
 
 .btnGreen {
-  background-color: #1dd1a1;
+  background-color: #0984e3;
   color: #fff;
   transition: all 0.1s ease-out;
 }
 
 .btnGreen:hover {
   background-color: #10ac84;
+}
+
+.btnBlue {
+  background-color: #0984e3;
+  color: #fff;
+  transition: all 0.1s ease-out;
+}
+
+.btnBlue:hover {
+  background-color: #1985e3c9;
+}
+
+.btnRed {
+  background-color: #c0392b;
+  color: #fff;
+  transition: all 0.1s ease-out;
+}
+
+.btnRed:hover {
+  background-color: #912a1e;
 }
 
 .Plataform {
@@ -62,11 +109,56 @@
   min-height: calc(100vh - 60px);
 }
 
+.Dashboard {
+  width: 80%;
+  padding: 3rem 0 3rem 0;
+  margin: auto;
+  min-height: calc(100vh - 60px);
+}
+
 .Plataform h2 {
   text-align: center;
   font-size: 25px;
   margin-bottom: 20px;
   text-transform: capitalize;
+}
+
+.ModalContainer {
+  position: relative;
+  width: 50%;
+  min-height: 200px;
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 10px;
+  padding: 20px 30px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.ModalContainer span {
+  font-size: 30px;
+}
+
+.Modal__alert svg {
+  width: 50px;
+  height: 50px;
+  color: #c0392b;
+}
+
+.ModalContainer h2,
+.DisabledContainer h2 {
+  margin-bottom: 12px;
+}
+
+.ModalContainer h2 {
+  margin-top: 17px;
+}
+
+.formControl {
+  width: 100%;
+}
+
+.formControl input {
+  width: 100%;
 }
 
 @media screen and (max-width: 667px) {

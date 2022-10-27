@@ -10,6 +10,12 @@ header {
   padding-right: 20px;
 }
 
+nav, .PlatformMenu, .InformativePageMenu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 nav .logo {
   font-weight: bold;
   color: #11393c;
@@ -43,31 +49,46 @@ nav .btnLogout:hover {
   color: #10ac84;
 }
 
-.menuBtn {
+.btnMenu {
   cursor: pointer;
   padding: 10px;
   background-color: transparent;
   border: none;
 }
 
-@media screen and (min-width: 667px) {
-  .menuBtn {
-    display: none;
-  }
+.Header__mobile {
+  display: none;
 }
 
 @media screen and (min-width: 667px) {
-  .menuBtn {
+  .btnMenu {
     display: none;
   }
 }
 
 @media screen and (max-width: 667px) {
-  .menuDesktop {
-    display: none;
+  nav a {
+    margin: 0px;
   }
 
-  .menuMobile {
+  .Header__desktop {
+    display: none;
+  }
+  
+  .btnMenu {
+    display: flex;
+  }
+  
+  .PlatformMenu, .InformativePageMenu {
+    flex-direction: column;
+    align-items: baseline;
+  }
+
+  .PlatformMenu .btnLogout {
+    padding: 10px 0px 10px 0px;
+  }
+
+  .Header__mobile {
     background-color: #fff;
     width: 100%;
     height: calc(100vh - 60px);
@@ -77,9 +98,10 @@ nav .btnLogout:hover {
     padding: 20px;
     display: flex;
     flex-direction: column;
+    z-index: 2;
   }
 
-  .menuMobile a {
+  .Header__mobile a {
     display: block;
     padding: 10px 10px 10px 0px;
     width: 100%;

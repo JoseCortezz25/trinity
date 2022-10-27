@@ -70,6 +70,10 @@
   color: #11393c;
 }
 
+.Greetings {
+  margin-bottom: 25px;
+}
+
 .Greetings h1 {
   text-align: left;
 }

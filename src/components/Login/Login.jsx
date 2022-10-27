@@ -19,23 +19,22 @@ const Login = () => {
 
     login({ email, password })
       .then((res) => {
-        if (res.error)
-          return setError({ error: res.error, message: res.message });
-        setError({ error: false, message: "" });
-        setCurrentUser(res.id);
-        setToken(res.token);
-        setUser(res);
-        navigate("/aprender");
+        if (res.error) return setError({error: res.error, message: res.message})
+        setError({error: false, message: ""})
+        setCurrentUser(res.id)
+        setToken(res.token)
+        setUser(res)
+        if (res.rol === 'ADMIN') {
+          navigate('/admin')
+        } else {
+          navigate('/aprender')
+        }
       })
-      .catch((error) => {
-        console.log("error", error);
-        setError({
-          error: error.error,
-          message:
-            "Ah ocurrido un error. No es tu culpa, estamos solucionandolo.",
-        });
-      });
-  };
+      .catch(error => {
+        console.log(error);
+        setError({error: error.error, message: "Ha ocurrido un error. No es tu culpa, estamos solucionandolo."})
+      })
+  }
 
   return (
     <div className="Login">

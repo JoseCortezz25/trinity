@@ -12,7 +12,7 @@ import { Loader } from "../../components/Utils";
 import "./Plataform.css";
 
 const Plataform = () => {
-  const [learningPaths, setLearningPaths] = useState([]);
+  const [learningPaths, setLearningPaths] = useState([{}]);
   const [listOfRecommendations, setListOfRecommendations] = useState([{}]);
 
   useEffect(() => {
