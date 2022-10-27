@@ -11,16 +11,16 @@ import { DevelopmentPage } from '../pages/Development'
 import Dashboard from '../pages/Admin/Dashboard/Dashboard'
 import Login from '../components/Login'
 import Register from '../components/Register'
-import Users from "../pages/Admin/Users/Users";
-import UsersForm from "../pages/Admin/Users/UsersForm";
-import Resources from "../pages/Admin/Resources/Resources";
-import ResourcesForm from "../pages/Admin/Resources/ResourcesForm";
-import Syllabus from "../pages/Admin/Syllabus/Syllabus";
-import SyllabusForm from "../pages/Admin/Syllabus/SyllabusForm";
-import Content from "../pages/Admin/Content/Content";
-import ContentForm from "../pages/Admin/Content/ContentForm";
-import LearningPath from "../pages/Admin/LearningPath/LearningPath";
-import LearningPathForm from "../pages/Admin/LearningPath/LearningPathForm";
+import Users from '../pages/Admin/Users/Users'
+import UsersForm from '../pages/Admin/Users/UsersForm'
+import Resources from '../pages/Admin/Resources/Resources'
+import ResourcesForm from '../pages/Admin/Resources/ResourcesForm'
+import Syllabus from '../pages/Admin/Syllabus/Syllabus'
+import SyllabusForm from '../pages/Admin/Syllabus/SyllabusForm'
+import Content from '../pages/Admin/Content/Content'
+import ContentForm from '../pages/Admin/Content/ContentForm'
+import LearningPath from '../pages/Admin/LearningPath/LearningPath'
+import LearningPathForm from '../pages/Admin/LearningPath/LearningPathForm'
 
 const AppRoutes = () => {
   return (
@@ -33,17 +33,15 @@ const AppRoutes = () => {
           <Route index path="/" element={<Home />} />
           <Route path="/" element={<ProtectedRoute />}>
             <Route index path="/aprender" element={<Plataform />} />
-            <Route path="/aprender/:ruta" element={<Path />} />
-            <Route
-              path="/aprender/:ruta/:topic/:level"
-              element={<Contents />}
-            />
-            <Route path="/admin" element={<Dashboard />} />
+            {protectedRoutes.map(({ to, component }) => (
+              <Route key={to} path={to} element={component} />
+            ))}
           </Route>
         </Route>
         <Route path="/" element={<FormLayout />}>
-          <Route path="/formulario/login" element={<Login />} />
-          <Route path="/formulario/register" element={<Register />} />
+          {formRoutes.map(({ to, component }) => (
+            <Route key={to} path={to} element={component} />
+          ))}
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
@@ -60,7 +58,7 @@ const formRoutes = [
     to: '/formulario/register',
     component: <Register />,
   },
-];
+]
 
 const protectedRoutes = [
   {
@@ -139,6 +137,6 @@ const protectedRoutes = [
     to: '/admin/contenidos/actualizar/:id',
     component: <ContentForm />,
   },
-];
+]
 
-export default AppRoutes;
+export default AppRoutes
