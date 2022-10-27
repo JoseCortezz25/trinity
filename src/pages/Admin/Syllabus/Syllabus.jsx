@@ -37,15 +37,15 @@ const Syllabus = () => {
         <Pagination data={syllabus}>
           {syllabus.map(({ title, description, level, learningpath }) => (
             <>
-              <li>{title}</li>
-              <li className="TextClipped">{description}</li>
-              <li className={`Level${level}`}>{level}</li>
-              <li>{learningpath}</li>
-              <li className="Table__actions">
+              <li key={title}>{title}</li>
+              <li key={description} className="TextClipped">{description}</li>
+              <li key={level} className={`Level${level}`}>{level}</li>
+              <li key={learningpath}>{learningpath}</li>
+              <li key={`${learningpath}${title}`} className="Table__actions">
                 <button onClick={() => handleOpenModal(title)}>
                   <AiFillDelete className="BtnDelete" />
                 </button>
-                <Link to="/">
+                <Link to={`/admin/temario/actualizar/${title}`}>
                   <button>
                     <MdModeEdit />
                   </button>

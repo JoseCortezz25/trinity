@@ -13,6 +13,7 @@ import UsersForm from "../pages/Admin/Users/UsersForm";
 import Resources from "../pages/Admin/Resources/Resources";
 import ResourcesForm from "../pages/Admin/Resources/ResourcesForm";
 import Syllabus from "../pages/Admin/Syllabus/Syllabus";
+import SyllabusForm from "../pages/Admin/Syllabus/SyllabusForm";
 import Content from "../pages/Admin/Content/Content";
 import ContentForm from "../pages/Admin/Content/ContentForm";
 import Login from "../components/Login/Login";
@@ -95,6 +96,14 @@ const protectedRoutes = [
   {
     to: '/admin/temario',
     component: <Syllabus />,
+  },
+  {
+    to: '/admin/temario/añadir',
+    component: <SyllabusForm />,
+  },
+  {
+    to: '/admin/temario/actualizar/:id',
+    component: <SyllabusForm />,
   },
   {
     to: '/admin/rutas',
