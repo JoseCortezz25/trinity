@@ -32,7 +32,7 @@ jobs:
         run: npm install
       - name: using lint-staged
         run: npx lint-staged
-      - name: building... 🐱‍🐉
+      - name: building frontend... 🐱‍🐉
         run: npm run build
   build-backend:
     runs-on: ubuntu-latest
@@ -50,9 +50,7 @@ jobs:
           cache: 'npm'
       - name: Saying Hi!
         run: echo "hello Tritiny!"
-      - name: moving to correct folder project
-        run: cd back
       - name: installing dependencies
-        run: npm install
-      - name: building... 🐱‍🐉
-        run: npm run build
+        run: cd back && npm install
+      - name: building backend... 🐱‍🐉
+        run: cd back && npm run build
