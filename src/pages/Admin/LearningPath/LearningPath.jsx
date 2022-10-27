@@ -6,6 +6,7 @@ import Table from "../../../components/Table/Table";
 import { AiFillDelete } from "react-icons/ai";
 import { MdModeEdit } from "react-icons/md";
 import ModalAlert from "../../../components/ModalAlert/ModalAlert";
+import Pagination from "../../../components/Pagination/Pagination";
 
 const LearningPath = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -36,27 +37,32 @@ const LearningPath = () => {
           "Acciones",
         ]}
       >
-        {LearningPaths.map(({ title, description, link, imagen, acciones }) => (
-          <>
-            <li>{title}</li>
-            <li className="TextClipped">{description}</li>
-            <li className="TextClipped">{link}</li>
-            <li className="TextClipped">{imagen}</li>
-            <li className="Table__actions">
-              <button onClick={() => handleOpenModal(title)}>
-                <AiFillDelete className="BtnDelete" />
-              </button>
-              <Link to="/">
-                <button>
-                  <MdModeEdit />
+        <Pagination data={LearningPaths}>
+          {LearningPaths.map(({ title, description, link, imagen }) => (
+            <>
+              <li>{title}</li>
+              <li className="TextClipped">{description}</li>
+              <li className="TextClipped">{link}</li>
+              <li className="TextClipped">{imagen}</li>
+              <li className="Table__actions">
+                <button onClick={() => handleOpenModal(title)}>
+                  <AiFillDelete className="BtnDelete" />
                 </button>
-              </Link>
-            </li>
-          </>
-        ))}
+                <Link to="/">
+                  <button>
+                    <MdModeEdit />
+                  </button>
+                </Link>
+              </li>
+            </>
+          ))}
+        </Pagination>
       </Table>
       {openModal && (
-        <ModalAlert elementSeleted={elementSeleted} setOpenModal={setOpenModal}/>
+        <ModalAlert
+          elementSeleted={elementSeleted}
+          setOpenModal={setOpenModal}
+        />
       )}
     </div>
   );

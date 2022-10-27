@@ -38,7 +38,7 @@ const ModalAlert = ({ elementSeleted, setOpenModal }) => {
         >
           Cancelar
         </button>
-        <button className="btnStandard btnRed">Eliminarlo</button>
+        <button className="btnStandard btnRed">Eliminar</button>
       </div>
     </Modal>
   );

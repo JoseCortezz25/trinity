@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { AiFillDelete } from "react-icons/ai";
 import { MdModeEdit } from "react-icons/md";
 import ModalAlert from "../../../components/ModalAlert/ModalAlert";
+import Pagination from "../../../components/Pagination/Pagination";
 
 const Resources = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -30,26 +31,31 @@ const Resources = () => {
       </Link>
 
       <Table headers={["Titulo", "Link", "Tipo", " Acciones"]}>
-        {RecommendedResources.map(({ title, link, type, acciones }) => (
-          <>
-            <li>{title}</li>
-            <li className="TextClipped">{link}</li>
-            <li>{type}</li>
-            <li className="Table__actions">
-              <button onClick={() => handleOpenModal(title)}>
-                <AiFillDelete className="BtnDelete" />
-              </button>
-              <Link to="/">
-                <button>
-                  <MdModeEdit />
+        <Pagination data={RecommendedResources}>
+          {RecommendedResources.map(({ title, link, type }) => (
+            <>
+              <li>{title}</li>
+              <li className="TextClipped">{link}</li>
+              <li>{type}</li>
+              <li className="Table__actions">
+                <button onClick={() => handleOpenModal(title)}>
+                  <AiFillDelete className="BtnDelete" />
                 </button>
-              </Link>
-            </li>
-          </>
-        ))}
+                <Link to="/">
+                  <button>
+                    <MdModeEdit />
+                  </button>
+                </Link>
+              </li>
+            </>
+          ))}
+        </Pagination>
       </Table>
       {openModal && (
-        <ModalAlert elementSeleted={elementSeleted} setOpenModal={setOpenModal}/>
+        <ModalAlert
+          elementSeleted={elementSeleted}
+          setOpenModal={setOpenModal}
+        />
       )}
     </div>
   );
