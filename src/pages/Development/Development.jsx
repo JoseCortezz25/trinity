@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Input, Label } from '../../components'
 
 import { Button, colorSchema } from '../../components/Button'
 import { Title } from '../../components/Utils'
