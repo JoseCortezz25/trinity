@@ -13,6 +13,7 @@ import UsersForm from "../pages/Admin/Users/UsersForm";
 import Resources from "../pages/Admin/Resources/Resources";
 import Syllabus from "../pages/Admin/Syllabus/Syllabus";
 import Content from "../pages/Admin/Content/Content";
+import ContentForm from "../pages/Admin/Content/ContentForm";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import LearningPath from "../pages/Admin/LearningPath/LearningPath";
@@ -105,6 +106,14 @@ const protectedRoutes = [
   {
     to: '/admin/contenidos',
     component: <Content />,
+  },
+  {
+    to: '/admin/contenidos/añadir',
+    component: <ContentForm />,
+  },
+  {
+    to: '/admin/contenidos/actualizar/:id',
+    component: <ContentForm />,
   },
 ];
 
