@@ -11,6 +11,7 @@ import Dashboard from "../pages/Admin/Dashboard/Dashboard";
 import Users from "../pages/Admin/Users/Users";
 import UsersForm from "../pages/Admin/Users/UsersForm";
 import Resources from "../pages/Admin/Resources/Resources";
+import ResourcesForm from "../pages/Admin/Resources/ResourcesForm";
 import Syllabus from "../pages/Admin/Syllabus/Syllabus";
 import Content from "../pages/Admin/Content/Content";
 import ContentForm from "../pages/Admin/Content/ContentForm";
@@ -82,6 +83,14 @@ const protectedRoutes = [
   {
     to: '/admin/recursos',
     component: <Resources />,
+  },
+  {
+    to: '/admin/recursos/añadir',
+    component: <ResourcesForm />,
+  },
+  {
+    to: '/admin/recursos/actualizar/:id',
+    component: <ResourcesForm />,
   },
   {
     to: '/admin/temario',

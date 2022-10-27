@@ -24,7 +24,7 @@ const Resources = () => {
         isHome={false}
       />
 
-      <Link to="/admin/recurso/añadir">
+      <Link to="/admin/recursos/añadir">
         <button className="btnStandard btnBlue">
           Crear nuevo recurso recomendado
         </button>
@@ -34,14 +34,14 @@ const Resources = () => {
         <Pagination data={RecommendedResources}>
           {RecommendedResources.map(({ title, link, type }) => (
             <>
-              <li>{title}</li>
-              <li className="TextClipped">{link}</li>
-              <li>{type}</li>
-              <li className="Table__actions">
+              <li key={title}>{title}</li>
+              <li key={link} className="TextClipped">{link}</li>
+              <li key={type}>{type}</li>
+              <li key={`${type}${title}`} className="Table__actions">
                 <button onClick={() => handleOpenModal(title)}>
                   <AiFillDelete className="BtnDelete" />
                 </button>
-                <Link to="/">
+                <Link to={`/admin/recursos/actualizar/${title}`}>
                   <button>
                     <MdModeEdit />
                   </button>
