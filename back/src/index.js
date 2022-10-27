@@ -1,5 +1,4 @@
-/* eslint-disable spaced-comment */
-"use strict";
+'use strict';
 
 module.exports = {
   /**
