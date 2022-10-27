@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Input, Label } from '../../components'
 
 import { Button, colorSchema } from '../../components/Button'
 import { Title } from '../../components/Utils'
@@ -40,6 +41,8 @@ const Development = () => {
               ]}
               onChange={(op) => console.log(op)}
             />
+            <Input placeholder="escriba algo" />
+            <Label name="correo">HOla</Label>
           </code>
         </div>
       </div>

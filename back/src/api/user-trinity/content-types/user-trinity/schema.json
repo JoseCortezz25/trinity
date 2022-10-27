@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "users_trinity",
+  "info": {
+    "singularName": "user-trinity",
+    "pluralName": "users-trinity",
+    "displayName": "UsersTrinity"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "uuid": {
+      "type": "uid",
+      "required": true
+    },
+    "fullname": {
+      "type": "string",
+      "required": true,
+      "minLength": 8
+    }
+  }
+}
