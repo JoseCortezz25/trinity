@@ -1,20 +1,19 @@
-import React from "react";
-import Modal from "../Modal/Modal";
-import { AiOutlineClose } from "react-icons/ai";
-import { FiAlertCircle } from "react-icons/fi";
-import { useEffect } from "react";
+import { useEffect } from 'react'
+import { AiOutlineClose } from 'react-icons/ai'
+import { FiAlertCircle } from 'react-icons/fi'
+import Modal from '../Modal/Modal'
 
 const ModalAlert = ({ elementSeleted, setOpenModal }) => {
   const handleKeyPress = (event) => {
-    if(event.code === 'Escape' || event.keyCode === 27){
+    if (event.code === 'Escape' || event.keyCode === 27) {
       setOpenModal((prevState) => !prevState)
     }
   }
 
   useEffect(() => {
-    document.addEventListener("keydown", handleKeyPress);
+    document.addEventListener('keydown', handleKeyPress)
   }, [])
-  
+
   return (
     <Modal>
       <div className="ModalContainer">
@@ -41,7 +40,7 @@ const ModalAlert = ({ elementSeleted, setOpenModal }) => {
         <button className="btnStandard btnRed">Eliminar</button>
       </div>
     </Modal>
-  );
-};
+  )
+}
 
-export default ModalAlert;
+export default ModalAlert

@@ -1,65 +1,78 @@
-import React, { useEffect, useState } from "react";
-import { CoverGreetings } from "../../../components/Utils/Utils";
-import { useLocation, useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { CoverGreetings } from '../../../components/Utils/Utils'
+import { useLocation, useParams } from 'react-router-dom'
+import { Input } from '../../../components/Input'
+import { Button, colorSchema } from '../../../components/Button'
+import { Label } from '../../../components/Label'
+import { Select } from '../../../components/Select'
 
 const UsersForm = () => {
-  const location = useLocation();
-  const { id } = useParams();
-  const [informativeMessages, setInformativeMessages] = useState({greetings: "", btnSubmitMessage: ""});
+  const location = useLocation()
+  const { id } = useParams()
+  const [informativeMessages, setInformativeMessages] = useState({
+    greetings: '',
+    btnSubmitMessage: '',
+  })
   // const [typeOfForm, setTypeOfForm] = useState("");
   const [inputs, setInputs] = useState({
-    fullname: "",
-    email: "",
-    password: "",
-    confirmpassword: "",
-    usertype: "",
+    fullname: '',
+    email: '',
+    password: '',
+    confirmpassword: '',
+    usertype: '',
     userstate: false,
-  });
-  const [inputError, setInputError] = useState({ error: false, message: "" });
+  })
+  const [inputError, setInputError] = useState({ error: false, message: '' })
 
   useEffect(() => {
-    if (location.pathname.includes("/añadir")) {
-      console.log("add new element");
+    if (location.pathname.includes('/añadir')) {
+      console.log('add new element')
       // setTypeOfForm('ADD')
-      setInformativeMessages({greetings: "Crear nuevo usuario", btnSubmitMessage: "Crear nuevo usuario"});
+      setInformativeMessages({
+        greetings: 'Crear nuevo usuario',
+        btnSubmitMessage: 'Crear nuevo usuario',
+      })
     } else {
-      console.log("update new element");
-      console.log("email", id);
+      console.log('update new element')
+      console.log('email', id)
       // setTypeOfForm('UPDATE')
-      setInformativeMessages({greetings: "Actualizar usuario", btnSubmitMessage: "Actualizar usuario"});
+      setInformativeMessages({
+        greetings: 'Actualizar usuario',
+        btnSubmitMessage: 'Actualizar usuario',
+      })
     }
-  }, [location]);
+  }, [location])
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("inputs", inputs);
+    e.preventDefault()
+    console.log('inputs', inputs)
 
     if (inputs.confirmpassword.toLowerCase() !== inputs.password.toLowerCase())
       return setInputError({
         error: true,
-        message: "Las contraseñas no coinciden.",
-      });
-    setInputError({ error: false, message: "" });
-  };
+        message: 'Las contraseñas no coinciden.',
+      })
+    setInputError({ error: false, message: '' })
+  }
 
   const typesOfUsers = [
     {
-      name: "Administrador",
-      value: "ADMIN",
+      label: 'Administrador',
+      id: 'ADMIN',
     },
     {
-      name: "Usuario",
-      value: "USER",
+      label: 'Usuario',
+      id: 'USER',
     },
-  ];
+  ]
 
   return (
     <div className="Dashboard">
       <CoverGreetings greeting={informativeMessages.greetings} isHome={false} />
-      <form onSubmit={handleSubmit}>
-        <div className="groupInputs">
-          <label htmlFor="fullname">Nombre</label>
-          <input
+      <form onSubmit={handleSubmit} className="FormContaner">
+        <div className="InputsGroup">
+          <Label htmlFor="fullname">Nombre</Label>
+          <Input
             required
             type="text"
             id="fullname"
@@ -73,9 +86,9 @@ const UsersForm = () => {
           />
         </div>
 
-        <div className="groupInputs">
-          <label htmlFor="email">Email</label>
-          <input
+        <div className="InputsGroup">
+          <Label htmlFor="email">Email</Label>
+          <Input
             required
             type="email"
             id="email"
@@ -89,9 +102,9 @@ const UsersForm = () => {
           />
         </div>
 
-        <div className="groupInputs">
-          <label htmlFor="password">Contraseña</label>
-          <input
+        <div className="InputsGroup">
+          <Label htmlFor="password">Contraseña</Label>
+          <Input
             required
             type="password"
             id="password"
@@ -105,9 +118,9 @@ const UsersForm = () => {
           />
         </div>
 
-        <div className="groupInputs">
-          <label htmlFor="confirmpassword">Confirmar contraseña</label>
-          <input
+        <div className="InputsGroup">
+          <Label htmlFor="confirmpassword">Confirmar contraseña</Label>
+          <Input
             id="confirmpassword"
             required
             type="password"
@@ -121,29 +134,25 @@ const UsersForm = () => {
           />
         </div>
 
-        <div className="groupInputs">
-          <label htmlFor="usertype">Seleccionar tipo de usuario</label>
-          <select
+        <div className="InputsGroup">
+          <Label htmlFor="usertype">Tipo de usuario</Label>
+          <Select
             required
-            name="select"
             id="usertype"
+            placeholder="Seleccionar tipo de usuario"
+            name="select"
+            options={typesOfUsers}
             onChange={(e) =>
               setInputs((prevState) => ({
                 ...prevState,
-                usertype: e.target.value,
+                usertype: e.id,
               }))
             }
-          >
-            {typesOfUsers.map((types) => (
-              <option key={types.value} value={types.value}>
-                {types.name}
-              </option>
-            ))}
-          </select>
+          />
         </div>
 
-        <div className="groupInputs">
-          <label htmlFor="userstate">Estado del usuario</label>
+        <div className="InputsGroup">
+          <Label htmlFor="userstate">Estado del usuario</Label>
           <input
             type="checkbox"
             name=""
@@ -161,12 +170,12 @@ const UsersForm = () => {
           <p className="ErrorMessage"> {inputError.message}</p>
         )}
 
-        <button type="submit" className="btnStandard btnDark">
+        <Button type="submit" color={colorSchema.black}>
           {informativeMessages.btnSubmitMessage}
-        </button>
+        </Button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default UsersForm;
+export default UsersForm

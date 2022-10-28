@@ -12,6 +12,12 @@
   margin-top: 20px;
 }
 
+.InputsGroup__sublabel {
+  font-size: 15px;
+  color: #414141;
+  margin-bottom: 5px;
+}
+
 .FormLayout .InputsGroup label {
   color: #414141;
   font-weight: 500;
