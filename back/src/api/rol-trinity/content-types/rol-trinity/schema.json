@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "roles_trinity",
+  "info": {
+    "singularName": "rol-trinity",
+    "pluralName": "roles-trinity",
+    "displayName": "RolesTrinity",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "users": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "roles_trinity"
+    }
+  }
+}
