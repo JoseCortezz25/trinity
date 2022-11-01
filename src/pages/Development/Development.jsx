@@ -1,11 +1,17 @@
 import { useState } from 'react'
 
-import { Button, colorSchema } from '../../components/Button'
 import { Title } from '../../components/Utils'
-import { Input, Select } from '../../components'
-import { Label } from '../../components/Label'
+import {
+  Input,
+  Select,
+  Radio,
+  Label,
+  Button,
+  colorSchema,
+} from '../../components'
 
 import s from './Development.module.css'
+import { RadioGroup } from '../../contexts'
 
 const Development = () => {
   const [hidden, setHidden] = useState(false)
@@ -37,12 +43,22 @@ const Development = () => {
               options={[
                 { id: 0, label: 'Ruta Frontend' },
                 { id: 1, label: 'Ruta Backend' },
-                { id: 2, label: 'Ruta de complementos' }
+                { id: 2, label: 'Ruta de complementos' },
               ]}
               onChange={(op) => console.log(op)}
             />
             <Input placeholder="escriba algo" />
             <Label name="correo">HOla</Label>
+            <div>
+              <RadioGroup
+                name="radio-groups"
+                onChange={(val) => console.log(val)}
+              >
+                <Radio value={1}>radio 1</Radio>
+                <Radio value={2}>radio 2</Radio>
+                <Radio value={3}>radio 3</Radio>
+              </RadioGroup>
+            </div>
           </code>
         </div>
       </div>
