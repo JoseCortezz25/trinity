@@ -1,4 +1,6 @@
-export { default } from './Header'
+export { default as Header } from './Header'
+export * from './Button'
 export * from './Input'
 export * from './Select'
 export * from './Label'
+export * from './Radio'
