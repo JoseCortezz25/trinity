@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { CoverGreetings } from '../../../components/Utils/Utils'
 import { useLocation, useParams } from 'react-router-dom'
-import { Input } from '../../../components/Input'
-import { Button, colorSchema } from '../../../components/Button'
-import { Label } from '../../../components/Label'
-import { Select } from '../../../components/Select'
+import {
+  Input,
+  Select,
+  Radio,
+  Label,
+  Button,
+  colorSchema,
+} from '../../../components'
+
+import { RadioGroup } from '../../../contexts'
 
 const UsersForm = () => {
   const location = useLocation()
@@ -133,38 +139,41 @@ const UsersForm = () => {
             }
           />
         </div>
+        <div className="InputsGroup__grid">
+          <div className="InputsGroup">
+            <Label htmlFor="usertype">Tipo de usuario</Label>
+            <Select
+              required
+              id="usertype"
+              placeholder="Seleccionar tipo de usuario"
+              name="select"
+              options={typesOfUsers}
+              onChange={(e) =>
+                setInputs((prevState) => ({
+                  ...prevState,
+                  usertype: e.id,
+                }))
+              }
+            />
+          </div>
 
-        <div className="InputsGroup">
-          <Label htmlFor="usertype">Tipo de usuario</Label>
-          <Select
-            required
-            id="usertype"
-            placeholder="Seleccionar tipo de usuario"
-            name="select"
-            options={typesOfUsers}
-            onChange={(e) =>
-              setInputs((prevState) => ({
-                ...prevState,
-                usertype: e.id,
-              }))
-            }
-          />
-        </div>
-
-        <div className="InputsGroup">
-          <Label htmlFor="userstate">Estado del usuario</Label>
-          <input
-            type="checkbox"
-            name=""
-            id="userstate"
-            value={inputs.userstate}
-            onChange={(e) =>
-              setInputs((prevState) => ({
-                ...prevState,
-                userstate: !inputs.userstate,
-              }))
-            }
-          />
+          <div className="InputsGroup">
+            <Label htmlFor="userstate">Estado del usuario</Label>
+            <RadioGroup
+              name="userstate"
+              id="userstate"
+              value={inputs.userstate}
+              onChange={(e) =>
+                setInputs((prevState) => ({
+                  ...prevState,
+                  userstate: !inputs.userstate,
+                }))
+              }
+            >
+              <Radio value={1}>Activado</Radio>
+              <Radio value={2}>Desactivado</Radio>
+            </RadioGroup>
+          </div>
         </div>
         {inputError.error && (
           <p className="ErrorMessage"> {inputError.message}</p>

@@ -12,6 +12,12 @@
   margin-top: 20px;
 }
 
+.InputsGroup__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px
+}
+
 .InputsGroup__sublabel {
   font-size: 15px;
   color: #414141;
