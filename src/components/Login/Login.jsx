@@ -17,13 +17,14 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    login({ email, password })
+    login({identifier: email,password})
       .then((res) => {
         if (res.error) return setError({error: res.error, message: res.message})
         setError({error: false, message: ""})
-        setCurrentUser(res.id)
-        setToken(res.token)
-        setUser(res)
+        setCurrentUser(res.data.user.id)
+        setToken(res.data.jwt)
+        setUser(res.data.user)
+        res.rol = 'ADMIN'
         if (res.rol === 'ADMIN') {
           navigate('/admin')
         } else {
@@ -32,7 +33,7 @@ const Login = () => {
       })
       .catch(error => {
         console.log(error);
-        setError({error: error.error, message: "Ha ocurrido un error. No es tu culpa, estamos solucionandolo."})
+        setError({error: error.error, message: "El usuario no esta registrado. Revisa tus credenciales."})
       })
   }
 
