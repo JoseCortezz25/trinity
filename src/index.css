@@ -39,6 +39,15 @@
   text-decoration: none;
 }
 
+.btnStandard:disabled,
+.btnStandard[disabled],
+.btnStandard:disabled:hover,
+.btnStandard[disabled]:hover{
+  color: #979797;
+  background-color: #F7F7F7;
+  cursor: not-allowed;
+}
+
 .btnStandard {
   margin-right: 10px;
 }

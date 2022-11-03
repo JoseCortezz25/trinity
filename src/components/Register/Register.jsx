@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { registerAccount } from '../../services/service'
 import { logoIcon } from '../../assets'
-import { generateRandomUsername } from '../../services/utils'
+import { generateRandomUsername } from '../../helpers/utils'
 import { Input, Label } from '../../components'
 import './Register.css'
 
