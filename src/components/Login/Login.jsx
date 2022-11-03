@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { setCurrentUser, setToken } from "../../services/localStorage";
+import { setCurrentUser, setToken, setUserStatus } from "../../services/localStorage";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../services/service";
 import UserContext from "../../hooks/UserContext";
@@ -23,6 +23,7 @@ const Login = () => {
         setError({error: false, message: ""})
         setCurrentUser(res.data.user.id)
         setToken(res.data.jwt)
+        setUserStatus(res.data.user.status)
         setUser(res.data.user)
         res.rol = 'ADMIN'
         if (res.rol === 'ADMIN') {
