@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { CoverGreetings } from '../../../components/Utils/Utils'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation, useParams, useNavigate } from 'react-router-dom'
+import { generateRandomUsername } from '../../../helpers/utils'
+import { RadioGroup } from '../../../contexts'
+import { createNewUser, getUserById, updateUser } from '../../../services/service'
+import { getCurrentUser, getToken, validateUser } from '../../../services/localStorage'
 import {
   Input,
   Select,
@@ -10,38 +14,75 @@ import {
   colorSchema,
 } from '../../../components'
 
-import { RadioGroup } from '../../../contexts'
-
 const UsersForm = () => {
   const location = useLocation()
   const { id } = useParams()
+  const [error, setError] = useState({ error: false, message: '' })
+  const [user, setUser] = useState({})
+  const navigate = useNavigate()
   const [informativeMessages, setInformativeMessages] = useState({
     greetings: '',
     btnSubmitMessage: '',
   })
-  // const [typeOfForm, setTypeOfForm] = useState("");
+  const [typeOfForm, setTypeOfForm] = useState('')
   const [inputs, setInputs] = useState({
-    fullname: '',
+    fullName: '',
     email: '',
     password: '',
     confirmpassword: '',
-    usertype: '',
-    userstate: false,
+    role: '',
+    status: '',
   })
-  const [inputError, setInputError] = useState({ error: false, message: '' })
+
+  const createUser = (data) => {
+    createNewUser(data, getToken())
+      .then((res) => {
+        console.log('🎃 res', res)
+      })
+      .catch((error) => {
+        setError({
+          error: error.error,
+          message: error.message,
+        })
+      })
+  }
+
+  const modifyUser = (data) => {
+    updateUser(id, data, getToken())
+      .then((res) => {
+        console.log('✨res', res)
+      })
+      .catch((error) => {
+        setError({
+          error: error.error,
+          message:
+            'Ha ocurrido un error. No es tu culpa, estamos solucionandolo.',
+        })
+      })
+  }
 
   useEffect(() => {
     if (location.pathname.includes('/añadir')) {
-      console.log('add new element')
-      // setTypeOfForm('ADD')
+      setTypeOfForm('ADD')
       setInformativeMessages({
         greetings: 'Crear nuevo usuario',
         btnSubmitMessage: 'Crear nuevo usuario',
       })
     } else {
-      console.log('update new element')
-      console.log('email', id)
-      // setTypeOfForm('UPDATE')
+      setTypeOfForm('UPDATE')
+      getUserById(id, getToken())
+        .then((res) => {
+          res.role = 'ADMIN'
+          setUser(res)
+        })
+        .catch((error) => {
+          setError({
+            error: error.error,
+            message:
+              'Ha ocurrido un error. No es tu culpa, estamos solucionandolo.',
+          })
+        })
+
       setInformativeMessages({
         greetings: 'Actualizar usuario',
         btnSubmitMessage: 'Actualizar usuario',
@@ -51,17 +92,64 @@ const UsersForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('inputs', inputs)
+    const { fullName, email, password, confirmpassword, role, status } = inputs
 
-    if (inputs.confirmpassword.toLowerCase() !== inputs.password.toLowerCase())
-      return setInputError({
-        error: true,
-        message: 'Las contraseñas no coinciden.',
-      })
-    setInputError({ error: false, message: '' })
+    if (typeOfForm === 'ADD') {
+      console.log('add')
+
+      if (inputs.confirmpassword.toLowerCase() !== inputs.password.toLowerCase()) {
+        return setError({
+          error: true,
+          message: 'Las contraseñas no coinciden.',
+        })
+      }
+      setError({ error: false, message: '' })
+
+      const username = generateRandomUsername(fullName)
+      if (
+        fullName === '' ||
+        email === '' ||
+        password === '' ||
+        confirmpassword === '' ||
+        role === '' ||
+        status === ''
+      ) {
+        return setError({
+          error: true,
+          message:
+            'Hay campos vacios. Asegurate de completar todos los campos.',
+        })
+      }
+
+      setError({ error: false, message: '' })
+      createUser({ fullName, email, password, role, status, username })
+      navigate('/admin/usuarios')
+    }
+
+    if (typeOfForm === 'UPDATE') {
+
+      if (inputs.confirmpassword.toLowerCase() !== inputs.password.toLowerCase()) {
+        return setError({
+          error: true,
+          message: 'Las contraseñas no coinciden.',
+        })
+      }
+      setError({ error: false, message: '' })
+
+      const formData = {}
+      formData.fullName = inputs.fullName ? inputs.fullName : user.fullName
+      formData.email = inputs.email ? inputs.email : user.email
+      formData.role = inputs.role ? inputs.role : user.role
+      formData.status = inputs.status ? inputs.status : user.status
+
+      console.log('formData', formData)
+
+      modifyUser(formData)
+      navigate('/admin/usuarios')
+    }
   }
 
-  const typesOfUsers = [
+  const rolesOfUsers = [
     {
       label: 'Administrador',
       id: 'ADMIN',
@@ -77,17 +165,16 @@ const UsersForm = () => {
       <CoverGreetings greeting={informativeMessages.greetings} isHome={false} />
       <form onSubmit={handleSubmit} className="FormContaner">
         <div className="InputsGroup">
-          <Label htmlFor="fullname">Nombre</Label>
+          <Label htmlFor="fullName">Nombre</Label>
           <Input
-            required
+            id="fullName"
+            name="fullName"
+            value={user.fullName}
             type="text"
-            id="fullname"
+            minLength="8"
             placeholder="Escribe el nombre del usuario"
-            onChange={(e) =>
-              setInputs((prevState) => ({
-                ...prevState,
-                fullname: e.target.value,
-              }))
+            onChange={({ target: { value, name } }) =>
+              setInputs({ ...inputs, [name]: value })
             }
           />
         </div>
@@ -95,78 +182,85 @@ const UsersForm = () => {
         <div className="InputsGroup">
           <Label htmlFor="email">Email</Label>
           <Input
-            required
-            type="email"
             id="email"
+            name="email"
+            value={user.email}
+            type="email"
             placeholder="Escribe el email del usuario"
-            onChange={(e) =>
-              setInputs((prevState) => ({
-                ...prevState,
-                email: e.target.value,
-              }))
+            onChange={({ target: { value, name } }) =>
+              setInputs({ ...inputs, [name]: value })
             }
           />
         </div>
 
-        <div className="InputsGroup">
-          <Label htmlFor="password">Contraseña</Label>
-          <Input
-            required
-            type="password"
-            id="password"
-            placeholder="Escribe la contraseña del usuario"
-            onChange={(e) =>
-              setInputs((prevState) => ({
-                ...prevState,
-                password: e.target.value,
-              }))
-            }
-          />
-        </div>
+        {typeOfForm === 'ADD' ? (
+          <>
+            <div className="InputsGroup">
+              <Label htmlFor="password">Contraseña</Label>
+              <Input
+                type="password"
+                id="password"
+                name="password"
+                minLength="8"
+                placeholder="Escribe la contraseña del usuario"
+                onChange={(e) =>
+                  setInputs((prevState) => ({
+                    ...prevState,
+                    password: e.target.value,
+                  }))
+                }
+              />
+            </div>
 
-        <div className="InputsGroup">
-          <Label htmlFor="confirmpassword">Confirmar contraseña</Label>
-          <Input
-            id="confirmpassword"
-            required
-            type="password"
-            placeholder="Escribe de nuevo la contraseña del usuario"
-            onChange={(e) =>
-              setInputs((prevState) => ({
-                ...prevState,
-                confirmpassword: e.target.value,
-              }))
-            }
-          />
-        </div>
+            <div className="InputsGroup">
+              <Label htmlFor="confirmpassword">Confirmar contraseña</Label>
+              <Input
+                id="confirmpassword"
+                type="password"
+                name="password"
+                minLength="8"
+                placeholder="Escribe de nuevo la contraseña del usuario"
+                onChange={(e) =>
+                  setInputs((prevState) => ({
+                    ...prevState,
+                    confirmpassword: e.target.value,
+                  }))
+                }
+              />
+            </div>
+          </>
+        ) : null}
+
         <div className="InputsGroup__grid">
           <div className="InputsGroup">
-            <Label htmlFor="usertype">Tipo de usuario</Label>
+            <Label htmlFor="role">Tipo de usuario</Label>
             <Select
+              id="role"
+              name="role"
               required
-              id="usertype"
-              placeholder="Seleccionar tipo de usuario"
-              name="select"
-              options={typesOfUsers}
+              placeholder={
+                user.role ? `${user.role}` : `Seleccionar tipo de usuario`
+              }
+              options={rolesOfUsers}
               onChange={(e) =>
                 setInputs((prevState) => ({
                   ...prevState,
-                  usertype: e.id,
+                  role: e.id,
                 }))
               }
             />
           </div>
 
           <div className="InputsGroup">
-            <Label htmlFor="userstate">Estado del usuario</Label>
+            <Label htmlFor="status">Estado del usuario</Label>
             <RadioGroup
-              name="userstate"
-              id="userstate"
-              value={inputs.userstate}
+              name="status"
+              id="status"
+              value={inputs.status ? inputs.status : user.status}
               onChange={(e) =>
                 setInputs((prevState) => ({
                   ...prevState,
-                  userstate: !inputs.userstate,
+                  status: !inputs.status,
                 }))
               }
             >
@@ -175,11 +269,9 @@ const UsersForm = () => {
             </RadioGroup>
           </div>
         </div>
-        {inputError.error && (
-          <p className="ErrorMessage"> {inputError.message}</p>
-        )}
+        {error.error && <p className="ErrorMessage"> {error.message}</p>}
 
-        <Button type="submit" color={colorSchema.black}>
+        <Button type="submit" color={colorSchema.black} isDisabled={validateUser(id, getCurrentUser())}>
           {informativeMessages.btnSubmitMessage}
         </Button>
       </form>
