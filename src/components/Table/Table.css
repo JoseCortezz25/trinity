@@ -70,6 +70,48 @@
   font-weight: bold;
 }
 
+.TableComponent__item ul:last-child {
+  grid-column-start: 1;
+  grid-column-end: initial;
+}
+
+.ButtonsPagination {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ButtonsPagination li {
+  border-bottom: none;
+}
+
+.ButtonsPagination a {
+  font-weight: bold;
+  padding: 10px;
+  margin: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ButtonsPagination a:hover {
+  color: white;
+  background-color: #000000a6;
+}
+
+.PaginationDisabled a, .PaginationDisabled a:hover {
+  color: #979797;
+  background-color: #F7F7F7;
+  cursor: not-allowed;
+}
+
+
+.PaginationActive a {
+  color: white;
+  background-color: #000000;
+}
+
 @media screen and (max-width: 667px){
   .TableComponent {
     width: 800px;

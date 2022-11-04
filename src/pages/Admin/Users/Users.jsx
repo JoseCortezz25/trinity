@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { CoverGreetings } from "../../../components/Utils/Utils";
 import { Link } from "react-router-dom";
 import { users } from "../../../assets/mocks";
 import { AiFillDelete } from "react-icons/ai";
 import { MdModeEdit } from "react-icons/md";
-import { useState } from "react";
 import Table from "../../../components/Table/Table";
 import ModalAlert from "../../../components/ModalAlert/ModalAlert";
+import Pagination from "../../../components/Pagination/Pagination";
 
 const Users = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -30,31 +30,36 @@ const Users = () => {
       </Link>
 
       <Table headers={["Nombre", "Email", "Estado", "Rol", "Acciones"]}>
-        {users.map(({ id, fullname, email, status, role }) => (
-          <>
-            <li>{fullname}</li>
-            <li>{email}</li>
-            {status ? (
-              <li className="darkGreen">Activado</li>
-            ) : (
-              <li className="darkBlue">Desactivado</li>
-            )}
-            <li>{role}</li>
-            <li className="Table__actions">
-              <button onClick={() => handleOpenModal(id)}>
-                <AiFillDelete className="BtnDelete" />
-              </button>
-              <Link to="/">
-                <button>
-                  <MdModeEdit />
+        <Pagination data={users}>
+          {users.map(({ id, fullname, email, status, role }) => (
+            <>
+              <li>{fullname}</li>
+              <li>{email}</li>
+              {status ? (
+                <li className="darkGreen">Activado</li>
+              ) : (
+                <li className="darkBlue">Desactivado</li>
+              )}
+              <li>{role}</li>
+              <li className="Table__actions">
+                <button onClick={() => handleOpenModal(id)}>
+                  <AiFillDelete className="BtnDelete" />
                 </button>
-              </Link>
-            </li>
-          </>
-        ))}
+                <Link to={`/admin/usuarios/actualizar/${id}`}>
+                  <button>
+                    <MdModeEdit />
+                  </button>
+                </Link>
+              </li>
+            </>
+          ))}
+        </Pagination>
       </Table>
       {openModal && (
-        <ModalAlert elementSeleted={elementSeleted} setOpenModal={setOpenModal}/>
+        <ModalAlert
+          elementSeleted={elementSeleted}
+          setOpenModal={setOpenModal}
+        />
       )}
     </div>
   );

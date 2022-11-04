@@ -6,6 +6,7 @@ import Table from "../../../components/Table/Table";
 import { AiFillDelete } from "react-icons/ai";
 import { MdModeEdit } from "react-icons/md";
 import ModalAlert from "../../../components/ModalAlert/ModalAlert";
+import Pagination from "../../../components/Pagination/Pagination";
 
 const Content = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -20,7 +21,7 @@ const Content = () => {
     <div className="Dashboard">
       <CoverGreetings greeting="Gestión del contenido" isHome={false} />
 
-      <Link to="/admin/ruta/añadir">
+      <Link to="/admin/contenidos/añadir">
         <button className="btnStandard btnBlue">Añadir nuevo contenido</button>
       </Link>
 
@@ -35,30 +36,35 @@ const Content = () => {
           "Acciones",
         ]}
       >
-        {Contents.map(({ title, description, link, level, syllabus, order, acciones }) => (
-            <>
-              <li>{title}</li>
-              <li className="TextClipped">{description}</li>
-              <li className="TextClipped">{link}</li>
-              <li className={`TextClipped Level${level}`}>{level}</li>
-              <li className="TextClipped">{syllabus}</li>
-              <li className="TextClipped">{order}</li>
-              <li className="Table__actions">
-                <button onClick={() => handleOpenModal(title)}>
-                  <AiFillDelete className="BtnDelete" />
-                </button>
-                <Link to="/">
-                  <button>
-                    <MdModeEdit />
+        <Pagination data={Contents}>
+          {Contents.map(({ title, description, link, level, syllabus, order }) => (
+              <>
+                <li>{title}</li>
+                <li className="TextClipped">{description}</li>
+                <li className="TextClipped">{link}</li>
+                <li className={`TextClipped Level${level}`}>{level}</li>
+                <li className="TextClipped">{syllabus}</li>
+                <li className="TextClipped">{order}</li>
+                <li className="Table__actions">
+                  <button onClick={() => handleOpenModal(title)}>
+                    <AiFillDelete className="BtnDelete" />
                   </button>
-                </Link>
-              </li>
-            </>
-          )
-        )}
+                  <Link to={`/admin/contenidos/actualizar/${title}`}>
+                    <button>
+                      <MdModeEdit />
+                    </button>
+                  </Link>
+                </li>
+              </>
+            )
+          )}
+        </Pagination>
       </Table>
       {openModal && (
-        <ModalAlert elementSeleted={elementSeleted} setOpenModal={setOpenModal}/>
+        <ModalAlert
+          elementSeleted={elementSeleted}
+          setOpenModal={setOpenModal}
+        />
       )}
     </div>
   );

@@ -32,8 +32,8 @@ jobs:
         run: npm install
       - name: using lint-staged
         run: npx lint-staged
-      - name: building... 🐱‍🐉
-        run: npm run build:front
+      - name: building frontend... 🐱‍🐉
+        run: npm run build
   build-backend:
     runs-on: ubuntu-latest
     strategy:
@@ -51,8 +51,6 @@ jobs:
       - name: Saying Hi!
         run: echo "hello Tritiny!"
       - name: installing dependencies
-        run: npm install
-      - name: using lint-staged
-        run: npx lint-staged
-      - name: building... 🐱‍🐉
-        run: npm run build:back
+        run: cd back && npm install
+      - name: building backend... 🐱‍🐉
+        run: cd back && npm run build

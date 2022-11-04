@@ -6,6 +6,7 @@ import { syllabus } from "../../../assets/mocks";
 import { AiFillDelete } from "react-icons/ai";
 import { MdModeEdit } from "react-icons/md";
 import ModalAlert from "../../../components/ModalAlert/ModalAlert";
+import Pagination from "../../../components/Pagination/Pagination";
 
 const Syllabus = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -21,9 +22,7 @@ const Syllabus = () => {
       <CoverGreetings greeting="Gestión del temario" isHome={false} />
 
       <Link to="/admin/temario/añadir">
-        <button className="btnStandard btnBlue">
-          Crear nuevo temario
-        </button>
+        <button className="btnStandard btnBlue">Crear nuevo temario</button>
       </Link>
 
       <Table
@@ -35,27 +34,32 @@ const Syllabus = () => {
           "Acciones",
         ]}
       >
-        {syllabus.map(({title, description, level, learningpath }) => (
-          <>
-            <li>{title}</li>
-            <li className="TextClipped">{description}</li>
-            <li className={`Level${level}`}>{level}</li>
-            <li>{learningpath}</li>
-            <li className="Table__actions">
-              <button onClick={() => handleOpenModal(title)}>
-                <AiFillDelete className="BtnDelete" />
-              </button>
-              <Link to="/">
-                <button>
-                  <MdModeEdit />
+        <Pagination data={syllabus}>
+          {syllabus.map(({ title, description, level, learningpath }) => (
+            <>
+              <li key={title}>{title}</li>
+              <li key={description} className="TextClipped">{description}</li>
+              <li key={level} className={`Level${level}`}>{level}</li>
+              <li key={learningpath}>{learningpath}</li>
+              <li key={`${learningpath}${title}`} className="Table__actions">
+                <button onClick={() => handleOpenModal(title)}>
+                  <AiFillDelete className="BtnDelete" />
                 </button>
-              </Link>
-            </li>
-          </>
-        ))}
+                <Link to={`/admin/temario/actualizar/${title}`}>
+                  <button>
+                    <MdModeEdit />
+                  </button>
+                </Link>
+              </li>
+            </>
+          ))}
+        </Pagination>
       </Table>
       {openModal && (
-        <ModalAlert elementSeleted={elementSeleted} setOpenModal={setOpenModal}/>
+        <ModalAlert
+          elementSeleted={elementSeleted}
+          setOpenModal={setOpenModal}
+        />
       )}
     </div>
   );
