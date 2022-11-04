@@ -21,9 +21,9 @@
     "prettier": "2.7.1"
   },
   "dependencies": {
-    "@strapi/plugin-i18n": "4.4.5",
-    "@strapi/plugin-users-permissions": "4.4.5",
-    "@strapi/strapi": "4.4.5",
+    "@strapi/strapi": "4.4.1",
+    "@strapi/plugin-users-permissions": "4.4.1",
+    "@strapi/plugin-i18n": "4.4.1",
     "better-sqlite3": "7.4.6"
   },
   "author": {
