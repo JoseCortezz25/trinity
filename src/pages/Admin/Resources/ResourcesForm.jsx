@@ -5,11 +5,13 @@ import { Input } from '../../../components/Input'
 import { Button, colorSchema } from '../../../components/Button'
 import { Label } from '../../../components/Label'
 import { Select } from '../../../components/Select'
+import { validURL } from '../../../helpers/utils'
 
 const ResourcesForm = () => {
   const location = useLocation()
   const { id } = useParams()
-  const [inputError, setInputError] = useState({ error: false, message: '' })
+  const [error, setError] = useState({ error: false, message: '' })
+  const [typeOfForm, setTypeOfForm] = useState('')
   const [informativeMessages, setInformativeMessages] = useState({
     greetings: '',
     btnSubmitMessage: '',
@@ -17,17 +19,19 @@ const ResourcesForm = () => {
 
   const [inputs, setInputs] = useState({
     title: '',
-    resourcetype: '',
     link: '',
+    type: '',
   })
 
   useEffect(() => {
     if (location.pathname.includes('/añadir')) {
+      setTypeOfForm('ADD')
       setInformativeMessages({
         greetings: 'Añadir nuevo recurso recomendado',
         btnSubmitMessage: 'Añadir recurso',
       })
     } else {
+      setTypeOfForm('UPDATE')
       console.log('email', id)
       setInformativeMessages({
         greetings: 'Actualizar recurso recomendado',
@@ -38,9 +42,29 @@ const ResourcesForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    const { title, link, type } = inputs
+
     console.log('inputs', inputs)
 
-    setInputError({ error: true, message: '' })
+    // Validate values input
+    if (!validURL(inputs.link)) {
+      return setError({
+        error: true,
+        message: 'La URL de la imagen no corresponde a un formado veridico.',
+      })
+    }
+    setError({ error: false, message: '' })
+
+    if (typeOfForm === 'ADD') {
+      if (title === '' || link === '' || type === '') {
+        return setError({
+          error: true,
+          message:
+            'Hay campos vacios. Asegurate de completar todos los campos.',
+        })
+      }
+      setError({ error: false, message: '' })
+    }
   }
 
   const typeOfResources = [
@@ -65,7 +89,6 @@ const ResourcesForm = () => {
         <div className="InputsGroup">
           <Label htmlFor="title">Titulo del recurso</Label>
           <Input
-            required
             type="text"
             id="title"
             placeholder="Escribe el titulo del recurso"
@@ -79,17 +102,16 @@ const ResourcesForm = () => {
         </div>
 
         <div className="InputsGroup">
-          <Label htmlFor="resourcetype">Tipo del recursos</Label>
+          <Label htmlFor="type">Tipo del recursos</Label>
           <Select
-            required
-            id="resourcetype"
+            id="type"
             placeholder="Seleccionar tipo de recursos"
             name="select"
             options={typeOfResources}
             onChange={(e) =>
               setInputs((prevState) => ({
                 ...prevState,
-                resourcetype: e.id,
+                type: e.id,
               }))
             }
           ></Select>
@@ -98,7 +120,6 @@ const ResourcesForm = () => {
         <div className="InputsGroup">
           <Label htmlFor="link">Link</Label>
           <Input
-            required
             type="text"
             id="link"
             placeholder="Escribe el nombre de la ruta"
@@ -108,9 +129,7 @@ const ResourcesForm = () => {
           />
         </div>
 
-        {inputError.error && (
-          <p className="ErrorMessage"> {inputError.message}</p>
-        )}
+        {error.error && <p className="ErrorMessage"> {error.message}</p>}
 
         <Button type="submit" color={colorSchema.black}>
           {informativeMessages.btnSubmitMessage}

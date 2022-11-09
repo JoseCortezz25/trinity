@@ -95,8 +95,6 @@ const UsersForm = () => {
     const { fullName, email, password, confirmpassword, role, status } = inputs
 
     if (typeOfForm === 'ADD') {
-      console.log('add')
-
       if (inputs.confirmpassword.toLowerCase() !== inputs.password.toLowerCase()) {
         return setError({
           error: true,
@@ -142,8 +140,6 @@ const UsersForm = () => {
       formData.role = inputs.role ? inputs.role : user.role
       formData.status = inputs.status ? inputs.status : user.status
 
-      console.log('formData', formData)
-
       modifyUser(formData)
       navigate('/admin/usuarios')
     }
@@ -169,7 +165,7 @@ const UsersForm = () => {
           <Input
             id="fullName"
             name="fullName"
-            value={user.fullName}
+            value={inputs.fullName ? inputs.fullName : user.fullName}
             type="text"
             minLength="8"
             placeholder="Escribe el nombre del usuario"
@@ -184,7 +180,7 @@ const UsersForm = () => {
           <Input
             id="email"
             name="email"
-            value={user.email}
+            value={inputs.email ? inputs.email : user.email}
             type="email"
             placeholder="Escribe el email del usuario"
             onChange={({ target: { value, name } }) =>
@@ -237,7 +233,6 @@ const UsersForm = () => {
             <Select
               id="role"
               name="role"
-              required
               placeholder={
                 user.role ? `${user.role}` : `Seleccionar tipo de usuario`
               }
@@ -271,7 +266,7 @@ const UsersForm = () => {
         </div>
         {error.error && <p className="ErrorMessage"> {error.message}</p>}
 
-        <Button type="submit" color={colorSchema.black} isDisabled={validateUser(id, getCurrentUser())}>
+        <Button type="submit" color={colorSchema.black}>
           {informativeMessages.btnSubmitMessage}
         </Button>
       </form>

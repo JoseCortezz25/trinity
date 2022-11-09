@@ -22,7 +22,7 @@ const Users = () => {
       .catch((error) => {
         console.log(error)
       })
-  }, [openModal])
+  }, [openModal, allUsers])
 
   const handleOpenModal = (id) => {
     setOpenModal((prevState) => !prevState)
@@ -42,9 +42,9 @@ const Users = () => {
       </Link>
 
       <Table headers={['Nombre', 'Email', 'Estado', 'Rol', 'Acciones']}>
-        <Pagination data={allUsers}>
-          {allUsers ? (
-            allUsers.map(({ id, fullName, email, status, role = 'USER' }) => (
+        {allUsers.length > 0 ? (
+          <Pagination data={allUsers}>
+            {allUsers.map(({ id, fullName, email, status, role = 'USER' }) => (
               <>
                 <li key={fullName}>{fullName}</li>
                 <li key={email}>{email}</li>
@@ -69,11 +69,11 @@ const Users = () => {
                   </Link>
                 </li>
               </>
-            ))
-          ) : (
-            <Loader />
-          )}
-        </Pagination>
+            ))}
+          </Pagination>
+        ) : (
+          <Loader />
+        )}
       </Table>
       {openModal && (
         <ModalAlert
