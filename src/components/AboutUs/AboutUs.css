@@ -1,20 +1,39 @@
 .AboutUs {
-  background-image: url("/background-gray.png");
+  background-image: url('../../assets/images/background_team.jpeg');
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
   width: 100%;
-  height: 317px;
+  height: 500px;
+
   position: relative;
+
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  justify-content: center;
+  /* justify-content: end; */
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.AboutUs__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.7);
+  width: 50%;
+  padding: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0px 0px 5px #d7d7d7, 0px 0px 64px #e9e9e9;
 }
 
 .AboutUs p {
-  width: 70%;
+  /* width: 70%; */
   text-align: center;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bold;
 }
 

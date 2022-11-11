@@ -4,6 +4,7 @@ import MainCover from "../../components/MainCover";
 import Information from "../../components/Information";
 import AboutUs from "../../components/AboutUs";
 import Service from "../../components/Service";
+import Customers from "../../components/Customers/Customers";
 
 import "./Home.css";
 
@@ -15,6 +16,7 @@ const Home = () => {
       <Service />
       <Information />
       <Complement />
+      <Customers />
       <Map />
     </div>
   );

@@ -30,9 +30,10 @@
   align-items: center;
 }
 
-.Customers__item {
-  width: 70%;
-}
+/* .Customers__item, .swiper-slide {
+  max-width: 100px;
+  border: 1px solid red;
+} */
 
 .swiper-wrapper {
   align-items: center;
@@ -41,4 +42,15 @@
 .Customers__slider img {
   max-width: 90%;
   height: 80px;
+}
+
+@media screen and (max-width: 667px) {
+  .Customers {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+  }
+  
 }

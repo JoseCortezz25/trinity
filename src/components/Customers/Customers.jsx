@@ -56,7 +56,7 @@ const Customers = () => {
               spaceBetween: 25,
             },
             '@1.75': {
-              slidesPerView: 4,
+              slidesPerView: 3,
               spaceBetween: 25,
             },
           }}
