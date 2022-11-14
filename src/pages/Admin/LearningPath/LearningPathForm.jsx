@@ -7,8 +7,9 @@ import { Label } from '../../../components/Label'
 
 const LearningPathForm = () => {
   const location = useLocation()
-  const { id } = useParams()
-  const [inputError, setInputError] = useState({ error: false, message: '' })
+  const { id } = useParams()  
+  const [typeOfForm, setTypeOfForm] = useState('')
+  const [error, setError] = useState({ error: false, message: '' })
   const [informativeMessages, setInformativeMessages] = useState({
     greetings: '',
     btnSubmitMessage: '',
@@ -18,21 +19,18 @@ const LearningPathForm = () => {
     name: '',
     description: '',
     link: '',
-    imagen: false,
+    imagen: '',
   })
 
   useEffect(() => {
     if (location.pathname.includes('/añadir')) {
-      console.log('add new element')
-      // setTypeOfForm('ADD')
+      setTypeOfForm('ADD')
       setInformativeMessages({
         greetings: 'Crear nueva Ruta de Aprendizaje',
         btnSubmitMessage: 'Crear nueva ruta',
       })
     } else {
-      console.log('update new element')
-      console.log('email', id)
-      // setTypeOfForm('UPDATE')
+      setTypeOfForm('UPDATE')
       setInformativeMessages({
         greetings: 'Actualización de la Ruta de Aprendizaje',
         btnSubmitMessage: 'Actualizar ruta',
@@ -43,8 +41,49 @@ const LearningPathForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log('inputs', inputs)
+    
+    const { title, description, link, imagen } = inputs
 
-    setInputError({ error: true, message: '' })
+    if (typeOfForm === 'ADD') {
+      if (
+        title === '' ||
+        description === '' ||
+        link === '' ||
+        imagen === ''
+      ) {
+        return setError({
+          error: true,
+          message:
+            'Hay campos vacios. Asegurate de completar todos los campos.',
+        })
+      }
+      setError({ error: true, message: '' })
+    }
+
+    // if (typeOfForm === 'UPDATE') {
+      
+    // }
+    
+  }
+
+  const handleImage = (e) => {
+    console.log('e', e)
+    const allowedMimes = [
+      'image/png', 
+      'image/jpg', 
+      'image/gif', 
+      'image/jpeg'
+    ]
+
+    
+    if (allowedMimes.includes(e.type)) {
+      setInputs({...inputs, imagen: e})
+      setError({error: false, message: ''})
+    } else {
+      window.document.getElementById('input-file').value = ''
+      setInputs({...inputs, imagen: e})
+      setError({message: 'Invalid file type!. Only allowed jpeg, jpg and png', error: false})
+    }
   }
 
   return (
@@ -54,9 +93,8 @@ const LearningPathForm = () => {
         <div className="InputsGroup">
           <Label htmlFor="name">Nombre de la ruta</Label>
           <Input
-            required
-            type="text"
             id="name"
+            type="text"
             placeholder="Escribe el nombre de la ruta"
             onChange={(e) =>
               setInputs((prevState) => ({ ...prevState, name: e.target.value }))
@@ -67,9 +105,8 @@ const LearningPathForm = () => {
         <div className="InputsGroup">
           <Label htmlFor="description">Descripción</Label>
           <Input
-            required
-            type="text"
             id="description"
+            type="text"
             placeholder="Escribe la descripción de la ruta"
             onChange={(e) =>
               setInputs((prevState) => ({
@@ -83,9 +120,8 @@ const LearningPathForm = () => {
         <div className="InputsGroup">
           <Label htmlFor="link">Link</Label>
           <Input
-            required
-            type="text"
             id="link"
+            type="text"
             placeholder="Escribe el link hacia donde se redireccionará la ruta"
             onChange={(e) =>
               setInputs((prevState) => ({ ...prevState, link: e.target.value }))
@@ -94,23 +130,20 @@ const LearningPathForm = () => {
         </div>
 
         <div className="InputsGroup">
-          <Label htmlFor="imagen">Imagen</Label>
+          <Label htmlFor="imagen">Selecciona la imagen de la cabecera</Label>
           <Input
-            required
-            id="imagen"
-            type="text"
-            placeholder="Escribe el link de la imagen"
-            onChange={(e) =>
-              setInputs((prevState) => ({
-                ...prevState,
-                imagen: e.target.value,
-              }))
-            }
+            id="input-file"
+            type="file"
+            name="imagen"
+            className="custom-file-input"
+            accept="image/png, image/jpg, image/gif, image/jpeg"
+            onChange={({ target }) => handleImage(target.files[0])}
           />
+
         </div>
 
-        {inputError.error && (
-          <p className="ErrorMessage"> {inputError.message}</p>
+        {error.error && (
+          <p className="ErrorMessage"> {error.message}</p>
         )}
 
         <Button type="submit" color={colorSchema.black}>

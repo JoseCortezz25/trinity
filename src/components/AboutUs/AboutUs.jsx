@@ -1,5 +1,4 @@
 import { Title } from '../Utils'
-
 import './AboutUs.css'
 
 const AboutUs = () => {
@@ -8,8 +7,7 @@ const AboutUs = () => {
       <div className="AboutUs__info">
         <Title title="Nosotros" />
         <p>
-          Lorem ipsum dolor sit amet. Ut molestiae perferendis. Lorem ipsum
-          dolor sit amet.
+          Somos un equipo creativo enfocado en satisfacer a nuestros clientes
         </p>
       </div>
     </section>
