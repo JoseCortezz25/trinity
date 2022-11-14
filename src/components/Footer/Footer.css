@@ -10,13 +10,14 @@ footer {
 
 footer nav:first-child {
   width: 80%;
-  height: 230px;
+  min-height: 230px;
   /* height: 225px; */
   padding-top: 20px;
   padding-bottom: 20px;
   margin: auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
   align-items: stretch;
 }
 
@@ -44,8 +45,12 @@ footer nav:last-child {
   margin-right: 0px;
 }
 
-footer .nav__item ul.ListOfService {
-  padding-right: 30px;
+@media screen and (max-width: 800px) {
+  footer nav:first-child {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
 }
 
 @media screen and (max-width: 667px) {
@@ -68,5 +73,6 @@ footer .nav__item ul.ListOfService {
 
   footer .nav__item {
     margin-top: 25px;
+    padding-left: 10px;
   }
 }
