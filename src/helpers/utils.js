@@ -6,11 +6,8 @@ const numberGenerateRandomly = (min, max) => {
 const generateRandomUsername = (fullname) => `${fullname.replaceAll(' ', '_')}_${numberGenerateRandomly(0, 15000)}_${Date.now()}`
 
 function validURL(str) {
-  const pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
-    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-    '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
-    '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+  // eslint-disable-next-line prefer-regex-literals, no-useless-escape
+  const pattern = new RegExp('^https?:\/\/[\w\-]+(\.[\w\-]+)+[/#?]?.*$');
   return !!pattern.test(str);
 }
 

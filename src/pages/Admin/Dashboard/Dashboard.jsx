@@ -49,7 +49,7 @@ export default Dashboard
 
 const DashboradCard = ({ title, description, path }) => {
   return (
-    <div className="DashboardSections_Card">
+    <div className="DashboardSections_Card no-selectable">
       <Link to={`/admin${path}`}>
         <h3>{title}</h3>
         <p>{description}</p>

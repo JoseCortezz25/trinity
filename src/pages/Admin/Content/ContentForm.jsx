@@ -9,7 +9,8 @@ import { Select } from '../../../components/Select'
 const ContentForm = () => {
   const location = useLocation()
   const { id } = useParams()
-  const [inputError, setInputError] = useState({ error: false, message: '' })
+  const [typeOfForm, setTypeOfForm] = useState('')
+  const [error, setError] = useState({ error: false, message: '' })
   const [informativeMessages, setInformativeMessages] = useState({
     greetings: '',
     btnSubmitMessage: '',
@@ -26,12 +27,13 @@ const ContentForm = () => {
 
   useEffect(() => {
     if (location.pathname.includes('/añadir')) {
+      setTypeOfForm('ADD')
       setInformativeMessages({
         greetings: 'Añadir contenido',
         btnSubmitMessage: 'Crear contenido',
       })
     } else {
-      console.log('email', id)
+      setTypeOfForm('UPDATE')
       setInformativeMessages({
         greetings: 'Actualizar contenido',
         btnSubmitMessage: 'Actualizar contenido',
@@ -43,7 +45,27 @@ const ContentForm = () => {
     e.preventDefault()
     console.log('inputs', inputs)
 
-    setInputError({ error: true, message: '' })
+    const { title, description, link, temario, level, importance } = inputs
+
+    if (typeOfForm === 'ADD') {
+      if (
+        title === '' ||
+        description === '' ||
+        link === '' ||
+        temario === '' ||
+        level === '' ||
+        importance === ''
+      ) {
+        return setError({
+          error: true,
+          message:
+            'Hay campos vacios. Asegurate de completar todos los campos.',
+        })
+      }
+      setError({ error: true, message: '' })
+    }
+
+    setError({ error: true, message: '' })
   }
 
   const levels = [
@@ -83,9 +105,8 @@ const ContentForm = () => {
         <div className="InputsGroup">
           <Label htmlFor="title">Título del contenido</Label>
           <Input
-            required
-            type="text"
             id="title"
+            type="text"
             placeholder="Escribe el título del contenido"
             onChange={(e) =>
               setInputs((prevState) => ({
@@ -99,9 +120,8 @@ const ContentForm = () => {
         <div className="InputsGroup">
           <Label htmlFor="description">Descripción</Label>
           <Input
-            required
-            type="text"
             id="description"
+            type="text"
             placeholder="Escribe la descripción de la ruta"
             onChange={(e) =>
               setInputs((prevState) => ({
@@ -115,9 +135,8 @@ const ContentForm = () => {
         <div className="InputsGroup">
           <Label htmlFor="link">URL del contenido</Label>
           <Input
-            required
-            type="text"
             id="link"
+            type="text"
             placeholder="Escribe el link donde se encuentra el contenido"
             onChange={(e) =>
               setInputs((prevState) => ({ ...prevState, link: e.target.value }))
@@ -128,9 +147,8 @@ const ContentForm = () => {
         <div className="InputsGroup">
           <Label htmlFor="temario">Temario</Label>
           <Select
-            required
-            name="temario"
             id="temario"
+            name="temario"
             placeholder="Seleccionar el tema al que pertenece el contenido"
             options={temarios}
             onChange={(e) =>
@@ -144,9 +162,8 @@ const ContentForm = () => {
         <div className="InputsGroup">
           <Label htmlFor="level">Nivel</Label>
           <Select
-            required
-            name="level"
             id="level"
+            name="level"
             placeholder="Seleccionar el nivel del tema escogido"
             options={levels}
             onChange={(e) =>
@@ -165,10 +182,9 @@ const ContentForm = () => {
             la página.
           </p>
           <Input
-            type="number"
-            name="importance"
             id="importance"
-            required
+            name="importance"
+            type="number"
             placeholder="Ej: 1"
             onChange={(e) =>
               setInputs((prevState) => ({
@@ -179,8 +195,8 @@ const ContentForm = () => {
           />
         </div>
 
-        {inputError.error && (
-          <p className="ErrorMessage"> {inputError.message}</p>
+        {error.error && (
+          <p className="ErrorMessage"> {error.message}</p>
         )}
 
         <Button type="submit" color={colorSchema.black}>

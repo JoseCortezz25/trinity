@@ -12,6 +12,7 @@ import TivitIcon from '../../assets/icons/tivit.png'
 import CafeterosIcon from '../../assets/icons/cafeteros.png'
 import UCHIcon from '../../assets/icons/LogoCorhuila.png'
 import IndraIcon from '../../assets/icons/indra.jpg'
+import SeguroBolivarIcon from '../../assets/icons/segurobolivar.jpeg'
 import 'swiper/css/pagination'
 import 'swiper/css'
 import './Customers.css'
@@ -19,7 +20,7 @@ import './Customers.css'
 const Customers = () => {
   return (
     <section className="Customers">
-      <Title title="Nosotros" />
+      <Title title="Nuestros desarrolladores laboran en" />
 
       <div className="Customers__container">
         <Swiper
@@ -109,6 +110,11 @@ const Customers = () => {
           <SwiperSlide>
             <div className="Customers__item">
               <img src={UCHIcon} alt="" />
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="Customers__item">
+              <img src={SeguroBolivarIcon} alt="" />
             </div>
           </SwiperSlide>
         </Swiper>

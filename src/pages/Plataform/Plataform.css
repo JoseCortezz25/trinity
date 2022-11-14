@@ -120,7 +120,7 @@
 
 .text {
   position: absolute;
-  color: #ffffff;
+  color: var(--white);
   text-transform: capitalize;
   margin-left: 10px;
   margin-bottom: 10px;

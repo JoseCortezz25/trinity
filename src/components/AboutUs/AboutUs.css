@@ -39,11 +39,15 @@
 
 @media screen and (max-width: 667px) {
   .AboutUs {
-    height: 317px;
+    height: 350px;
     background-size: 230%;
   }
   .AboutUs p {
     width: 90%;
     font-size: 18px;
+  }
+
+  .AboutUs__info {
+    width: 80%;
   }
 }

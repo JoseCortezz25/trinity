@@ -1,8 +1,8 @@
 // icons
 export { default as FacebookIcon } from "./icons/FacebookIcon.svg";
-export { default as icon1 } from "./icons/icon1.svg";
-export { default as icon2 } from "./icons/icon2.svg";
-export { default as icon3 } from "./icons/icon3.svg";
+export { default as icon1 } from "./icons/icons1.png";
+export { default as icon2 } from "./icons/icons2.png";
+export { default as icon3 } from "./icons/icons3.png";
 export { default as LinkedinIcon } from "./icons/LinkedinIcon.svg";
 export { default as logoIcon } from "./icons/logo.svg";
 export { default as programmerIcon } from "./icons/programmer.svg";
@@ -19,3 +19,4 @@ export { default as imgRutes } from "./images/img_rutes.jpg";
 export { default as notFoundImg } from "./images/NotFound.png";
 export { default as webImg } from "./images/Web.png";
 export { default as youtubeImg } from "./images/youTube.png";
+export { default as mainCoverImg } from "./images/imagen_maincover.jpg";
