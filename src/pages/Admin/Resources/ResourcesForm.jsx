@@ -1,104 +1,125 @@
-import React, { useEffect, useState } from "react";
-import { CoverGreetings } from "../../../components/Utils/Utils";
-import { useLocation, useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { CoverGreetings } from '../../../components/Utils/Utils'
+import { useLocation, useParams } from 'react-router-dom'
+import { Input } from '../../../components/Input'
+import { Button, colorSchema } from '../../../components/Button'
+import { Label } from '../../../components/Label'
+import { Select } from '../../../components/Select'
+import { validURL } from '../../../helpers/utils'
 
 const ResourcesForm = () => {
-  const location = useLocation();
-  const { id } = useParams();
-  const [inputError, setInputError] = useState({ error: false, message: "" });
+  const location = useLocation()
+  const { id } = useParams()
+  const [error, setError] = useState({ error: false, message: '' })
+  const [typeOfForm, setTypeOfForm] = useState('')
   const [informativeMessages, setInformativeMessages] = useState({
-    greetings: "",
-    btnSubmitMessage: "",
-  });
+    greetings: '',
+    btnSubmitMessage: '',
+  })
 
   const [inputs, setInputs] = useState({
-    title: "",
-    resourcetype: "",
-    link: "",
-  });
+    title: '',
+    link: '',
+    type: '',
+  })
 
   useEffect(() => {
-    if (location.pathname.includes("/añadir")) {
+    if (location.pathname.includes('/añadir')) {
+      setTypeOfForm('ADD')
       setInformativeMessages({
-        greetings: "Añadir nuevo recurso recomendado",
-        btnSubmitMessage: "Añadir recurso",
-      });
+        greetings: 'Añadir nuevo recurso recomendado',
+        btnSubmitMessage: 'Añadir recurso',
+      })
     } else {
-      console.log("email", id);
+      setTypeOfForm('UPDATE')
+      console.log('email', id)
       setInformativeMessages({
-        greetings: "Actualizar recurso recomendado",
-        btnSubmitMessage: "Actualizar recurso",
-      });
+        greetings: 'Actualizar recurso recomendado',
+        btnSubmitMessage: 'Actualizar recurso',
+      })
     }
-  }, [location]);
+  }, [location])
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("inputs", inputs);
+    e.preventDefault()
+    const { title, link, type } = inputs
 
-    setInputError({ error: true, message: "" });
-  };
+    console.log('inputs', inputs)
+
+    // Validate values input
+    if (!validURL(inputs.link)) {
+      return setError({
+        error: true,
+        message: 'La URL de la imagen no corresponde a un formado veridico.',
+      })
+    }
+    setError({ error: false, message: '' })
+
+    if (typeOfForm === 'ADD') {
+      if (title === '' || link === '' || type === '') {
+        return setError({
+          error: true,
+          message:
+            'Hay campos vacios. Asegurate de completar todos los campos.',
+        })
+      }
+      setError({ error: false, message: '' })
+    }
+  }
 
   const typeOfResources = [
     {
-      name: "Página web",
-      value: "Página web",
+      label: 'Página web',
+      id: 'Página web',
     },
     {
-      name: "Youtube",
-      value: "Youtube",
+      label: 'Youtube',
+      id: 'Youtube',
     },
     {
-      name: "Curso",
-      value: "Curso",
+      label: 'Curso',
+      id: 'Curso',
     },
-  ];
+  ]
 
   return (
     <div className="Dashboard">
       <CoverGreetings greeting={informativeMessages.greetings} isHome={false} />
-      <form onSubmit={handleSubmit}>
-        <div className="groupInputs">
-          <label htmlFor="title">Titulo del recurso</label>
-          <input
-            required
+      <form onSubmit={handleSubmit} className="FormContaner">
+        <div className="InputsGroup">
+          <Label htmlFor="title">Titulo del recurso</Label>
+          <Input
             type="text"
             id="title"
             placeholder="Escribe el titulo del recurso"
             onChange={(e) =>
-              setInputs((prevState) => ({ ...prevState, title: e.target.value }))
+              setInputs((prevState) => ({
+                ...prevState,
+                title: e.target.value,
+              }))
             }
           />
         </div>
 
-        <div className="groupInputs">
-          <label htmlFor="resourcetype">Tipo del recursos</label>
-          <select
-            required
+        <div className="InputsGroup">
+          <Label htmlFor="type">Tipo del recursos</Label>
+          <Select
+            id="type"
+            placeholder="Seleccionar tipo de recursos"
             name="select"
-            id="resourcetype"
+            options={typeOfResources}
             onChange={(e) =>
               setInputs((prevState) => ({
                 ...prevState,
-                resourcetype: e.target.value,
+                type: e.id,
               }))
             }
-          >
-            <option key="defaultmessage" disabled>
-              --Seleccionar tipo de recursos--
-            </option>
-            {typeOfResources.map((resource) => (
-              <option key={resource.value} value={resource.value}>
-                {resource.name}
-              </option>
-            ))}
-          </select>
+          ></Select>
         </div>
 
-        <div className="groupInputs">
-          <label htmlFor="link">Link</label>
-          <input
-            required
+        <div className="InputsGroup">
+          <Label htmlFor="link">Link</Label>
+          <Input
             type="text"
             id="link"
             placeholder="Escribe el nombre de la ruta"
@@ -108,17 +129,14 @@ const ResourcesForm = () => {
           />
         </div>
 
+        {error.error && <p className="ErrorMessage"> {error.message}</p>}
 
-        {inputError.error && (
-          <p className="ErrorMessage"> {inputError.message}</p>
-        )}
-
-        <button type="submit" className="btnStandard btnDark">
+        <Button type="submit" color={colorSchema.black}>
           {informativeMessages.btnSubmitMessage}
-        </button>
+        </Button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default ResourcesForm;
+export default ResourcesForm

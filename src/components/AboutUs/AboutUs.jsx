@@ -1,17 +1,17 @@
-import { Title } from "../Utils";
-
-import "./AboutUs.css";
+import { Title } from '../Utils'
+import './AboutUs.css'
 
 const AboutUs = () => {
   return (
     <section className="AboutUs" id="Nosotros">
-      <Title title="Nosotros" />
-      <p>
-        Lorem ipsum dolor sit amet. Ut molestiae perferendis. Lorem ipsum dolor
-        sit amet.
-      </p>
+      <div className="AboutUs__info">
+        <Title title="Nosotros" />
+        <p>
+          Somos un equipo creativo enfocado en satisfacer a nuestros clientes
+        </p>
+      </div>
     </section>
-  );
-};
+  )
+}
 
-export default AboutUs;
+export default AboutUs

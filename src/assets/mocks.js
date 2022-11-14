@@ -250,8 +250,6 @@ const users = [
   },
 ];
 
-console.log(users.length)
-
 const syllabus = [
   {
     title: 'HTML',
@@ -420,4 +418,3 @@ export {
   LearningPaths,
   Contents
 }
-

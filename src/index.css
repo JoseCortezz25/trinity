@@ -3,7 +3,7 @@
 :root {
   --button-color-gray: #ecf0f1;
   --button-color-blue: #0984e3;
-  --button-color-hover: #0a6ebb;
+  --button-color-hover: #1985e3c9;
   --button-color-black: #000000;
   --button-color-disabled: #aaa8a8;
 
@@ -12,6 +12,23 @@
 
   --white: #fff;
   --black: #000;
+
+  --swiper-theme-color: var(--trinity-color-dark-green);
+
+  --trinity-color-green: #73A625;
+  --trinity-color-light-green: #74BF03;
+  --trinity-color-dark-green: #437337;
+  --trinity-color-black: #0D0D0D;
+
+  --button-color-red: #c0392b;
+  --button-color-red-hover: #912a1e;
+
+  --button-color-black: #131418;
+  --button-color-black-hover: #131418c9;
+
+  --button-color-gray: #ecf0f1;
+  --button-color-gray-hover: #bbbbbb;
+  --transition: all 400ms ease;
 }
 
 * {
@@ -20,6 +37,13 @@
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
+}
+
+.no-selectable {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; 
 }
 
 .App {
@@ -39,6 +63,15 @@
   text-decoration: none;
 }
 
+.btnStandard:disabled,
+.btnStandard[disabled],
+.btnStandard:disabled:hover,
+.btnStandard[disabled]:hover{
+  color: #979797;
+  background-color: #F7F7F7;
+  cursor: not-allowed;
+}
+
 .btnStandard {
   margin-right: 10px;
 }
@@ -48,31 +81,31 @@
 }
 
 .btnStandard a {
-  width: inherit;
+  width: inherit; 
   display: flex;
 }
 
 .btnNormal {
-  background-color: #ecf0f1;
-  color: #161616;
+  background-color: var(--button-color-gray);
+  color: #131418;
 }
 
 .btnNormal:hover {
-  background-color: #bbbbbb;
+  background-color: var(--button-color-gray-hover);
 }
 
 .btnDark {
-  background-color: #131418;
-  color: #ffffff;
+  background-color: var(--button-color-black);
+  color: var(--white);
 }
 
 .btnDark:hover {
-  background-color: #131418c9;
+  background-color: var(--button-color-black-hover);
 }
 
 .btnGreen {
   background-color: #0984e3;
-  color: #fff;
+  color: var(--white);
   transition: all 0.1s ease-out;
 }
 
@@ -81,23 +114,23 @@
 }
 
 .btnBlue {
-  background-color: #0984e3;
-  color: #fff;
+  background-color: var(--button-color-blue);
+  color: var(--white);
   transition: all 0.1s ease-out;
 }
 
 .btnBlue:hover {
-  background-color: #1985e3c9;
+  background-color: var(--button-color-hover);
 }
 
 .btnRed {
-  background-color: #c0392b;
-  color: #fff;
+  background-color: var(--button-color-red);
+  color: var(--white);
   transition: all 0.1s ease-out;
 }
 
 .btnRed:hover {
-  background-color: #912a1e;
+  background-color: var(--button-color-red-hover);
 }
 
 .Plataform {
@@ -127,7 +160,7 @@
   position: relative;
   width: 50%;
   min-height: 200px;
-  background-color: #ffffff;
+  background-color: var(--white);
   color: #000000;
   border-radius: 10px;
   padding: 20px 30px;
@@ -141,7 +174,7 @@
 .Modal__alert svg {
   width: 50px;
   height: 50px;
-  color: #c0392b;
+  color: var(--button-color-red);
 }
 
 .ModalContainer h2,
@@ -158,6 +191,10 @@
 }
 
 .formControl input {
+  width: 100%;
+}
+
+.FormContaner input {
   width: 100%;
 }
 

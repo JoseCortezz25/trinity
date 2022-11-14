@@ -38,6 +38,15 @@
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+.button:disabled,
+.button[disabled],
+.button:disabled:hover,
+.button[disabled]:hover{
+  color: #979797;
+  background-color: #F7F7F7;
+  cursor: not-allowed;
+}
+
 .loading {
   cursor: not-allowed;
 }

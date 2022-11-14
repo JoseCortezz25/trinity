@@ -28,7 +28,7 @@ const Plataform = () => {
     <main className="Plataform">
       <h2 className="tittleh2">Rutas de aprendizaje</h2>
       <div className="Content_paths">
-        {learningPaths?.map((paths) => (
+        {learningPaths.length > 0 ? learningPaths?.map((paths) => (
           <CardPath
             image={paths.image}
             title={paths.title}
@@ -36,12 +36,12 @@ const Plataform = () => {
             description={paths.description}
             link={paths.link}
           />
-        ))}
+        )): <p>no hay datos</p>}
       </div>
 
       <h2 className="tittleh2">Recursos recomendados</h2>
       <div className="RecomemdedCards">
-        {listOfRecommendations?.map((recomended) => (
+        {listOfRecommendations.length > 0 ? listOfRecommendations?.map((recomended) => (
           <Recomended
             title={recomended.title}
             key={`${recomended.title}${recomended.subtitle}`}
@@ -49,7 +49,7 @@ const Plataform = () => {
             typeSite={recomended.typeSite}
             link={recomended.link}
           />
-        ))}
+          )): <p>no hay datos</p>}
       </div>
     </main>
   ) : (

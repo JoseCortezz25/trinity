@@ -1,18 +1,17 @@
-import React from "react";
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-import "./Dashboard.css";
-import UserContext from "../../../hooks/UserContext";
-import { CoverGreetings } from "../../../components/Utils/Utils";
+import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import { CoverGreetings } from '../../../components/Utils/Utils'
+import UserContext from '../../../hooks/UserContext'
+import './Dashboard.css'
 
 const Dashboard = () => {
-  const { user } = useContext(UserContext);
+  const { user } = useContext(UserContext)
   return (
     <div className="Dashboard">
       <CoverGreetings
         title="Dashboard"
         isHome={true}
-        greeting={user?.fullname}
+        greeting={user?.fullName}
       />
 
       <div className="DashboardSections">
@@ -43,18 +42,18 @@ const Dashboard = () => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard
 
 const DashboradCard = ({ title, description, path }) => {
   return (
-    <div className="DashboardSections_Card">
+    <div className="DashboardSections_Card no-selectable">
       <Link to={`/admin${path}`}>
         <h3>{title}</h3>
         <p>{description}</p>
       </Link>
     </div>
-  );
-};
+  )
+}

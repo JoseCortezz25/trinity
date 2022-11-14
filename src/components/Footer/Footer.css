@@ -10,13 +10,14 @@ footer {
 
 footer nav:first-child {
   width: 80%;
-  height: 200px;
+  height: 230px;
   /* height: 225px; */
   padding-top: 20px;
   padding-bottom: 20px;
   margin: auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  align-items: stretch;
 }
 
 footer nav:last-child {
@@ -41,6 +42,10 @@ footer nav:last-child {
 
 .ListOfSocialMedia li:last-child {
   margin-right: 0px;
+}
+
+footer .nav__item ul.ListOfService {
+  padding-right: 30px;
 }
 
 @media screen and (max-width: 667px) {

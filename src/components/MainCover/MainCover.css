@@ -1,7 +1,7 @@
 .MainCover {
   width: 100%;
   height: calc(100vh - 60px);
-  background-image: url("../../assets/images/blur.jpg");
+  background-image: url('../../assets/images/blur.jpg');
   background-position: left;
   background-repeat: no-repeat;
   display: flex;
@@ -12,7 +12,7 @@
 }
 
 .MainCover .container {
-  width: 80%;
+  width: 90%;
   margin: auto;
 
   display: flex;
@@ -26,8 +26,44 @@
   justify-content: center;
 }
 
+.ImageCover {
+  width: 500px;
+  height: 500px;
+  aspect-ratio: 1/1;
+  border-radius: 2rem;
+  background: rgb(115, 166, 37);
+  background: linear-gradient(
+    128deg,
+    rgba(115, 166, 37, 1) 0%,
+    rgba(67, 115, 55, 1) 100%
+  );
+  display: grid;
+  place-items: center;
+}
+
+.ImageCover__image {
+  width: 500px;
+  height: 500px;
+  border-radius: 2rem;
+  overflow: hidden;
+  transform: rotate(10deg);
+  transition: var(--transition);
+}
+
+.ImageCover__image img {
+  border-radius: 2rem;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ImageCover__image:hover {
+  transform: rotate(0deg);
+}
+
 .MainCover .boxInfo {
   width: 50%;
+  margin-left: -10%;
 }
 
 .MainCover .boxInfo p {
@@ -38,6 +74,11 @@
 @media screen and (max-width: 667px) {
   .MainCover {
     height: calc(100vh - 60px);
+  }
+
+  .ImageCover, .ImageCover__image {
+    width: 300px;
+    height: 300px;
   }
 
   .MainCover .container {
