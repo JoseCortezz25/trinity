@@ -11,18 +11,18 @@ const Service = () => {
       <div className="ServiceCards">
         <div className="ServiceCard">
           <div className="ServiceCard__image">
+            <img src={icon1} alt="" />
+          </div>
+          <p>Diseño y Desarrollo de plataformas web y móviles a la medida</p>
+        </div>
+        <div className="ServiceCard">
+          <div className="ServiceCard__image">
             <img src={icon3} alt="" />
           </div>
           <p>
             Procesos de acompañamiento y asesoría personalizada para
             desarrolladores
           </p>
-        </div>
-        <div className="ServiceCard">
-          <div className="ServiceCard__image">
-            <img src={icon1} alt="" />
-          </div>
-          <p>Diseño y Desarrollo de plataformas web y móviles a la medida</p>
         </div>
         <div className="ServiceCard">
           <div className="ServiceCard__image">

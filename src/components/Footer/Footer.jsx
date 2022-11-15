@@ -11,7 +11,7 @@ const Footer = () => {
             <img src={logoIcon} alt="" />
           </div>
           <p>
-            <b>Teléfono:</b> (+54) 314 3478428
+            <b>Teléfono:</b> (+57) 314 3478428
           </p>
           <p>
             <b>Correo de gerencia:</b> gerencia@trinityfs.com.co
