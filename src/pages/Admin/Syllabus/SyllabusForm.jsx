@@ -9,7 +9,8 @@ import { Select } from '../../../components/Select'
 const SyllabusForm = () => {
   const location = useLocation()
   const { id } = useParams()
-  const [inputError, setInputError] = useState({ error: false, message: '' })
+  const [error, setError] = useState({ error: false, message: '' })
+  const [typeOfForm, setTypeOfForm] = useState('')
   const [informativeMessages, setInformativeMessages] = useState({
     greetings: '',
     btnSubmitMessage: '',
@@ -24,12 +25,13 @@ const SyllabusForm = () => {
 
   useEffect(() => {
     if (location.pathname.includes('/añadir')) {
+      setTypeOfForm('ADD')
       setInformativeMessages({
         greetings: 'Crear nuevo tema',
         btnSubmitMessage: 'Crear tema',
       })
     } else {
-      console.log('email', id)
+      setTypeOfForm('UPDATE')
       setInformativeMessages({
         greetings: 'Actualizar tema',
         btnSubmitMessage: 'Actualizar tema',
@@ -39,9 +41,25 @@ const SyllabusForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    const { title, description, level, learningpath } = inputs
     console.log('inputs', inputs)
+    setError({ error: true, message: '' })
 
-    setInputError({ error: true, message: '' })
+    if (typeOfForm === 'ADD') {
+      if (
+        title === '' ||
+        description === '' ||
+        level === '' ||
+        learningpath === ''
+      ) {
+        return setError({
+          error: true,
+          message:
+            'Hay campos vacios. Asegurate de completar todos los campos.',
+        })
+      }
+      setError({ error: false, message: '' })
+    }
   }
 
   const learningPaths = [
@@ -59,6 +77,21 @@ const SyllabusForm = () => {
     },
   ]
 
+  const levels = [
+    {
+      label: 'Principiante',
+      id: 'Principiante',
+    },
+    {
+      label: 'Intermedio',
+      id: 'Intermedio',
+    },
+    {
+      label: 'Avanzado',
+      id: 'Avanzado',
+    },
+  ]
+
   return (
     <div className="Dashboard">
       <CoverGreetings greeting={informativeMessages.greetings} isHome={false} />
@@ -66,9 +99,8 @@ const SyllabusForm = () => {
         <div className="InputsGroup">
           <Label htmlFor="title">Nombre del tema</Label>
           <Input
-            required
-            type="text"
             id="title"
+            type="text"
             placeholder="Escribe el nombre del tema"
             onChange={(e) =>
               setInputs((prevState) => ({
@@ -82,9 +114,8 @@ const SyllabusForm = () => {
         <div className="InputsGroup">
           <Label htmlFor="description">Descripción</Label>
           <Input
-            required
-            type="text"
             id="description"
+            type="text"
             placeholder="Escribe la descripción del tema"
             onChange={(e) =>
               setInputs((prevState) => ({
@@ -96,16 +127,16 @@ const SyllabusForm = () => {
         </div>
 
         <div className="InputsGroup">
-          <Label htmlFor="description">Nivel</Label>
-          <Input
-            required
-            type="text"
-            id="level"
-            placeholder="Escribe la descripción del tema"
+        <Label htmlFor="learningpath">Nivel</Label>
+          <Select
+            id="learningpath"
+            name="learningpath"
+            placeholder="Seleccionar el nivel perteneciente al tema"
+            options={levels}
             onChange={(e) =>
               setInputs((prevState) => ({
                 ...prevState,
-                level: e.target.value,
+                level: e.id,
               }))
             }
           />
@@ -114,9 +145,8 @@ const SyllabusForm = () => {
         <div className="InputsGroup">
           <Label htmlFor="learningpath">Ruta de aprendizaje</Label>
           <Select
-            required
-            name="learningpath"
             id="learningpath"
+            name="learningpath"
             placeholder="Seleccionar la ruta de aprendizaje a la que pertenece el tema"
             options={learningPaths}
             onChange={(e) =>
@@ -128,9 +158,7 @@ const SyllabusForm = () => {
           />
         </div>
 
-        {inputError.error && (
-          <p className="ErrorMessage"> {inputError.message}</p>
-        )}
+        {error.error && <p className="ErrorMessage"> {error.message}</p>}
 
         <Button type="submit" color={colorSchema.black}>
           {informativeMessages.btnSubmitMessage}

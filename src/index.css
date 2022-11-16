@@ -61,6 +61,11 @@
   cursor: pointer;
   transition: all 0.1s ease-out;
   text-decoration: none;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; 
 }
 
 .btnStandard:disabled,

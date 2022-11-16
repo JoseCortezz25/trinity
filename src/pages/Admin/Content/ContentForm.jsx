@@ -164,7 +164,7 @@ const ContentForm = () => {
           <Select
             id="level"
             name="level"
-            placeholder="Seleccionar el nivel del tema escogido"
+            placeholder="Seleccionar el nivel del tema"
             options={levels}
             onChange={(e) =>
               setInputs((prevState) => ({
