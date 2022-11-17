@@ -60,9 +60,15 @@ const LearningPathForm = () => {
       setError({ error: true, message: '' })
     }
 
-    // if (typeOfForm === 'UPDATE') {
-      
-    // }
+    
+    if (typeOfForm === 'UPDATE') {
+
+      const formData = {}
+      // formData.title = inputs.title ? inputs.title : learningpaths.title
+      // formData.description = inputs.description ? inputs.description : learningpaths.description
+      // formData.level = inputs.level ? inputs.level : learningpaths.level
+      // formData.learningpath = inputs.learningpath ? inputs.learningpath : learningpaths.learningpath
+    }
     
   }
 

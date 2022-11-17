@@ -53,7 +53,7 @@
 }
 
 .Recomended:hover {
-  background: #f7f7f7;
+  background: var(--color-light-gray);
   border-radius: 10px;
 }
 

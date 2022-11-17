@@ -1,12 +1,10 @@
-import Complement from "../../components/Complement";
-import Map from "../../components/Map";
-import MainCover from "../../components/MainCover";
-import Information from "../../components/Information";
-import AboutUs from "../../components/AboutUs";
-import Service from "../../components/Service";
-import Customers from "../../components/Customers/Customers";
-
-import "./Home.css";
+import Complement from '../../components/Complement'
+import Map from '../../components/Map'
+import MainCover from '../../components/MainCover'
+import Information from '../../components/Information'
+import AboutUs from '../../components/AboutUs'
+import Service from '../../components/Service'
+import Customers from '../../components/Customers/Customers'
 
 const Home = () => {
   return (
@@ -19,7 +17,7 @@ const Home = () => {
       <Customers />
       <Map />
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

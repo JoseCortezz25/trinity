@@ -30,7 +30,7 @@
 }
 
 .FormLayout input {
-  background-color: rgba(230, 230, 230, 0.3);
+  background-color: var(--design-color-gray);
   width: 100%;
   margin-top: 10px;
   padding: 14px;

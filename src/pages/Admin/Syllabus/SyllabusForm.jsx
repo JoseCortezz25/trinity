@@ -60,6 +60,15 @@ const SyllabusForm = () => {
       }
       setError({ error: false, message: '' })
     }
+
+    if (typeOfForm === 'UPDATE') {
+
+      const formData = {}
+      // formData.title = inputs.title ? inputs.title : syllabus.title
+      // formData.description = inputs.description ? inputs.description : syllabus.description
+      // formData.level = inputs.level ? inputs.level : syllabus.level
+      // formData.learningpath = inputs.learningpath ? inputs.learningpath : syllabus.learningpath
+    }
   }
 
   const learningPaths = [

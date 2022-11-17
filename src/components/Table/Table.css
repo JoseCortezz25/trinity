@@ -39,12 +39,12 @@
 }
 
 .darkGreen {
-  color: #2A685B;
+  color: var(--color-dark-green-act);
   font-weight: bold;
 }
 
 .darkBlue {
-  color: #2F2E41;
+  color: var(--color-dark-green-disa);
   font-weight: bold;
 }
 
@@ -55,18 +55,18 @@
 }
 
 .LevelPrincipiante {
-  color: #0B4E7A;
+  color: var(--design-int-color-blue);
   font-weight: bold;
 }
 
 .LevelIntermedio {
-  color: #FF9F43;
+  color: var(--design-pr-color-yellow);
   font-weight: bold;
 
 }
 
 .LevelAvanzado {
-  color: #C23616;
+  color: var(--design-avan-color-red);
   font-weight: bold;
 }
 
@@ -102,7 +102,7 @@
 
 .PaginationDisabled a, .PaginationDisabled a:hover {
   color: #979797;
-  background-color: #F7F7F7;
+  background-color: var(--color-light-gray);
   cursor: not-allowed;
 }
 
@@ -115,6 +115,6 @@
 @media screen and (max-width: 667px){
   .TableComponent {
     width: 800px;
-    overflow-x: scroll; 
+    overflow-x: scroll;
   }
 }

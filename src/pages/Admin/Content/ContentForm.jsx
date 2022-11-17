@@ -65,7 +65,17 @@ const ContentForm = () => {
       setError({ error: true, message: '' })
     }
 
-    setError({ error: true, message: '' })
+    if (typeOfForm === 'UPDATE') {
+
+      const formData = {}
+      // formData.title = inputs.title ? inputs.title : contents.title
+      // formData.description = inputs.description ? inputs.description : contents.description
+      // formData.link = inputs.link ? inputs.link : contents.link
+      // formData.temario = inputs.temario ? inputs.temario : contents.temario
+      // formData.level = inputs.level ? inputs.level : contents.level
+      // formData.importance = inputs.importance ? inputs.importance : contents.importance
+    }
+
   }
 
   const levels = [

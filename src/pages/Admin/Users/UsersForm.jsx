@@ -4,7 +4,7 @@ import { useLocation, useParams, useNavigate } from 'react-router-dom'
 import { generateRandomUsername } from '../../../helpers/utils'
 import { RadioGroup } from '../../../contexts'
 import { createNewUser, getUserById, updateUser } from '../../../services/service'
-import { getCurrentUser, getToken, validateUser } from '../../../services/localStorage'
+import { getToken } from '../../../services/localStorage'
 import {
   Input,
   Select,

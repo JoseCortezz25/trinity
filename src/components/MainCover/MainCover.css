@@ -34,8 +34,8 @@
   background: rgb(115, 166, 37);
   background: linear-gradient(
     128deg,
-    rgba(115, 166, 37, 1) 0%,
-    rgba(67, 115, 55, 1) 100%
+    rgba(115, 166, 37, 0.8) 0%,
+    rgba(67, 115, 55, 0.5) 100%
   );
   display: grid;
   place-items: center;
