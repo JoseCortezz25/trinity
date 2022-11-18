@@ -45,7 +45,15 @@ const Users = () => {
         {allUsers.length > 0 ? (
           <Pagination data={allUsers}>
             {allUsers.map(({ id, fullName, email, status, role = 'USER' }) => (
-              <>
+              <div
+                key={fullName}
+                className="Table__row"
+                style={{
+                  gridTemplateColumns: `repeat(${
+                    Object.values(allUsers[0]).length + 1
+                  }, 250px)`,
+                }}
+              >
                 <li key={fullName}>{fullName}</li>
                 <li key={email}>{email}</li>
                 {status ? (
@@ -68,7 +76,7 @@ const Users = () => {
                     </button>
                   </Link>
                 </li>
-              </>
+              </div>
             ))}
           </Pagination>
         ) : (

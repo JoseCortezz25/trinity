@@ -32,7 +32,10 @@
   --button-color-gray: #ecf0f1;
   --color-light-gray: #f7f7f7;
   --button-color-dark-gray: #323333;
+  --color-dim-dark-gray: #414141;
   --button-color-gray-hover: #bbbbbb;
+  --border-bottom-color-gray: #d9d9d9;
+  --table-header-color-gray: rgba(217, 217, 217, 0.2);
   --transition: all 400ms ease;
 
   --design-color-gray: rgba(230, 230, 230, 0.3);
@@ -42,6 +45,10 @@
   --design-pr-dim-color-yellow: rgba(254, 202, 87, 0.2); /* Principiante */
   --design-int-dim-color-blue: rgba(52, 152, 219, 0.2); /* Intermedio */
   --design-avan-dim-color-red: rgba(232, 65, 24, 0.2); /* Avanzado */
+
+  /* Sizes */
+
+  
 }
 
 * {
@@ -239,6 +246,12 @@
 
   .Service .ServiceCards {
     max-width: 50%;
+  }
+}
+
+@media screen and (max-width: 827px) {
+  .ModalContainer {
+    width: 80%;
   }
 }
 

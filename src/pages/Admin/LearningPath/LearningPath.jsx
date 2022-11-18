@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { CoverGreetings } from "../../../components/Utils/Utils";
-import { LearningPaths } from "../../../assets/mocks";
-import { Link } from "react-router-dom";
-import Table from "../../../components/Table/Table";
-import { AiFillDelete } from "react-icons/ai";
-import { MdModeEdit } from "react-icons/md";
-import ModalAlert from "../../../components/ModalAlert/ModalAlert";
-import Pagination from "../../../components/Pagination/Pagination";
+import React, { useState } from 'react'
+import { CoverGreetings } from '../../../components/Utils/Utils'
+import { LearningPaths } from '../../../assets/mocks'
+import { Link } from 'react-router-dom'
+import Table from '../../../components/Table/Table'
+import { AiFillDelete } from 'react-icons/ai'
+import { MdModeEdit } from 'react-icons/md'
+import ModalAlert from '../../../components/ModalAlert/ModalAlert'
+import Pagination from '../../../components/Pagination/Pagination'
 
 const LearningPath = () => {
-  const [openModal, setOpenModal] = useState(false);
-  const [elementSeleted, setElementSeleted] = useState(null);
+  const [openModal, setOpenModal] = useState(false)
+  const [elementSeleted, setElementSeleted] = useState(null)
 
   const handleOpenModal = (id) => {
-    setOpenModal((prevState) => !prevState);
-    setElementSeleted(id);
-  };
+    setOpenModal((prevState) => !prevState)
+    setElementSeleted(id)
+  }
 
   return (
     <div className="Dashboard">
@@ -30,16 +30,24 @@ const LearningPath = () => {
 
       <Table
         headers={[
-          "Nombre de la ruta",
-          "Descripción",
-          "Link",
-          "Imagen",
-          "Acciones",
+          'Nombre de la ruta',
+          'Descripción',
+          'Link',
+          'Imagen',
+          'Acciones',
         ]}
       >
         <Pagination data={LearningPaths}>
           {LearningPaths.map(({ title, description, link, imagen }) => (
-            <>
+            <div
+              key={title}
+              className="Table__row"
+              style={{
+                gridTemplateColumns: `repeat(${
+                  Object.values(LearningPaths[0]).length + 1
+                }, 250px)`,
+              }}
+            >
               <li>{title}</li>
               <li className="TextClipped">{description}</li>
               <li className="TextClipped">{link}</li>
@@ -54,7 +62,7 @@ const LearningPath = () => {
                   </button>
                 </Link>
               </li>
-            </>
+            </div>
           ))}
         </Pagination>
       </Table>
@@ -65,7 +73,7 @@ const LearningPath = () => {
         />
       )}
     </div>
-  );
-};
+  )
+}
 
-export default LearningPath;
+export default LearningPath

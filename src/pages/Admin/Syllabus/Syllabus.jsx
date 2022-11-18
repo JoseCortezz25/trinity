@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import { CoverGreetings } from "../../../components/Utils/Utils";
-import { Link } from "react-router-dom";
-import Table from "../../../components/Table/Table";
-import { syllabus } from "../../../assets/mocks";
-import { AiFillDelete } from "react-icons/ai";
-import { MdModeEdit } from "react-icons/md";
-import ModalAlert from "../../../components/ModalAlert/ModalAlert";
-import Pagination from "../../../components/Pagination/Pagination";
+import React, { useState } from 'react'
+import { CoverGreetings } from '../../../components/Utils/Utils'
+import { Link } from 'react-router-dom'
+import Table from '../../../components/Table/Table'
+import { syllabus } from '../../../assets/mocks'
+import { AiFillDelete } from 'react-icons/ai'
+import { MdModeEdit } from 'react-icons/md'
+import ModalAlert from '../../../components/ModalAlert/ModalAlert'
+import Pagination from '../../../components/Pagination/Pagination'
 
 const Syllabus = () => {
-  const [openModal, setOpenModal] = useState(false);
-  const [elementSeleted, setElementSeleted] = useState(null);
+  const [openModal, setOpenModal] = useState(false)
+  const [elementSeleted, setElementSeleted] = useState(null)
 
   const handleOpenModal = (id) => {
-    setOpenModal((prevState) => !prevState);
-    setElementSeleted(id);
-  };
+    setOpenModal((prevState) => !prevState)
+    setElementSeleted(id)
+  }
 
   return (
     <div className="Dashboard">
@@ -27,21 +27,33 @@ const Syllabus = () => {
 
       <Table
         headers={[
-          "Titulo",
-          "Descripción",
-          "Nivel",
-          "Ruta de aprendizaje",
-          "Acciones",
+          'Titulo',
+          'Descripción',
+          'Nivel',
+          'Ruta de aprendizaje',
+          'Acciones',
         ]}
       >
         <Pagination data={syllabus}>
           {syllabus.map(({ title, description, level, learningpath }) => (
-            <>
-              <li key={title}>{title}</li>
-              <li key={description} className="TextClipped">{description}</li>
-              <li key={level} className={`Level${level}`}>{level}</li>
-              <li key={learningpath}>{learningpath}</li>
-              <li key={`${learningpath}${title}`} className="Table__actions">
+            <div
+              key={title}
+              className="Table__row"
+              style={{
+                gridTemplateColumns: `repeat(${
+                  Object.values(syllabus[0]).length + 1
+                }, 250px)`,
+              }}
+            >
+              <li>{title}</li>
+              <li className="TextClipped">
+                {description}
+              </li>
+              <li className={`Level${level}`}>
+                {level}
+              </li>
+              <li>{learningpath}</li>
+              <li className="Table__actions">
                 <button onClick={() => handleOpenModal(title)}>
                   <AiFillDelete className="BtnDelete" />
                 </button>
@@ -51,7 +63,7 @@ const Syllabus = () => {
                   </button>
                 </Link>
               </li>
-            </>
+            </div>
           ))}
         </Pagination>
       </Table>
@@ -62,7 +74,7 @@ const Syllabus = () => {
         />
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Syllabus;
+export default Syllabus

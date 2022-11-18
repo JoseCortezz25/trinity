@@ -21,24 +21,24 @@ const Dashboard = () => {
           path="/usuarios"
         />
         <DashboradCard
-          title="Rutas de Aprendizaje"
-          description="Administra las rutas de aprendizaje. Añade, edita o elimina el contenido."
-          path="/rutas"
-        />
-        <DashboradCard
-          title="Contenidos"
-          description="Administra los contenidos de aprendizaje. Añade, elimina o actualiza las contenidos."
-          path="/contenidos"
-        />
-        <DashboradCard
           title="Recursos Recomendados"
           description="Administra los recursos recomendados. Crea, elimina o actualiza la información."
           path="/recursos"
         />
         <DashboradCard
+          title="Rutas de Aprendizaje"
+          description="Administra las rutas de aprendizaje. Añade, edita o elimina el contenido."
+          path="/rutas"
+        />
+        <DashboradCard
           title="Temario de las rutas"
           description="Administra los temas de las rutas. Añade, edita o elimina el contenido."
           path="/temario"
+        />
+        <DashboradCard
+          title="Contenidos"
+          description="Administra los contenidos de aprendizaje. Añade, elimina o actualiza las contenidos."
+          path="/contenidos"
         />
       </div>
     </div>

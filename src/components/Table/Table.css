@@ -1,34 +1,47 @@
 .TableComponent {
   width: 100%;
-  margin: 25px 0px 25px 0px ;
-}
-
-.TableComponent__header, .TableComponent__item {
-  display: grid;
-  list-style: none;
-  border-bottom: 1px solid #D9D9D9;
-}
-
-.TableComponent__item li {
-  padding: 15px 0px 15px 10px;
-  border-bottom: 1px solid #D9D9D9;
+  margin: 25px 0px 25px 0px;
+  position: relative;
 }
 
 .TableComponent__header {
-  background-color: rgba(217, 217, 217, 0.2);
-  width: 100%;
-  font-weight: bold;
-  color: #414141;
+  display: grid;
+  list-style: none;
+  border-bottom: 1px solid var(--border-bottom-color-gray);
+}
+
+.TableComponent__item li {
+  list-style: none;
   padding: 15px 0px 15px 10px;
 }
 
-.Table__actions  svg {
-  width:  25px;
+.TableComponent__header {
+  background-color: var(--table-header-color-gray);
+  width: 100%;
+  font-weight: bold;
+  color: var(--color-dim-dark-gray);
+  padding: 15px 0px 15px 10px;
+  border-bottom: 1px solid var(--border-bottom-color-gray);
+}
+
+.Table__row {
+  display: grid;
+  border-bottom: 1px solid var(--border-bottom-color-gray);
+}
+
+.Table__row li:last-child{
+  width: 120px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Table__actions svg {
+  width: 25px;
   height: 25px;
 }
 
 .BtnDelete {
-  color: #C0392B;
+  color: var(--button-color-red);
 }
 
 .Table__actions button {
@@ -62,7 +75,6 @@
 .LevelIntermedio {
   color: var(--design-pr-color-yellow);
   font-weight: bold;
-
 }
 
 .LevelAvanzado {
@@ -96,25 +108,58 @@
 }
 
 .ButtonsPagination a:hover {
-  color: white;
+  color: var(--white);
   background-color: #000000a6;
 }
 
-.PaginationDisabled a, .PaginationDisabled a:hover {
+.PaginationDisabled a,
+.PaginationDisabled a:hover {
   color: #979797;
   background-color: var(--color-light-gray);
   cursor: not-allowed;
 }
 
-
 .PaginationActive a {
-  color: white;
-  background-color: #000000;
+  color: var(--white);
+  background-color: var(--black);
 }
 
-@media screen and (max-width: 667px){
+@media screen and (min-width: 1400px) {
+  .TableComponent{
+    max-width: 1400px;
+  }
+}
+
+@media screen and (max-width: 1067px) {
   .TableComponent {
-    width: 800px;
     overflow-x: scroll;
+  }
+
+  .TableComponent__header,
+  .TableComponent__item {
+    width: 1150px;
+  }
+    
+  .ButtonsPagination {
+    max-width: 500px;
+    list-style: none;
+    display: flex;
+    justify-content:flex-end,
+  }
+}
+
+@media screen and (max-width: 867px) {
+  .TableComponent {
+    overflow-x: scroll;
+  }
+
+  .ButtonsPagination {
+    width: calc(100vh - 140px);
+    list-style: none;
+    display: flex;
+    justify-content:flex-end,
+  }
+  .TableComponent__header, .Table__row {
+    width: 1400px;
   }
 }
