@@ -32,19 +32,17 @@ const Content = () => {
           "Link",
           "Nivel",
           "Temario",
-          "Prioridad",
           "Acciones",
         ]}
       >
         <Pagination data={Contents}>
-          {Contents.map(({ title, description, link, level, syllabus, order }) => (
+          {Contents.map(({ title, description, link, level, syllabus }) => (
               <>
                 <li>{title}</li>
                 <li className="TextClipped">{description}</li>
                 <li className="TextClipped">{link}</li>
                 <li className={`TextClipped Level${level}`}>{level}</li>
                 <li className="TextClipped">{syllabus}</li>
-                <li className="TextClipped">{order}</li>
                 <li className="Table__actions">
                   <button onClick={() => handleOpenModal(title)}>
                     <AiFillDelete className="BtnDelete" />

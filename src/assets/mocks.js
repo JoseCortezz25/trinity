@@ -323,91 +323,73 @@ const Contents = [
   {
     title: "TUTORIAL PHP YA",
     description:"Acorde a este curso aprenderás a instalar xampp, variables, condicionales, estructuras repetitivas, creación de formularios, vectores, funciones, conexiona BD con mysql, CRUD, Borrado de cookies, variables de sesion, creacion de imagenes dinamicas, Poo",
-    order: 1,
     level: "Principiante",
     link: "https://www.tutorialesprogramacionya.com/phpya/index.php?inicio=0",
     syllabus: 'HTML',
-    acciones: 'eliminar/editar'
   },
   {
-    order: 2,
     link: "https://developer.mozilla.org/es/docs/Web/CSS/text-transform",
     title: "Etiquetas multimedia",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
     level: "Intermedio",
     syllabus: 'HTML',
-    acciones: 'eliminar/editar'
   },
   {
-    order: 3,
     link: "https://developer.mozilla.org/es/docs/Web/CSS/text-transform",
     title: "Formularios",
     description:
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
     level: "Avanzado",
     syllabus: 'HTML',
-    acciones: 'eliminar/editar'
   },
   {
-    order: 4,
     link: "https://developer.mozilla.org/es/docs/Web/CSS/text-transform",
     title: "title",
     description:
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
     level: "Principiante",
     syllabus: 'JavaScript',
-    acciones: 'eliminar/editar'
   },
   {
-    order: 5,
     link: "https://developer.mozilla.org/es/docs/Web/CSS/text-transform",
     title: "title",
     description:
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
     level: "Principiante",
     syllabus: 'CSS',
-    acciones: 'eliminar/editar'
   },
   {
-    order: 6,
     link: "https://developer.mozilla.org/es/docs/Web/CSS/text-transform",
     title: "title",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
     level: "Avanzado",
     syllabus: 'CSS',
-    acciones: 'eliminar/editar'
   },
   {
     link: "https://developer.mozilla.org/es/docs/Web/CSS/text-transform",
-    order: 7,
     title: "title",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
     level: "Intermedio",
     syllabus: 'CSS',
-    acciones: 'eliminar/editar'
   },
   {
-    order: 8,
     link: "https://developer.mozilla.org/es/docs/Web/CSS/text-transform",
     title: "title",
     description:
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
     level: "Intermedio",
     syllabus: 'JavaScript',
-    acciones: 'eliminar/editar'
   },
   {
-    order: 9,
     link: "https://developer.mozilla.org/es/docs/Web/CSS/text-transform",
     title: "title",
     description:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam quae",
     level: "Avanzado",
     syllabus: 'JavaScript',
-    acciones: 'eliminar/editar'
   },
 ];
 

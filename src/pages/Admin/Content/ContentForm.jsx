@@ -22,7 +22,6 @@ const ContentForm = () => {
     link: '',
     temario: '',
     level: '',
-    importance: 0,
   })
 
   useEffect(() => {
@@ -73,7 +72,6 @@ const ContentForm = () => {
       // formData.link = inputs.link ? inputs.link : contents.link
       // formData.temario = inputs.temario ? inputs.temario : contents.temario
       // formData.level = inputs.level ? inputs.level : contents.level
-      // formData.importance = inputs.importance ? inputs.importance : contents.importance
     }
 
   }
@@ -180,26 +178,6 @@ const ContentForm = () => {
               setInputs((prevState) => ({
                 ...prevState,
                 level: e.id,
-              }))
-            }
-          />
-        </div>
-
-        <div className="InputsGroup">
-          <Label htmlFor="importance">Grado de importancia</Label>
-          <p className="InputsGroup__sublabel">
-            Escribe en numero el orden en el que se posicionará el contenido en
-            la página.
-          </p>
-          <Input
-            id="importance"
-            name="importance"
-            type="number"
-            placeholder="Ej: 1"
-            onChange={(e) =>
-              setInputs((prevState) => ({
-                ...prevState,
-                importance: e.target.value,
               }))
             }
           />
