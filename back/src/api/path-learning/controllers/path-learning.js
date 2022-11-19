@@ -1,25 +1,26 @@
 'use strict'
 
 /**
- * rol-trinity controller
+ * path-learning controller
  */
 
 const { createCoreController } = require('@strapi/strapi').factories
 
 module.exports = createCoreController(
-  'api::rol-trinity.rol-trinity',
+  'api::path-learning.path-learning',
   ({ strapi }) => ({
     async find(ctx) {
       ctx.query = { ...ctx.query, local: 'en' }
-      const { data } = await super.find(ctx)
+      const { data: result, meta } = await super.find(ctx)
+      const { pagination } = meta
 
-      return data
+      return { result, pagination }
     },
     async findOne(ctx) {
       ctx.query = { ...ctx.query, local: 'en' }
-      const { data } = await super.findOne(ctx)
+      const { data: result } = await super.findOne(ctx)
 
-      return data
+      return result
     },
   })
 )

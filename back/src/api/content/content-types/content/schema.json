@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contents",
+  "info": {
+    "singularName": "content",
+    "pluralName": "contents",
+    "displayName": "Content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "idPathLearning": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::path-learning.path-learning",
+      "inversedBy": "idContents"
+    },
+    "idLevel": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::level.level",
+      "inversedBy": "idContents"
+    }
+  }
+}

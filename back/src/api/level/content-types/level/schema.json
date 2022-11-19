@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "levels",
+  "info": {
+    "singularName": "level",
+    "pluralName": "levels",
+    "displayName": "Level"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "idContents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::content.content",
+      "mappedBy": "idLevel"
+    },
+    "idPathLearning": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::path-learning.path-learning",
+      "inversedBy": "idLevel"
+    }
+  }
+}
