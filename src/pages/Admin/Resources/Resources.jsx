@@ -34,7 +34,7 @@ const Resources = () => {
         <Pagination data={RecommendedResources}>
           {RecommendedResources.map(({ title, link, type }) => (
             <div
-              key={title}
+              key={`${title}`}
               className="Table__row"
               style={{
                 gridTemplateColumns: `repeat(${

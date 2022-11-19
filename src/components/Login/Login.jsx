@@ -25,8 +25,7 @@ const Login = () => {
         setToken(res.data.jwt)
         setUserStatus(res.data.user.status)
         setUser(res.data.user)
-        res.rol = 'ADMIN'
-        if (res.rol === 'ADMIN') {
+        if (res.data.user.rol === 'ADMIN') {
           navigate('/admin')
         } else {
           navigate('/aprender')
