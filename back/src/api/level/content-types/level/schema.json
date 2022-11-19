@@ -18,17 +18,17 @@
     "description": {
       "type": "text"
     },
-    "idPathLearning": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::path-learning.path-learning",
-      "inversedBy": "id_level"
-    },
     "idContents": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::content.content",
       "mappedBy": "idLevel"
+    },
+    "idPathLearning": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::path-learning.path-learning",
+      "inversedBy": "idLevel"
     }
   }
 }

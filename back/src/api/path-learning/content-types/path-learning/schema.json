@@ -4,7 +4,8 @@
   "info": {
     "singularName": "path-learning",
     "pluralName": "path-learnings",
-    "displayName": "PathLearning"
+    "displayName": "PathLearning",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -18,7 +19,7 @@
     "description": {
       "type": "text"
     },
-    "id_level": {
+    "idLevel": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::level.level",
@@ -29,6 +30,9 @@
       "relation": "oneToMany",
       "target": "api::content.content",
       "mappedBy": "idPathLearning"
+    },
+    "link": {
+      "type": "string"
     }
   }
 }
