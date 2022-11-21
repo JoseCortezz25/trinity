@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "levels",
+  "collectionName": "learningpaths",
   "info": {
-    "singularName": "level",
-    "pluralName": "levels",
-    "displayName": "Level",
+    "singularName": "learningpath",
+    "pluralName": "learningpaths",
+    "displayName": "LearningPaths",
     "description": ""
   },
   "options": {
@@ -14,19 +14,18 @@
   "attributes": {
     "title": {
       "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "description": {
+      "type": "text",
       "required": true
     },
     "temarios": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::temario.temario",
-      "mappedBy": "level"
-    },
-    "contents": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::content.content",
-      "mappedBy": "level"
+      "mappedBy": "learning_path"
     }
   }
 }
