@@ -1,63 +1,67 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import {
-  getLearningPaths,
-  getListOfRecommendations,
-} from "../../services/service";
-import { getToken } from "../../services/localStorage";
-import YoutubeIcon from "../../assets/images/youTube.png";
-import WebIcon from "../../assets/images/Web.png";
-import { Loader } from "../../components/Utils";
-
-import "./Plataform.css";
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { getLearningPaths, getAllRecommendations } from '../../services/service'
+import { getToken } from '../../services/localStorage'
+import { Loader } from '../../components/Utils'
+import YoutubeIcon from '../../assets/images/youTube.png'
+import WebIcon from '../../assets/images/Web.png'
+import './Plataform.css'
 
 const Plataform = () => {
-  const [learningPaths, setLearningPaths] = useState([{}]);
-  const [listOfRecommendations, setListOfRecommendations] = useState([{}]);
+  const [learningPaths, setLearningPaths] = useState([{}])
+  const [listOfRecommendations, setListOfRecommendations] = useState([{}])
 
   useEffect(() => {
     getLearningPaths(getToken()).then((data) => {
-      setLearningPaths(data);
-    });
-    getListOfRecommendations(getToken()).then((data) => {
-      setListOfRecommendations(data);
-    });
-  }, []);
+      setLearningPaths(data)
+    })
+    getAllRecommendations(getToken()).then((data) => {
+      console.log(data.data.result)
+      setListOfRecommendations(data.data.result)
+    })
+  }, [])
 
   return learningPaths && listOfRecommendations ? (
     <main className="Plataform">
       <h2 className="tittleh2">Rutas de aprendizaje</h2>
       <div className="Content_paths">
-        {learningPaths.length > 0 ? learningPaths?.map((paths) => (
-          <CardPath
-            image={paths.image}
-            title={paths.title}
-            key={paths.title}
-            description={paths.description}
-            link={paths.link}
-          />
-        )): <p>no hay datos</p>}
+        {learningPaths.length > 0 ? (
+          learningPaths?.map((paths) => (
+            <CardPath
+              image={paths.image}
+              title={paths.title}
+              key={paths.title}
+              description={paths.description}
+              link={paths.link}
+            />
+          ))
+        ) : (
+          <p>no hay datos</p>
+        )}
       </div>
 
       <h2 className="tittleh2">Recursos recomendados</h2>
       <div className="RecomemdedCards">
-        {listOfRecommendations.length > 0 ? listOfRecommendations?.map((recomended) => (
-          <Recomended
-            title={recomended.title}
-            key={`${recomended.title}${recomended.subtitle}`}
-            subtitle={recomended.subtitle}
-            typeSite={recomended.typeSite}
-            link={recomended.link}
-          />
-          )): <p>no hay datos</p>}
+        {listOfRecommendations.length > 0 ? (
+          listOfRecommendations?.map(({ id, attributes }) => (
+            <Recomended
+              title={attributes?.title}
+              key={`${attributes?.title}${id}`}
+              typeSite={attributes?.type}
+              link={attributes?.link}
+            />
+          ))
+        ) : (
+          <p>no hay datos</p>
+        )}
       </div>
     </main>
   ) : (
     <main className="LoaderBackground">
       <Loader />
     </main>
-  );
-};
+  )
+}
 
 const CardPath = ({ title, description, image, link }) => (
   <Link to={link} className="contenedorTargetas">
@@ -67,12 +71,12 @@ const CardPath = ({ title, description, image, link }) => (
     </div>
     <p className="textDescription">{description}</p>
   </Link>
-);
+)
 
-const Recomended = ({ title, subtitle, typeSite, link }) => (
+const Recomended = ({ title, typeSite, link }) => (
   <a href={link} className="Recomended" target="_blank" rel="noreferrer">
     <div className="Recomended__image">
-      {typeSite === "youtube" ? (
+      {typeSite === 'youtube' ? (
         <img className="img_Online" src={YoutubeIcon} />
       ) : (
         <img className="img_Online" src={WebIcon} />
@@ -80,9 +84,8 @@ const Recomended = ({ title, subtitle, typeSite, link }) => (
     </div>
     <div className="Recomended__content">
       <p>{title}</p>
-      <p className="Recomended__content-p">{subtitle}</p>
     </div>
   </a>
-);
+)
 
-export default Plataform;
+export default Plataform

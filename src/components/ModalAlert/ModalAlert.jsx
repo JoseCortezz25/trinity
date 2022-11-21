@@ -2,18 +2,17 @@ import { useEffect } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { FiAlertCircle } from 'react-icons/fi'
 import { getToken } from '../../services/localStorage'
-import { deleteUser } from '../../services/service'
 import Modal from '../Modal/Modal'
 
-const ModalAlert = ({ elementSeleted, setOpenModal }) => {
+const ModalAlert = ({ elementSeleted, setOpenModal, deleteItem }) => {
   const handleKeyPress = (event) => {
     if (event.code === 'Escape' || event.keyCode === 27) {
       setOpenModal((prevState) => !prevState)
     }
   }
 
-  const deleteUserSeleted = (id) => {
-    deleteUser(id, getToken())
+  const deleteSeleted = (id) => {
+    deleteItem(id, getToken())
       .then((res) => {
         setOpenModal((prevState) => !prevState)
       })
@@ -49,7 +48,7 @@ const ModalAlert = ({ elementSeleted, setOpenModal }) => {
         >
           Cancelar
         </button>
-        <button className="btnStandard btnRed" onClick={() => deleteUserSeleted(elementSeleted)}>Eliminar</button>
+        <button className="btnStandard btnRed" onClick={() => deleteSeleted(elementSeleted)}>Eliminar</button>
       </div>
     </Modal>
   )

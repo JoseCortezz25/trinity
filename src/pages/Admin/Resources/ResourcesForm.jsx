@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { CoverGreetings } from '../../../components/Utils/Utils'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation, useParams, useNavigate } from 'react-router-dom'
 import { Input } from '../../../components/Input'
 import { Button, colorSchema } from '../../../components/Button'
 import { Label } from '../../../components/Label'
 import { Select } from '../../../components/Select'
 import { validURL } from '../../../helpers/utils'
+import {
+  addRecommendations,
+  getRecommendation,
+  updateRecommendation,
+} from '../../../services/service'
+import { getToken } from '../../../services/localStorage'
 
 const ResourcesForm = () => {
   const location = useLocation()
   const { id } = useParams()
   const [error, setError] = useState({ error: false, message: '' })
+  const [resource, setResource] = useState({})
+  const navigate = useNavigate()
   const [typeOfForm, setTypeOfForm] = useState('')
   const [informativeMessages, setInformativeMessages] = useState({
     greetings: '',
@@ -30,9 +38,19 @@ const ResourcesForm = () => {
         greetings: 'Añadir nuevo recurso recomendado',
         btnSubmitMessage: 'Añadir recurso',
       })
-    } else {
+    }
+    if (location.pathname.includes('/actualizar')) {
       setTypeOfForm('UPDATE')
-      console.log('email', id)
+      getRecommendation(id, getToken())
+        .then((res) => {
+          setResource(res.data.attributes)
+        })
+        .catch((error) => {
+          setError({
+            error: error.error,
+            message: error.message,
+          })
+        })
       setInformativeMessages({
         greetings: 'Actualizar recurso recomendado',
         btnSubmitMessage: 'Actualizar recurso',
@@ -40,45 +58,72 @@ const ResourcesForm = () => {
     }
   }, [location])
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const { title, link, type } = inputs
-
-    console.log('inputs', inputs)
-
-    // Validate values input
-    if (!validURL(inputs.link)) {
-      return setError({
-        error: true,
-        message: 'La URL de la imagen no corresponde a un formado veridico.',
+  const modifyResource = (resource) => {
+    updateRecommendation(id, { data: resource }, getToken())
+      .then((res) => {
+        console.log('✨res', res)
       })
-    }
-    setError({ error: false, message: '' })
-
-    if (typeOfForm === 'ADD') {
-      if (title === '' || link === '' || type === '') {
-        return setError({
-          error: true,
+      .catch((error) => {
+        setError({
+          error: error.error,
           message:
-            'Hay campos vacios. Asegurate de completar todos los campos.',
+            'Ha ocurrido un error. No es tu culpa, estamos solucionandolo.',
         })
+      })
+  }
+
+  const handleSubmit = (e) => {
+    try {
+      e.preventDefault()
+      const { title, link, type } = inputs
+
+      if (typeOfForm === 'ADD') {
+        if (!validURL(inputs.link)) {
+          return setError({
+            error: true,
+            message:
+              'La URL de la imagen no corresponde a un formado veridico.',
+          })
+        }
+        setError({ error: false, message: '' })
+        if (title === '' || link === '' || type === '') {
+          return setError({
+            error: true,
+            message:
+              'Hay campos vacios. Asegurate de completar todos los campos.',
+          })
+        }
+        setError({ error: false, message: '' })
+
+        addRecommendations({ data: { title, link, type } }, getToken())
+        navigate('/admin/recursos')
       }
-      setError({ error: false, message: '' })
+
+      if (typeOfForm === 'UPDATE') {
+        const formData = {}
+        formData.title = inputs.title ? inputs.title : resource.title
+        formData.link = inputs.link ? inputs.link : resource.link
+        formData.type = inputs.type ? inputs.type : resource.type
+        modifyResource(formData, getToken())
+        navigate('/admin/recursos')
+      }
+    } catch (error) {
+      setError({ error: error.error, message: error.message })
     }
   }
 
   const typeOfResources = [
     {
       label: 'Página web',
-      id: 'Página web',
+      id: 'WEB',
     },
     {
       label: 'Youtube',
-      id: 'Youtube',
+      id: 'YOUTUBE',
     },
     {
       label: 'Curso',
-      id: 'Curso',
+      id: 'CURSO',
     },
   ]
 
@@ -89,8 +134,9 @@ const ResourcesForm = () => {
         <div className="InputsGroup">
           <Label htmlFor="title">Titulo del recurso</Label>
           <Input
-            type="text"
             id="title"
+            type="text"
+            value={inputs.title ? inputs.title : resource.title}
             placeholder="Escribe el titulo del recurso"
             onChange={(e) =>
               setInputs((prevState) => ({
@@ -105,8 +151,10 @@ const ResourcesForm = () => {
           <Label htmlFor="type">Tipo del recursos</Label>
           <Select
             id="type"
-            placeholder="Seleccionar tipo de recursos"
             name="select"
+            placeholder={
+              inputs.type ? inputs.type : 'Seleccionar tipo de recursos'
+            }
             options={typeOfResources}
             onChange={(e) =>
               setInputs((prevState) => ({
@@ -120,11 +168,13 @@ const ResourcesForm = () => {
         <div className="InputsGroup">
           <Label htmlFor="link">Link</Label>
           <Input
-            type="text"
             id="link"
+            name="link"
+            type="text"
+            value={inputs.link ? inputs.link : resource.link}
             placeholder="Escribe el nombre de la ruta"
-            onChange={(e) =>
-              setInputs((prevState) => ({ ...prevState, link: e.target.value }))
+            onChange={({ target: { value, name } }) =>
+              setInputs({ ...inputs, [name]: value })
             }
           />
         </div>

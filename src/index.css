@@ -46,9 +46,11 @@
   --design-int-dim-color-blue: rgba(52, 152, 219, 0.2); /* Intermedio */
   --design-avan-dim-color-red: rgba(232, 65, 24, 0.2); /* Avanzado */
 
-  /* Sizes */
-
-  
+  /* Alerts */
+  --color-success: rgba(16, 172, 132,0.5);
+  --border-color-success: #10ac84;
+  --color-denied: rgba(255, 82, 82,0.5);
+  --border-color-denied: #b33939;
 }
 
 * {
