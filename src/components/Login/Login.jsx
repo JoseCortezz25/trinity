@@ -1,39 +1,41 @@
-import { useState, useContext } from "react";
-import { setCurrentUser, setToken, setUserStatus } from "../../services/localStorage";
-import { Link, useNavigate } from "react-router-dom";
-import { login } from "../../services/service";
-import UserContext from "../../hooks/UserContext";
-import { logoIcon } from "../../assets";
-
-import "./Login.css";
+import { useState, useContext } from 'react'
+import { setCurrentUser, setRoleUser, setToken } from '../../services/localStorage'
+import { Link, useNavigate } from 'react-router-dom'
+import { getUser, login } from '../../services/service'
+import UserContext from '../../hooks/UserContext'
+import { logoIcon } from '../../assets'
+import './Login.css'
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState({ error: false, message: "" });
-  const navigate = useNavigate();
-  const { setUser } = useContext(UserContext);
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState({ error: false, message: '' })
+  const navigate = useNavigate()
+  const { setUser } = useContext(UserContext)
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    login({identifier: email,password})
+    login({ identifier: email, password })
       .then((res) => {
-        if (res.error) return setError({error: res.error, message: res.message})
-        setError({error: false, message: ""})
+        setRoleUser(res.data.user.roles_trinity.name)
         setCurrentUser(res.data.user.id)
         setToken(res.data.jwt)
-        setUserStatus(res.data.user.status)
-        setUser(res.data.user)
-        if (res.data.user.rol === 'ADMIN') {
+        return getUser(res.data.user.id, res.data.jwt)
+      })
+      .then((res) => {
+        setUser(res.data)
+        if (res.data.roles_trinity.name === 'ADMIN') {
           navigate('/admin')
         } else {
           navigate('/aprender')
         }
       })
-      .catch(error => {
-        console.log(error);
-        setError({error: error.error, message: "El usuario no esta registrado. Revisa tus credenciales."})
+      .catch((error) => {
+        return setError({
+          error: error.error,
+          message: 'El usuario no esta registrado. Revisa tus credenciales.',
+        })
       })
   }
 
@@ -73,7 +75,7 @@ const Login = () => {
             Iniciar Sesión
           </button>
           <p className="MessageForm">
-            ¿No tienes cuenta?{" "}
+            ¿No tienes cuenta?{' '}
             <Link to="/formulario/register">Creala ahora mismo</Link>
           </p>
         </form>
@@ -85,7 +87,7 @@ const Login = () => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

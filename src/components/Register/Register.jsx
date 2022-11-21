@@ -27,7 +27,7 @@ const Register = () => {
     }
     const username = generateRandomUsername(fullName)
 
-    registerAccount({ fullName, email, password, username })
+    registerAccount({ fullName, email, password, username, status: false, role: 1, roles_trinity:2 })
       .then((res) => {
         console.log(res);
         if (res.error)
