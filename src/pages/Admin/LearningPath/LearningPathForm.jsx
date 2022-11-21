@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { CoverGreetings } from '../../../components/Utils/Utils'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation, useParams, useNavigate } from 'react-router-dom'
 import { Input } from '../../../components/Input'
 import { Button, colorSchema } from '../../../components/Button'
 import { Label } from '../../../components/Label'
+import {
+  createLearningPath,
+  getLearningPath,
+  updateLearningPath,
+} from '../../../services/service'
+import { getToken } from '../../../services/localStorage'
 
 const LearningPathForm = () => {
   const location = useLocation()
-  const { id } = useParams()  
+  const { id } = useParams()
+  const navigate = useNavigate()
+  const [learningPath, setLearningPath] = useState({})
   const [typeOfForm, setTypeOfForm] = useState('')
   const [error, setError] = useState({ error: false, message: '' })
   const [informativeMessages, setInformativeMessages] = useState({
@@ -16,10 +24,8 @@ const LearningPathForm = () => {
   })
 
   const [inputs, setInputs] = useState({
-    name: '',
+    title: '',
     description: '',
-    link: '',
-    imagen: '',
   })
 
   useEffect(() => {
@@ -31,6 +37,17 @@ const LearningPathForm = () => {
       })
     } else {
       setTypeOfForm('UPDATE')
+      getLearningPath(id, getToken())
+        .then((res) => {
+          console.log(res.data.data.attributes)
+          setLearningPath(res.data.data.attributes)
+        })
+        .catch((error) => {
+          setError({
+            error: error.error,
+            message: error.message,
+          })
+        })
       setInformativeMessages({
         greetings: 'Actualización de la Ruta de Aprendizaje',
         btnSubmitMessage: 'Actualizar ruta',
@@ -38,57 +55,51 @@ const LearningPathForm = () => {
     }
   }, [location])
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('inputs', inputs)
-    
-    const { title, description, link, imagen } = inputs
-
-    if (typeOfForm === 'ADD') {
-      if (
-        title === '' ||
-        description === '' ||
-        link === '' ||
-        imagen === ''
-      ) {
-        return setError({
-          error: true,
+  const modifyLearningPath = (learninPath) => {
+    updateLearningPath(id, { data: learninPath }, getToken())
+      .then((res) => {
+        console.log('Updated it :)')
+      })
+      .catch((error) => {
+        setError({
+          error: error.error,
           message:
-            'Hay campos vacios. Asegurate de completar todos los campos.',
+            'Ha ocurrido un error. No es tu culpa, estamos solucionandolo.',
         })
-      }
-      setError({ error: true, message: '' })
-    }
-
-    
-    if (typeOfForm === 'UPDATE') {
-
-      const formData = {}
-      // formData.title = inputs.title ? inputs.title : learningpaths.title
-      // formData.description = inputs.description ? inputs.description : learningpaths.description
-      // formData.level = inputs.level ? inputs.level : learningpaths.level
-      // formData.learningpath = inputs.learningpath ? inputs.learningpath : learningpaths.learningpath
-    }
-    
+      })
   }
 
-  const handleImage = (e) => {
-    console.log('e', e)
-    const allowedMimes = [
-      'image/png', 
-      'image/jpg', 
-      'image/gif', 
-      'image/jpeg'
-    ]
+  const handleSubmit = (e) => {
+    try {
+      e.preventDefault()
+      const { title, description } = inputs
 
-    
-    if (allowedMimes.includes(e.type)) {
-      setInputs({...inputs, imagen: e})
-      setError({error: false, message: ''})
-    } else {
-      window.document.getElementById('input-file').value = ''
-      setInputs({...inputs, imagen: e})
-      setError({message: 'Invalid file type!. Only allowed jpeg, jpg and png', error: false})
+      if (typeOfForm === 'ADD') {
+        if (title === '' || description === '') {
+          return setError({
+            error: true,
+            message:
+              'Hay campos vacios. Asegurate de completar todos los campos.',
+          })
+        }
+        setError({ error: true, message: '' })
+
+        createLearningPath(inputs, getToken())
+        navigate('/admin/rutas')
+      }
+
+      if (typeOfForm === 'UPDATE') {
+        const formData = {}
+        formData.title = inputs.title ? inputs.title : learningPath.title
+        formData.description = inputs.description
+          ? inputs.description
+          : learningPath.description
+
+        modifyLearningPath(formData)
+        navigate('/admin/rutas')
+      }
+    } catch (error) {
+      setError({ error: error.error, message: error.message })
     }
   }
 
@@ -97,13 +108,15 @@ const LearningPathForm = () => {
       <CoverGreetings greeting={informativeMessages.greetings} isHome={false} />
       <form onSubmit={handleSubmit} className="FormContaner">
         <div className="InputsGroup">
-          <Label htmlFor="name">Nombre de la ruta</Label>
+          <Label htmlFor="title">Nombre de la ruta</Label>
           <Input
-            id="name"
+            id="title"
             type="text"
+            name="title"
+            value={inputs.title ? inputs.title : learningPath.title}
             placeholder="Escribe el nombre de la ruta"
             onChange={(e) =>
-              setInputs((prevState) => ({ ...prevState, name: e.target.value }))
+              setInputs((prevState) => ({ ...prevState, title: e.target.value }))
             }
           />
         </div>
@@ -113,6 +126,8 @@ const LearningPathForm = () => {
           <Input
             id="description"
             type="text"
+            name="description"
+            value={inputs.description ? inputs.description : learningPath.description}
             placeholder="Escribe la descripción de la ruta"
             onChange={(e) =>
               setInputs((prevState) => ({
@@ -123,34 +138,7 @@ const LearningPathForm = () => {
           />
         </div>
 
-        <div className="InputsGroup">
-          <Label htmlFor="link">Link</Label>
-          <Input
-            id="link"
-            type="text"
-            placeholder="Escribe el link hacia donde se redireccionará la ruta"
-            onChange={(e) =>
-              setInputs((prevState) => ({ ...prevState, link: e.target.value }))
-            }
-          />
-        </div>
-
-        <div className="InputsGroup">
-          <Label htmlFor="imagen">Selecciona la imagen de la cabecera</Label>
-          <Input
-            id="input-file"
-            type="file"
-            name="imagen"
-            className="custom-file-input"
-            accept="image/png, image/jpg, image/gif, image/jpeg"
-            onChange={({ target }) => handleImage(target.files[0])}
-          />
-
-        </div>
-
-        {error.error && (
-          <p className="ErrorMessage"> {error.message}</p>
-        )}
+        {error.error && <p className="ErrorMessage"> {error.message}</p>}
 
         <Button type="submit" color={colorSchema.black}>
           {informativeMessages.btnSubmitMessage}

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { getLearningPaths, getAllRecommendations } from '../../services/service'
+import {
+  getAllRecommendations,
+  getAllLearningPaths,
+} from '../../services/service'
 import { getToken } from '../../services/localStorage'
 import { Loader } from '../../components/Utils'
 import YoutubeIcon from '../../assets/images/youTube.png'
@@ -12,11 +15,10 @@ const Plataform = () => {
   const [listOfRecommendations, setListOfRecommendations] = useState([{}])
 
   useEffect(() => {
-    getLearningPaths(getToken()).then((data) => {
-      setLearningPaths(data)
+    getAllLearningPaths(getToken()).then((data) => {
+      setLearningPaths(data.data.data)
     })
     getAllRecommendations(getToken()).then((data) => {
-      console.log(data.data.result)
       setListOfRecommendations(data.data.result)
     })
   }, [])
@@ -26,13 +28,13 @@ const Plataform = () => {
       <h2 className="tittleh2">Rutas de aprendizaje</h2>
       <div className="Content_paths">
         {learningPaths.length > 0 ? (
-          learningPaths?.map((paths) => (
+          learningPaths?.map(({ id, attributes }) => (
             <CardPath
-              image={paths.image}
-              title={paths.title}
-              key={paths.title}
-              description={paths.description}
-              link={paths.link}
+              image="https://images.unsplash.com/photo-1668881233694-1825a663b2a4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+              title={attributes?.title}
+              key={attributes?.title}
+              description={attributes?.description}
+              link={id}
             />
           ))
         ) : (
@@ -69,7 +71,9 @@ const CardPath = ({ title, description, image, link }) => (
       <img src={image} />
       <h2 className="text">{title}</h2>
     </div>
-    <p className="textDescription">{description}</p>
+    <div className="textDescription">
+      <p>{description}</p>
+    </div>
   </Link>
 )
 
