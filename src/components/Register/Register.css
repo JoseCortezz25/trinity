@@ -44,6 +44,7 @@
 
 .ErrorMessage {
   /* text-transform: */
+  margin-top: 10px;
   color: #c0392b;
   font-weight: bold;
 }

@@ -7,6 +7,23 @@
   margin-top: 20px;
 }
 
+.InputsGroup {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.InputsGroup__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px
+}
+
+.InputsGroup__sublabel {
+  font-size: 15px;
+  color: #414141;
+  margin-bottom: 5px;
+}
+
 .FormLayout .InputsGroup label {
   color: #414141;
   font-weight: 500;

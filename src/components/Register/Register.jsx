@@ -1,44 +1,47 @@
-import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { register } from "../../services/service";
-import { logoIcon } from "../../assets";
-
-import "./Register.css";
+import { useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
+import { registerAccount } from '../../services/service'
+import { logoIcon } from '../../assets'
+import { generateRandomUsername } from '../../helpers/utils'
+import { Input, Label } from '../../components'
+import './Register.css'
 
 const Register = () => {
-  const [fullname, setFullname] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmpassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState({ error: false, message: "" });
-  const navigate = useNavigate();
+  const [fullName, setFullName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmpassword, setConfirmPassword] = useState('')
+  const [error, setError] = useState({ error: false, message: '' })
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (password !== confirmpassword) {
       return setError({
         error: true,
-        message: "Las contraseñas no son iguales",
-      });
+        message: 'Las contraseñas no son iguales',
+      })
     } else {
-      setError({ error: false, message: "" });
+      setError({ error: false, message: '' })
     }
+    const username = generateRandomUsername(fullName)
 
-    register({ fullname, email, password })
+    registerAccount({ fullName, email, password, username })
       .then((res) => {
+        console.log(res);
         if (res.error)
-          return setError({ error: res.error, message: res.message });
-        setFullname("");
-        setEmail("");
-        setPassword("");
-        setConfirmPassword("");
-        navigate("/formulario/login");
+          return setError({ error: res.error, message: res.message })
+        setFullName('')
+        setEmail('')
+        setPassword('')
+        setConfirmPassword('')
+        navigate('/formulario/login')
       })
       .catch((error) => {
-        console.error(error);
-      });
-  };
+        console.error(error)
+      })
+  }
 
   return (
     <div className="Register">
@@ -53,18 +56,19 @@ const Register = () => {
 
         <form onSubmit={handleSubmit}>
           <div className="InputsGroup">
-            <label htmlFor="fullname">Nombre</label>
-            <input
+            <Label htmlFor="fullName">Nombre</Label>
+            <Input
+              minLength="8"
               type="text"
-              name="fullname"
+              name="fullName"
               placeholder="Escribe tu nombre"
               required
-              onChange={(e) => setFullname(e.target.value)}
+              onChange={(e) => setFullName(e.target.value)}
             />
           </div>
           <div className="InputsGroup">
-            <label htmlFor="email">E-mail</label>
-            <input
+            <Label htmlFor="email">E-mail</Label>
+            <Input
               type="email"
               name="email"
               placeholder="Escribe tu correo"
@@ -73,8 +77,9 @@ const Register = () => {
             />
           </div>
           <div className="InputsGroup">
-            <label htmlFor="password">Contraseña</label>
-            <input
+            <Label htmlFor="password">Contraseña</Label>
+            <Input
+              minLength="8"
               type="password"
               name="password"
               placeholder="Escribe tu contraseña"
@@ -83,8 +88,9 @@ const Register = () => {
             />
           </div>
           <div className="InputsGroup">
-            <label htmlFor="confirmpassword">Confirmar contraseña</label>
-            <input
+            <Label htmlFor="confirmpassword">Confirmar contraseña</Label>
+            <Input
+              minLength="8"
               type="password"
               name="confirmpassword"
               placeholder="Escribe de nuevo tu contraseña"
@@ -97,7 +103,7 @@ const Register = () => {
             Crear cuenta
           </button>
           <p className="MessageForm">
-            ¿Ya tienes cuenta?{" "}
+            ¿Ya tienes cuenta?{' '}
             <Link to="/formulario/login">Inicia sesión ahora</Link>
           </p>
         </form>
@@ -109,7 +115,7 @@ const Register = () => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register

@@ -1,103 +1,103 @@
-import React, { useEffect, useState } from "react";
-import { CoverGreetings } from "../../../components/Utils/Utils";
-import { useLocation, useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { CoverGreetings } from '../../../components/Utils/Utils'
+import { useLocation, useParams } from 'react-router-dom'
+import { Input } from '../../../components/Input'
+import { Button, colorSchema } from '../../../components/Button'
+import { Label } from '../../../components/Label'
+import { Select } from '../../../components/Select'
 
 const ResourcesForm = () => {
-  const location = useLocation();
-  const { id } = useParams();
-  const [inputError, setInputError] = useState({ error: false, message: "" });
+  const location = useLocation()
+  const { id } = useParams()
+  const [inputError, setInputError] = useState({ error: false, message: '' })
   const [informativeMessages, setInformativeMessages] = useState({
-    greetings: "",
-    btnSubmitMessage: "",
-  });
+    greetings: '',
+    btnSubmitMessage: '',
+  })
 
   const [inputs, setInputs] = useState({
-    title: "",
-    resourcetype: "",
-    link: "",
-  });
+    title: '',
+    resourcetype: '',
+    link: '',
+  })
 
   useEffect(() => {
-    if (location.pathname.includes("/añadir")) {
+    if (location.pathname.includes('/añadir')) {
       setInformativeMessages({
-        greetings: "Añadir nuevo recurso recomendado",
-        btnSubmitMessage: "Añadir recurso",
-      });
+        greetings: 'Añadir nuevo recurso recomendado',
+        btnSubmitMessage: 'Añadir recurso',
+      })
     } else {
-      console.log("email", id);
+      console.log('email', id)
       setInformativeMessages({
-        greetings: "Actualizar recurso recomendado",
-        btnSubmitMessage: "Actualizar recurso",
-      });
+        greetings: 'Actualizar recurso recomendado',
+        btnSubmitMessage: 'Actualizar recurso',
+      })
     }
-  }, [location]);
+  }, [location])
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("inputs", inputs);
+    e.preventDefault()
+    console.log('inputs', inputs)
 
-    setInputError({ error: true, message: "" });
-  };
+    setInputError({ error: true, message: '' })
+  }
 
   const typeOfResources = [
     {
-      name: "Página web",
-      value: "Página web",
+      label: 'Página web',
+      id: 'Página web',
     },
     {
-      name: "Youtube",
-      value: "Youtube",
+      label: 'Youtube',
+      id: 'Youtube',
     },
     {
-      name: "Curso",
-      value: "Curso",
+      label: 'Curso',
+      id: 'Curso',
     },
-  ];
+  ]
 
   return (
     <div className="Dashboard">
       <CoverGreetings greeting={informativeMessages.greetings} isHome={false} />
-      <form onSubmit={handleSubmit}>
-        <div className="groupInputs">
-          <label htmlFor="title">Titulo del recurso</label>
-          <input
+      <form onSubmit={handleSubmit} className="FormContaner">
+        <div className="InputsGroup">
+          <Label htmlFor="title">Titulo del recurso</Label>
+          <Input
             required
             type="text"
             id="title"
             placeholder="Escribe el titulo del recurso"
             onChange={(e) =>
-              setInputs((prevState) => ({ ...prevState, title: e.target.value }))
+              setInputs((prevState) => ({
+                ...prevState,
+                title: e.target.value,
+              }))
             }
           />
         </div>
 
-        <div className="groupInputs">
-          <label htmlFor="resourcetype">Tipo del recursos</label>
-          <select
+        <div className="InputsGroup">
+          <Label htmlFor="resourcetype">Tipo del recursos</Label>
+          <Select
             required
-            name="select"
             id="resourcetype"
+            placeholder="Seleccionar tipo de recursos"
+            name="select"
+            options={typeOfResources}
             onChange={(e) =>
               setInputs((prevState) => ({
                 ...prevState,
-                resourcetype: e.target.value,
+                resourcetype: e.id,
               }))
             }
-          >
-            <option key="defaultmessage" disabled>
-              --Seleccionar tipo de recursos--
-            </option>
-            {typeOfResources.map((resource) => (
-              <option key={resource.value} value={resource.value}>
-                {resource.name}
-              </option>
-            ))}
-          </select>
+          ></Select>
         </div>
 
-        <div className="groupInputs">
-          <label htmlFor="link">Link</label>
-          <input
+        <div className="InputsGroup">
+          <Label htmlFor="link">Link</Label>
+          <Input
             required
             type="text"
             id="link"
@@ -108,17 +108,16 @@ const ResourcesForm = () => {
           />
         </div>
 
-
         {inputError.error && (
           <p className="ErrorMessage"> {inputError.message}</p>
         )}
 
-        <button type="submit" className="btnStandard btnDark">
+        <Button type="submit" color={colorSchema.black}>
           {informativeMessages.btnSubmitMessage}
-        </button>
+        </Button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default ResourcesForm;
+export default ResourcesForm

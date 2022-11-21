@@ -2,12 +2,14 @@ import { useContext } from "react";
 import { Navigate, Outlet, Link } from "react-router-dom";
 import Modal from "../../components/Modal";
 import UserContext from "../../hooks/UserContext";
+import { getUserStatus } from "../../services/localStorage";
 
 import "./ProtectedLayout.css";
 
 const ProtectedRoute = ({ redirectPath = "/formulario/login" }) => {
   const isAuthenticated = localStorage.getItem("token");
   const { user, logout } = useContext(UserContext);
+  const userStatus = getUserStatus()
 
   if (!isAuthenticated) {
     return <Navigate to={redirectPath} replace={true} />;
@@ -23,7 +25,7 @@ const ProtectedRoute = ({ redirectPath = "/formulario/login" }) => {
 
   return (
     <>
-      {!user.status ? (
+      {!userStatus ? (
         <Modal>
           <div className="DisabledContainer">
             <span>{":("}</span>

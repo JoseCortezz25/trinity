@@ -1,84 +1,88 @@
-import React, { useEffect, useState } from "react";
-import { CoverGreetings } from "../../../components/Utils/Utils";
-import { useLocation, useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { CoverGreetings } from '../../../components/Utils/Utils'
+import { useLocation, useParams } from 'react-router-dom'
+import { Input } from '../../../components/Input'
+import { Button, colorSchema } from '../../../components/Button'
+import { Label } from '../../../components/Label'
+import { Select } from '../../../components/Select'
 
 const ContentForm = () => {
-  const location = useLocation();
-  const { id } = useParams();
-  const [inputError, setInputError] = useState({ error: false, message: "" });
+  const location = useLocation()
+  const { id } = useParams()
+  const [inputError, setInputError] = useState({ error: false, message: '' })
   const [informativeMessages, setInformativeMessages] = useState({
-    greetings: "",
-    btnSubmitMessage: "",
-  });
+    greetings: '',
+    btnSubmitMessage: '',
+  })
 
   const [inputs, setInputs] = useState({
-    title: "",
-    description: "",
-    link: "",
-    temario: "",
-    level: "",
-    importance: "",
-  });
+    title: '',
+    description: '',
+    link: '',
+    temario: '',
+    level: '',
+    importance: 0,
+  })
 
   useEffect(() => {
-    if (location.pathname.includes("/añadir")) {
+    if (location.pathname.includes('/añadir')) {
       setInformativeMessages({
-        greetings: "Añadir contenido",
-        btnSubmitMessage: "Crear contenido",
-      });
+        greetings: 'Añadir contenido',
+        btnSubmitMessage: 'Crear contenido',
+      })
     } else {
-      console.log("email", id);
+      console.log('email', id)
       setInformativeMessages({
-        greetings: "Actualizar contenido",
-        btnSubmitMessage: "Actualizar contenido",
-      });
+        greetings: 'Actualizar contenido',
+        btnSubmitMessage: 'Actualizar contenido',
+      })
     }
-  }, [location]);
+  }, [location])
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("inputs", inputs);
+    e.preventDefault()
+    console.log('inputs', inputs)
 
-    setInputError({ error: true, message: "" });
-  };
+    setInputError({ error: true, message: '' })
+  }
 
   const levels = [
     {
-      name: "Principiante",
-      value: "Principiante",
+      label: 'Principiante',
+      id: 'Principiante',
     },
     {
-      name: "Intermedio",
-      value: "Intermedio",
+      label: 'Intermedio',
+      id: 'Intermedio',
     },
     {
-      name: "Avanzado",
-      value: "Avanzado",
+      label: 'Avanzado',
+      id: 'Avanzado',
     },
-  ];
+  ]
 
   const temarios = [
     {
-      name: "CSS",
-      value: "CSS",
+      label: 'CSS',
+      id: 'CSS',
     },
     {
-      name: "HTML",
-      value: "HTML",
+      label: 'HTML',
+      id: 'HTML',
     },
     {
-      name: "JavaScript",
-      value: "JavaScript",
+      label: 'JavaScript',
+      id: 'JavaScript',
     },
-  ];
+  ]
 
   return (
     <div className="Dashboard">
       <CoverGreetings greeting={informativeMessages.greetings} isHome={false} />
-      <form onSubmit={handleSubmit}>
-        <div className="groupInputs">
-          <label htmlFor="title">Título del contenido</label>
-          <input
+      <form onSubmit={handleSubmit} className="FormContaner">
+        <div className="InputsGroup">
+          <Label htmlFor="title">Título del contenido</Label>
+          <Input
             required
             type="text"
             id="title"
@@ -92,9 +96,9 @@ const ContentForm = () => {
           />
         </div>
 
-        <div className="groupInputs">
-          <label htmlFor="description">Descripción</label>
-          <input
+        <div className="InputsGroup">
+          <Label htmlFor="description">Descripción</Label>
+          <Input
             required
             type="text"
             id="description"
@@ -108,9 +112,9 @@ const ContentForm = () => {
           />
         </div>
 
-        <div className="groupInputs">
-          <label htmlFor="link">URL del contenido</label>
-          <input
+        <div className="InputsGroup">
+          <Label htmlFor="link">URL del contenido</Label>
+          <Input
             required
             type="text"
             id="link"
@@ -121,64 +125,51 @@ const ContentForm = () => {
           />
         </div>
 
-        <div className="groupInputs">
-          <label htmlFor="temario">Temario</label>
-          <select
+        <div className="InputsGroup">
+          <Label htmlFor="temario">Temario</Label>
+          <Select
             required
             name="temario"
             id="temario"
+            placeholder="Seleccionar el tema al que pertenece el contenido"
+            options={temarios}
             onChange={(e) =>
               setInputs((prevState) => ({
                 ...prevState,
-                temario: e.target.value,
+                temario: e.id,
               }))
             }
-          >
-            <option key="defaultmessage" disabled>
-              --Seleccionar el tema al que pertenece el contenido--
-            </option>
-            {temarios.map((temario) => (
-              <option key={temario.value} value={temario.value}>
-                {temario.name}
-              </option>
-            ))}
-          </select>
+          />
         </div>
-        <div className="groupInputs">
-          <label htmlFor="level">Nivel</label>
-          <select
+        <div className="InputsGroup">
+          <Label htmlFor="level">Nivel</Label>
+          <Select
             required
             name="level"
             id="level"
+            placeholder="Seleccionar el nivel del tema escogido"
+            options={levels}
             onChange={(e) =>
               setInputs((prevState) => ({
                 ...prevState,
-                level: e.target.value,
+                level: e.id,
               }))
             }
-          >
-            <option key="defaultmessage" disabled>
-              --Seleccionar el nivel del tema escogido--
-            </option>
-            {levels.map((level) => (
-              <option key={level.value} value={level.value}>
-                {level.name}
-              </option>
-            ))}
-          </select>
+          />
         </div>
 
-        <div className="groupInputs">
-          <label htmlFor="importance">Grado de importancia</label>
-          <p>
+        <div className="InputsGroup">
+          <Label htmlFor="importance">Grado de importancia</Label>
+          <p className="InputsGroup__sublabel">
             Escribe en numero el orden en el que se posicionará el contenido en
             la página.
           </p>
-          <input
+          <Input
             type="number"
             name="importance"
             id="importance"
             required
+            placeholder="Ej: 1"
             onChange={(e) =>
               setInputs((prevState) => ({
                 ...prevState,
@@ -192,12 +183,12 @@ const ContentForm = () => {
           <p className="ErrorMessage"> {inputError.message}</p>
         )}
 
-        <button type="submit" className="btnStandard btnDark">
+        <Button type="submit" color={colorSchema.black}>
           {informativeMessages.btnSubmitMessage}
-        </button>
+        </Button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default ContentForm;
+export default ContentForm
