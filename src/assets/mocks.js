@@ -256,42 +256,36 @@ const syllabus = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel beatae accusamus velit delectus ullam minima provident fuga non tempore ipsum? Similique sit necessitatibus consectetur laboriosam beatae. Unde ut voluptate dolor!',
     level: 'Principiante',
     learningpath: 'Ruta Frontend',
-    acciones: 'eliminar/editar'
   },
   {
     title: 'HTML',
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel beatae accusamus velit delectus ullam minima provident fuga non tempore ipsum? Similique sit necessitatibus consectetur laboriosam beatae. Unde ut voluptate dolor!',
     level: 'Intermedio',
     learningpath: 'Ruta Frontend',
-    acciones: 'eliminar/editar'
   },
   {
     title: 'HTML',
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel beatae accusamus velit delectus ullam minima provident fuga non tempore ipsum? Similique sit necessitatibus consectetur laboriosam beatae. Unde ut voluptate dolor!',
     level: 'Avanzado',
     learningpath: 'Ruta Frontend',
-    acciones: 'eliminar/editar'
   },
   {
     title: 'CSS',
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel beatae accusamus velit delectus ullam minima provident fuga non tempore ipsum? Similique sit necessitatibus consectetur laboriosam beatae. Unde ut voluptate dolor!',
     level: 'Principiante',
     learningpath: 'Ruta Frontend',
-    acciones: 'eliminar/editar'
   },
   {
     title: 'CSS',
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel beatae accusamus velit delectus ullam minima provident fuga non tempore ipsum? Similique sit necessitatibus consectetur laboriosam beatae. Unde ut voluptate dolor!',
     level: 'Intermedio',
     learningpath: 'Ruta Frontend',
-    acciones: 'eliminar/editar'
   },
   {
     title: 'JavaScript',
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel beatae accusamus velit delectus ullam minima provident fuga non tempore ipsum? Similique sit necessitatibus consectetur laboriosam beatae. Unde ut voluptate dolor!',
     level: 'Principiante',
     learningpath: 'Ruta Frontend',
-    acciones: 'eliminar/editar'
   },
 ]
 
@@ -301,21 +295,18 @@ const LearningPaths = [
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel beatae accusamus velit delectus ullam minima provident fuga non tempore ipsum? Similique sit necessitatibus consectetur laboriosam beatae. Unde ut voluptate dolor!',
     link: '/aprender/frontend',
     imagen: 'https://images.unsplash.com/photo-1666127574098-9a7b00e97049?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-    acciones: 'eliminar/editar'
   },
   {
     title: 'Ruta Backend',
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel beatae accusamus velit delectus ullam minima provident fuga non tempore ipsum? Similique sit necessitatibus consectetur laboriosam beatae. Unde ut voluptate dolor!',
     link: '/aprender/backend',
     imagen: 'https://images.unsplash.com/photo-1666127574098-9a7b00e97049?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-    acciones: 'eliminar/editar'
   },
   {
     title: 'Ruta Complementos',
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel beatae accusamus velit delectus ullam minima provident fuga non tempore ipsum? Similique sit necessitatibus consectetur laboriosam beatae. Unde ut voluptate dolor!',
     link: '/aprender/complementos',
     imagen: 'https://images.unsplash.com/photo-1666127574098-9a7b00e97049?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-    acciones: 'eliminar/editar'
   },
 ]
 

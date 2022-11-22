@@ -8,19 +8,90 @@ const options = (token) => ({
   },
 });
 
-export const getLearningPaths = async (token) => {
-  const tokenResult = options(token);
-  const result = await fetch(`${API_URL2}/aprender/paths`, tokenResult);
-  const data = result.json();
-  return data;
-};
-
-export const getListOfRecommendations = async (token) => {
-  const tokenResult = options(token)
-  const result = await fetch(`${API_URL2}/aprender/recommendations`, tokenResult)
-  const data = result.json()
-  return data
+export const getAllLevels = async (token) => {
+  try {
+    return axios.get(`${API_URL}/levels`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
 }
+
+export const getAllRoles = async (token) => {
+  try {
+    return axios.get(`${API_URL}/roles-trinity`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export const createSyllabus = async (data, token) => {
+  try {
+    return axios.post(`${API_URL}/temarios`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export const getAllSyllabus = async (token) => {
+  try {
+    return axios.get(`${API_URL}/temarios?populate=*`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export const getSyllabus = async (id, token) => {
+  try {
+    return axios.get(`${API_URL}/temarios/${id}?populate=*`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export const deleteSyllabus = async (id, token) => {
+  try {
+    return axios.delete(`${API_URL}/temarios/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export const updateSyllabus = async (id, data, token) => {
+  try {
+    return axios.put(`${API_URL}/temarios/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  } catch (error) {
+    return error
+  }
+}
+
 
 export const createLearningPath = async (learningPath, token) => {
   try {
@@ -48,7 +119,19 @@ export const getAllLearningPaths = async (token) => {
 
 export const getLearningPath = async (id, token) => {
   try {
-    return axios.get(`${API_URL}/learningpaths/${id}`, {
+    return axios.get(`${API_URL}/learningpaths/${id}?populate=*`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export const getLearningPathWithTemarios = async (id, token) => {
+  try {
+    return axios.get(`${API_URL}/learningpaths/${id}?[fields][0]=title&[fields][1]=description&[populate][temarios][populate][level]=*`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -169,9 +252,11 @@ export const registerAccount = async (data) => {
 
 export const getAllUsers = async (token) => {
   try {
-    const tokenResult = options(token);
-    const results = await fetch(`${API_URL}/users`, tokenResult)
-    return results.json()
+    return axios.get(`${API_URL}/users?populate=*`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
   } catch (error) {
     return error
   }

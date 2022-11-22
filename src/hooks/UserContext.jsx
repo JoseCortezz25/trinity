@@ -1,6 +1,6 @@
 import { useEffect, useState, createContext } from 'react'
 import { deleteToken, getCurrentUser, getToken } from '../services/localStorage'
-import { getUserById } from '../services/service'
+import { getUser } from '../services/service'
 
 const UserContext = createContext({})
 
@@ -8,9 +8,9 @@ export function UserContextProvider({ children }) {
   const [user, setUser] = useState({})
 
   useEffect(() => {
-    getUserById(parseInt(getCurrentUser()), getToken())
+    getUser(parseInt(getCurrentUser()), getToken())
       .then((res) => {
-        setUser(res)
+        setUser(res.data)
       })
       .catch((error) => {
         console.log(error)
@@ -20,6 +20,7 @@ export function UserContextProvider({ children }) {
   const logout = () => {
     setUser({})
     deleteToken()
+    // window.location.href = "/formulario/login";
   }
 
   return (
