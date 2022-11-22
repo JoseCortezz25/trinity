@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Navigate, Outlet, Link } from "react-router-dom";
 import Modal from "../../components/Modal";
 import UserContext from "../../hooks/UserContext";
-
+import { getRoleUser } from "../../services/localStorage";
 import "./ProtectedLayout.css";
 
 const ProtectedRoute = ({ redirectPath = "/formulario/login" }) => {
@@ -13,10 +13,14 @@ const ProtectedRoute = ({ redirectPath = "/formulario/login" }) => {
     return <Navigate to={redirectPath} replace={true} />;
   }
 
-  if(user.rol === 'ADMIN') {
+  // if (user.roles_trinity.name === 'ADMIN') {
+  //   return <Navigate to="/aprender" replace={true} />;
+  // }
+
+  if(getRoleUser() === 'ADMIN') {
     return (
       <>
-      <Outlet/>
+        <Outlet/>
       </>
     )
   }

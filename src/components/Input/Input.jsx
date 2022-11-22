@@ -9,6 +9,7 @@ const Input = ({
   id,
   type,
   className,
+  minLength,
   ...props
 }) => {
   const classes = cs(s.input, className)
@@ -22,6 +23,7 @@ const Input = ({
       placeholder={placeholder}
       value={value}
       onChange={onChange}
+      minLength={minLength}
       {...props}
     />
   )

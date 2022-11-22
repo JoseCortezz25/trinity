@@ -27,7 +27,7 @@
 }
 
 .ButtonTop {
-  background-color: #ffffff;
+  background-color: var(--white);
   border-radius: 50%;
   border: none;
   width: 50px;

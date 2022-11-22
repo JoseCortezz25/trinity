@@ -4,7 +4,8 @@
   "info": {
     "singularName": "recommend-resource",
     "pluralName": "recommend-resources",
-    "displayName": "RecommendResource"
+    "displayName": "RecommendResource",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,8 +20,9 @@
       "type": "string",
       "required": false
     },
-    "description": {
-      "type": "text"
+    "type": {
+      "type": "string",
+      "required": true
     }
   }
 }

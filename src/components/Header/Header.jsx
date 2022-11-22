@@ -4,11 +4,13 @@ import UserContext from "../../hooks/UserContext";
 import { logoIcon, toggleButtonIcon as iconButton } from "../../assets";
 
 import "./Header.css";
+import { getRoleUser } from "../../services/localStorage";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const { user, logout } = useContext(UserContext);
+  const roleUser = user?.roles_trinity?.name || getRoleUser()
 
   const toggleMenu = (e) => {
     if (e.nativeEvent.target.hash !== undefined) {
@@ -35,7 +37,7 @@ const Header = () => {
         {location.pathname.includes("/aprender") ||
         location.pathname.includes("/admin") ? (
           <div className="PlatformMenu">
-            {user.rol === "ADMIN" && (
+            {roleUser === "ADMIN" && (
               <>
                 <Link to="/admin">Dashboard</Link>
                 <Link to="/aprender">Plataforma</Link>
@@ -67,7 +69,7 @@ const Header = () => {
         {location.pathname.includes("/aprender") ||
         location.pathname.includes("/admin") ? (
           <div className="PlatformMenu">
-            {user.rol === "ADMIN" && (
+            {roleUser === "ADMIN" && (
               <>
                 <Link to="/admin">Dashboard</Link>
                 <Link to="/aprender">Plataforma</Link>

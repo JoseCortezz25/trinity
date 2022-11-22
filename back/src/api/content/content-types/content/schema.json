@@ -4,7 +4,8 @@
   "info": {
     "singularName": "content",
     "pluralName": "contents",
-    "displayName": "Content"
+    "displayName": "Content",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -21,17 +22,17 @@
     "description": {
       "type": "text"
     },
-    "idPathLearning": {
+    "temario": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::path-learning.path-learning",
-      "inversedBy": "idContents"
+      "target": "api::temario.temario",
+      "inversedBy": "contents"
     },
-    "idLevel": {
+    "level": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::level.level",
-      "inversedBy": "idContents"
+      "inversedBy": "contents"
     }
   }
 }
