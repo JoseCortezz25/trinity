@@ -1,6 +1,5 @@
 import axios from "axios";
 const API_URL = import.meta.env.VITE_API;
-const API_URL2 = import.meta.env.VITE_API_DOS;
 
 const options = (token) => ({
   headers: {
@@ -27,6 +26,66 @@ export const getAllRoles = async (token) => {
         Authorization: `Bearer ${token}`
       }
     })
+  } catch (error) {
+    return error
+  }
+}
+
+export const createContent = async (data, token) => {
+  try {
+    return axios.post(`${API_URL}/contents`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export const getAllContents = async (token) => {
+  try {
+    return axios.get(`${API_URL}/contents?populate=*&fields[0]=title&fields[1]=link&fields[2]=description`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export const getContent = async (id, token) => {
+  try {
+    return axios.get(`${API_URL}/contents/${id}?populate=*`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export const deleteContent = async (id, token) => {
+  try {
+    return axios.delete(`${API_URL}/contents/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export const updateContent = async (id, data, token) => {
+  try {
+    return axios.put(`${API_URL}/contents/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
   } catch (error) {
     return error
   }
@@ -91,7 +150,6 @@ export const updateSyllabus = async (id, data, token) => {
     return error
   }
 }
-
 
 export const createLearningPath = async (learningPath, token) => {
   try {
@@ -224,13 +282,6 @@ export const updateRecommendation = async (id, data, token) => {
     return error
   }
 }
-
-export const getTopicsByPath = async (path, token) => {
-  const tokenResult = options(token);
-  const result = await fetch(`${API_URL2}/aprender/topics/${path}`, tokenResult);
-  const data = result.json();
-  return data;
-};
 
 export const login = async (data) => {
   try {

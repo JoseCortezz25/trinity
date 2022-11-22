@@ -1,16 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { CoverGreetings } from '../../../components/Utils/Utils'
-import { Contents } from '../../../assets/mocks'
+import { CoverGreetings, Loader } from '../../../components/Utils/Utils'
 import Table from '../../../components/Table/Table'
 import { AiFillDelete } from 'react-icons/ai'
 import { MdModeEdit } from 'react-icons/md'
 import ModalAlert from '../../../components/ModalAlert/ModalAlert'
 import Pagination from '../../../components/Pagination/Pagination'
+import { deleteContent, getAllContents } from '../../../services/service'
+import { getToken } from '../../../services/localStorage'
 
 const Content = () => {
+  const [contents, setContents] = useState([{}])
+  const [contentsLength, setContentsLength] = useState(0)
   const [openModal, setOpenModal] = useState(false)
   const [elementSeleted, setElementSeleted] = useState(null)
+
+  useEffect(() => {
+    getAllContents(getToken())
+      .then((res) => {
+        setContentsLength(Object.values(res.data.result[0].attributes).length + 1)
+        setContents(res.data.result)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [openModal])
 
   const handleOpenModal = (id) => {
     setOpenModal((prevState) => !prevState)
@@ -35,40 +49,45 @@ const Content = () => {
           'Acciones',
         ]}
       >
-        <Pagination data={Contents}>
-          {Contents.map(({ title, description, link, level, syllabus }) => (
-            <div
-              key={title}
-              className="Table__row"
-              style={{
-                gridTemplateColumns: `repeat(${
-                  Object.values(Contents[0]).length + 1
-                }, 250px)`,
-              }}
-            >
-              <li>{title}</li>
-              <li className="TextClipped">{description}</li>
-              <li className="TextClipped">{link}</li>
-              <li className={`TextClipped Level${level}`}>{level}</li>
-              <li className="TextClipped">{syllabus}</li>
-              <li className="Table__actions">
-                <button onClick={() => handleOpenModal(title)}>
-                  <AiFillDelete className="BtnDelete" />
-                </button>
-                <Link to={`/admin/contenidos/actualizar/${title}`}>
-                  <button>
-                    <MdModeEdit />
+        {contents.length > 0 ? (
+          <Pagination data={contents}>
+            {contents.map(({ id, attributes }) => (
+              <div
+                key={`${attributes?.title}${id}`}
+                className="Table__row"
+                style={{
+                  gridTemplateColumns: `repeat(${
+                    contentsLength
+                  }, 250px)`,
+                }}
+              >
+                <li>{attributes?.title}</li>
+                <li className="TextClipped">{attributes?.description}</li>
+                <li className="TextClipped">{attributes?.link}</li>
+                <li className={`TextClipped Level${attributes?.level.data?.attributes?.title}`}>{attributes?.level.data?.attributes?.title}</li>
+                <li className="TextClipped">{attributes?.temario.data?.attributes?.title}</li>
+                <li className="Table__actions">
+                  <button onClick={() => handleOpenModal(id)}>
+                    <AiFillDelete className="BtnDelete" />
                   </button>
-                </Link>
-              </li>
-            </div>
-          ))}
-        </Pagination>
+                  <Link to={`/admin/contenidos/actualizar/${id}`}>
+                    <button>
+                      <MdModeEdit />
+                    </button>
+                  </Link>
+                </li>
+              </div>
+            ))}
+          </Pagination>
+        ) : (
+          <Loader />
+        )}
       </Table>
       {openModal && (
         <ModalAlert
           elementSeleted={elementSeleted}
           setOpenModal={setOpenModal}
+          deleteItem={deleteContent}
         />
       )}
     </div>
