@@ -1,9 +1,10 @@
+/* eslint-disable camelcase */
 import React, { useState, useEffect } from 'react'
 import { CoverGreetings, Loader } from '../../../components/Utils/Utils'
 import { Link } from 'react-router-dom'
 import { AiFillDelete } from 'react-icons/ai'
 import { MdModeEdit } from 'react-icons/md'
-import { getAllUsers } from '../../../services/service'
+import { getAllUsers, deleteUser } from '../../../services/service'
 import { getToken } from '../../../services/localStorage'
 import Table from '../../../components/Table/Table'
 import ModalAlert from '../../../components/ModalAlert/ModalAlert'
@@ -17,12 +18,13 @@ const Users = () => {
   useEffect(() => {
     getAllUsers(getToken())
       .then((res) => {
-        setAllUsers(res)
+        console.log(res.data);
+        setAllUsers(res.data)
       })
       .catch((error) => {
         console.log(error)
       })
-  }, [openModal, allUsers])
+  }, [openModal])
 
   const handleOpenModal = (id) => {
     setOpenModal((prevState) => !prevState)
@@ -44,7 +46,7 @@ const Users = () => {
       <Table headers={['Nombre', 'Email', 'Estado', 'Rol', 'Acciones']}>
         {allUsers.length > 0 ? (
           <Pagination data={allUsers}>
-            {allUsers.map(({ id, fullName, email, status, role = 'USER' }) => (
+            {allUsers.map(({ id, fullName, email, status, roles_trinity }) => (
               <div
                 key={fullName}
                 className="Table__row"
@@ -65,8 +67,8 @@ const Users = () => {
                     Desactivado
                   </li>
                 )}
-                <li key={`${role}${fullName}`}>{role}</li>
-                <li key="actions" className="Table__actions">
+                <li>{roles_trinity?.name}</li>
+                <li className="Table__actions">
                   <button onClick={() => handleOpenModal(id)}>
                     <AiFillDelete className="BtnDelete" />
                   </button>
@@ -87,6 +89,7 @@ const Users = () => {
         <ModalAlert
           elementSeleted={elementSeleted}
           setOpenModal={setOpenModal}
+          deleteItem={deleteUser}
         />
       )}
     </div>

@@ -104,7 +104,7 @@ const ResourcesForm = () => {
         formData.title = inputs.title ? inputs.title : resource.title
         formData.link = inputs.link ? inputs.link : resource.link
         formData.type = inputs.type ? inputs.type : resource.type
-        modifyResource(formData, getToken())
+        modifyResource(formData)
         navigate('/admin/recursos')
       }
     } catch (error) {

@@ -24,7 +24,7 @@ const Resources = () => {
       .catch((error) => {
         console.log(error)
       })
-  }, [openModal, resources])
+  }, [openModal])
 
   const handleOpenModal = (id) => {
     setOpenModal((prevState) => !prevState)

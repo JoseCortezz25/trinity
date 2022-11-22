@@ -34,7 +34,7 @@ const Plataform = () => {
               title={attributes?.title}
               key={attributes?.title}
               description={attributes?.description}
-              link={id}
+              link={`/aprender/${attributes?.title}?path=${id}`}
             />
           ))
         ) : (
