@@ -2,30 +2,32 @@ import { useContext } from "react";
 import { Navigate, Outlet, Link } from "react-router-dom";
 import Modal from "../../components/Modal";
 import UserContext from "../../hooks/UserContext";
-import { getUserStatus } from "../../services/localStorage";
-
+import { getRoleUser } from "../../services/localStorage";
 import "./ProtectedLayout.css";
 
 const ProtectedRoute = ({ redirectPath = "/formulario/login" }) => {
   const isAuthenticated = localStorage.getItem("token");
   const { user, logout } = useContext(UserContext);
-  const userStatus = getUserStatus()
 
   if (!isAuthenticated) {
     return <Navigate to={redirectPath} replace={true} />;
   }
 
-  if(user.rol === 'ADMIN') {
+  // if (user.roles_trinity.name === 'ADMIN') {
+  //   return <Navigate to="/aprender" replace={true} />;
+  // }
+
+  if(getRoleUser() === 'ADMIN') {
     return (
       <>
-      <Outlet/>
+        <Outlet/>
       </>
     )
   }
 
   return (
     <>
-      {!userStatus ? (
+      {!user.status ? (
         <Modal>
           <div className="DisabledContainer">
             <span>{":("}</span>

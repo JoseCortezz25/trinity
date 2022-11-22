@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "recommend_resources",
+  "info": {
+    "singularName": "recommend-resource",
+    "pluralName": "recommend-resources",
+    "displayName": "RecommendResource",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "string",
+      "required": false
+    },
+    "type": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -26,11 +26,10 @@
   object-fit: cover;
 }
 
-@media screen and (max-width: 667px) {
+@media screen and (max-width: 767px) {
   .Login {
     display: flex;
     width: 80%;
-    /* border: 1px solid red; */
     margin: auto;
   }
 

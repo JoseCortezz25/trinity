@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "temarios",
+  "info": {
+    "singularName": "temario",
+    "pluralName": "temarios",
+    "displayName": "Temario",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "learning_path": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::learningpath.learningpath",
+      "inversedBy": "temarios"
+    },
+    "level": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::level.level",
+      "inversedBy": "temarios"
+    },
+    "contents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::content.content",
+      "mappedBy": "temario"
+    }
+  }
+}

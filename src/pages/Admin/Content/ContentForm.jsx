@@ -1,15 +1,27 @@
+/* eslint-disable camelcase */
 import React, { useEffect, useState } from 'react'
 import { CoverGreetings } from '../../../components/Utils/Utils'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation, useParams, useNavigate } from 'react-router-dom'
 import { Input } from '../../../components/Input'
 import { Button, colorSchema } from '../../../components/Button'
 import { Label } from '../../../components/Label'
 import { Select } from '../../../components/Select'
+import {
+  createContent,
+  getAllSyllabus,
+  getContent,
+  updateContent,
+} from '../../../services/service'
+import { getToken } from '../../../services/localStorage'
 
 const ContentForm = () => {
   const location = useLocation()
   const { id } = useParams()
-  const [inputError, setInputError] = useState({ error: false, message: '' })
+  const navigate = useNavigate()
+  const [typeOfForm, setTypeOfForm] = useState('')
+  const [content, setContent] = useState({})
+  const [listOfSyllabus, setListOfSyllabus] = useState([{}])
+  const [error, setError] = useState({ error: false, message: '' })
   const [informativeMessages, setInformativeMessages] = useState({
     greetings: '',
     btnSubmitMessage: '',
@@ -21,17 +33,30 @@ const ContentForm = () => {
     link: '',
     temario: '',
     level: '',
-    importance: 0,
   })
 
   useEffect(() => {
+    getAllSyllabus(getToken()).then((res) => {
+      setListOfSyllabus(
+        res.data.data.map(({ id, attributes: { title, level } }) => {
+          const levelId = level.data.id
+          const level_label = level.data.attributes.title
+          return { id: [id, levelId], label: `${title} - ${level_label}` }
+        })
+      )
+    })
+
     if (location.pathname.includes('/añadir')) {
+      setTypeOfForm('ADD')
       setInformativeMessages({
         greetings: 'Añadir contenido',
         btnSubmitMessage: 'Crear contenido',
       })
     } else {
-      console.log('email', id)
+      setTypeOfForm('UPDATE')
+      getContent(id, getToken()).then((res) => {
+        setContent(res.data.attributes)
+      })
       setInformativeMessages({
         greetings: 'Actualizar contenido',
         btnSubmitMessage: 'Actualizar contenido',
@@ -41,40 +66,45 @@ const ContentForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('inputs', inputs)
+    const { title, description, link, temario, level } = inputs
 
-    setInputError({ error: true, message: '' })
+    if (typeOfForm === 'ADD') {
+      if (
+        title === '' ||
+        description === '' ||
+        link === '' ||
+        !temario ||
+        !level
+      ) {
+        return setError({
+          error: true,
+          message:
+            'Hay campos vacios. Asegurate de completar todos los campos.',
+        })
+      }
+      setError({ error: true, message: '' })
+
+      createContent(
+        { data: { title, description, link, temario, level } },
+        getToken()
+      )
+      navigate('/admin/contenidos')
+    }
+
+    if (typeOfForm === 'UPDATE') {
+      const formData = {}
+      formData.title = inputs.title ? inputs.title : content.title
+      formData.description = inputs.description
+        ? inputs.description
+        : content.description
+      formData.link = inputs.link ? inputs.link : content.link
+      formData.temario = inputs.temario ? inputs.temario : content.temario
+      formData.level = inputs.level ? inputs.level : content.level
+
+      updateContent(id, { data: formData }, getToken())
+      navigate('/admin/contenidos')
+    }
   }
-
-  const levels = [
-    {
-      label: 'Principiante',
-      id: 'Principiante',
-    },
-    {
-      label: 'Intermedio',
-      id: 'Intermedio',
-    },
-    {
-      label: 'Avanzado',
-      id: 'Avanzado',
-    },
-  ]
-
-  const temarios = [
-    {
-      label: 'CSS',
-      id: 'CSS',
-    },
-    {
-      label: 'HTML',
-      id: 'HTML',
-    },
-    {
-      label: 'JavaScript',
-      id: 'JavaScript',
-    },
-  ]
 
   return (
     <div className="Dashboard">
@@ -83,9 +113,10 @@ const ContentForm = () => {
         <div className="InputsGroup">
           <Label htmlFor="title">Título del contenido</Label>
           <Input
-            required
-            type="text"
             id="title"
+            type="text"
+            name="title"
+            value={inputs.title ? inputs.title : content.title}
             placeholder="Escribe el título del contenido"
             onChange={(e) =>
               setInputs((prevState) => ({
@@ -99,9 +130,12 @@ const ContentForm = () => {
         <div className="InputsGroup">
           <Label htmlFor="description">Descripción</Label>
           <Input
-            required
-            type="text"
             id="description"
+            type="text"
+            name="description"
+            value={
+              inputs.description ? inputs.description : content.description
+            }
             placeholder="Escribe la descripción de la ruta"
             onChange={(e) =>
               setInputs((prevState) => ({
@@ -115,9 +149,10 @@ const ContentForm = () => {
         <div className="InputsGroup">
           <Label htmlFor="link">URL del contenido</Label>
           <Input
-            required
-            type="text"
             id="link"
+            type="text"
+            name="link"
+            value={inputs.link ? inputs.link : content.link}
             placeholder="Escribe el link donde se encuentra el contenido"
             onChange={(e) =>
               setInputs((prevState) => ({ ...prevState, link: e.target.value }))
@@ -128,60 +163,21 @@ const ContentForm = () => {
         <div className="InputsGroup">
           <Label htmlFor="temario">Temario</Label>
           <Select
-            required
-            name="temario"
             id="temario"
-            placeholder="Seleccionar el tema al que pertenece el contenido"
-            options={temarios}
+            name="temario"
+            placeholder="Seleccionar el temario al que pertenece el contenido"
+            options={listOfSyllabus}
             onChange={(e) =>
               setInputs((prevState) => ({
                 ...prevState,
-                temario: e.id,
-              }))
-            }
-          />
-        </div>
-        <div className="InputsGroup">
-          <Label htmlFor="level">Nivel</Label>
-          <Select
-            required
-            name="level"
-            id="level"
-            placeholder="Seleccionar el nivel del tema escogido"
-            options={levels}
-            onChange={(e) =>
-              setInputs((prevState) => ({
-                ...prevState,
-                level: e.id,
+                level: parseInt(e.id[2]),
+                temario: parseInt(e.id[0]),
               }))
             }
           />
         </div>
 
-        <div className="InputsGroup">
-          <Label htmlFor="importance">Grado de importancia</Label>
-          <p className="InputsGroup__sublabel">
-            Escribe en numero el orden en el que se posicionará el contenido en
-            la página.
-          </p>
-          <Input
-            type="number"
-            name="importance"
-            id="importance"
-            required
-            placeholder="Ej: 1"
-            onChange={(e) =>
-              setInputs((prevState) => ({
-                ...prevState,
-                importance: e.target.value,
-              }))
-            }
-          />
-        </div>
-
-        {inputError.error && (
-          <p className="ErrorMessage"> {inputError.message}</p>
-        )}
+        {error.error && <p className="ErrorMessage"> {error.message}</p>}
 
         <Button type="submit" color={colorSchema.black}>
           {informativeMessages.btnSubmitMessage}

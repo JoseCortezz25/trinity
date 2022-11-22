@@ -3,7 +3,7 @@
 :root {
   --button-color-gray: #ecf0f1;
   --button-color-blue: #0984e3;
-  --button-color-hover: #0a6ebb;
+  --button-color-hover: #1985e3c9;
   --button-color-black: #000000;
   --button-color-disabled: #aaa8a8;
 
@@ -12,6 +12,45 @@
 
   --white: #fff;
   --black: #000;
+
+  --swiper-theme-color: var(--trinity-color-dark-green);
+
+  --trinity-color-green: #73A625;
+  --trinity-color-light-green: #74BF03;
+  --trinity-color-dark-green: #437337;
+  --trinity-color-black: #0D0D0D;
+
+  --color-dark-green-act: #2A685B;
+  --color-dark-blue-disa: #2F2E41;
+
+  --button-color-red: #c0392b;
+  --button-color-red-hover: #912a1e;
+
+  --button-color-black: #131418;
+  --button-color-black-hover: #131418c9;
+
+  --button-color-gray: #ecf0f1;
+  --color-light-gray: #f7f7f7;
+  --button-color-dark-gray: #323333;
+  --color-dim-dark-gray: #414141;
+  --button-color-gray-hover: #bbbbbb;
+  --border-bottom-color-gray: #d9d9d9;
+  --table-header-color-gray: rgba(217, 217, 217, 0.2);
+  --transition: all 400ms ease;
+
+  --design-color-gray: rgba(230, 230, 230, 0.3);
+  --design-pr-color-yellow: #ff9f43; /* Principiante */
+  --design-int-color-blue: #0b4e7a; /* Intermedio */
+  --design-avan-color-red: #c23616; /* Avanzado */
+  --design-pr-dim-color-yellow: rgba(254, 202, 87, 0.2); /* Principiante */
+  --design-int-dim-color-blue: rgba(52, 152, 219, 0.2); /* Intermedio */
+  --design-avan-dim-color-red: rgba(232, 65, 24, 0.2); /* Avanzado */
+
+  /* Alerts */
+  --color-success: rgba(16, 172, 132,0.5);
+  --border-color-success: #10ac84;
+  --color-denied: rgba(255, 82, 82,0.5);
+  --border-color-denied: #b33939;
 }
 
 * {
@@ -20,6 +59,13 @@
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
+}
+
+.no-selectable {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .App {
@@ -37,6 +83,11 @@
   cursor: pointer;
   transition: all 0.1s ease-out;
   text-decoration: none;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .btnStandard:disabled,
@@ -44,7 +95,7 @@
 .btnStandard:disabled:hover,
 .btnStandard[disabled]:hover{
   color: #979797;
-  background-color: #F7F7F7;
+  background-color: var(--color-light-gray);
   cursor: not-allowed;
 }
 
@@ -62,26 +113,26 @@
 }
 
 .btnNormal {
-  background-color: #ecf0f1;
-  color: #161616;
+  background-color: var(--button-color-gray);
+  color: #131418;
 }
 
 .btnNormal:hover {
-  background-color: #bbbbbb;
+  background-color: var(--button-color-gray-hover);
 }
 
 .btnDark {
-  background-color: #131418;
-  color: #ffffff;
+  background-color: var(--button-color-black);
+  color: var(--white);
 }
 
 .btnDark:hover {
-  background-color: #131418c9;
+  background-color: var(--button-color-black-hover);
 }
 
 .btnGreen {
   background-color: #0984e3;
-  color: #fff;
+  color: var(--white);
   transition: all 0.1s ease-out;
 }
 
@@ -90,23 +141,23 @@
 }
 
 .btnBlue {
-  background-color: #0984e3;
-  color: #fff;
+  background-color: var(--button-color-blue);
+  color: var(--white);
   transition: all 0.1s ease-out;
 }
 
 .btnBlue:hover {
-  background-color: #1985e3c9;
+  background-color: var(--button-color-hover);
 }
 
 .btnRed {
-  background-color: #c0392b;
-  color: #fff;
+  background-color: var(--button-color-red);
+  color: var(--white);
   transition: all 0.1s ease-out;
 }
 
 .btnRed:hover {
-  background-color: #912a1e;
+  background-color: var(--button-color-red-hover);
 }
 
 .Plataform {
@@ -136,7 +187,7 @@
   position: relative;
   width: 50%;
   min-height: 200px;
-  background-color: #ffffff;
+  background-color: var(--white);
   color: #000000;
   border-radius: 10px;
   padding: 20px 30px;
@@ -150,7 +201,7 @@
 .Modal__alert svg {
   width: 50px;
   height: 50px;
-  color: #c0392b;
+  color: var(--button-color-red);
 }
 
 .ModalContainer h2,
@@ -174,15 +225,14 @@
   width: 100%;
 }
 
-@media screen and (max-width: 667px) {
-  .Plataform {
-    width: 90%;
-  }
+.no-link {
+  color: var(--black);
+  text-decoration: none;
 }
 
 @media screen and (min-width: 1400px) {
   .MainCover .container {
-    max-width: 1100px;
+    max-width: 1150px;
   }
 
   .Plataform {
@@ -203,6 +253,18 @@
 
   .Service .ServiceCards {
     max-width: 50%;
+  }
+}
+
+@media screen and (max-width: 827px) {
+  .ModalContainer {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 667px) {
+  .Plataform {
+    width: 90%;
   }
 }
 

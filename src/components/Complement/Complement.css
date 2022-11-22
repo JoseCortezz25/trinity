@@ -11,14 +11,16 @@
 
 .Complement .boxInfo h3 {
   width: 20%;
-  color: #323333;
-  font-size: 20px;
+  color: var(--button-color-dark-gray);
+  font-size: 25px;
 }
 
 .Complement .boxInfo p {
   width: 50%;
   font-style: italic;
   line-height: 25px;
+  padding-right: 30px;
+  font-size: 18px;
 }
 
 .Complement .boxInfo:first-child {
@@ -37,6 +39,19 @@
   order: 2;
 }
 
+@media screen and (max-width: 994px) {
+  .Complement .boxInfo h3 {
+    width: 30%;
+    text-align: center;
+  }
+
+  .Complement .boxInfo p {
+    width: 70%;
+    font-size: 16px;
+  }
+
+}
+
 @media screen and (max-width: 667px) {
   .Complement .boxInfo {
     width: 100%;
@@ -52,7 +67,9 @@
 
   .Complement .boxInfo p {
     width: 100%;
-    font-size: 15px;
+    font-size: 17px;
+    padding-right: 0px;
+    text-align: center;
   }
 
   .Complement .boxInfo:last-child p {

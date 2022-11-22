@@ -1,10 +1,16 @@
+/* eslint-disable camelcase */
 import React, { useEffect, useState } from 'react'
 import { CoverGreetings } from '../../../components/Utils/Utils'
 import { useLocation, useParams, useNavigate } from 'react-router-dom'
 import { generateRandomUsername } from '../../../helpers/utils'
 import { RadioGroup } from '../../../contexts'
-import { createNewUser, getUserById, updateUser } from '../../../services/service'
-import { getCurrentUser, getToken, validateUser } from '../../../services/localStorage'
+import {
+  createNewUser,
+  getAllRoles,
+  getUserById,
+  updateUser,
+} from '../../../services/service'
+import { getToken } from '../../../services/localStorage'
 import {
   Input,
   Select,
@@ -17,6 +23,7 @@ import {
 const UsersForm = () => {
   const location = useLocation()
   const { id } = useParams()
+  const [roles, setRoles] = useState([{}])
   const [error, setError] = useState({ error: false, message: '' })
   const [user, setUser] = useState({})
   const navigate = useNavigate()
@@ -30,8 +37,9 @@ const UsersForm = () => {
     email: '',
     password: '',
     confirmpassword: '',
-    role: '',
     status: '',
+    role: 1,
+    roles_trinity: 0,
   })
 
   const createUser = (data) => {
@@ -62,6 +70,22 @@ const UsersForm = () => {
   }
 
   useEffect(() => {
+    getAllRoles(getToken())
+      .then((res) => {
+        setRoles(
+          res.data.map(({ id, attributes: { name } }) => {
+            return { id, label: name }
+          })
+        )
+      })
+      .catch((error) => {
+        setError({
+          error: error.error,
+          message:
+            'Ha ocurrido un error. No es tu culpa, estamos solucionandolo.',
+        })
+      })
+
     if (location.pathname.includes('/añadir')) {
       setTypeOfForm('ADD')
       setInformativeMessages({
@@ -92,12 +116,20 @@ const UsersForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const { fullName, email, password, confirmpassword, role, status } = inputs
+    const {
+      fullName,
+      email,
+      password,
+      confirmpassword,
+      role,
+      status,
+      roles_trinity,
+    } = inputs
 
     if (typeOfForm === 'ADD') {
-      console.log('add')
-
-      if (inputs.confirmpassword.toLowerCase() !== inputs.password.toLowerCase()) {
+      if (
+        inputs.confirmpassword.toLowerCase() !== inputs.password.toLowerCase()
+      ) {
         return setError({
           error: true,
           message: 'Las contraseñas no coinciden.',
@@ -112,7 +144,8 @@ const UsersForm = () => {
         password === '' ||
         confirmpassword === '' ||
         role === '' ||
-        status === ''
+        status === '' ||
+        !roles_trinity
       ) {
         return setError({
           error: true,
@@ -122,13 +155,22 @@ const UsersForm = () => {
       }
 
       setError({ error: false, message: '' })
-      createUser({ fullName, email, password, role, status, username })
+      createUser({
+        fullName,
+        email,
+        password,
+        role,
+        status,
+        username,
+        roles_trinity,
+      })
       navigate('/admin/usuarios')
     }
 
     if (typeOfForm === 'UPDATE') {
-
-      if (inputs.confirmpassword.toLowerCase() !== inputs.password.toLowerCase()) {
+      if (
+        inputs.confirmpassword.toLowerCase() !== inputs.password.toLowerCase()
+      ) {
         return setError({
           error: true,
           message: 'Las contraseñas no coinciden.',
@@ -140,25 +182,15 @@ const UsersForm = () => {
       formData.fullName = inputs.fullName ? inputs.fullName : user.fullName
       formData.email = inputs.email ? inputs.email : user.email
       formData.role = inputs.role ? inputs.role : user.role
+      formData.roles_trinity = inputs.roles_trinity
+        ? inputs.roles_trinity
+        : user.roles_trinity?.id
       formData.status = inputs.status ? inputs.status : user.status
-
-      console.log('formData', formData)
 
       modifyUser(formData)
       navigate('/admin/usuarios')
     }
   }
-
-  const rolesOfUsers = [
-    {
-      label: 'Administrador',
-      id: 'ADMIN',
-    },
-    {
-      label: 'Usuario',
-      id: 'USER',
-    },
-  ]
 
   return (
     <div className="Dashboard">
@@ -169,7 +201,7 @@ const UsersForm = () => {
           <Input
             id="fullName"
             name="fullName"
-            value={user.fullName}
+            value={inputs.fullName ? inputs.fullName : user.fullName}
             type="text"
             minLength="8"
             placeholder="Escribe el nombre del usuario"
@@ -184,7 +216,7 @@ const UsersForm = () => {
           <Input
             id="email"
             name="email"
-            value={user.email}
+            value={inputs.email ? inputs.email : user.email}
             type="email"
             placeholder="Escribe el email del usuario"
             onChange={({ target: { value, name } }) =>
@@ -217,7 +249,7 @@ const UsersForm = () => {
               <Input
                 id="confirmpassword"
                 type="password"
-                name="password"
+                name="confirmpassword"
                 minLength="8"
                 placeholder="Escribe de nuevo la contraseña del usuario"
                 onChange={(e) =>
@@ -233,19 +265,20 @@ const UsersForm = () => {
 
         <div className="InputsGroup__grid">
           <div className="InputsGroup">
-            <Label htmlFor="role">Tipo de usuario</Label>
+            <Label htmlFor="roles_trinity">Tipo de usuario</Label>
             <Select
-              id="role"
-              name="role"
-              required
+              id="roles_trinity"
+              name="roles_trinity"
               placeholder={
-                user.role ? `${user.role}` : `Seleccionar tipo de usuario`
+                user.roles_trinity?.name
+                  ? `${user.roles_trinity?.name}`
+                  : `Seleccionar tipo de usuario`
               }
-              options={rolesOfUsers}
+              options={roles}
               onChange={(e) =>
                 setInputs((prevState) => ({
                   ...prevState,
-                  role: e.id,
+                  roles_trinity: parseInt(e.id),
                 }))
               }
             />
@@ -271,7 +304,7 @@ const UsersForm = () => {
         </div>
         {error.error && <p className="ErrorMessage"> {error.message}</p>}
 
-        <Button type="submit" color={colorSchema.black} isDisabled={validateUser(id, getCurrentUser())}>
+        <Button type="submit" color={colorSchema.black}>
           {informativeMessages.btnSubmitMessage}
         </Button>
       </form>

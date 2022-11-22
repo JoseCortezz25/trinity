@@ -43,7 +43,7 @@
 .button:disabled:hover,
 .button[disabled]:hover{
   color: #979797;
-  background-color: #F7F7F7;
+  background-color: var(--color-light-gray);
   cursor: not-allowed;
 }
 

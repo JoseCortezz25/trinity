@@ -1,6 +1,6 @@
 .MainTitle h2 {
   font-size: 25px;
-  color: #323333;
+  color: var(--button-color-dark-gray);
 }
 
 .LoaderBackground {
@@ -37,7 +37,7 @@
 }
 
 .MainTitle hr {
-  background-color: #323333;
+  background-color: var(--button-color-dark-gray);
   width: 50px;
   height: 3px;
   margin: auto;
@@ -85,7 +85,7 @@
 @media screen and (max-width: 667px) {
   .MainTitle h2 {
     font-size: 22px;
-    color: #323333;
+    color: var(--button-color-dark-gray);
   }
 }
 

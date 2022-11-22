@@ -1,38 +1,53 @@
 import React, { useEffect, useState } from 'react'
 import { CoverGreetings } from '../../../components/Utils/Utils'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation, useParams, useNavigate } from 'react-router-dom'
 import { Input } from '../../../components/Input'
 import { Button, colorSchema } from '../../../components/Button'
 import { Label } from '../../../components/Label'
+import {
+  createLearningPath,
+  getLearningPath,
+  updateLearningPath,
+} from '../../../services/service'
+import { getToken } from '../../../services/localStorage'
 
 const LearningPathForm = () => {
   const location = useLocation()
   const { id } = useParams()
-  const [inputError, setInputError] = useState({ error: false, message: '' })
+  const navigate = useNavigate()
+  const [learningPath, setLearningPath] = useState({})
+  const [typeOfForm, setTypeOfForm] = useState('')
+  const [error, setError] = useState({ error: false, message: '' })
   const [informativeMessages, setInformativeMessages] = useState({
     greetings: '',
     btnSubmitMessage: '',
   })
 
   const [inputs, setInputs] = useState({
-    name: '',
+    title: '',
     description: '',
-    link: '',
-    imagen: false,
   })
 
   useEffect(() => {
     if (location.pathname.includes('/añadir')) {
-      console.log('add new element')
-      // setTypeOfForm('ADD')
+      setTypeOfForm('ADD')
       setInformativeMessages({
         greetings: 'Crear nueva Ruta de Aprendizaje',
         btnSubmitMessage: 'Crear nueva ruta',
       })
     } else {
-      console.log('update new element')
-      console.log('email', id)
-      // setTypeOfForm('UPDATE')
+      setTypeOfForm('UPDATE')
+      getLearningPath(id, getToken())
+        .then((res) => {
+          console.log(res.data.data.attributes)
+          setLearningPath(res.data.data.attributes)
+        })
+        .catch((error) => {
+          setError({
+            error: error.error,
+            message: error.message,
+          })
+        })
       setInformativeMessages({
         greetings: 'Actualización de la Ruta de Aprendizaje',
         btnSubmitMessage: 'Actualizar ruta',
@@ -40,11 +55,52 @@ const LearningPathForm = () => {
     }
   }, [location])
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('inputs', inputs)
+  const modifyLearningPath = (learninPath) => {
+    updateLearningPath(id, { data: learninPath }, getToken())
+      .then((res) => {
+        console.log('Updated it :)')
+      })
+      .catch((error) => {
+        setError({
+          error: error.error,
+          message:
+            'Ha ocurrido un error. No es tu culpa, estamos solucionandolo.',
+        })
+      })
+  }
 
-    setInputError({ error: true, message: '' })
+  const handleSubmit = (e) => {
+    try {
+      e.preventDefault()
+      const { title, description } = inputs
+
+      if (typeOfForm === 'ADD') {
+        if (title === '' || description === '') {
+          return setError({
+            error: true,
+            message:
+              'Hay campos vacios. Asegurate de completar todos los campos.',
+          })
+        }
+        setError({ error: true, message: '' })
+
+        createLearningPath(inputs, getToken())
+        navigate('/admin/rutas')
+      }
+
+      if (typeOfForm === 'UPDATE') {
+        const formData = {}
+        formData.title = inputs.title ? inputs.title : learningPath.title
+        formData.description = inputs.description
+          ? inputs.description
+          : learningPath.description
+
+        modifyLearningPath(formData)
+        navigate('/admin/rutas')
+      }
+    } catch (error) {
+      setError({ error: error.error, message: error.message })
+    }
   }
 
   return (
@@ -52,14 +108,15 @@ const LearningPathForm = () => {
       <CoverGreetings greeting={informativeMessages.greetings} isHome={false} />
       <form onSubmit={handleSubmit} className="FormContaner">
         <div className="InputsGroup">
-          <Label htmlFor="name">Nombre de la ruta</Label>
+          <Label htmlFor="title">Nombre de la ruta</Label>
           <Input
-            required
+            id="title"
             type="text"
-            id="name"
+            name="title"
+            value={inputs.title ? inputs.title : learningPath.title}
             placeholder="Escribe el nombre de la ruta"
             onChange={(e) =>
-              setInputs((prevState) => ({ ...prevState, name: e.target.value }))
+              setInputs((prevState) => ({ ...prevState, title: e.target.value }))
             }
           />
         </div>
@@ -67,9 +124,10 @@ const LearningPathForm = () => {
         <div className="InputsGroup">
           <Label htmlFor="description">Descripción</Label>
           <Input
-            required
-            type="text"
             id="description"
+            type="text"
+            name="description"
+            value={inputs.description ? inputs.description : learningPath.description}
             placeholder="Escribe la descripción de la ruta"
             onChange={(e) =>
               setInputs((prevState) => ({
@@ -80,38 +138,7 @@ const LearningPathForm = () => {
           />
         </div>
 
-        <div className="InputsGroup">
-          <Label htmlFor="link">Link</Label>
-          <Input
-            required
-            type="text"
-            id="link"
-            placeholder="Escribe el link hacia donde se redireccionará la ruta"
-            onChange={(e) =>
-              setInputs((prevState) => ({ ...prevState, link: e.target.value }))
-            }
-          />
-        </div>
-
-        <div className="InputsGroup">
-          <Label htmlFor="imagen">Imagen</Label>
-          <Input
-            required
-            id="imagen"
-            type="text"
-            placeholder="Escribe el link de la imagen"
-            onChange={(e) =>
-              setInputs((prevState) => ({
-                ...prevState,
-                imagen: e.target.value,
-              }))
-            }
-          />
-        </div>
-
-        {inputError.error && (
-          <p className="ErrorMessage"> {inputError.message}</p>
-        )}
+        {error.error && <p className="ErrorMessage"> {error.message}</p>}
 
         <Button type="submit" color={colorSchema.black}>
           {informativeMessages.btnSubmitMessage}
