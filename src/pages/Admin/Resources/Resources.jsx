@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Table from '../../../components/Table/Table'
-import { CoverGreetings, Loader } from '../../../components/Utils/Utils'
+import { CoverGreetings, Loader, MessageEmptyData } from '../../../components/Utils/Utils'
 import { Link } from 'react-router-dom'
 import { AiFillDelete } from 'react-icons/ai'
 import { MdModeEdit } from 'react-icons/md'
@@ -10,6 +10,7 @@ import { getAllRecommendations, deleteRecommendation } from '../../../services/s
 import { getToken } from '../../../services/localStorage'
 
 const Resources = () => {
+  const [emptyData, setEmptyData] = useState(false)
   const [resources, setResources] = useState([{}])
   const [resourcesLength, setResourcesLength] = useState(0)
   const [openModal, setOpenModal] = useState(false)
@@ -18,6 +19,8 @@ const Resources = () => {
   useEffect(() => {
     getAllRecommendations(getToken())
       .then((res) => {
+        console.log('data',res.data.result);
+        setEmptyData(res.data.result > 0);
         setResourcesLength(Object.values(res.data.result[0].attributes).length + 1)
         setResources(res.data.result)
       })
@@ -31,6 +34,8 @@ const Resources = () => {
     setElementSeleted(id)
   }
 
+  console.log(resources.length > 1);
+  console.log(resources);
   return (
     <div className="Dashboard">
       <CoverGreetings
@@ -43,7 +48,7 @@ const Resources = () => {
           Crear nuevo recurso recomendado
         </button>
       </Link>
-      <Table headers={['Titulo', 'Link', 'Tipo', ' Acciones']}>
+      <Table headers={['Titulo', 'Link', 'Tipo', 'Acciones']}>
         {resources.length > 0 ? (
           <Pagination data={resources}>
             {resources?.map(({ id, attributes }) => (
@@ -73,7 +78,7 @@ const Resources = () => {
             ))}
           </Pagination>
         ) : (
-          <Loader />
+          <MessageEmptyData message="No hay registros guardados."/>
         )}
       </Table>
       {openModal && (

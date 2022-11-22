@@ -66,7 +66,7 @@ const protectedRoutes = [
     component: <Path />,
   },
   {
-    to: '/aprender/:ruta/:topic/:level',
+    to: '/aprender/:ruta/:content',
     component: <Contents />,
   },
   {

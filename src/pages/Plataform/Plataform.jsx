@@ -5,7 +5,7 @@ import {
   getAllLearningPaths,
 } from '../../services/service'
 import { getToken } from '../../services/localStorage'
-import { Loader } from '../../components/Utils'
+import { Loader, MessageNotFound } from '../../components/Utils'
 import YoutubeIcon from '../../assets/images/youTube.png'
 import WebIcon from '../../assets/images/Web.png'
 import './Plataform.css'
@@ -26,37 +26,36 @@ const Plataform = () => {
   return learningPaths && listOfRecommendations ? (
     <main className="Plataform">
       <h2 className="tittleh2">Rutas de aprendizaje</h2>
-      <div className="Content_paths">
-        {learningPaths.length > 0 ? (
-          learningPaths?.map(({ id, attributes }) => (
+      {learningPaths.length > 0 ? (
+        <div className="Content_paths">
+          {learningPaths?.map(({ id, attributes }) => (
             <CardPath
               image="https://images.unsplash.com/photo-1668881233694-1825a663b2a4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
               title={attributes?.title}
               key={attributes?.title}
               description={attributes?.description}
-              link={`/aprender/${attributes?.title}?path=${id}`}
+              link={`/aprender/${id}`}
             />
-          ))
-        ) : (
-          <p>no hay datos</p>
-        )}
-      </div>
-
+          ))}
+        </div>
+      ) : (
+        <MessageNotFound message="No logramos encontrar este contenido. Es probable que el contenido no exista o este deshabilitado temporalmente. Intentalo de nuevo más tarde." />
+      )}
       <h2 className="tittleh2">Recursos recomendados</h2>
-      <div className="RecomemdedCards">
-        {listOfRecommendations.length > 0 ? (
-          listOfRecommendations?.map(({ id, attributes }) => (
+      {listOfRecommendations.length > 0 ? (
+        <div className="RecomemdedCards">
+          {listOfRecommendations?.map(({ id, attributes }) => (
             <Recomended
               title={attributes?.title}
               key={`${attributes?.title}${id}`}
               typeSite={attributes?.type}
               link={attributes?.link}
             />
-          ))
-        ) : (
-          <p>no hay datos</p>
-        )}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <MessageNotFound message="No logramos encontrar este contenido. Es probable que el contenido no exista o este deshabilitado temporalmente. Intentalo de nuevo más tarde." />
+      )}
     </main>
   ) : (
     <main className="LoaderBackground">

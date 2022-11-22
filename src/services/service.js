@@ -127,6 +127,18 @@ export const getSyllabus = async (id, token) => {
   }
 }
 
+export const getSyllabusWithContents = async (id, token) => {
+  try {
+    return axios.get(`${API_URL}/temarios/${id}?[populate][level]=*&[populate][contents][populate][level]=*`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
 export const deleteSyllabus = async (id, token) => {
   try {
     return axios.delete(`${API_URL}/temarios/${id}`, {

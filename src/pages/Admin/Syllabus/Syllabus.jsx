@@ -61,10 +61,14 @@ const Syllabus = () => {
               >
                 <li>{attributes?.title}</li>
                 <li className="TextClipped">{attributes?.description}</li>
-                <li className={`Level${attributes?.level.data.attributes.title}`}>
-                  {attributes?.level.data.attributes.title}
+                <li className={`Level${attributes?.level.data?.attributes?.title}`}>
+                  {attributes?.level.data?.attributes?.title}
                 </li>
-                <li>{attributes?.learning_path?.data.attributes.title}</li>
+                {attributes?.learning_path?.data?.attributes?.title ? (
+                  <li>{attributes?.learning_path?.data.attributes.title}</li>
+                  ) : (
+                  <li>Ruta eliminada, se requiere reasignar a una ruta</li>
+                )}
                 <li className="Table__actions">
                   <button onClick={() => handleOpenModal(id)}>
                     <AiFillDelete className="BtnDelete" />

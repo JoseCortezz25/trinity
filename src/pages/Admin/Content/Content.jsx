@@ -65,7 +65,11 @@ const Content = () => {
                 <li className="TextClipped">{attributes?.description}</li>
                 <li className="TextClipped">{attributes?.link}</li>
                 <li className={`TextClipped Level${attributes?.level.data?.attributes?.title}`}>{attributes?.level.data?.attributes?.title}</li>
-                <li className="TextClipped">{attributes?.temario.data?.attributes?.title}</li>
+                {attributes?.temario.data?.attributes?.title ? (
+                  <li>{attributes?.temario.data?.attributes?.title}</li>
+                  ) : (
+                  <li>Temario eliminado, se requiere reasignar a otro temario.</li>
+                )}
                 <li className="Table__actions">
                   <button onClick={() => handleOpenModal(id)}>
                     <AiFillDelete className="BtnDelete" />
