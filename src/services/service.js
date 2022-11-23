@@ -7,6 +7,8 @@ const options = (token) => ({
   },
 });
 
+const PAGE_SIZE = 10
+
 export const getAllLevels = async (token) => {
   try {
     return axios.get(`${API_URL}/levels`, {
@@ -45,7 +47,19 @@ export const createContent = async (data, token) => {
 
 export const getAllContents = async (token) => {
   try {
-    return axios.get(`${API_URL}/contents?populate=*&fields[0]=title&fields[1]=link&fields[2]=description`, {
+    return axios.get(`${API_URL}/contents?populate=*&fields[0]=title&fields[1]=link&fields[2]=description&pagination[pageSize]=10`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export const getContentsByPage = async (page, token) => {
+  try {
+    return axios.get(`${API_URL}/contents?populate=*&pagination[page]=${page}&pagination[pageSize]=${PAGE_SIZE}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -105,7 +119,19 @@ export const createSyllabus = async (data, token) => {
 
 export const getAllSyllabus = async (token) => {
   try {
-    return axios.get(`${API_URL}/temarios?populate=*`, {
+    return axios.get(`${API_URL}/temarios?populate=*&pagination[pageSize]=${PAGE_SIZE}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export const getSyllabusByPage = async (page, token) => {
+  try {
+    return axios.get(`${API_URL}/temarios?populate=*&pagination[page]=${page}&pagination[pageSize]=${PAGE_SIZE}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -177,7 +203,19 @@ export const createLearningPath = async (learningPath, token) => {
 
 export const getAllLearningPaths = async (token) => {
   try {
-    return axios.get(`${API_URL}/learningpaths`, {
+    return axios.get(`${API_URL}/learningpaths?pagination[pageSize]=${PAGE_SIZE}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export const getLearningPathsByPage = async (page, token) => {
+  try {
+    return axios.get(`${API_URL}/learningpaths?populate=*&pagination[page]=${page}&pagination[pageSize]=${PAGE_SIZE}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -237,7 +275,19 @@ export const updateLearningPath = async (id, data, token) => {
 
 export const getAllRecommendations = async (token) => {
   try {
-    return axios.get(`${API_URL}/recommend-resources`, {
+    return axios.get(`${API_URL}/recommend-resources?pagination[pageSize]=${PAGE_SIZE}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export const getRecommendationsByPage = async (page, token) => {
+  try {
+    return axios.get(`${API_URL}/recommend-resources?populate=*&pagination[page]=${page}&pagination[pageSize]=${PAGE_SIZE}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -315,7 +365,19 @@ export const registerAccount = async (data) => {
 
 export const getAllUsers = async (token) => {
   try {
-    return axios.get(`${API_URL}/users?populate=*`, {
+    return axios.get(`${API_URL}/users?populate=*?pagination[pageSize]=${PAGE_SIZE}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export const getUsersByPage = async (page, token) => {
+  try {
+    return axios.get(`${API_URL}/users?populate=*&pagination[page]=${page}&pagination[pageSize]=${PAGE_SIZE}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }

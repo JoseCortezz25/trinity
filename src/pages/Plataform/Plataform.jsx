@@ -22,7 +22,7 @@ const Plataform = () => {
       setListOfRecommendations(data.data.result)
     })
   }, [])
-
+  
   return learningPaths && listOfRecommendations ? (
     <main className="Plataform">
       <h2 className="tittleh2">Rutas de aprendizaje</h2>
@@ -79,7 +79,7 @@ const CardPath = ({ title, description, image, link }) => (
 const Recomended = ({ title, typeSite, link }) => (
   <a href={link} className="Recomended" target="_blank" rel="noreferrer">
     <div className="Recomended__image">
-      {typeSite === 'youtube' ? (
+      {typeSite === 'YOUTUBE' ? (
         <img className="img_Online" src={YoutubeIcon} />
       ) : (
         <img className="img_Online" src={WebIcon} />

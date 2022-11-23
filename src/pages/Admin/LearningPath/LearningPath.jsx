@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import { CoverGreetings, Loader } from '../../../components/Utils/Utils'
+import { CoverGreetings, MessageEmptyData } from '../../../components/Utils/Utils'
 import { Link } from 'react-router-dom'
 import Table from '../../../components/Table/Table'
 import { AiFillDelete } from 'react-icons/ai'
 import { MdModeEdit } from 'react-icons/md'
 import ModalAlert from '../../../components/ModalAlert/ModalAlert'
-import Pagination from '../../../components/Pagination/Pagination'
-import { getAllLearningPaths, deleteLearningPath } from '../../../services/service'
+import { Pagination } from '../../../components/Pagination/Pagination'
+import {
+  getAllLearningPaths,
+  deleteLearningPath,
+  getLearningPathsByPage,
+} from '../../../services/service'
 import { getToken } from '../../../services/localStorage'
 
 const LearningPath = () => {
+  const [elementLength, setElementLength] = useState(0)
+  const [pagination, setPagination] = useState({})
   const [learningPaths, setLearningPaths] = useState([{}])
   const [learningPathLength, setLearningPathsLength] = useState(0)
   const [openModal, setOpenModal] = useState(false)
@@ -18,15 +24,27 @@ const LearningPath = () => {
   useEffect(() => {
     getAllLearningPaths(getToken())
       .then((res) => {
+        setElementLength(res.data.data.length);
         setLearningPathsLength(
           Object.values(res.data.data[0].attributes).length + 1
         )
+        setLearningPaths(res.data.data)
+        setPagination(res.data.meta.pagination)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [])
+
+  const getDataPerPage = async ({ selected }) => {
+    getLearningPathsByPage(selected + 1, getToken())
+      .then((res) => {
         setLearningPaths(res.data.data)
       })
       .catch((error) => {
         console.log(error)
       })
-  }, [openModal, learningPathLength])
+  }
 
   const handleOpenModal = (id) => {
     setOpenModal((prevState) => !prevState)
@@ -44,23 +62,18 @@ const LearningPath = () => {
         <button className="btnStandard btnBlue">Crear nueva ruta</button>
       </Link>
 
-      <Table
-        headers={[
-          'Nombre de la ruta',
-          'Descripción',
-          'Acciones',
-        ]}
-      >
-        {learningPaths.length > 0 ? (
-          <Pagination data={learningPaths}>
+      <Table headers={['Nombre de la ruta', 'Descripción', 'Acciones']}>
+        {elementLength > 0 ? (
+          <Pagination
+            pageCount={pagination.pageCount}
+            changePage={getDataPerPage}
+          >
             {learningPaths.map(({ id, attributes }) => (
               <div
                 key={`${attributes?.title}${id}`}
                 className="Table__row"
                 style={{
-                  gridTemplateColumns: `repeat(${
-                    learningPathLength
-                  }, 250px)`,
+                  gridTemplateColumns: `repeat(${learningPathLength}, 250px)`,
                 }}
               >
                 <li>{attributes?.title}</li>
@@ -79,7 +92,7 @@ const LearningPath = () => {
             ))}
           </Pagination>
         ) : (
-          <Loader />
+          <MessageEmptyData message="No hay registros guardados."/>
         )}
       </Table>
 
