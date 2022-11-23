@@ -19,6 +19,7 @@ const ModalAlert = ({ elementSeleted, setOpenModal, deleteItem }) => {
       .catch((error) => {
         console.log(error)
       })
+    window.location.reload(true)
   }
 
   useEffect(() => {
@@ -48,7 +49,12 @@ const ModalAlert = ({ elementSeleted, setOpenModal, deleteItem }) => {
         >
           Cancelar
         </button>
-        <button className="btnStandard btnRed" onClick={() => deleteSeleted(elementSeleted)}>Eliminar</button>
+        <button
+          className="btnStandard btnRed"
+          onClick={() => deleteSeleted(elementSeleted)}
+        >
+          Eliminar
+        </button>
       </div>
     </Modal>
   )

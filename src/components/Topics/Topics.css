@@ -28,9 +28,6 @@
   margin-bottom: 10px;
 }
 
-.TopicsCard p {
-  font-size: 16px;
-}
 
 .Principiante {
   border-top: 2px solid var(--design-int-color-blue);

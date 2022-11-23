@@ -19,7 +19,14 @@ const ContentForm = () => {
   const { id } = useParams()
   const navigate = useNavigate()
   const [typeOfForm, setTypeOfForm] = useState('')
-  const [content, setContent] = useState({})
+  const [emptyTemario, setEmptyTemario] = useState(false)
+  const [content, setContent] = useState({
+    title: '',
+    description: '',
+    link: '',
+    temario: 0,
+    level: 0,
+  })
   const [listOfSyllabus, setListOfSyllabus] = useState([{}])
   const [error, setError] = useState({ error: false, message: '' })
   const [informativeMessages, setInformativeMessages] = useState({
@@ -54,8 +61,16 @@ const ContentForm = () => {
       })
     } else {
       setTypeOfForm('UPDATE')
-      getContent(id, getToken()).then((res) => {
-        setContent(res.data.attributes)
+      getContent(id, getToken()).then(({ data }) => {
+        const contentResults = data.attributes
+        setEmptyTemario(contentResults.temario.data === null)
+        setContent({
+          title: contentResults.title,
+          description: contentResults.description,
+          link: contentResults.link,
+          level: contentResults.level.data.id,
+          temario: contentResults.temario.data?.id,
+        })
       })
       setInformativeMessages({
         greetings: 'Actualizar contenido',
@@ -98,9 +113,17 @@ const ContentForm = () => {
         ? inputs.description
         : content.description
       formData.link = inputs.link ? inputs.link : content.link
-      formData.temario = inputs.temario ? inputs.temario : content.temario
       formData.level = inputs.level ? inputs.level : content.level
 
+      if (emptyTemario && inputs.temario === '') {
+        return setError({
+          error: true,
+          message:
+            'Este elemento no tiene una ruta de aprendizaje asignada. Es necesario asignarsela.',
+        })
+      }
+      setError({ error: false, message: '' })
+      formData.temario = inputs.temario ? inputs.temario : content.temario
       updateContent(id, { data: formData }, getToken())
       navigate('/admin/contenidos')
     }

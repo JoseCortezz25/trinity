@@ -88,7 +88,7 @@
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   z-index: 4;
   animation-name: scrollDown;
-  animation-duration: 0.4s;
+  animation-duration: 200ms;
   animation-timing-function: ease-out;
 }
 

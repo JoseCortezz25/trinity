@@ -8,7 +8,7 @@ import { getAllUsers, deleteUser } from '../../../services/service'
 import { getToken } from '../../../services/localStorage'
 import Table from '../../../components/Table/Table'
 import ModalAlert from '../../../components/ModalAlert/ModalAlert'
-import Pagination from '../../../components/Pagination/Pagination'
+import { PaginationAdapted } from '../../../components/Pagination/Pagination'
 
 const Users = () => {
   const [allUsers, setAllUsers] = useState([{}])
@@ -45,7 +45,7 @@ const Users = () => {
 
       <Table headers={['Nombre', 'Email', 'Estado', 'Rol', 'Acciones']}>
         {allUsers.length > 0 ? (
-          <Pagination data={allUsers}>
+          <PaginationAdapted data={allUsers}>
             {allUsers.map(({ id, fullName, email, status, roles_trinity }) => (
               <div
                 key={fullName}
@@ -80,7 +80,7 @@ const Users = () => {
                 </li>
               </div>
             ))}
-          </Pagination>
+          </PaginationAdapted>
         ) : (
           <Loader />
         )}

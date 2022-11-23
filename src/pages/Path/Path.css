@@ -1,13 +1,47 @@
-/* .Path {
-  display:flex;
-  flex-direction: column;
-} */
-
 .ListOfContent {
   width: 100%;
-  margin-top: 15px;
+  margin-top: 25px;
 }
 
 .ListOfContent h3 {
   margin-bottom: 15px;
+}
+
+.ListOfTopics {
+  width: 100%;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns:repeat(auto-fit, minmax(400px, 1fr));
+  gap: 20px;
+}
+
+.ListOfTopics a {
+  text-decoration: none;
+  color: var(--black);
+}
+
+.TopicsCard span {
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.Principiante__span {
+  color: var(--design-int-color-blue);
+  background-color: var(--design-int-dim-color-blue);
+}
+
+.Intermedio__span {
+  color: var(--design-pr-color-yellow);
+  background-color: var(--design-pr-dim-color-yellow);
+}
+
+.Avanzado__span {
+  color: var(--design-avan-color-red);
+  background-color: var(--design-avan-dim-color-red);
+}
+
+.TopicsCard p {
+  margin-top: 15px;
+  font-size: 16px;
 }
