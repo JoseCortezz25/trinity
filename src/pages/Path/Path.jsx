@@ -1,66 +1,74 @@
+/* eslint-disable camelcase */
 import React, { useEffect, useState } from 'react'
-import { useParams, useSearchParams } from 'react-router-dom'
-import { ItemContent, Loader } from '../../components/Utils'
+import { useParams } from 'react-router-dom'
+import { ItemContent, Loader, MessageNotFound } from '../../components/Utils'
 import { getLearningPathWithTemarios } from '../../services/service'
 import { getToken } from '../../services/localStorage'
-import Topics from '../../components/Topics'
 import CardTopics from '../../components/CardTopics'
 import './Path.css'
 
 const Path = () => {
   const [topics, setTopics] = useState([{}])
-  const { ruta } = useParams()
   const [temario, setTemario] = useState([{}])
-  const [searchParams, setSearchParams] = useSearchParams()
+  const [listOfContents, setListOfContents] = useState([{}])
+  const { ruta } = useParams()
 
   useEffect(() => {
-    const id = searchParams.get('path')
-
-    getLearningPathWithTemarios(id, getToken())
+    getLearningPathWithTemarios(ruta, getToken())
       .then((res) => {
         setTemario(res.data.data.attributes.temarios.data)
         setTopics(res.data.data.attributes)
+        setListOfContents(
+          res.data.data.attributes.temarios.data.map(
+            ({ id, attributes: { title, level } }) => {
+              const levelId = level.data.id
+              const level_label = level.data.attributes.title
+              return { id: [id, levelId], label: `${title} - ${level_label}` }
+            }
+          )
+        )
       })
       .catch((err) => {
         console.log(err)
       })
   }, [ruta])
 
-  console.log('temario', temario);
-  return topics ? (
+  console.log('listOfContents', listOfContents)
+  console.log('temario', temario.length)
+
+  return temario ? (
     <section className="Plataform Path">
-      <h2>{ruta}</h2>
+      <h2>{topics?.title}</h2>
       <p>{topics?.description}</p>
 
-      <div className="ListOfContent">
-        <h3>Contenidos</h3>
-        {temario?.map(({ id, attributes }) => (
-          <ItemContent
-            paht={ruta}
-            item={attributes?.title}
-            key={`${ruta}/${id}`}
-          />
-        ))}
-      </div>
+      {temario.length > 0 ? (
+        <>
+          <div className="ListOfContent">
+            <h3>Contenidos</h3>
+            {listOfContents?.map(({ id, label }) => (
+              <ItemContent paht={id} item={label} key={`${label}/${id}`} />
+            ))}
+          </div>
 
-      <div className="ListOfTopics">
-        {temario?.map(({ id, attributes }) => (
-          <Topics
-            title={attributes?.title}
-            ide={attributes?.title}
-            key={attributes?.title}
-          >
-            {/* {attributes?.map(
-              ({ title, description, level: { atribbutes } }) => ( */}
-              <CardTopics
-                key={`${attributes?.title}/${attributes?.level}`}
-                title={attributes?.level}
-                link={`/aprender/${ruta}/${attributes?.title}/${attributes?.level?.atributtes?.level}`}
-                description={attributes?.description}
-              />
-          </Topics>
-        ))}
-      </div>
+          <div className="ListOfTopics">
+            {temario?.map(({ id, attributes }) => {
+              const levelLabel = attributes?.level.data.attributes.title
+              return (
+                <CardTopics
+                  key={id}
+                  ide={`${attributes?.title} - ${levelLabel}`}
+                  title={attributes?.title}
+                  level={levelLabel}
+                  link={`/aprender/${ruta}/${id}`}
+                  description={attributes?.description}
+                />
+              )
+            })}
+          </div>
+        </>
+      ) : (
+        <MessageNotFound message="No logramos encontrar este contenido. Es probable que el contenido no exista o este deshabilitado temporalmente. Intentalo de nuevo más tarde." />
+      )}
     </section>
   ) : (
     <main className="LoaderBackground">

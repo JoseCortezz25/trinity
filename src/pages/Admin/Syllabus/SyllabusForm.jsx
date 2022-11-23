@@ -21,7 +21,13 @@ const SyllabusForm = () => {
   const navigate = useNavigate()
   const [error, setError] = useState({ error: false, message: '' })
   const [typeOfForm, setTypeOfForm] = useState('')
-  const [syllabus, setSyllabus] = useState({})
+  const [emptyLearningPath, setEmptyLearningPath] = useState(false)
+  const [syllabus, setSyllabus] = useState({
+    title: '',
+    description: '',
+    level: 0,
+    learning_path: 0,
+  })
   const [listOfLearningPaths, setListOfLearningPaths] = useState([{}])
   const [listOfLevels, setListOfLevels] = useState([{}])
   const [informativeMessages, setInformativeMessages] = useState({
@@ -76,8 +82,15 @@ const SyllabusForm = () => {
     } else {
       setTypeOfForm('UPDATE')
       getSyllabus(id, getToken())
-        .then((res) => {
-          setSyllabus(res.data.data.attributes)
+        .then(({ data: { data } }) => {
+          const syllabusResults = data.attributes
+          setEmptyLearningPath(syllabusResults.learning_path.data === null)
+          setSyllabus({
+            title: syllabusResults.title,
+            description: syllabusResults.description,
+            level: syllabusResults.level.data.id,
+            learning_path: syllabusResults.learning_path.data?.id,
+          })
         })
         .catch((error) => {
           console.log(error)
@@ -92,9 +105,7 @@ const SyllabusForm = () => {
 
   const modifySyllabus = (syllabus) => {
     updateSyllabus(id, { data: syllabus }, getToken())
-      .then((res) => {
-        console.log('✨res', res)
-      })
+      .then((res) => {})
       .catch((error) => {
         setError({
           error: error.error,
@@ -107,7 +118,6 @@ const SyllabusForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     const { title, description, level, learning_path } = inputs
-    // console.log('inputs', inputs)
     setError({ error: true, message: '' })
 
     if (typeOfForm === 'ADD') {
@@ -129,14 +139,24 @@ const SyllabusForm = () => {
 
     if (typeOfForm === 'UPDATE') {
       const formData = {}
+
       formData.title = inputs.title ? inputs.title : syllabus.title
       formData.description = inputs.description
         ? inputs.description
         : syllabus.description
-      formData.level = inputs.level ? inputs.level : syllabus.level?.data.id
+      formData.level = inputs.level ? inputs.level : syllabus.level
+
+      if (emptyLearningPath && inputs.learning_path === '') {
+        return setError({
+          error: true,
+          message:
+            'Este elemento no tiene una ruta de aprendizaje asignada. Es necesario asignarsela.',
+        })
+      }
+      setError({ error: false, message: '' })
       formData.learning_path = inputs.learning_path
         ? inputs.learning_path
-        : syllabus.learning_path?.data?.id
+        : syllabus.learning_path
       modifySyllabus(formData)
       navigate('/admin/temario')
     }
@@ -188,8 +208,8 @@ const SyllabusForm = () => {
             id="level"
             name="level"
             placeholder={
-              syllabus?.level?.data?.attributes?.title
-                ? `${syllabus?.level?.data?.attributes?.title}`
+              syllabus.level
+                ? `${syllabus.level}`
                 : `Seleccionar el nivel perteneciente al tema`
             }
             options={listOfLevels}
@@ -208,8 +228,8 @@ const SyllabusForm = () => {
             id="learning_path"
             name="learning_path"
             placeholder={
-              syllabus?.learning_path?.data.attributes?.title
-                ? `${syllabus?.learning_path?.data.attributes?.title}`
+              syllabus.learning_path
+                ? `${syllabus.learning_path}`
                 : `Seleccionar la ruta de aprendizaje a la que pertenece el tema`
             }
             options={listOfLearningPaths}
