@@ -12,6 +12,7 @@ import {
   getContentsByPage,
 } from '../../../services/service'
 import { getToken } from '../../../services/localStorage'
+import { NO_RECORDS } from '../../../helpers/messages'
 
 const Content = () => {
   const [elementLength, setElementLength] = useState(0)
@@ -111,7 +112,7 @@ const Content = () => {
             ))}
           </Pagination>
         ) : (
-          <MessageEmptyData message="No hay registros guardados."/>
+          <MessageEmptyData message={NO_RECORDS}/>
         )}
       </Table>
       {openModal && (

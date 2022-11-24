@@ -14,7 +14,7 @@ const ProtectedRoute = ({ redirectPath = '/formulario/login' }) => {
     return <Navigate to={redirectPath} replace={true} />
   }
 
-  if (user.roles_trinity.name === 'USER' && location.pathname.includes('/admin')) {
+  if (user?.roles_trinity?.name === 'USER' && location.pathname.includes('/admin')) {
     return <Navigate to="/aprender" replace={true} />
   }
 

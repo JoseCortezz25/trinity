@@ -24,7 +24,6 @@ const Login = () => {
       const {
         data: { jwt, user },
       } = result
-      console.log('user', user)
       setCurrentUser(user.id)
       setToken(jwt)
       return {

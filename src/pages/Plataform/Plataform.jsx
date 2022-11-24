@@ -8,6 +8,7 @@ import { getToken } from '../../services/localStorage'
 import { Loader, MessageNotFound } from '../../components/Utils'
 import YoutubeIcon from '../../assets/images/youTube.png'
 import WebIcon from '../../assets/images/Web.png'
+import { DATA_NOT_FOUND_MESSAGE } from '../../helpers/messages'
 import './Plataform.css'
 
 const Plataform = () => {
@@ -22,7 +23,7 @@ const Plataform = () => {
       setListOfRecommendations(data.data.result)
     })
   }, [])
-  
+
   return learningPaths && listOfRecommendations ? (
     <main className="Plataform">
       <h2 className="tittleh2">Rutas de aprendizaje</h2>
@@ -39,7 +40,7 @@ const Plataform = () => {
           ))}
         </div>
       ) : (
-        <MessageNotFound message="No logramos encontrar este contenido. Es probable que el contenido no exista o este deshabilitado temporalmente. Intentalo de nuevo más tarde." />
+        <MessageNotFound message={DATA_NOT_FOUND_MESSAGE} />
       )}
       <h2 className="tittleh2">Recursos recomendados</h2>
       {listOfRecommendations.length > 0 ? (
@@ -54,7 +55,7 @@ const Plataform = () => {
           ))}
         </div>
       ) : (
-        <MessageNotFound message="No logramos encontrar este contenido. Es probable que el contenido no exista o este deshabilitado temporalmente. Intentalo de nuevo más tarde." />
+        <MessageNotFound message={DATA_NOT_FOUND_MESSAGE} />
       )}
     </main>
   ) : (

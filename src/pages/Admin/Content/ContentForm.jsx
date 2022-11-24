@@ -12,6 +12,8 @@ import {
   getContent,
   updateContent,
 } from '../../../services/service'
+import { validURL } from '../../../helpers/utils'
+import { WRONG_URL_MESSAGE, INCOMPLETE_INPUTS } from '../../../helpers/messages'
 import { getToken } from '../../../services/localStorage'
 
 const ContentForm = () => {
@@ -93,11 +95,16 @@ const ContentForm = () => {
       ) {
         return setError({
           error: true,
-          message:
-            'Hay campos vacios. Asegurate de completar todos los campos.',
+          message: INCOMPLETE_INPUTS,
         })
       }
-      setError({ error: true, message: '' })
+      if (!validURL(inputs.link)) {
+        return setError({
+          error: true,
+          message: WRONG_URL_MESSAGE,
+        })
+      }
+      setError({ error: false, message: '' })
 
       createContent(
         { data: { title, description, link, temario, level } },

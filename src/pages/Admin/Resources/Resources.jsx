@@ -15,6 +15,7 @@ import {
   getRecommendationsByPage,
 } from '../../../services/service'
 import { getToken } from '../../../services/localStorage'
+import { NO_RECORDS } from '../../../helpers/messages'
 
 const Resources = () => {
   const [elementLength, setElementLength] = useState(0)
@@ -97,7 +98,7 @@ const Resources = () => {
             ))}
           </Pagination>
         ) : (
-          <MessageEmptyData message="No hay registros guardados." />
+          <MessageEmptyData message={NO_RECORDS}/>
         )}
       </Table>
       {openModal && (

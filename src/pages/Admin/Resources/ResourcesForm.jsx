@@ -12,6 +12,7 @@ import {
   updateRecommendation,
 } from '../../../services/service'
 import { getToken } from '../../../services/localStorage'
+import { GENERIC_ERROR_MESSAGE, WRONG_URL_MESSAGE, INCOMPLETE_INPUTS } from '../../../helpers/messages'
 
 const ResourcesForm = () => {
   const location = useLocation()
@@ -66,8 +67,7 @@ const ResourcesForm = () => {
       .catch((error) => {
         setError({
           error: error.error,
-          message:
-            'Ha ocurrido un error. No es tu culpa, estamos solucionandolo.',
+          message: GENERIC_ERROR_MESSAGE
         })
       })
   }
@@ -78,22 +78,20 @@ const ResourcesForm = () => {
       const { title, link, type } = inputs
 
       if (typeOfForm === 'ADD') {
-        if (!validURL(inputs.link)) {
-          return setError({
-            error: true,
-            message:
-              'La URL de la imagen no corresponde a un formado veridico.',
-          })
-        }
-        setError({ error: false, message: '' })
         if (title === '' || link === '' || type === '') {
           return setError({
             error: true,
-            message:
-              'Hay campos vacios. Asegurate de completar todos los campos.',
+            message: INCOMPLETE_INPUTS
+          })
+        }
+        if (!validURL(inputs.link)) {
+          return setError({
+            error: true,
+            message: WRONG_URL_MESSAGE,
           })
         }
         setError({ error: false, message: '' })
+
 
         addRecommendations({ data: { title, link, type } }, getToken())
         navigate('/admin/recursos')

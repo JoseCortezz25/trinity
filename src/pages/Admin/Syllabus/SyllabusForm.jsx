@@ -11,8 +11,14 @@ import {
   getAllLearningPaths,
   getAllLevels,
   getSyllabus,
+  getSyllabusWithFilter,
   updateSyllabus,
 } from '../../../services/service'
+import {
+  GENERIC_ERROR_MESSAGE,
+  INCOMPLETE_INPUTS,
+  MISSED_LEARNING_PATH,
+} from '../../../helpers/messages'
 import { getToken } from '../../../services/localStorage'
 
 const SyllabusForm = () => {
@@ -109,8 +115,7 @@ const SyllabusForm = () => {
       .catch((error) => {
         setError({
           error: error.error,
-          message:
-            'Ha ocurrido un error. No es tu culpa, estamos solucionandolo.',
+          message: GENERIC_ERROR_MESSAGE,
         })
       })
   }
@@ -118,23 +123,32 @@ const SyllabusForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     const { title, description, level, learning_path } = inputs
-    setError({ error: true, message: '' })
+    setError({ error: false, message: '' })
 
     if (typeOfForm === 'ADD') {
       if (title === '' || description === '' || !level || !learning_path) {
         return setError({
           error: true,
-          message:
-            'Hay campos vacios. Asegurate de completar todos los campos.',
+          message: INCOMPLETE_INPUTS,
         })
       }
       setError({ error: false, message: '' })
 
-      createSyllabus(
-        { data: { title, description, level, learning_path } },
-        getToken()
-      )
-      navigate('/admin/temario')
+      getSyllabusWithFilter(title, level, getToken()).then((result) => {
+        if (result.data.data[0]?.attributes !== undefined) {
+          const data = result.data.data[0].attributes
+          const level_id = data.level.data.id
+          if (title === data.title && level === level_id) {
+            return setError({ error: true, message: 'El temario ya existe.' })
+          }
+        }
+        setError({ error: false, message: '' })
+        createSyllabus(
+          { data: { title, description, level, learning_path } },
+          getToken()
+        )
+        navigate('/admin/temario')
+      })
     }
 
     if (typeOfForm === 'UPDATE') {
@@ -149,16 +163,26 @@ const SyllabusForm = () => {
       if (emptyLearningPath && inputs.learning_path === '') {
         return setError({
           error: true,
-          message:
-            'Este elemento no tiene una ruta de aprendizaje asignada. Es necesario asignarsela.',
+          message: MISSED_LEARNING_PATH,
         })
       }
       setError({ error: false, message: '' })
       formData.learning_path = inputs.learning_path
         ? inputs.learning_path
         : syllabus.learning_path
-      modifySyllabus(formData)
-      navigate('/admin/temario')
+
+      getSyllabusWithFilter(formData.title, formData.level, getToken()).then((result) => {
+        if (result.data.data[0]?.attributes !== undefined) {
+          const data = result.data.data[0].attributes
+          const level_id = data.level.data.id
+          if (formData.title === data.title && formData.level === level_id) {
+            return setError({ error: true, message: 'El temario ya existe.' })
+          }
+        }
+        setError({ error: false, message: '' })
+        modifySyllabus(formData)
+        navigate('/admin/temario')
+      })
     }
   }
 

@@ -9,6 +9,7 @@ import {
   getLearningPath,
   updateLearningPath,
 } from '../../../services/service'
+import { GENERIC_ERROR_MESSAGE, INCOMPLETE_INPUTS } from '../../../helpers/messages'
 import { getToken } from '../../../services/localStorage'
 
 const LearningPathForm = () => {
@@ -63,8 +64,7 @@ const LearningPathForm = () => {
       .catch((error) => {
         setError({
           error: error.error,
-          message:
-            'Ha ocurrido un error. No es tu culpa, estamos solucionandolo.',
+          message: GENERIC_ERROR_MESSAGE
         })
       })
   }
@@ -78,8 +78,7 @@ const LearningPathForm = () => {
         if (title === '' || description === '') {
           return setError({
             error: true,
-            message:
-              'Hay campos vacios. Asegurate de completar todos los campos.',
+            message: INCOMPLETE_INPUTS
           })
         }
         setError({ error: true, message: '' })

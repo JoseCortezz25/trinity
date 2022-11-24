@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { AiOutlineClose } from 'react-icons/ai'
 import { Loader, MessageNotFound } from '../../components/Utils'
-import Modal from '../../components/Modal'
-
-import './Contents.css'
+import { DATA_NOT_FOUND_MESSAGE } from '../../helpers/messages'
 import { getSyllabusWithContents } from '../../services/service'
 import { getToken } from '../../services/localStorage'
+import Modal from '../../components/Modal'
+import './Contents.css'
 
 const Contents = () => {
   const { content } = useParams()
@@ -59,7 +59,7 @@ const Contents = () => {
             ))}
           </>
         ) : (
-          <MessageNotFound message="No logramos encontrar este contenido. Es probable que el contenido no exista o este deshabilitado temporalmente. Intentalo de nuevo más tarde." />
+          <MessageNotFound message={DATA_NOT_FOUND_MESSAGE} />
         )}
       </div>
     </div>

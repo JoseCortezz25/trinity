@@ -5,6 +5,7 @@ import { ItemContent, Loader, MessageNotFound } from '../../components/Utils'
 import { getLearningPathWithTemarios } from '../../services/service'
 import { getToken } from '../../services/localStorage'
 import CardTopics from '../../components/CardTopics'
+import { DATA_NOT_FOUND_MESSAGE } from '../../helpers/messages'
 import './Path.css'
 
 const Path = () => {
@@ -67,7 +68,7 @@ const Path = () => {
           </div>
         </>
       ) : (
-        <MessageNotFound message="No logramos encontrar este contenido. Es probable que el contenido no exista o este deshabilitado temporalmente. Intentalo de nuevo más tarde." />
+        <MessageNotFound message={DATA_NOT_FOUND_MESSAGE} />
       )}
     </section>
   ) : (

@@ -27,17 +27,17 @@ const Dashboard = () => {
         />
         <DashboradCard
           title="Rutas de Aprendizaje"
-          description="Administra las rutas de aprendizaje. Añade, edita o elimina el contenido."
+          description="Administra las rutas de aprendizaje. Añade, edita o elimina las rutas."
           path="/rutas"
         />
         <DashboradCard
           title="Temario de las rutas"
-          description="Administra los temas de las rutas. Añade, edita o elimina el contenido."
+          description="Administra los temas de las temas de las rutas. Añade, edita o elimina los temas."
           path="/temario"
         />
         <DashboradCard
           title="Contenidos"
-          description="Administra los contenidos de aprendizaje. Añade, elimina o actualiza las contenidos."
+          description="Administra los contenidos de aprendizaje. Añade, elimina o actualiza los contenidos."
           path="/contenidos"
         />
       </div>

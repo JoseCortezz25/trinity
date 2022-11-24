@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { CoverGreetings, Loader } from '../../../components/Utils/Utils'
+import { CoverGreetings, MessageEmptyData } from '../../../components/Utils/Utils'
 import { Link } from 'react-router-dom'
 import Table from '../../../components/Table/Table'
 import { AiFillDelete } from 'react-icons/ai'
@@ -12,6 +12,7 @@ import {
   getSyllabusByPage,
 } from '../../../services/service'
 import { getToken } from '../../../services/localStorage'
+import { NO_RECORDS } from '../../../helpers/messages'
 
 const Syllabus = () => {
   const [elementLength, setElementLength] = useState(0)
@@ -105,7 +106,7 @@ const Syllabus = () => {
             ))}
           </Pagination>
         ) : (
-          <Loader />
+          <MessageEmptyData message={NO_RECORDS}/>
         )}
       </Table>
       {openModal && (

@@ -153,6 +153,18 @@ export const getSyllabus = async (id, token) => {
   }
 }
 
+export const getSyllabusWithFilter = async (title, level, token) => {
+  try {
+    return axios.get(`${API_URL}/temarios?populate=*&filters[title][$eq]=${title}&filters[level][id][$eq]=${level}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
 export const getSyllabusWithContents = async (id, token) => {
   try {
     return axios.get(`${API_URL}/temarios/${id}?[populate][level]=*&[populate][contents][populate][level]=*`, {

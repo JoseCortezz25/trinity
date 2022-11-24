@@ -10,6 +10,7 @@ import {
   getUserById,
   updateUser,
 } from '../../../services/service'
+import { GENERIC_ERROR_MESSAGE, INCOMPLETE_INPUTS, PASSWORDS_ARE_NOT_THE_SAME } from '../../../helpers/messages'
 import { getToken } from '../../../services/localStorage'
 import {
   Input,
@@ -63,8 +64,7 @@ const UsersForm = () => {
       .catch((error) => {
         setError({
           error: error.error,
-          message:
-            'Ha ocurrido un error. No es tu culpa, estamos solucionandolo.',
+          message: GENERIC_ERROR_MESSAGE
         })
       })
   }
@@ -81,8 +81,7 @@ const UsersForm = () => {
       .catch((error) => {
         setError({
           error: error.error,
-          message:
-            'Ha ocurrido un error. No es tu culpa, estamos solucionandolo.',
+          message: GENERIC_ERROR_MESSAGE
         })
       })
 
@@ -102,8 +101,7 @@ const UsersForm = () => {
         .catch((error) => {
           setError({
             error: error.error,
-            message:
-              'Ha ocurrido un error. No es tu culpa, estamos solucionandolo.',
+            message: GENERIC_ERROR_MESSAGE
           })
         })
 
@@ -132,7 +130,7 @@ const UsersForm = () => {
       ) {
         return setError({
           error: true,
-          message: 'Las contraseñas no coinciden.',
+          message: PASSWORDS_ARE_NOT_THE_SAME
         })
       }
       setError({ error: false, message: '' })
@@ -149,8 +147,7 @@ const UsersForm = () => {
       ) {
         return setError({
           error: true,
-          message:
-            'Hay campos vacios. Asegurate de completar todos los campos.',
+          message: INCOMPLETE_INPUTS
         })
       }
 
@@ -173,7 +170,7 @@ const UsersForm = () => {
       ) {
         return setError({
           error: true,
-          message: 'Las contraseñas no coinciden.',
+          message: PASSWORDS_ARE_NOT_THE_SAME
         })
       }
       setError({ error: false, message: '' })

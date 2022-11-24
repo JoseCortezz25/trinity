@@ -12,6 +12,7 @@ import {
   getLearningPathsByPage,
 } from '../../../services/service'
 import { getToken } from '../../../services/localStorage'
+import { NO_RECORDS } from '../../../helpers/messages'
 
 const LearningPath = () => {
   const [elementLength, setElementLength] = useState(0)
@@ -92,7 +93,7 @@ const LearningPath = () => {
             ))}
           </Pagination>
         ) : (
-          <MessageEmptyData message="No hay registros guardados."/>
+          <MessageEmptyData message={NO_RECORDS}/>
         )}
       </Table>
 
