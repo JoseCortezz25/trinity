@@ -131,7 +131,7 @@
   }
 }
 
-@media screen and (max-width: 1067px) {
+@media screen and (max-width: 1400px) {
   .TableComponent {
     overflow-x: scroll;
   }
@@ -139,6 +139,12 @@
   .TableComponent__header,
   .TableComponent__item {
     width: 1150px;
+  }
+}
+
+@media screen and (max-width: 1067px) {
+  .TableComponent {
+    overflow-x: scroll;
   }
     
   .ButtonsPagination {
@@ -150,17 +156,10 @@
 }
 
 @media screen and (max-width: 867px) {
-  .TableComponent {
-    overflow-x: scroll;
-  }
-
   .ButtonsPagination {
     width: calc(100vh - 140px);
     list-style: none;
     display: flex;
     justify-content:flex-end,
-  }
-  .TableComponent__header, .Table__row {
-    width: 1400px;
   }
 }

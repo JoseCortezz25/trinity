@@ -377,7 +377,7 @@ export const registerAccount = async (data) => {
 
 export const getAllUsers = async (token) => {
   try {
-    return axios.get(`${API_URL}/users?populate=*?pagination[pageSize]=${PAGE_SIZE}`, {
+    return axios.get(`${API_URL}/users?populate=*`, {
       headers: {
         Authorization: `Bearer ${token}`
       }

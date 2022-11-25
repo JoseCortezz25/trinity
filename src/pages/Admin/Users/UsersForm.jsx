@@ -10,7 +10,11 @@ import {
   getUserById,
   updateUser,
 } from '../../../services/service'
-import { GENERIC_ERROR_MESSAGE, INCOMPLETE_INPUTS, PASSWORDS_ARE_NOT_THE_SAME } from '../../../helpers/messages'
+import {
+  GENERIC_ERROR_MESSAGE,
+  INCOMPLETE_INPUTS,
+  PASSWORDS_ARE_NOT_THE_SAME,
+} from '../../../helpers/messages'
 import { getToken } from '../../../services/localStorage'
 import {
   Input,
@@ -46,7 +50,7 @@ const UsersForm = () => {
   const createUser = (data) => {
     createNewUser(data, getToken())
       .then((res) => {
-        console.log('🎃 res', res)
+        console.log('It was created! :)')
       })
       .catch((error) => {
         setError({
@@ -64,7 +68,7 @@ const UsersForm = () => {
       .catch((error) => {
         setError({
           error: error.error,
-          message: GENERIC_ERROR_MESSAGE
+          message: GENERIC_ERROR_MESSAGE,
         })
       })
   }
@@ -81,7 +85,7 @@ const UsersForm = () => {
       .catch((error) => {
         setError({
           error: error.error,
-          message: GENERIC_ERROR_MESSAGE
+          message: GENERIC_ERROR_MESSAGE,
         })
       })
 
@@ -101,7 +105,7 @@ const UsersForm = () => {
         .catch((error) => {
           setError({
             error: error.error,
-            message: GENERIC_ERROR_MESSAGE
+            message: GENERIC_ERROR_MESSAGE,
           })
         })
 
@@ -130,7 +134,7 @@ const UsersForm = () => {
       ) {
         return setError({
           error: true,
-          message: PASSWORDS_ARE_NOT_THE_SAME
+          message: PASSWORDS_ARE_NOT_THE_SAME,
         })
       }
       setError({ error: false, message: '' })
@@ -147,7 +151,7 @@ const UsersForm = () => {
       ) {
         return setError({
           error: true,
-          message: INCOMPLETE_INPUTS
+          message: INCOMPLETE_INPUTS,
         })
       }
 
@@ -170,7 +174,7 @@ const UsersForm = () => {
       ) {
         return setError({
           error: true,
-          message: PASSWORDS_ARE_NOT_THE_SAME
+          message: PASSWORDS_ARE_NOT_THE_SAME,
         })
       }
       setError({ error: false, message: '' })
@@ -287,11 +291,8 @@ const UsersForm = () => {
               name="status"
               id="status"
               value={inputs.status ? inputs.status : user.status}
-              onChange={(e) =>
-                setInputs((prevState) => ({
-                  ...prevState,
-                  status: !inputs.status,
-                }))
+              onChange={({ target: { value, name } }) =>
+                setInputs({ ...inputs, [name]: value })
               }
             >
               <Radio value={1}>Activado</Radio>
