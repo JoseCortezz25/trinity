@@ -15,7 +15,7 @@ function RadioProvider({ name, value, onChange, children }) {
 
   const handleChange = (newValue) => {
     setValueCtx(newValue)
-    onChange && onChange(newValue)
+    onChange && onChange({ name, value: newValue })
   }
 
   return (

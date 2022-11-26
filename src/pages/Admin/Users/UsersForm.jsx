@@ -1,7 +1,8 @@
 /* eslint-disable camelcase */
 import React, { useEffect, useState } from 'react'
-import { CoverGreetings } from '../../../components/Utils/Utils'
 import { useLocation, useParams, useNavigate } from 'react-router-dom'
+
+import { CoverGreetings } from '../../../components/Utils/Utils'
 import { generateRandomUsername } from '../../../helpers/utils'
 import { RadioGroup } from '../../../contexts'
 import {
@@ -24,34 +25,28 @@ import {
   Button,
   colorSchema,
 } from '../../../components'
+import {
+  INITIAL_ERROR,
+  INITIAL_INFORMATION_MESSAGES,
+  INITIAL_INPUTS_USER_FORM,
+} from '../../../models'
 
 const UsersForm = () => {
   const location = useLocation()
   const { id } = useParams()
-  const [roles, setRoles] = useState([{}])
-  const [error, setError] = useState({ error: false, message: '' })
+  const [roles, setRoles] = useState([])
+  const [error, setError] = useState(INITIAL_ERROR)
   const [user, setUser] = useState({})
   const navigate = useNavigate()
-  const [informativeMessages, setInformativeMessages] = useState({
-    greetings: '',
-    btnSubmitMessage: '',
-  })
+  const [informativeMessages, setInformativeMessages] = useState(
+    INITIAL_INFORMATION_MESSAGES
+  )
   const [typeOfForm, setTypeOfForm] = useState('')
-  const [inputs, setInputs] = useState({
-    fullName: '',
-    email: '',
-    password: '',
-    confirmpassword: '',
-    status: '',
-    role: 1,
-    roles_trinity: 0,
-  })
+  const [inputs, setInputs] = useState(INITIAL_INPUTS_USER_FORM)
 
   const createUser = (data) => {
     createNewUser(data, getToken())
-      .then((res) => {
-        console.log('It was created! :)')
-      })
+      .then(() => console.log('It was created! :)'))
       .catch((error) => {
         setError({
           error: error.error,
@@ -60,11 +55,15 @@ const UsersForm = () => {
       })
   }
 
+  const handleChange = ({ target: { name, value } }) =>
+    setInputs({ ...inputs, [name]: value })
+
+  const handleChangeRadio = ({ name, value }) =>
+    setInputs({ ...inputs, [name]: value })
+
   const modifyUser = (data) => {
     updateUser(id, data, getToken())
-      .then((res) => {
-        console.log('✨res', res)
-      })
+      .then((res) => console.log('✨res', res))
       .catch((error) => {
         setError({
           error: error.error,
@@ -75,13 +74,11 @@ const UsersForm = () => {
 
   useEffect(() => {
     getAllRoles(getToken())
-      .then((res) => {
+      .then(({ data }) =>
         setRoles(
-          res.data.map(({ id, attributes: { name } }) => {
-            return { id, label: name }
-          })
+          data.map(({ id, attributes: { name } }) => ({ id, label: name }))
         )
-      })
+      )
       .catch((error) => {
         setError({
           error: error.error,
@@ -98,9 +95,10 @@ const UsersForm = () => {
     } else {
       setTypeOfForm('UPDATE')
       getUserById(id, getToken())
-        .then((res) => {
-          res.role = 'ADMIN'
-          setUser(res)
+        .then(({ role, status, ...res }) => {
+          role = 'ADMIN'
+          setInputs({ ...inputs, status: status ? 1 : 0 })
+          setUser({ ...res, role, status: status ? 1 : 0 })
         })
         .catch((error) => {
           setError({
@@ -129,9 +127,7 @@ const UsersForm = () => {
     } = inputs
 
     if (typeOfForm === 'ADD') {
-      if (
-        inputs.confirmpassword.toLowerCase() !== inputs.password.toLowerCase()
-      ) {
+      if (confirmpassword.toLowerCase() !== password.toLowerCase()) {
         return setError({
           error: true,
           message: PASSWORDS_ARE_NOT_THE_SAME,
@@ -161,7 +157,7 @@ const UsersForm = () => {
         email,
         password,
         role,
-        status,
+        status: status === 1,
         username,
         roles_trinity,
       })
@@ -169,9 +165,7 @@ const UsersForm = () => {
     }
 
     if (typeOfForm === 'UPDATE') {
-      if (
-        inputs.confirmpassword.toLowerCase() !== inputs.password.toLowerCase()
-      ) {
+      if (confirmpassword.toLowerCase() !== password.toLowerCase()) {
         return setError({
           error: true,
           message: PASSWORDS_ARE_NOT_THE_SAME,
@@ -186,7 +180,7 @@ const UsersForm = () => {
       formData.roles_trinity = inputs.roles_trinity
         ? inputs.roles_trinity
         : user.roles_trinity?.id
-      formData.status = inputs.status ? inputs.status : user.status
+      formData.status = status === 1
 
       modifyUser(formData)
       navigate('/admin/usuarios')
@@ -202,13 +196,11 @@ const UsersForm = () => {
           <Input
             id="fullName"
             name="fullName"
-            value={inputs.fullName ? inputs.fullName : user.fullName}
+            value={user.fullName ?? inputs.fullName}
             type="text"
             minLength="8"
             placeholder="Escribe el nombre del usuario"
-            onChange={({ target: { value, name } }) =>
-              setInputs({ ...inputs, [name]: value })
-            }
+            onInput={handleChange}
           />
         </div>
 
@@ -217,16 +209,14 @@ const UsersForm = () => {
           <Input
             id="email"
             name="email"
-            value={inputs.email ? inputs.email : user.email}
+            value={user.email ?? inputs.email}
             type="email"
             placeholder="Escribe el email del usuario"
-            onChange={({ target: { value, name } }) =>
-              setInputs({ ...inputs, [name]: value })
-            }
+            onInput={handleChange}
           />
         </div>
 
-        {typeOfForm === 'ADD' ? (
+        {typeOfForm === 'ADD' && (
           <>
             <div className="InputsGroup">
               <Label htmlFor="password">Contraseña</Label>
@@ -236,15 +226,9 @@ const UsersForm = () => {
                 name="password"
                 minLength="8"
                 placeholder="Escribe la contraseña del usuario"
-                onChange={(e) =>
-                  setInputs((prevState) => ({
-                    ...prevState,
-                    password: e.target.value,
-                  }))
-                }
+                onInput={handleChange}
               />
             </div>
-
             <div className="InputsGroup">
               <Label htmlFor="confirmpassword">Confirmar contraseña</Label>
               <Input
@@ -253,17 +237,11 @@ const UsersForm = () => {
                 name="confirmpassword"
                 minLength="8"
                 placeholder="Escribe de nuevo la contraseña del usuario"
-                onChange={(e) =>
-                  setInputs((prevState) => ({
-                    ...prevState,
-                    confirmpassword: e.target.value,
-                  }))
-                }
+                onInput={handleChange}
               />
             </div>
           </>
-        ) : null}
-
+        )}
         <div className="InputsGroup__grid">
           <div className="InputsGroup">
             <Label htmlFor="roles_trinity">Tipo de usuario</Label>
@@ -276,11 +254,11 @@ const UsersForm = () => {
                   : `Seleccionar tipo de usuario`
               }
               options={roles}
-              onChange={(e) =>
-                setInputs((prevState) => ({
-                  ...prevState,
-                  roles_trinity: parseInt(e.id),
-                }))
+              onChange={({ id }) =>
+                setInputs({
+                  ...inputs,
+                  roles_trinity: parseInt(id),
+                })
               }
             />
           </div>
@@ -290,13 +268,11 @@ const UsersForm = () => {
             <RadioGroup
               name="status"
               id="status"
-              value={inputs.status ? inputs.status : user.status}
-              onChange={({ target: { value, name } }) =>
-                setInputs({ ...inputs, [name]: value })
-              }
+              value={inputs.status}
+              onChange={handleChangeRadio}
             >
               <Radio value={1}>Activado</Radio>
-              <Radio value={2}>Desactivado</Radio>
+              <Radio value={0}>Desactivado</Radio>
             </RadioGroup>
           </div>
         </div>
