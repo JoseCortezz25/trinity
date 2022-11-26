@@ -5,6 +5,7 @@ export { default as icon2 } from "./icons/icons2.png";
 export { default as icon3 } from "./icons/icons3.png";
 export { default as LinkedinIcon } from "./icons/LinkedinIcon.svg";
 export { default as logoIcon } from "./icons/logo.svg";
+export { default as logoTrinityNegro } from "./icons/logo_trinity_negro.png";
 export { default as programmerIcon } from "./icons/programmer.svg";
 export { default as reactIcon } from "./icons/react.svg";
 export { default as toggleButtonIcon } from "./icons/toggleButton.svg";

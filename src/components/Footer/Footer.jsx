@@ -1,4 +1,4 @@
-import { LinkedinIcon, FacebookIcon, TwitterIcon, logoIcon } from '../../assets'
+import { LinkedinIcon, FacebookIcon, TwitterIcon, logoTrinityNegro } from '../../assets'
 
 import './Footer.css'
 
@@ -8,7 +8,7 @@ const Footer = () => {
       <nav>
         <div className="nav__item">
           <div className="logo">
-            <img src={logoIcon} alt="" />
+            <img src={logoTrinityNegro} alt="" />
           </div>
           <p>
             <b>Teléfono:</b> (+57) 314 3478428

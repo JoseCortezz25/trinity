@@ -71,6 +71,7 @@
 
 .CardContents__body {
   padding: 15px;
+  overflow-wrap: break-word;
 }
 
 .CardContents__body p {
@@ -80,6 +81,7 @@
 .ModalContents {
   position: relative;
   width: 50%;
+  overflow-wrap: break-word;
   min-height: 200px;
   background-color: var(--white);
   color: var(--black);
@@ -97,13 +99,14 @@
 }
 
 .ModalContents h2 {
+  width: 92%;
   margin-bottom: 15px;
 }
 
 .btnCloseModal {
   background-color: transparent;
   position: absolute;
-  right: 25px;
+  right: 16px;
   padding: 10px;
   font-size: 25px;
   border: none;

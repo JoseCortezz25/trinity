@@ -13,7 +13,7 @@ import {
   updateContent,
 } from '../../../services/service'
 import { validURL } from '../../../helpers/utils'
-import { WRONG_URL_MESSAGE, INCOMPLETE_INPUTS } from '../../../helpers/messages'
+import { WRONG_URL_MESSAGE, INCOMPLETE_INPUTS, NO_LEARNING_PATH } from '../../../helpers/messages'
 import { getToken } from '../../../services/localStorage'
 
 const ContentForm = () => {
@@ -125,8 +125,7 @@ const ContentForm = () => {
       if (emptyTemario && inputs.temario === '') {
         return setError({
           error: true,
-          message:
-            'Este elemento no tiene una ruta de aprendizaje asignada. Es necesario asignarsela.',
+          message: NO_LEARNING_PATH
         })
       }
       setError({ error: false, message: '' })
@@ -200,8 +199,8 @@ const ContentForm = () => {
             onChange={(e) =>
               setInputs((prevState) => ({
                 ...prevState,
-                level: parseInt(e.id[2]),
-                temario: parseInt(e.id[0]),
+                level: parseInt(e.id.split(',')[1]),
+                temario: parseInt(e.id.split(',')[0]),
               }))
             }
           />

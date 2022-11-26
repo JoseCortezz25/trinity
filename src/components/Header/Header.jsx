@@ -1,15 +1,14 @@
-import { useState, useContext } from "react";
-import { Link, useLocation } from "react-router-dom";
-import UserContext from "../../hooks/UserContext";
-import { logoIcon, toggleButtonIcon as iconButton } from "../../assets";
-
-import "./Header.css";
-import { getRoleUser } from "../../services/localStorage";
+import { useState, useContext } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import UserContext from '../../hooks/UserContext'
+import { logoTrinityNegro, toggleButtonIcon as iconButton } from '../../assets'
+import { getRoleUser } from '../../services/localStorage'
+import './Header.css'
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
-  const { user, logout } = useContext(UserContext);
+  const [isOpen, setIsOpen] = useState(false)
+  const location = useLocation()
+  const { user, logout } = useContext(UserContext)
   const roleUser = user?.roles_trinity?.name || getRoleUser()
 
   const toggleMenu = (e) => {
@@ -18,26 +17,26 @@ const Header = () => {
         .getElementById(
           e.nativeEvent.target.hash?.slice(3, e.nativeEvent.target.hash.length)
         )
-        .scrollIntoView();
+        .scrollIntoView()
     }
-    setIsOpen((prevState) => !prevState);
-  };
+    setIsOpen((prevState) => !prevState)
+  }
 
   return (
     <header>
       <nav>
         <Link to="/">
           <span className="logo">
-            <img src={logoIcon} alt="" />
+            <img src={logoTrinityNegro} alt="" />
           </span>
         </Link>
       </nav>
 
       <nav className="Header__desktop">
-        {location.pathname.includes("/aprender") ||
-        location.pathname.includes("/admin") ? (
+        {location.pathname.includes('/aprender') ||
+        location.pathname.includes('/admin') ? (
           <div className="PlatformMenu">
-            {roleUser === "ADMIN" && (
+            {roleUser === 'ADMIN' && (
               <>
                 <Link to="/admin">Dashboard</Link>
                 <Link to="/aprender">Plataforma</Link>
@@ -65,11 +64,11 @@ const Header = () => {
       <button className={`btnMenu`} onClick={toggleMenu}>
         <img src={iconButton} alt="" />
       </button>
-      <nav className={`Header__mobile ${isOpen ? "open" : "close"}`}>
-        {location.pathname.includes("/aprender") ||
-        location.pathname.includes("/admin") ? (
+      <nav className={`Header__mobile ${isOpen ? 'open' : 'close'}`}>
+        {location.pathname.includes('/aprender') ||
+        location.pathname.includes('/admin') ? (
           <div className="PlatformMenu">
-            {roleUser === "ADMIN" && (
+            {roleUser === 'ADMIN' && (
               <>
                 <Link to="/admin">Dashboard</Link>
                 <Link to="/aprender">Plataforma</Link>
@@ -94,7 +93,7 @@ const Header = () => {
         )}
       </nav>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

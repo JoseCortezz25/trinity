@@ -17,6 +17,7 @@
   color: #000000;
   text-decoration: none;
   transition: var(--transition);
+  overflow-wrap: break-word;
 }
 
 .contenedorTargetas:hover {
@@ -34,9 +35,8 @@
 .RecomemdedCards {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  flex-wrap: wrap;
-  gap: 15px;
+  grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
   padding-bottom: 30px;
 }
 
@@ -68,11 +68,9 @@
 
 .Recomended__content {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 75px;
   text-align: center;
+  overflow-wrap: break-word;
 }
 
 .Recomended__content h3 {
@@ -145,10 +143,10 @@
     width: 100%;
   }
 
-  .RecomemdedCards {
+  /* .RecomemdedCards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-  }
+  } */
 }
 
 @media screen and (max-width: 667px) {

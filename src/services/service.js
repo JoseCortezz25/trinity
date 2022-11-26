@@ -47,7 +47,7 @@ export const createContent = async (data, token) => {
 
 export const getAllContents = async (token) => {
   try {
-    return axios.get(`${API_URL}/contents?populate=*&fields[0]=title&fields[1]=link&fields[2]=description&pagination[pageSize]=10`, {
+    return axios.get(`${API_URL}/contents?[populate][temario][populate][level]=*&[populate][level]=*&fields[0]=title&fields[1]=link&fields[2]=description&pagination[pageSize]=10`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -59,7 +59,7 @@ export const getAllContents = async (token) => {
 
 export const getContentsByPage = async (page, token) => {
   try {
-    return axios.get(`${API_URL}/contents?populate=*&pagination[page]=${page}&pagination[pageSize]=${PAGE_SIZE}`, {
+    return axios.get(`${API_URL}/contents?[populate][temario][populate][level]=*&[populate][level]=*&pagination[page]=${page}&pagination[pageSize]=${PAGE_SIZE}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }

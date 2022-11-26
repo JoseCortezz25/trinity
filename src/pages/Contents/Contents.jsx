@@ -46,10 +46,10 @@ const Contents = () => {
       <div className="Contents__body">
         {contents?.length > 0 ? (
           <>
-            {contents?.map(({ id, attributes }) => (
+            {contents?.map(({ id, attributes }, index) => (
               <CardContent
                 key={`${attributes?.description}${id}`}
-                number={id}
+                number={index + 1}
                 description={attributes?.description}
                 title={attributes?.title}
                 level={attributes?.level.data?.attributes?.title}

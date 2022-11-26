@@ -5,3 +5,4 @@ export const GENERIC_ERROR_MESSAGE = 'Ha ocurrido un error. No es tu culpa, esta
 export const MISSED_LEARNING_PATH = 'Este elemento no tiene una ruta de aprendizaje asignada. Es necesario asignarsela.'
 export const PASSWORDS_ARE_NOT_THE_SAME = 'Las contraseñas no coinciden.'
 export const NO_RECORDS = 'No hay registros guardados.'
+export const NO_LEARNING_PATH = 'Este elemento no tiene una ruta de aprendizaje asignada. Es necesario asignarsela.'

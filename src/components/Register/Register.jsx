@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { registerAccount } from '../../services/service'
-import { logoIcon } from '../../assets'
+import { logoTrinityNegro } from '../../assets'
 import { generateRandomUsername } from '../../helpers/utils'
 import { Input, Label } from '../../components'
 import './Register.css'
@@ -48,7 +48,7 @@ const Register = () => {
       <div className="Register__form">
         <div className="Form__logo">
           <Link to="/">
-            <img src={logoIcon} alt="" />
+            <img src={logoTrinityNegro} alt="" />
           </Link>
         </div>
         <h2>Crear una nueva cuenta</h2>

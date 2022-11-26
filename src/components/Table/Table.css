@@ -11,6 +11,7 @@
 }
 
 .TableComponent__item li {
+  overflow-wrap: break-word;
   list-style: none;
   padding: 15px 0px 15px 10px;
 }

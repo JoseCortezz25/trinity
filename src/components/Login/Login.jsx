@@ -8,7 +8,7 @@ import {
 import { Link, useNavigate } from 'react-router-dom'
 import { getUser, login } from '../../services/service'
 import UserContext from '../../hooks/UserContext'
-import { logoIcon } from '../../assets'
+import { logoTrinityNegro } from '../../assets'
 import './Login.css'
 
 const Login = () => {
@@ -72,7 +72,7 @@ const Login = () => {
       <div className="Login__form">
         <div className="Form__logo">
           <Link to="/">
-            <img src={logoIcon} alt="" />
+            <img src={logoTrinityNegro} alt="" />
           </Link>
         </div>
         <h2>¡Hola de nuevo!</h2>
