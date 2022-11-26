@@ -25,13 +25,6 @@ const Radio = ({
 
   return (
     <div className={cn(s.container, className)} tabIndex={0}>
-      <span
-        className={cn(
-          s.baseRadio,
-          valueCtx === value && s.isChecked,
-          isDisabled && s.isDisabled
-        )}
-      />
       <input
         id={radioId}
         type="radio"
@@ -45,6 +38,13 @@ const Radio = ({
         {...props}
       />
       <Label className={s.label} htmlFor={radioId}>
+        <span
+          className={cn(
+            s.baseRadio,
+            valueCtx === value && s.isChecked,
+            isDisabled && s.isDisabled
+          )}
+        />
         {children}
       </Label>
     </div>

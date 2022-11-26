@@ -21,6 +21,7 @@
   border: 3px solid var(--black);
   border-radius: 50%;
   margin-right: 10px;
+  left: 0;
 }
 
 .isChecked::after {
@@ -37,10 +38,25 @@
   visibility: hidden;
 }
 
+.container .input {
+  height: 100%;
+  width: 100%;
+
+  z-index: 1;
+}
+
 .label {
   cursor: pointer;
   margin: 0;
-  margin-left: 35px;
+  padding-left: 35px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.container .label {
+  display: flex;
+  align-items: center;
 }
 
 @keyframes radio-fade-in {
