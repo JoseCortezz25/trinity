@@ -129,6 +129,18 @@ export const getAllSyllabus = async (token) => {
   }
 }
 
+export const getListOfSyllabus = async (token) => {
+  try {
+    return axios.get(`${API_URL}/temarios?populate=*&_limit=-1`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
 export const getSyllabusByPage = async (page, token) => {
   try {
     return axios.get(`${API_URL}/temarios?populate=*&pagination[page]=${page}&pagination[pageSize]=${PAGE_SIZE}`, {
@@ -216,6 +228,18 @@ export const createLearningPath = async (learningPath, token) => {
 export const getAllLearningPaths = async (token) => {
   try {
     return axios.get(`${API_URL}/learningpaths?pagination[pageSize]=${PAGE_SIZE}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export const getListOfLearningPaths = async (token) => {
+  try {
+    return axios.get(`${API_URL}/learningpaths?_limit=-1`, {
       headers: {
         Authorization: `Bearer ${token}`
       }

@@ -8,7 +8,7 @@ import { Label } from '../../../components/Label'
 import { Select } from '../../../components/Select'
 import {
   createContent,
-  getAllSyllabus,
+  getListOfSyllabus,
   getContent,
   updateContent,
 } from '../../../services/service'
@@ -45,7 +45,7 @@ const ContentForm = () => {
   })
 
   useEffect(() => {
-    getAllSyllabus(getToken()).then((res) => {
+    getListOfSyllabus(getToken()).then((res) => {
       setListOfSyllabus(
         res.data.data.map(({ id, attributes: { title, level } }) => {
           const levelId = level.data.id
