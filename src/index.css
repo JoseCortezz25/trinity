@@ -39,6 +39,7 @@
   --transition: all 400ms ease;
 
   --design-color-gray: rgba(230, 230, 230, 0.3);
+  --design-color-gray2: rgba(230, 230, 230, 0.2);
   --design-pr-color-yellow: #ff9f43; /* Principiante */
   --design-int-color-blue: #0b4e7a; /* Intermedio */
   --design-avan-color-red: #c23616; /* Avanzado */

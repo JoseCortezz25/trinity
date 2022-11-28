@@ -10,21 +10,28 @@
   min-height: calc(100vh - 60px);
 }
 
-.contenedorTargetas {
-  /* max-width: 400px; */
-  border-radius: 5px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+.CardPath {
+  background-color: var(--design-color-gray2);
   color: #000000;
+  padding: 15px;
   text-decoration: none;
   transition: var(--transition);
   overflow-wrap: break-word;
+  border-radius: 5px;
+  border: 1px solid var(--border-bottom-color-gray);
 }
 
-.contenedorTargetas:hover {
+.CardPath__title {
+  text-align: start;
+  width: 100%;
+  font-size: 21px;
+  margin-bottom: 15px;
+}
+
+.CardPath:hover {
+  background: var(--white);
   cursor: pointer;
-  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px,
-    rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px,
-    rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
 
 .img_Online {
