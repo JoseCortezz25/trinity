@@ -1,63 +1,81 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { ItemContent, Loader } from "../../components/Utils";
-import { getTopicsByPath } from "../../services/service";
-import { getToken } from "../../services/localStorage";
-import Topics from "../../components/Topics";
-import CardTopics from "../../components/CardTopics";
-
-import "./Path.css";
+/* eslint-disable camelcase */
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { ItemContent, Loader, MessageNotFound } from '../../components/Utils'
+import { getLearningPathWithTemarios } from '../../services/service'
+import { getToken } from '../../services/localStorage'
+import CardTopics from '../../components/CardTopics'
+import { DATA_NOT_FOUND_MESSAGE } from '../../helpers/messages'
+import './Path.css'
 
 const Path = () => {
-  const [topics, setTopics] = useState([{}]);
-  const { ruta } = useParams();
+  const [topics, setTopics] = useState([{}])
+  const [temario, setTemario] = useState([{}])
+  const [listOfContents, setListOfContents] = useState([{}])
+  const { ruta } = useParams()
 
   useEffect(() => {
-    getTopicsByPath(ruta, getToken())
-      .then((data) => {
-        setTopics(data);
+    getLearningPathWithTemarios(ruta, getToken())
+      .then((res) => {
+        setTemario(res.data.data.attributes.temarios.data)
+        setTopics(res.data.data.attributes)
+        setListOfContents(
+          res.data.data.attributes.temarios.data.map(
+            ({ id, attributes: { title, level } }) => {
+              const levelId = level.data.id
+              const level_label = level.data.attributes.title
+              return { id: [id, levelId], label: `${title} - ${level_label}` }
+            }
+          )
+        )
       })
       .catch((err) => {
-        console.log(err);
-      });
-  }, [ruta]);
+        console.log(err)
+      })
+  }, [ruta])
 
-  return topics ? (
+  console.log('listOfContents', listOfContents)
+  console.log('temario', temario.length)
+
+  return temario ? (
     <section className="Plataform Path">
-      <h2>{ruta}</h2>
-      <p>{topics.description}</p>
+      <h2>{topics?.title}</h2>
+      <p>{topics?.description}</p>
 
-      <div className="ListOfContent">
-        <h3>Contenidos</h3>
-        {topics?.topics?.map((topic) => (
-          <ItemContent
-            paht={ruta}
-            item={topic.topic}
-            key={`${topic.topic}/${ruta}`}
-          />
-        ))}
-      </div>
-
-      <div className="ListOfTopics">
-        {topics?.topics?.map((topic) => (
-          <Topics title={topic.topic} ide={topic.topic} key={topic.topic}>
-            {topic?.sections?.map((section) => (
-              <CardTopics
-                key={`${topic.topic}/${section.level}`}
-                title={section.level}
-                link={`/aprender/${ruta}/${topic.topic}/${section.level}`}
-                description={section.description}
-              />
+      {temario.length > 0 ? (
+        <>
+          <div className="ListOfContent">
+            <h3>Contenidos</h3>
+            {listOfContents?.map(({ id, label }) => (
+              <ItemContent paht={id} item={label} key={`${label}/${id}`} />
             ))}
-          </Topics>
-        ))}
-      </div>
+          </div>
+
+          <div className="ListOfTopics">
+            {temario?.map(({ id, attributes }) => {
+              const levelLabel = attributes?.level.data.attributes.title
+              return (
+                <CardTopics
+                  key={id}
+                  ide={`${attributes?.title} - ${levelLabel}`}
+                  title={attributes?.title}
+                  level={levelLabel}
+                  link={`/aprender/${ruta}/${id}`}
+                  description={attributes?.description}
+                />
+              )
+            })}
+          </div>
+        </>
+      ) : (
+        <MessageNotFound message={DATA_NOT_FOUND_MESSAGE} />
+      )}
     </section>
   ) : (
     <main className="LoaderBackground">
       <Loader />
     </main>
-  );
-};
+  )
+}
 
-export default Path;
+export default Path

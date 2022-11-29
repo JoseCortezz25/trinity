@@ -17,7 +17,7 @@
 }
 
 .TopicsCard {
-  background-color: rgba(230, 230, 230, 0.3);
+  background-color: var(--design-color-gray);
   padding: 20px 25px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
@@ -28,20 +28,17 @@
   margin-bottom: 10px;
 }
 
-.TopicsCard p {
-  font-size: 16px;
-}
 
 .Principiante {
-  border-top: 2px solid #0b4e7a;
+  border-top: 2px solid var(--design-int-color-blue);
 }
 
 .Intermedio {
-  border-top: 2px solid #ff9f43;
+  border-top: 2px solid var(--design-pr-color-yellow);
 }
 
 .Avanzado {
-  border-top: 2px solid #c23616;
+  border-top: 2px solid var(--design-avan-color-red);
 }
 
 @media screen and (max-width: 900px) {

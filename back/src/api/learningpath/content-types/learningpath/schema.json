@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "learningpaths",
+  "info": {
+    "singularName": "learningpath",
+    "pluralName": "learningpaths",
+    "displayName": "LearningPaths",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "temarios": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::temario.temario",
+      "mappedBy": "learning_path"
+    }
+  }
+}

@@ -1,6 +1,6 @@
-import { programmerIcon as imageCoverProgrammer } from "../../assets";
+import { programmerIcon as imageCoverProgrammer } from '../../assets'
 
-import "./Information.css";
+import './Information.css'
 
 const Information = () => {
   return (
@@ -10,16 +10,15 @@ const Information = () => {
           <img src={imageCoverProgrammer} alt="" />
         </div>
         <div className="boxInfo">
-          <h2>Lorem ipsum dolor sit amet. Ut molestiae perferendis.</h2>
+          <h2>¿Quiénes somos?</h2>
           <p>
-            Lorem ipsum dolor sit amet. Eos voluptatum nostrum et illum nostrum
-            aut possimus exercitationem et fugit Quis ea nesciunt minus ut
-            officia amet.
+            Somos una comunidad de desarrolladores comprometidos con las
+            necesidades de nuestros clientes.
           </p>
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Information;
+export default Information

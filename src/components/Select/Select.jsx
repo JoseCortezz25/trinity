@@ -11,9 +11,9 @@ const Select = ({ options = [], placeholder = 'Select options', onChange }) => {
 
   const handleClick = () => setIsOpen(!isOpen)
 
-  const handleOption = ({ target: { textContent, value } }) => {
+  const handleOption = ({ target: { textContent, dataset } }) => {
     setTitle(textContent)
-    onChange({ id: value, label: textContent })
+    onChange({ id: dataset.value, label: textContent })
     setIsOpen(false)
   }
 
@@ -25,7 +25,7 @@ const Select = ({ options = [], placeholder = 'Select options', onChange }) => {
       </div>
       <div className={cn(s.options, isOpen && s.isOpen)}>
         {options.map(({ label, id }) => (
-          <li key={id} value={id} onClick={handleOption}>
+          <li key={id} data-value={id} onClick={handleOption}>
             {label}
           </li>
         ))}

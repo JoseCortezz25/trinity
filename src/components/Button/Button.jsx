@@ -1,6 +1,4 @@
 import cs from 'classnames'
-// import { FiLoader } from 'react-icons/fi'
-
 import s from './Button.module.css'
 
 const colorSchema = {
@@ -16,7 +14,7 @@ const Button = ({
   isLoading = false,
   color = 'colorGray',
   colorButton,
-  onClick,
+  onClick= () => {},
   isDisabled,
   ...props
 }) => {

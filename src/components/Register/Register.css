@@ -44,15 +44,15 @@
 
 .ErrorMessage {
   /* text-transform: */
+  margin-top: 10px;
   color: #c0392b;
   font-weight: bold;
 }
 
-@media screen and (max-width: 667px) {
+@media screen and (max-width: 767px) {
   .Register {
     display: flex;
     width: 80%;
-    /* border: 1px solid red; */
     margin: auto;
   }
 

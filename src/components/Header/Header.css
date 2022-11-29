@@ -22,7 +22,7 @@ nav .logo {
 }
 
 nav .logo img {
-  width: 120px;
+  width: 130px;
 }
 
 nav a {
@@ -74,11 +74,11 @@ nav .btnLogout:hover {
   .Header__desktop {
     display: none;
   }
-  
+
   .btnMenu {
     display: flex;
   }
-  
+
   .PlatformMenu, .InformativePageMenu {
     flex-direction: column;
     align-items: baseline;
@@ -89,7 +89,7 @@ nav .btnLogout:hover {
   }
 
   .Header__mobile {
-    background-color: #fff;
+    background-color: var(--white);
     width: 100%;
     height: calc(100vh - 60px);
     position: absolute;
@@ -117,4 +117,10 @@ nav .btnLogout:hover {
 
 .open {
   display: block;
+}
+
+@media screen and (min-width: 667px) {
+  .open {
+    display: none;
+  }
 }

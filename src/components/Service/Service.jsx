@@ -1,44 +1,38 @@
-import React from "react";
-import { Title } from "../Utils";
-import "./Service.css";
+import React from 'react'
+import { Title } from '../Utils'
+import './Service.css'
 
-import { icon1, icon2, icon3 } from "../../assets";
+import { icon1, icon2, icon3 } from '../../assets'
 
 const Service = () => {
   return (
     <section className="Service" id="Servicios">
-      <Title title="Servicios" />
+      <Title title="¿Qué hacemos?" />
       <div className="ServiceCards">
         <div className="ServiceCard">
           <div className="ServiceCard__image">
             <img src={icon1} alt="" />
           </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-        </div>
-        <div className="ServiceCard">
-          <div className="ServiceCard__image">
-            <img src={icon2} alt="" />
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
+          <p>Diseño y Desarrollo de plataformas web y móviles a la medida</p>
         </div>
         <div className="ServiceCard">
           <div className="ServiceCard__image">
             <img src={icon3} alt="" />
           </div>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Procesos de acompañamiento y asesoría personalizada para
+            desarrolladores
           </p>
+        </div>
+        <div className="ServiceCard">
+          <div className="ServiceCard__image">
+            <img src={icon2} alt="" />
+          </div>
+          <p>Servicio in-House, consultoría y formación</p>
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Service;
+export default Service

@@ -1,5 +1,6 @@
 .Plataform {
   width: 80%;
+  min-width: 240px;
   padding: 3rem 0 3rem 0;
   display: flex;
   flex-direction: column;
@@ -10,14 +11,15 @@
 }
 
 .contenedorTargetas {
-  width: 33.3%;
-  max-width: 400px;
+  /* max-width: 400px; */
   border-radius: 5px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   color: #000000;
   text-decoration: none;
-  transition: all 0.5s ease-in-out;
+  transition: var(--transition);
+  overflow-wrap: break-word;
 }
+
 .contenedorTargetas:hover {
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px,
@@ -33,14 +35,12 @@
 .RecomemdedCards {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  flex-wrap: wrap;
-  gap: 15px;
+  grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
   padding-bottom: 30px;
 }
 
 .Recomended {
-  max-width: 90%;
   padding: 10px;
   cursor: pointer;
   text-decoration: none;
@@ -49,21 +49,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: background 0.4s ease;
+  transition: var(--transition);
+  border: 2px solid var(--color-light-gray);
 }
 
 .Recomended:hover {
-  background: #f7f7f7;
+  background: var(--color-light-gray);
   border-radius: 10px;
-}
-
-.Recomended__content-p {
-  font-size: 17px;
-  font-weight: bold;
-}
-
-.Recomended__content h3 {
-  font-size: 17px;
 }
 
 .Recomended__image {
@@ -76,13 +68,20 @@
 
 .Recomended__content {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
   min-height: 75px;
   text-align: center;
+  overflow-wrap: break-word;
 }
+
+.Recomended__content h3 {
+  font-size: 17px;
+}
+
+.Recomended__content p {
+  font-size: 17px;
+  font-weight: bold;
+}
+
 .center_target {
   display: grid;
   justify-content: center;
@@ -114,21 +113,23 @@
 }
 
 .textDescription {
-  margin: 10px;
+  padding: 10px;
+  /* margin: 10px; */
   font-size: 15px;
 }
 
 .text {
   position: absolute;
-  color: #ffffff;
+  color: var(--white);
   text-transform: capitalize;
   margin-left: 10px;
   margin-bottom: 10px;
 }
 
 .Content_paths {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: auto;
   gap: 40px;
 }
 
@@ -137,20 +138,22 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
+
   .contenedorTargetas {
     width: 100%;
   }
 
-  .RecomemdedCards {
+  /* .RecomemdedCards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
+    grid-template-columns: repeat(2, 1fr);
+  } */
 }
 
 @media screen and (max-width: 667px) {
   .Plataform {
     width: 80%;
   }
+
   .Content_paths {
     display: flex;
     flex-direction: column;
@@ -164,9 +167,9 @@
 
   .contenedorTargetas {
     width: 100%;
-    height: 250px;
   }
 }
+
 @media screen and (max-width: 367px) {
   .RecomemdedCards {
     display: grid;

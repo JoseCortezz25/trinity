@@ -1,11 +1,6 @@
-import {
-  LinkedinIcon,
-  FacebookIcon,
-  TwitterIcon,
-  logoIcon,
-} from "../../assets";
+import { LinkedinIcon, FacebookIcon, TwitterIcon, logoTrinityNegro } from '../../assets'
 
-import "./Footer.css";
+import './Footer.css'
 
 const Footer = () => {
   return (
@@ -13,14 +8,16 @@ const Footer = () => {
       <nav>
         <div className="nav__item">
           <div className="logo">
-            <img src={logoIcon} alt="" />
+            <img src={logoTrinityNegro} alt="" />
           </div>
           <p>
-            <b>Teléfono:</b>
-            ---- ------ -----
+            <b>Teléfono:</b> (+57) 314 3478428
           </p>
           <p>
-            <b>Correo electrónico:</b> correo@correo.com
+            <b>Correo de gerencia:</b> gerencia@trinityfs.com.co
+          </p>
+          <p>
+            <b>Auxiliar administrativo:</b> personal@trinityfs.com.co
           </p>
           <p>
             <b>Localización:</b> Neiva, Huila, Colombia
@@ -29,9 +26,16 @@ const Footer = () => {
         <div className="nav__item">
           <b>Servicios</b>
           <ul className="ListOfService">
-            <li>Lorem ipsum dolor sit amet</li>
-            <li>Lorem ipsum dolor sit amet</li>
-            <li>Lorem ipsum dolor sit amet</li>
+            <li>
+              Procesos de acompañamiento y asesoría personalizada para
+              desarrolladores.
+            </li>
+            <li>
+              Diseño y Desarrollo de plataformas web y móviles a la medida.
+            </li>
+            <li>
+              <p>Servicio in-House, consultoría y formación.</p>
+            </li>
           </ul>
         </div>
         <div className="nav__item">
@@ -58,7 +62,7 @@ const Footer = () => {
         <p>© 2022. Todos los derechos reservados.</p>
       </nav>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

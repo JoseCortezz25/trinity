@@ -1,0 +1,8 @@
+export const WRONG_URL_MESSAGE = 'La URL no corresponde a un formato veridico.'
+export const DATA_NOT_FOUND_MESSAGE = 'No logramos encontrar este contenido. Es probable que el contenido no exista o este deshabilitado temporalmente. Intentalo de nuevo más tarde.'
+export const INCOMPLETE_INPUTS = 'Hay campos vacios. Asegurate de completar todos los campos'
+export const GENERIC_ERROR_MESSAGE = 'Ha ocurrido un error. No es tu culpa, estamos solucionandolo.'
+export const MISSED_LEARNING_PATH = 'Este elemento no tiene una ruta de aprendizaje asignada. Es necesario asignarsela.'
+export const PASSWORDS_ARE_NOT_THE_SAME = 'Las contraseñas no coinciden.'
+export const NO_RECORDS = 'No hay registros guardados.'
+export const NO_LEARNING_PATH = 'Este elemento no tiene una ruta de aprendizaje asignada. Es necesario asignarsela.'
