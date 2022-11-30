@@ -1,8 +1,6 @@
 const path = require('path')
 
 module.exports = ({ env }) => {
-  const argv = process.argv.filter((p) => p.includes('--env='))
-  console.log(argv)
   const isProduction = env('NODE_ENV') === 'production'
   const client = isProduction ? 'mysql' : 'sqlite'
   const filename = !isProduction
@@ -14,12 +12,12 @@ module.exports = ({ env }) => {
         host: env('DATABASE_HOST', 'localhost'),
         port: env.int('DATABASE_PORT', 5432),
         database: env('DATABASE_NAME', 'db_name'),
-        username: env('DATABASE_USERNAME', 'db_user'),
+        user: env('DATABASE_USERNAME', 'db_user'),
         password: env('DATABASE_PASSWORD', ''),
-        schema: 'public',
         ssl: false,
       }
     : {}
+  console.log(connectionToMysql)
 
   return {
     connection: {
