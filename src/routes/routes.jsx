@@ -21,6 +21,10 @@ import Content from '../pages/Admin/Content/Content'
 import ContentForm from '../pages/Admin/Content/ContentForm'
 import LearningPath from '../pages/Admin/LearningPath/LearningPath'
 import LearningPathForm from '../pages/Admin/LearningPath/LearningPathForm'
+import ContentUserQr from '../components/UserQR/ContentUserQr'
+import FormUserQr from '../components/UserQR/FormUserQr'
+
+
 
 const AppRoutes = () => {
   return (
@@ -136,6 +140,14 @@ const protectedRoutes = [
   {
     to: '/admin/contenidos/actualizar/:id',
     component: <ContentForm />,
+  },
+  {
+    to: '/admin/usuarioqr',
+    component: <ContentUserQr />,
+  },
+  {
+    to: '/admin/usuarioqr/añadirusuario',
+    component: <FormUserQr />,
   },
 ]
 

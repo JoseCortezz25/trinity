@@ -34,7 +34,7 @@ const Header = () => {
 
       <nav className="Header__desktop">
         {location.pathname.includes('/aprender') ||
-        location.pathname.includes('/admin') ? (
+          location.pathname.includes('/admin') ? (
           <div className="PlatformMenu">
             {roleUser === 'ADMIN' && (
               <>
@@ -48,13 +48,13 @@ const Header = () => {
           </div>
         ) : (
           <div className="InformativePageMenu">
-            <Link onClick={toggleMenu} to="/#Nosotros">
+            <Link className='InformativePageMenu__Link' onClick={toggleMenu} to="/#Nosotros">
               Nosotros
             </Link>
-            <Link onClick={toggleMenu} to="/#Servicios">
+            <Link className='InformativePageMenu__Link' onClick={toggleMenu} to="/#Servicios">
               Servicios
             </Link>
-            <Link onClick={toggleMenu} to="/#Ubicacion">
+            <Link className='InformativePageMenu__Link' onClick={toggleMenu} to="/#Ubicacion">
               Ubicación
             </Link>
           </div>
@@ -66,7 +66,7 @@ const Header = () => {
       </button>
       <nav className={`Header__mobile ${isOpen ? 'open' : 'close'}`}>
         {location.pathname.includes('/aprender') ||
-        location.pathname.includes('/admin') ? (
+          location.pathname.includes('/admin') ? (
           <div className="PlatformMenu">
             {roleUser === 'ADMIN' && (
               <>

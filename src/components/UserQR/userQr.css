@@ -1,0 +1,18 @@
+.sectionUsuarioQr {
+  width: 100%;
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  border: 2px solid red;
+}
+
+.Dashboard {
+  width: 80%;
+  padding: 3rem 0 3rem 0;
+  margin: auto;
+  min-height: calc(100vh - 60px);
+}
+
+.InputsGroup {
+  width: 100%;
+}

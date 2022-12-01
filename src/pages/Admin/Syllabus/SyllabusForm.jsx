@@ -8,7 +8,7 @@ import { Label } from '../../../components/Label'
 import { Select } from '../../../components/Select'
 import {
   createSyllabus,
-  getAllLearningPaths,
+  getListOfLearningPaths,
   getAllLevels,
   getSyllabus,
   getSyllabusWithFilter,
@@ -49,7 +49,7 @@ const SyllabusForm = () => {
   })
 
   useEffect(() => {
-    getAllLearningPaths(getToken())
+    getListOfLearningPaths(getToken())
       .then((res) => {
         setListOfLearningPaths(
           res.data.data.map(({ id, attributes: { title } }) => {
@@ -111,7 +111,7 @@ const SyllabusForm = () => {
 
   const modifySyllabus = (syllabus) => {
     updateSyllabus(id, { data: syllabus }, getToken())
-      .then((res) => {})
+      .then((res) => { })
       .catch((error) => {
         setError({
           error: error.error,
