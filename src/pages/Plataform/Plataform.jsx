@@ -4,6 +4,7 @@ import {
   getAllRecommendations,
   getAllLearningPaths,
 } from '../../services/service'
+import LogoIcon from '../../assets/images/LogoIcon.png'
 import { getToken } from '../../services/localStorage'
 import { Loader, MessageNotFound } from '../../components/Utils'
 import YoutubeIcon from '../../assets/images/youTube.png'
@@ -31,7 +32,7 @@ const Plataform = () => {
         <div className="Content_paths">
           {learningPaths?.map(({ id, attributes }) => (
             <CardPath
-              image="https://images.unsplash.com/photo-1668881233694-1825a663b2a4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+              image={LogoIcon}
               title={attributes?.title}
               key={attributes?.title}
               description={attributes?.description}
@@ -68,10 +69,10 @@ const Plataform = () => {
 const CardPath = ({ title, description, image, link }) => (
   <Link to={link} className="contenedorTargetas">
     <div className="contenedorImage">
-      <img src={image} />
-      <h2 className="text">{title}</h2>
+      <img className='ImgIcon' src={image} />
     </div>
     <div className="textDescription">
+      <h2 className='text'>{title}</h2>
       <p>{description}</p>
     </div>
   </Link>

@@ -40,7 +40,20 @@ const UserQr = () => {
             // value={user.fullName ?? inputs.fullName}
             type="text"
             minLength="8"
-            placeholder="Escribe el nombre del usuario"
+            placeholder="Escribe la descripción del usuario"
+          // onInput={handleChange}
+          />
+        </div>
+
+        <div className="InputsGroup">
+          <Label htmlFor="fullName">Link</Label>
+          <Input
+            id="fullName"
+            name="fullName"
+            // value={user.fullName ?? inputs.fullName}
+            type="text"
+            minLength="8"
+            placeholder="Adjunta el link de la imagen"
           // onInput={handleChange}
           />
         </div>

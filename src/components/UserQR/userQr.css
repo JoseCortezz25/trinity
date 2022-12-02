@@ -6,6 +6,21 @@
   border: 2px solid red;
 }
 
+.img_user img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.img_user {
+  width: 150px;
+  height: 150px;
+  background-position: center;
+  background-attachment: contain;
+  background-size: cover;
+}
+
+
 .Dashboard {
   width: 80%;
   padding: 3rem 0 3rem 0;
