@@ -4,6 +4,7 @@ import {
   getAllRecommendations,
   getAllLearningPaths,
 } from '../../services/service'
+import LogoIcon from '../../assets/images/LogoIcon.png'
 import { getToken } from '../../services/localStorage'
 import { Loader, MessageNotFound } from '../../components/Utils'
 import YoutubeIcon from '../../assets/images/youTube.png'

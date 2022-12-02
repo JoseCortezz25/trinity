@@ -1,3 +1,16 @@
+const Members = [
+  {
+    fullName:"Hector Sanchez",
+    description: "Hola soy un desarrollador web",
+    image: "https://www.solbyte.com/blog/wp-content/uploads/desarrollo-web-a-medida.png",
+  },
+  {
+    fullName:"Gilber Cuadrado",
+    description: "Hola soy un desarrollador web y tester QA",
+    image: "https://media-exp1.licdn.com/dms/image/C5603AQFLuEueh4oJJA/profile-displayphoto-shrink_800_800/0/1657030526870?e=2147483647&v=beta&t=V74F7LIMbzOzZH2648WOaOfodM8KgkfBDspXOfbQxnM",
+  },
+];
+
 const RecommendedResources = [
   {
     title: "MDN Docs",
@@ -389,5 +402,6 @@ export {
   RecommendedResources,
   syllabus,
   LearningPaths,
-  Contents
+  Contents,
+  Members
 }

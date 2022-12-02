@@ -111,7 +111,7 @@ const SyllabusForm = () => {
 
   const modifySyllabus = (syllabus) => {
     updateSyllabus(id, { data: syllabus }, getToken())
-      .then((res) => {})
+      .then((res) => { })
       .catch((error) => {
         setError({
           error: error.error,

@@ -22,14 +22,14 @@
   padding: 25px 20px;
   border-radius: 20px;
   /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
-  -webkit-box-shadow: 0px 0px 30px -22px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 30px -22px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 30px -22px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px 0px 30px -22px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 30px -22px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 30px -22px rgba(0, 0, 0, 0.75);
   text-align: center;
   transition: .2s ease;
 }
 
-.ServiceCard:hover{
+.ServiceCard:hover {
   transform: scale(1.1);
 }
 
@@ -43,6 +43,11 @@
 
 .ServiceCard__image img {
   width: 100%;
+}
+
+.ServiceCard:hover {
+  cursor: pointer;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .ServiceCard p {

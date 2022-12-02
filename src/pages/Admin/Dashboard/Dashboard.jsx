@@ -11,7 +11,7 @@ const Dashboard = () => {
       <CoverGreetings
         title="Dashboard"
         isHome={true}
-        greeting={user?.fullName}
+        greeting={user.fullName}
       />
 
       <div className="DashboardSections">
@@ -39,6 +39,11 @@ const Dashboard = () => {
           title="Contenidos"
           description="Administra los contenidos de aprendizaje. Añade, elimina o actualiza los contenidos."
           path="/contenidos"
+        />
+        <DashboradCard
+          title="Usuarios QR"
+          description="Administra los usuarios. Añade la informacion de usuario para ser mostrada por QR"
+          path="/usuarioqr"
         />
       </div>
     </div>

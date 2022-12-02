@@ -1,0 +1,33 @@
+.sectionUsuarioQr {
+  width: 100%;
+  display: grid;
+  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  border: 2px solid red;
+}
+
+.img_user img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.img_user {
+  width: 150px;
+  height: 150px;
+  background-position: center;
+  background-attachment: contain;
+  background-size: cover;
+}
+
+
+.Dashboard {
+  width: 80%;
+  padding: 3rem 0 3rem 0;
+  margin: auto;
+  min-height: calc(100vh - 60px);
+}
+
+.InputsGroup {
+  width: 100%;
+}

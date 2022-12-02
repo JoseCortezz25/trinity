@@ -1,6 +1,7 @@
 const TOKEN = "token";
 const USER = "user";
 const ROLE = "role";
+const FULLNAME = "fullname";
 
 export const setToken = (token) => {
   window.localStorage.setItem(TOKEN, token);
@@ -13,6 +14,14 @@ export const setCurrentUser = (user) => {
 export const setRoleUser = (role) => {
   window.localStorage.setItem(ROLE, role);
 }
+
+export const setFullname = (role) => {
+  window.localStorage.setItem(FULLNAME, role);
+}
+
+export const getFullname = () => {
+  return window.localStorage.getItem(FULLNAME);
+};
 
 export const getToken = () => {
   return window.localStorage.getItem(TOKEN);
