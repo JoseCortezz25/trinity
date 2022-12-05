@@ -6,3 +6,4 @@ export const MISSED_LEARNING_PATH = 'Este elemento no tiene una ruta de aprendiz
 export const PASSWORDS_ARE_NOT_THE_SAME = 'Las contraseñas no coinciden.'
 export const NO_RECORDS = 'No hay registros guardados.'
 export const NO_LEARNING_PATH = 'Este elemento no tiene una ruta de aprendizaje asignada. Es necesario asignarsela.'
+export const WRONG_IMAGE_FORMAT = 'El tipo del archivo no es válido. Sólo se permite jpeg, jpg y png.'

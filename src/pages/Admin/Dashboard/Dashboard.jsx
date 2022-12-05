@@ -11,7 +11,7 @@ const Dashboard = () => {
       <CoverGreetings
         title="Dashboard"
         isHome={true}
-        greeting={user.fullName}
+        greeting={user?.fullName}
       />
 
       <div className="DashboardSections">
@@ -41,9 +41,9 @@ const Dashboard = () => {
           path="/contenidos"
         />
         <DashboradCard
-          title="Usuarios QR"
-          description="Administra los usuarios. Añade la informacion de usuario para ser mostrada por QR"
-          path="/usuarioqr"
+          title="Miembros de Trinity"
+          description="Administra los miembros. Añade, elimina o actualiza la informacion de los miembros."
+          path="/miembros"
         />
       </div>
     </div>

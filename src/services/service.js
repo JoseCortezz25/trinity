@@ -9,6 +9,117 @@ const options = (token) => ({
 
 const PAGE_SIZE = 10
 
+export const getAllMembers = async (token) => {
+  try {
+    return axios.get(`${API_URL}/members?populate=*&pagination[pageSize]=10`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export const getMembersPerPage = async (page, token) => {
+  try {
+    return axios.get(`${API_URL}/members?populate=*&pagination[page]=${page}&pagination[pageSize]=${PAGE_SIZE}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export const createMember = async (data, token) => {
+  try {
+    return axios.post(`${API_URL}/members`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export const updateMember = async (id, data, token) => {
+  try {
+    return axios.put(`${API_URL}/members/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+  } catch (error) {
+    return error
+  }
+}
+
+export const uploadFile = async (data, token) => {
+  try {
+    return axios.post(`${API_URL}/upload`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data"
+      },
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export const deleteFile = async (id, token) => {
+  try {
+    return axios.delete(`${API_URL}/upload/files/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data"
+      },
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export const deleteMember = async (id, token) => {
+  try {
+    return axios.delete(`${API_URL}/members/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export const getMemberByUrl = async (search, token) => {
+  // console.log('URL', `${API_URL}/members/filters[url][$eq]=${search}`);
+  try {
+    return axios.get(`${API_URL}/members?filters[url][$eq]=${search}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
+export const getMember = async (id, token) => {
+  try {
+    return axios.get(`${API_URL}/members/${id}?populate=*`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+  } catch (error) {
+    return error
+  }
+}
+
 export const getAllLevels = async (token) => {
   try {
     return axios.get(`${API_URL}/levels`, {
