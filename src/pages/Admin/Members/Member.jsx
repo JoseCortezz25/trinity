@@ -1,38 +1,32 @@
-import React, { useState, useEffect } from 'react'
-import { CoverGreetings, MessageEmptyData } from '../../../components/Utils/Utils'
-import { Link } from 'react-router-dom'
-import Table from '../../../components/Table/Table'
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { AiFillDelete } from 'react-icons/ai'
 import { MdModeEdit } from 'react-icons/md'
-import ModalAlert from '../../../components/ModalAlert/ModalAlert'
-import { Pagination } from '../../../components/Pagination/Pagination'
-import {
-  getAllLearningPaths,
-  deleteLearningPath,
-  getLearningPathsByPage,
-} from '../../../services/service'
-import { getToken } from '../../../services/localStorage'
-import { NO_RECORDS } from '../../../helpers/messages'
+import { CoverGreetings, MessageEmptyData } from '../../../components/Utils';
+import ModalAlert from '../../../components/ModalAlert/ModalAlert';
+import { deleteMember, getAllMembers, getMembersPerPage } from '../../../services/service';
+import { getToken } from '../../../services/localStorage';
+import { NO_RECORDS } from '../../../helpers/messages';
+import { Pagination } from '../../../components/Pagination/Pagination'; 
+import Table from '../../../components/Table/Table';
+import './Member.css'
 const DOMINIO = import.meta.env.VITE_API_DOS
 
-
-const LearningPath = () => {
+const Member = () => {
   const [elementLength, setElementLength] = useState(0)
   const [pagination, setPagination] = useState({})
-  const [learningPaths, setLearningPaths] = useState([{}])
-  const [learningPathLength, setLearningPathsLength] = useState(0)
+  const [members, setMembers] = useState([{}])
+  const [memberLength, setMemberLength] = useState(0)
   const [openModal, setOpenModal] = useState(false)
   const [elementSeleted, setElementSeleted] = useState(null)
 
   useEffect(() => {
-    getAllLearningPaths(getToken())
-      .then((res) => {
-        setElementLength(res.data.data.length);
-        setLearningPathsLength(
-          Object.values(res.data.data[0].attributes).length + 1
-        )
-        setLearningPaths(res.data.data)
-        setPagination(res.data.meta.pagination)
+    getAllMembers(getToken())
+      .then(({data: {data, meta}}) => {
+        setMembers(data)
+        setMemberLength(Object.values(data[0].attributes).length + 1)
+        setPagination(meta.pagination)
+        setElementLength(data.length)
       })
       .catch((error) => {
         console.log(error)
@@ -40,9 +34,9 @@ const LearningPath = () => {
   }, [])
 
   const getDataPerPage = async ({ selected }) => {
-    getLearningPathsByPage(selected + 1, getToken())
-      .then((res) => {
-        setLearningPaths(res.data.data)
+    getMembersPerPage(selected + 1, getToken())
+      .then(({data}) => {
+        setMembers(data.data)
       })
       .catch((error) => {
         console.log(error)
@@ -55,40 +49,42 @@ const LearningPath = () => {
   }
 
   return (
-    <div className="Dashboard">
+    <div className='Dashboard'>
       <CoverGreetings
-        greeting="Gestión de las rutas de aprendizaje"
+        greeting="Gestión de usuarios registrados"
         isHome={false}
       />
-
-      <Link to="/admin/rutas/añadir">
-        <button className="btnStandard btnBlue">Crear nueva ruta</button>
+      <Link to="/admin/miembros/añadir">
+        <button className="btnStandard btnBlue">
+          Añadir un nuevo usuario
+        </button>
       </Link>
 
-      <Table headers={['Nombre de la ruta', 'Descripción', 'Imagen', 'Acciones']}>
+      <Table headers={['Nombre Completo', 'Descripción', 'Imagen', 'URL', 'Acciones']}>
         {elementLength > 0 ? (
           <Pagination
             pageCount={pagination.pageCount}
             changePage={getDataPerPage}
           >
-            {learningPaths.map(({ id, attributes }) => (
+            {members?.map(({ id, attributes }) => (
               <div
                 key={`${attributes?.title}${id}`}
                 className="Table__row"
                 style={{
-                  gridTemplateColumns: `repeat(${learningPathLength}, 250px)`,
+                  gridTemplateColumns: `repeat(${memberLength-3}, 250px)`,
                 }}
               >
-                <li>{attributes?.title}</li>
+                <li>{attributes?.fullName}</li>
                 <li className="TextClipped">{attributes?.description}</li>
                 <li className='Table__image'>
                   <img src={`${DOMINIO}${attributes?.thumbnail}`} alt="" />
                 </li>
+                <li>{attributes?.url}</li>
                 <li className="Table__actions">
                   <button onClick={() => handleOpenModal(id)}>
                     <AiFillDelete className="BtnDelete" />
                   </button>
-                  <Link to={`/admin/rutas/actualizar/${id}`}>
+                  <Link to={`/admin/miembros/actualizar/${id}`}>
                     <button>
                       <MdModeEdit />
                     </button>
@@ -106,11 +102,11 @@ const LearningPath = () => {
         <ModalAlert
           elementSeleted={elementSeleted}
           setOpenModal={setOpenModal}
-          deleteItem={deleteLearningPath}
+          deleteItem={deleteMember}
         />
       )}
     </div>
   )
 }
 
-export default LearningPath
+export default Member; 

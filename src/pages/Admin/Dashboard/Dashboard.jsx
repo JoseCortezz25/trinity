@@ -40,6 +40,11 @@ const Dashboard = () => {
           description="Administra los contenidos de aprendizaje. Añade, elimina o actualiza los contenidos."
           path="/contenidos"
         />
+        <DashboradCard
+          title="Miembros de Trinity"
+          description="Administra los miembros. Añade, elimina o actualiza la informacion de los miembros."
+          path="/miembros"
+        />
       </div>
     </div>
   )

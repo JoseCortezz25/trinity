@@ -21,6 +21,9 @@ import Content from '../pages/Admin/Content/Content'
 import ContentForm from '../pages/Admin/Content/ContentForm'
 import LearningPath from '../pages/Admin/LearningPath/LearningPath'
 import LearningPathForm from '../pages/Admin/LearningPath/LearningPathForm'
+import Member from '../pages/Admin/Members/Member'
+import Members from '../pages/Members/Members'
+import MemberForm from '../pages/Admin/Members/MemberForm'
 
 const AppRoutes = () => {
   return (
@@ -31,6 +34,7 @@ const AppRoutes = () => {
         )}
         <Route path="/" element={<MainLayout />}>
           <Route index path="/" element={<Home />} />
+          <Route path="/miembro/:url" element={<Members />} />
           <Route path="/" element={<ProtectedRoute />}>
             <Route index path="/aprender" element={<Plataform />} />
             {protectedRoutes.map(({ to, component }) => (
@@ -136,6 +140,18 @@ const protectedRoutes = [
   {
     to: '/admin/contenidos/actualizar/:id',
     component: <ContentForm />,
+  },
+  {
+    to: '/admin/miembros',
+    component: <Member />,
+  },
+  {
+    to: '/admin/miembros/añadir',
+    component: <MemberForm />,
+  },
+  {
+    to: '/admin/miembros/actualizar/:id',
+    component: <MemberForm />,
   },
 ]
 

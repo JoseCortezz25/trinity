@@ -1,0 +1,62 @@
+.CardMember {
+  width: 80%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.CardMember__image {
+  width: 80%;
+  height: 500px;
+  overflow: hidden;
+  margin: auto;
+
+  -webkit-box-shadow: 10px 10px 0px 0px var(--button-color-black);
+  -moz-box-shadow: 10px 10px 0px 0px var(--button-color-black);
+  box-shadow: 10px 10px 0px 0px var(--button-color-black);
+}
+
+.CardMember__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.CardMember__info p {
+  font-size: 18px;
+  color: var(--button-color-dark-gray);
+}
+
+.CardMember__info h3 {
+  font-size: 50px;
+  text-align: start;
+  text-transform: uppercase;
+}
+
+.CardMember__info span {
+  font-weight: bold;
+  color: var(--trinity-color-dark-green);
+}
+
+@media screen and (max-width: 667px) {
+  .CardMember {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .CardMember__image {
+    order: 1;
+    height: 400px;
+    margin-bottom: 35px;
+  }
+
+  .CardMember__info {
+    order: 2;
+  }
+
+  .CardMember__info h3 {
+    font-size: 38px;
+  }
+}

@@ -10,6 +10,7 @@ import YoutubeIcon from '../../assets/images/youTube.png'
 import WebIcon from '../../assets/images/Web.png'
 import { DATA_NOT_FOUND_MESSAGE } from '../../helpers/messages'
 import './Plataform.css'
+const DOMINIO = import.meta.env.VITE_API_DOS
 
 const Plataform = () => {
   const [learningPaths, setLearningPaths] = useState([{}])
@@ -31,9 +32,9 @@ const Plataform = () => {
         <div className="Content_paths">
           {learningPaths?.map(({ id, attributes }) => (
             <CardPath
-              image="https://images.unsplash.com/photo-1668881233694-1825a663b2a4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
               title={attributes?.title}
-              key={attributes?.title}
+              key={`${attributes?.title}${id}`}
+              image={attributes?.image}
               description={attributes?.description}
               link={`/aprender/${id}`}
             />
@@ -65,13 +66,13 @@ const Plataform = () => {
   )
 }
 
-const CardPath = ({ title, description, image, link }) => (
-  <Link to={link} className="contenedorTargetas">
-    <div className="contenedorImage">
-      <img src={image} />
-      <h2 className="text">{title}</h2>
+const CardPath = ({ title, description, link, image }) => (
+  <Link to={link} className="CardPath">
+    <div className="CardPath__image">
+      <img src={`${DOMINIO}${image}`} alt="" />
     </div>
-    <div className="textDescription">
+    <div className="CardPath__description">
+      <h3 className="CardPath__title">{title}</h3>
       <p>{description}</p>
     </div>
   </Link>

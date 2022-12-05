@@ -4,6 +4,7 @@ const numberGenerateRandomly = (min, max) => {
 }
 
 const generateRandomUsername = (fullname) => `${fullname.replaceAll(' ', '_')}_${numberGenerateRandomly(0, 15000)}_${Date.now()}`
+const generateRandomUrl = (fullname) => `${fullname.toLowerCase().replaceAll(' ', '-')}-${numberGenerateRandomly(0, 5)}-${Date.now()}`
 
 function validURL(str) {
   // eslint-disable-next-line prefer-regex-literals, no-useless-escape
@@ -11,4 +12,4 @@ function validURL(str) {
   return !!pattern.test(str);
 }
 
-export { numberGenerateRandomly, generateRandomUsername, validURL }
+export { numberGenerateRandomly, generateRandomUsername, validURL, generateRandomUrl }

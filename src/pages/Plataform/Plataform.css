@@ -10,21 +10,40 @@
   min-height: calc(100vh - 60px);
 }
 
-.contenedorTargetas {
-  /* max-width: 400px; */
-  border-radius: 5px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+.CardPath {
+  width: 100%;
+  background-color: var(--design-color-gray);
   color: #000000;
+  padding: 15px;
   text-decoration: none;
   transition: var(--transition);
   overflow-wrap: break-word;
+  border-radius: 5px;
 }
 
-.contenedorTargetas:hover {
+.CardPath__image {
+  width: 100%;
+  height: 200px;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.CardPath__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.CardPath__title {
+  text-align: start;
+  font-size: 25px;
+  margin: 15px 0px 15px 0px;
+}
+
+.CardPath:hover {
+  background: var(--white);
   cursor: pointer;
-  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px,
-    rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px,
-    rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
 
 .img_Online {
@@ -35,7 +54,7 @@
 .RecomemdedCards {
   width: 100%;
   display: grid;
-  grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
   padding-bottom: 30px;
 }
@@ -100,30 +119,39 @@
 .contenedorImage {
   position: relative;
   width: 100%;
+  height: 400px;
   max-height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   overflow: hidden;
+  align-items: center;
 }
 
 .contenedorImage img {
   object-fit: scale-down;
   width: 100%;
+  height: auto;
+  /* border: 2px solid green; */
+  border-radius: 5px;
+}
+
+@supports(object-fit: cover) {
+  .contenedorImage img {
+    height: 70%;
+    width: 80%;
+    object-fit: cover;
+    object-position: center center;
+  }
 }
 
 .textDescription {
   padding: 10px;
-  /* margin: 10px; */
   font-size: 15px;
 }
 
-.text {
-  position: absolute;
-  color: var(--white);
-  text-transform: capitalize;
-  margin-left: 10px;
-  margin-bottom: 10px;
+.textDescription p {
+  padding: 10px;
 }
 
 .Content_paths {
@@ -150,10 +178,6 @@
 }
 
 @media screen and (max-width: 667px) {
-  .Plataform {
-    width: 80%;
-  }
-
   .Content_paths {
     display: flex;
     flex-direction: column;

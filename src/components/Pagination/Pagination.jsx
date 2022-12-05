@@ -20,7 +20,7 @@ export const Pagination = ({ children, pageCount, changePage }) => {
   )
 }
 
-export const PaginationAdapted = ({ data=[], children, dataPerPage=10 }) => {
+export const PaginationAdapted = ({ data = [], children, dataPerPage = 10 }) => {
   const [pageNumber, setPageNumber] = useState(0);
 
   const pagesVisited = pageNumber * dataPerPage;
