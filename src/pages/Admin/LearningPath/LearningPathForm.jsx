@@ -6,10 +6,16 @@ import { Button, colorSchema } from '../../../components/Button'
 import { Label } from '../../../components/Label'
 import {
   createLearningPath,
+  deleteFile,
   getLearningPath,
   updateLearningPath,
+  uploadFile,
 } from '../../../services/service'
-import { GENERIC_ERROR_MESSAGE, INCOMPLETE_INPUTS } from '../../../helpers/messages'
+import {
+  GENERIC_ERROR_MESSAGE,
+  INCOMPLETE_INPUTS,
+  WRONG_IMAGE_FORMAT,
+} from '../../../helpers/messages'
 import { getToken } from '../../../services/localStorage'
 
 const LearningPathForm = () => {
@@ -27,6 +33,7 @@ const LearningPathForm = () => {
   const [inputs, setInputs] = useState({
     title: '',
     description: '',
+    image: null,
   })
 
   useEffect(() => {
@@ -40,7 +47,6 @@ const LearningPathForm = () => {
       setTypeOfForm('UPDATE')
       getLearningPath(id, getToken())
         .then((res) => {
-          console.log(res.data.data.attributes)
           setLearningPath(res.data.data.attributes)
         })
         .catch((error) => {
@@ -64,7 +70,7 @@ const LearningPathForm = () => {
       .catch((error) => {
         setError({
           error: error.error,
-          message: GENERIC_ERROR_MESSAGE
+          message: GENERIC_ERROR_MESSAGE,
         })
       })
   }
@@ -72,19 +78,46 @@ const LearningPathForm = () => {
   const handleSubmit = (e) => {
     try {
       e.preventDefault()
-      const { title, description } = inputs
+      const { title, description, image } = inputs
 
       if (typeOfForm === 'ADD') {
-        if (title === '' || description === '') {
+        if (title === '' || description === '' || !image) {
           return setError({
             error: true,
-            message: INCOMPLETE_INPUTS
+            message: INCOMPLETE_INPUTS,
           })
         }
         setError({ error: true, message: '' })
 
-        createLearningPath(inputs, getToken())
-        navigate('/admin/rutas')
+        const formData = new FormData()
+        formData.append('files', image, image.name)
+
+        uploadFile(formData, getToken())
+          .then(({ data }) => {
+            const thumbnail = data[0].formats.thumbnail.url
+            const image = data[0].url
+            return createLearningPath(
+              {
+                title,
+                description,
+                image,
+                thumbnail,
+                imageId: data[0].id,
+              },
+              getToken()
+            )
+          })
+          .then(({ data }) => {
+            navigate('/admin/rutas')
+          })
+          .catch((error) => {
+            setError({
+              error: error.error,
+              message: error.message,
+            })
+          })
+        // createLearningPath(inputs, getToken())
+        // navigate('/admin/rutas')
       }
 
       if (typeOfForm === 'UPDATE') {
@@ -94,11 +127,63 @@ const LearningPathForm = () => {
           ? inputs.description
           : learningPath.description
 
-        modifyLearningPath(formData)
-        navigate('/admin/rutas')
+        if (inputs.image) {
+          const formDataFile = new FormData()
+          formDataFile.append('files', image, image.name)
+          deleteFile(learningPath.imageId, getToken())
+          uploadFile(formDataFile, getToken())
+            .then(({ data }) => {
+              const thumbnail = data[0].formats.thumbnail.url
+              const image = data[0].url
+              return modifyLearningPath(
+                {
+                  fullName: formData.fullName,
+                  description: formData.description,
+                  image,
+                  thumbnail,
+                  imageId: data[0].id,
+                },
+                getToken()
+              )
+            })
+            .then(({ data }) => {
+              navigate('/admin/rutas')
+            })
+            .catch((error) => {
+              setError({
+                error: error.error,
+                message: error.message,
+              })
+            })
+            navigate('/admin/rutas')
+        } else {
+          modifyLearningPath(formData)
+          navigate('/admin/rutas')
+        }
       }
     } catch (error) {
       setError({ error: error.error, message: error.message })
+    }
+  }
+
+  const handleImage = (e) => {
+    const allowedMimes = ['image/jpeg', 'image/jpg', 'image/png']
+    if (allowedMimes.includes(e.type)) {
+      setInputs((prevState) => ({
+        ...prevState,
+        image: e,
+      }))
+      setError({ error: false, message: '' })
+    } else {
+      window.document.getElementById('input-file').value = ''
+      setInputs((prevState) => ({
+        ...prevState,
+        image: '',
+      }))
+      return setError({
+        error: true,
+        message: WRONG_IMAGE_FORMAT,
+      })
     }
   }
 
@@ -115,7 +200,10 @@ const LearningPathForm = () => {
             value={inputs.title ? inputs.title : learningPath.title}
             placeholder="Escribe el nombre de la ruta"
             onChange={(e) =>
-              setInputs((prevState) => ({ ...prevState, title: e.target.value }))
+              setInputs((prevState) => ({
+                ...prevState,
+                title: e.target.value,
+              }))
             }
           />
         </div>
@@ -126,7 +214,9 @@ const LearningPathForm = () => {
             id="description"
             type="text"
             name="description"
-            value={inputs.description ? inputs.description : learningPath.description}
+            value={
+              inputs.description ? inputs.description : learningPath.description
+            }
             placeholder="Escribe la descripción de la ruta"
             onChange={(e) =>
               setInputs((prevState) => ({
@@ -134,6 +224,18 @@ const LearningPathForm = () => {
                 description: e.target.value,
               }))
             }
+          />
+        </div>
+
+        <div className="InputsGroup">
+          <Label htmlFor="image">Sube la imagen principal para la ruta</Label>
+          <Input
+            id="input-file"
+            name="image"
+            type="file"
+            accept="image/png, image/jpeg, image/jpg"
+            placeholder="Adjunta el link de la imagen"
+            onChange={({ target }) => handleImage(target.files[0])}
           />
         </div>
 

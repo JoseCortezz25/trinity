@@ -160,7 +160,6 @@ const MemberForm = () => {
   }
 
   const handleImage = (e) => {
-    console.log('Image', e)
     const allowedMimes = ['image/jpeg', 'image/jpg', 'image/png']
     if (allowedMimes.includes(e.type)) {
       setInputs((prevState) => ({

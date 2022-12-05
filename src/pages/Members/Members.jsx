@@ -16,7 +16,6 @@ const Members = () => {
   useEffect(() => {
     getMemberByUrl(url, getToken())
       .then(({ data: { data } }) => {
-        console.log('📌', data[0].attributes)
         setMember(data[0].attributes)
       })
       .catch((error) => {

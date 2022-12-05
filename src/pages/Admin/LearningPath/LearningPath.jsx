@@ -13,6 +13,8 @@ import {
 } from '../../../services/service'
 import { getToken } from '../../../services/localStorage'
 import { NO_RECORDS } from '../../../helpers/messages'
+const DOMINIO = import.meta.env.VITE_API_DOS
+
 
 const LearningPath = () => {
   const [elementLength, setElementLength] = useState(0)
@@ -63,7 +65,7 @@ const LearningPath = () => {
         <button className="btnStandard btnBlue">Crear nueva ruta</button>
       </Link>
 
-      <Table headers={['Nombre de la ruta', 'Descripción', 'Acciones']}>
+      <Table headers={['Nombre de la ruta', 'Descripción', 'Imagen', 'Acciones']}>
         {elementLength > 0 ? (
           <Pagination
             pageCount={pagination.pageCount}
@@ -79,6 +81,9 @@ const LearningPath = () => {
               >
                 <li>{attributes?.title}</li>
                 <li className="TextClipped">{attributes?.description}</li>
+                <li className='Table__image'>
+                  <img src={`${DOMINIO}${attributes?.thumbnail}`} alt="" />
+                </li>
                 <li className="Table__actions">
                   <button onClick={() => handleOpenModal(id)}>
                     <AiFillDelete className="BtnDelete" />

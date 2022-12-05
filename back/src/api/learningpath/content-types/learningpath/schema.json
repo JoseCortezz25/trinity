@@ -26,6 +26,16 @@
       "relation": "oneToMany",
       "target": "api::temario.temario",
       "mappedBy": "learning_path"
+    },
+    "image": {
+      "type": "string",
+      "required": true
+    },
+    "thumbnail": {
+      "type": "string"
+    },
+    "imageId": {
+      "type": "integer"
     }
   }
 }

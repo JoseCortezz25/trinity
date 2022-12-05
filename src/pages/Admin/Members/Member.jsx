@@ -10,6 +10,7 @@ import { NO_RECORDS } from '../../../helpers/messages';
 import { Pagination } from '../../../components/Pagination/Pagination'; 
 import Table from '../../../components/Table/Table';
 import './Member.css'
+const DOMINIO = import.meta.env.VITE_API_DOS
 
 const Member = () => {
   const [elementLength, setElementLength] = useState(0)
@@ -76,7 +77,7 @@ const Member = () => {
                 <li>{attributes?.fullName}</li>
                 <li className="TextClipped">{attributes?.description}</li>
                 <li className='Table__image'>
-                  <img src={`http://localhost:1337${attributes?.thumbnail}`} alt="" />
+                  <img src={`${DOMINIO}${attributes?.thumbnail}`} alt="" />
                 </li>
                 <li>{attributes?.url}</li>
                 <li className="Table__actions">

@@ -11,21 +11,33 @@
 }
 
 .CardPath {
-  background-color: var(--design-color-gray2);
+  width: 100%;
+  background-color: var(--design-color-gray);
   color: #000000;
   padding: 15px;
   text-decoration: none;
   transition: var(--transition);
   overflow-wrap: break-word;
   border-radius: 5px;
-  border: 1px solid var(--border-bottom-color-gray);
+}
+
+.CardPath__image {
+  width: 100%;
+  height: 200px;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.CardPath__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .CardPath__title {
   text-align: start;
-  width: 100%;
-  font-size: 21px;
-  margin-bottom: 15px;
+  font-size: 25px;
+  margin: 15px 0px 15px 0px;
 }
 
 .CardPath:hover {

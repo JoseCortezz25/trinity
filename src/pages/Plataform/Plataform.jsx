@@ -4,13 +4,13 @@ import {
   getAllRecommendations,
   getAllLearningPaths,
 } from '../../services/service'
-import LogoIcon from '../../assets/images/LogoIcon.png'
 import { getToken } from '../../services/localStorage'
 import { Loader, MessageNotFound } from '../../components/Utils'
 import YoutubeIcon from '../../assets/images/youTube.png'
 import WebIcon from '../../assets/images/Web.png'
 import { DATA_NOT_FOUND_MESSAGE } from '../../helpers/messages'
 import './Plataform.css'
+const DOMINIO = import.meta.env.VITE_API_DOS
 
 const Plataform = () => {
   const [learningPaths, setLearningPaths] = useState([{}])
@@ -33,7 +33,8 @@ const Plataform = () => {
           {learningPaths?.map(({ id, attributes }) => (
             <CardPath
               title={attributes?.title}
-              key={attributes?.title}
+              key={`${attributes?.title}${id}`}
+              image={attributes?.image}
               description={attributes?.description}
               link={`/aprender/${id}`}
             />
@@ -65,10 +66,13 @@ const Plataform = () => {
   )
 }
 
-const CardPath = ({ title, description, link }) => (
+const CardPath = ({ title, description, link, image }) => (
   <Link to={link} className="CardPath">
-    <h3 className="CardPath__title">{title}</h3>
+    <div className="CardPath__image">
+      <img src={`${DOMINIO}${image}`} alt="" />
+    </div>
     <div className="CardPath__description">
+      <h3 className="CardPath__title">{title}</h3>
       <p>{description}</p>
     </div>
   </Link>
